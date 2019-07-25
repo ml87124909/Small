@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-
 ##############################################################################
-#
-#
+# Copyright (c) wxmall.janedao.cn
+# Author：hyj
+# Start  Date:  2019
 ##############################################################################
 
 
@@ -28,15 +28,6 @@ from qiniu import Auth, put_stream, put_data, put_file, BucketManager
 from basic.wxbase import wx_minapp_login, WXBizDataCrypt, WxPay
 
 
-# app.config['MAIL_SERVER'] = ''
-# app.config['MAIL_PORT'] = 994
-# app.config['MAIL_USE_SSL'] = True
-# app.config['MAIL_DEBUG'] = True
-# app.config['MAIL_DEFAULT_SENDER'] = ''
-# app.config['MAIL_USERNAME'] = ''
-# app.config['MAIL_PASSWORD'] = ""
-
-# mails=Mail(app)
 
 @c.task
 def backup_db():  #####备份数据库

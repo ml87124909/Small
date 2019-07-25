@@ -1,5 +1,10 @@
 # -*- coding: utf-8 -*-
-#start.py
+##############################################################################
+# Copyright (c) wxmall.janedao.cn
+# Author：hyj
+# Start  Date:  2019
+##############################################################################
+"""start.py"""
 
 
 import os, sys, traceback, time,requests

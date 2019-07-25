@@ -1,15 +1,10 @@
 # -*- coding: utf-8 -*-
-
 ##############################################################################
-#
-#
-#
+# Copyright (c) wxmall.janedao.cn
+# Author：hyj
+# Start  Date:  2019
 ##############################################################################
-"""
-检查token，注册，登录，参数设置接口,Banner,商品分类,地址相关接口，收藏相关接口
-
-
-"""
+"""api/BASE_TPL.py"""
 
 from imp import reload
 from config import DEBUG,CLIENT_NAME

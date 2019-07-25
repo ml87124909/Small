@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#
-#
+# Copyright (c) wxmall.janedao.cn
+# Author：hyj
+# Start  Date:  2019
 ##############################################################################
+"""config.py"""
 #pip3 install --upgrade psycopg2==2.8.3
 import os
 CLIENT_NAME = 'Small'#注意:这个是项目名，要跟下边的路径对应

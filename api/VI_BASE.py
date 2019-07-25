@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
-
 ##############################################################################
-#
-#
-#
-#
+# Copyright (c) wxmall.janedao.cn
+# Author：hyj
+# Start  Date:  2019
 ##############################################################################
-"""VI_BASE Module"""
+"""api/VI_BASE.py"""
 
 
 import os, importlib, urllib, time, datetime, random, jwt, hashlib, base64, requests, oss2

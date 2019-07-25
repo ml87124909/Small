@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#
-#
-#
+# Copyright (c) wxmall.janedao.cn
+# Author：hyj
+# Start  Date:  2019
 ##############################################################################
 from imp import reload
 from config import DEBUG
@@ -10,9 +10,7 @@ if DEBUG=='1':
     import sell.VI_BASE
     reload(sell.VI_BASE)
 from sell.VI_BASE             import cVI_BASE
-from basic.wxbase import wx_minapp_login,WXBizDataCrypt,WxPay
-from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
-import hashlib,time,json,datetime,requests
+
 
 
 class cBASE_TPL(cVI_BASE):

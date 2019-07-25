@@ -1,5 +1,9 @@
 #coding:utf-8
-
+##############################################################################
+# Copyright (c) wxmall.janedao.cn
+# Author：hyj
+# Start  Date:  2019
+##############################################################################
 import logging
 import hashlib
 import urllib.request
