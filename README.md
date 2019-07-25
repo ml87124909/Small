@@ -22,7 +22,7 @@ vue前端也在准备中。
 最终将会是一个进销存ERP，供销等及接口（小程序，微信公众号，H5，APP）的平台，
 <br>提供私有化部署，共享部署，接口等。
 
-体验请到wxmall.janedao.cn  帐户/密码：test1/test1   test2/test2
+体验请到wxmall.janedao.cn（配置：1C2G1M的云，仅供测试，正式上线会更换服务器）  帐户/密码：test1/test1     test2/test2
 
 
 目前功能是比较少，也期待您贡献代码或者功能。
