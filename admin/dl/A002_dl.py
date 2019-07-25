@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 ##############################################################################
-#
-#
-#
+# Copyright (c) wxmall.janedao.cn
+# Author：hyj
+# Start  Date:  2019
 ##############################################################################
 from imp import reload
 from basic.publicw import DEBUG
@@ -22,7 +22,7 @@ class cA002_dl(cBASE_DL):
 
         self.GNL = ['ID','编号', '类型标记', '业务编号','名称',
                     'Banner图片','链接地址','状态','添加时间','修改时间	']
-        self.src = 'A002'
+
 
 
     def mRight(self):

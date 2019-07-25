@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
 
 ##############################################################################
-#
-# Copyright (c) 2016 HDH
-# Author：MINZ
-# Start  Date:  2016/04/26
-
+# Copyright (c) wxmall.janedao.cn
+# Author：hyj
+# Start  Date:  2019
 ##############################################################################
 from imp import reload
 from basic.publicw import DEBUG

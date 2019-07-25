@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 
 ##############################################################################
-# Copyright (c) janedao
+# Copyright (c) wxmall.janedao.cn
 # Author：hyj
 # Start  Date:  2019
 ##############################################################################
-"""BIZ_BASE Module"""
+"""admin/dl/BASE_DL.py"""
 
 
 import time,hashlib,os,oss2
@@ -18,22 +18,7 @@ from admin.dl.MODEL_DL             import cMODEL_DL
 from werkzeug import secure_filename
 from qiniu import Auth, put_stream, put_data,BucketManager
 from basic.wxbase import wx_minapp_login, WXBizDataCrypt, WxPay
-from wechatpy import WeChatClient
-from wechatpy.client.api import WeChatWxa
 
-#from alipay.aop.api.AlipayClientConfig import AlipayClientConfig
-#from alipay.aop.api.DefaultAlipayClient import DefaultAlipayClient
-
-
-
-#需要填写你的 Access Key 和 Secret Key
-#access_key = app.config['QINIU_ACCESS_KEY']
-#secret_key = app.config['QINIU_SECRET_KEY']
-#构建鉴权对象
-#q = Auth(access_key, secret_key)
-#要上传的空间
-#bucket_name = app.config['QINIU_BUCKET_NAME']
-#domain_prefix = app.config['QINIU_DOMAIN']
 
 class cBASE_DL(cMODEL_DL):
 

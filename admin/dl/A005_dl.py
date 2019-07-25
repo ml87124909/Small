@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ##############################################################################
-# Copyright (c) janedao
+# Copyright (c) wxmall.janedao.cn
 # Author：hyj
 # Start  Date:  2019
 ##############################################################################
@@ -13,9 +13,6 @@ if DEBUG == '1':
     import admin.dl.BASE_DL
     reload(admin.dl.BASE_DL)
 from admin.dl.BASE_DL  import cBASE_DL
-
-
-import hashlib , os , time , random
 
 class cA005_dl(cBASE_DL):
     def init_data(self):

@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#
-#Author:hyj
-# qq:173782910
-#
+# Copyright (c) wxmall.janedao.cn
+# Author：hyj
+# Start  Date:  2019
 ##############################################################################
 from imp import reload
 from basic.publicw import  DEBUG,user_menu

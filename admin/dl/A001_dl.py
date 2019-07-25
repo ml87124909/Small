@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ##############################################################################
-# Copyright (c) janedao
+# Copyright (c) wxmall.janedao.cn
 # Author：hyj
 # Start  Date:  2019
 ##############################################################################
@@ -14,9 +14,6 @@ if DEBUG == '1':
     reload(admin.dl.BASE_DL)
 from admin.dl.BASE_DL  import cBASE_DL
 
-
-import hashlib , os , time , random
-
 class cA001_dl(cBASE_DL):
     def init_data(self):
         self.GNL=['','店铺名称','店铺简介','店铺logo','店铺地址','添加时间','修改时间'] #列表表头
@@ -25,7 +22,7 @@ class cA001_dl(cBASE_DL):
 
     #在子类中重新定义         
     def myInit(self):
-        self.src = 'A001'
+
         self.part = self.GP('part','Localfrm')
         self.tab = self.GP("tab", "1")
 

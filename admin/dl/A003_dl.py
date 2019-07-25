@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ##############################################################################
-# Copyright (c) janedao
+# Copyright (c) wxmall.janedao.cn
 # Author：hyj
 # Start  Date:  2019
 ##############################################################################
@@ -14,37 +14,17 @@ if DEBUG == '1':
     reload(admin.dl.BASE_DL)
 from admin.dl.BASE_DL  import cBASE_DL
 
-
-import hashlib , os , time , random
-
 class cA003_dl(cBASE_DL):
     def init_data(self):
         self.GNL = ['','编号','KEY','值','备注','添加时间','更新时间']
 
-
-    #在子类中重新定义         
-    def myInit(self):
-        self.src = 'A003'
-        pass
 
     def mRight(self):
             
         sql = u"""
             select id,key,content,remark,ctime,utime from config_set  where COALESCE(del_flag,0)=0 and usr_id= %s
         """%self.usr_id_p
-        # self.qqid = self.GP('qqid','')
-        # self.orderby = self.GP('orderby','')
-        # self.orderbydir = self.GP('orderbydir','')
-        # self.pageNo=self.GP('pageNo','')
-        # if self.pageNo=='':self.pageNo='1'
-        # self.pageNo=int(self.pageNo)
-        # if self.qqid!='' and len(self.QNL) > 0:
-        #     sql+= self.QNL + " LIKE '%%%s%%' "%(self.qqid)
-        # #ORDER BY
-        # if self.orderby!='':
-        #     sql+=' ORDER BY %s %s' % (self.orderby,self.orderbydir)
-        # else:
-        #     sql+=" ORDER BY r.role_id DESC"
+
         
         L,iTotal_length,iTotal_Page,pageNo,select_size=self.db.select_for_grid(sql,self.pageNo)
         PL=[pageNo,iTotal_Page,iTotal_length,select_size]
@@ -107,7 +87,7 @@ class cA003_dl(cBASE_DL):
 
     def delete_data(self):
         pk = self.pk
-        dR = {'code':'', 'msg':''}
+        dR = {'code':'', 'MSG':''}
         self.db.query("update config_set set del_flag=1 where id= %s and usr_id=%s" ,[pk,self.usr_id_p])
         self.use_log('删除文字广告')
         self.oSHOP.update(self.usr_id_p)

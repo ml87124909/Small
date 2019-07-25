@@ -1,11 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#
-# Copyright (c) 2014
-#      Author:  
-# Start  Date:  2014/09/04
-# Last modify:  2014/09/05
-#
+# Copyright (c) wxmall.janedao.cn
+# Author：hyj
+# Start  Date:  2019
 ##############################################################################
 from imp import reload
 import admin.vi.BASE_TPL as BASE_TPL

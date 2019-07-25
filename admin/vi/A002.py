@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#
-#
-#
+# Copyright (c) wxmall.janedao.cn
+# Author：hyj
+# Start  Date:  2019
 ##############################################################################
 from imp import reload
 from basic.publicw import DEBUG
