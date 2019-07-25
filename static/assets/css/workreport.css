@@ -1,0 +1,34 @@
+
+/*周工作按排*/
+.weektable{
+	width:auto;
+}
+.weektable td{
+	vertical-align:middle !important;
+	border-top:0 !important;
+}
+.weektable td a{ 
+	cursor:pointer;
+	color:#0088cc;
+}
+.WeekNum {
+    font-weight: bold;
+}
+
+.weektable td a:hover {
+    color: #2a6496;
+    text-decoration: underline;
+}
+.sWeekNum{
+	color:#1f6ae7 !important; 
+	font-weight:bold;
+	text-decoration: underline;
+}
+
+.mytb {
+    background-color: #e8eef8;
+}
+.table-form {
+    width: auto;
+    border: 2px;
+}

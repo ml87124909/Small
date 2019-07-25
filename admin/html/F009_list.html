@@ -1,0 +1,79 @@
+{% extends "list.html" %}
+
+
+
+{% block topSearch %}
+
+{% endblock %}
+
+
+{% block mGrid %}
+
+	<table class="table table-bordered"><!--这里要加基类-->
+
+		<thead>
+
+			<tr style="background-color:#e5e5e5" bgcolor="#ffffff">
+
+				{%for n in NL[1:]%}
+				<th >{{n}}</th>
+				{%endfor%}
+				<th style="text-align:center">操作</th>
+			</tr>
+		</thead>
+		<tbody>
+
+			{% for row in dataList %}
+				<tr bgcolor="#ffffff">
+					{% for e in row %}
+					{% if loop.index == 3%}
+					<td ><img style="width:50px;height:50px" src="{{e}}"/></td>
+
+					{% else%}
+					<td >{{e}}</td>
+					{%endif%}
+
+					{% endfor %}
+					<td style="text-align:center;">
+						{% if lR[2] == '' %}
+						<a class="btn btn-xs btn-warning" onclick="del_pic({{row[0]}});" title="删除"><i class="fa fa-trash-o"></i></a>
+						{% endif %}
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table><!---->
+{% endblock %}
+        
+	
+{% block page_script %}
+
+
+<script>
+function del_pic(del_pk){
+	layer.confirm('您确定要删除记录吗？', {
+		btn: ['是','否'] //按钮
+	}, function(){
+		layer.closeAll();
+		layer.load()
+		$.ajax({
+			url:"admin?viewid=Z001&part=del_pic&id="+del_pk,
+			async:false,
+			success: function(data){
+			   layer.closeAll();
+			   layer.msg(data.MSG)
+			   if(data.code==0){
+			   		setTimeout(location.reload(true),5000)
+			   }
+            }
+        });
+	}, function(){
+		layer.closeAll();
+	});
+}
+
+</script>
+{% endblock %}
+        
+            
+	

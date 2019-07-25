@@ -1,0 +1,28 @@
+.simpleAlert{position: fixed;z-index: 1000;}
+.simpleAlertShelter{position: fixed;width: 100%;height: 100%;top:0;left:0;background-color: #000;opacity: 0.3;filter:alpha(opacity=30);}
+.simpleAlertBody{position:fixed;display: none;width: 300px;height: 480px;top:30%;left:50%;margin:-188px 0 0 -150px;opacity:0;/*border: 1px solid #948497;background-color: #fff;*/}
+.simpleAlertBodyClose{position: absolute;width: 12%;height: 8%;top:1.5%;right: 0.1%;padding: 2%;cursor: pointer;opacity:0;}
+.simpleAlertBodyContent{position: absolute;top:30%;width:96%;height:48px;overflow-y:auto;left: 2%;text-align: center;font-size: 18px;font-weight: 600;color: #333;}
+.simpleAlertBtn{position:absolute;width: 35%;height: 5.5%;top:1%;left:6%;/*border: 1px solid #bfbfbf;*/cursor:pointer;border-radius: 5px;color: #fff;font-size: 16px;}
+.simpleAlertBtna{position:absolute;width: 35%;height: 5.5%;top:1%;left:6%;/*border: 1px solid #bfbfbf;*/cursor:pointer;border-radius: 5px;color: #fff;font-size: 16px;opacity:0;}
+.simpleAlertBtnb{position:absolute;width: 35%;height: 5.5%;top:1%;left:48%;/*border: 1px solid #bfbfbf;*/cursor:pointer;border-radius: 5px;color: #fff;font-size: 16px;opacity:0;}
+.simpleAlertBtn1{background-color: #826289;left: 25%;}
+.simpleAlertBtn2{background-color: #f7f7f7;color: #333;right: 25%;}
+.onlyOne{width: 200px;height: 36px;left: 138px;}
+
+
+
+.simpleAlert1{position: fixed;z-index: 1000;}
+.simpleAlertShelter1{position: fixed;width: 100%;height: 100%;top:0;left:0;background-color: #000;opacity: 0.3;filter:alpha(opacity=30);}
+.simpleAlertBody1{position:fixed;display: none;width: 306px;height: 225px;top:50%;left:50%;margin:-188px 0 0 -150px;opacity:0;/*border: 1px solid #948497;background-color: #fff;*/}
+.simpleAlertBodyClose1{position: absolute;width: 16%;height: 20%;top:7%;right: 7%;padding: 5px;cursor: pointer;opacity:0;}
+.simpleAlertBodyContent1{position: absolute;top:30%;width:96%;height:48px;overflow-y:auto;left: 2%;text-align: center;font-size: 18px;font-weight: 600;color: #333;}
+.simpleAlertBtn11{position:absolute;width: 70px;height: 34px;top:78%;border: 1px solid #bfbfbf;cursor:pointer;border-radius: 5px;color: #fff;font-size: 16px;}
+.simpleAlertBtn111{background-color: #826289;left: 25%;}
+.simpleAlertBtn211{background-color: #f7f7f7;color: #333;right: 25%;}
+.onlyOne1{width: 48%;height: 12.5%;left: 27%;opacity:0;}
+
+
+
+.woupis{display:none;width: 85%;height: 85%;margin-top:15%;margin-left: 8%;/*border: 1px solid #bfbfbf;*/}
+.guiis{display:none;width: 85%;height: 85%;margin-top:15%;margin-left: 8%;/*border: 1px solid #bfbfbf;*/}

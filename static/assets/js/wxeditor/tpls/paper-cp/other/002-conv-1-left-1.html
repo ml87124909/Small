@@ -1,0 +1,14 @@
+<div style="display: inline-block; width: 60px; vertical-align: top;">
+    <img style="width: 40px; margin: 5px 10px;"
+         tn-cell-type="image" tn-bind-cell="img1"/>
+    <div tn-cell-type="text" tn-bind-cell="txt1"></div>
+</div>
+<div style="display: inline-block; width: 75%;">
+    <img style='vertical-align: top; margin-top: 29px;'
+         tn-cell-type="image" tn-bind-cell="img2" tn-bind-aux-prop="{ backgroundColor: compAux.bgc1 }"
+            ><ul tn-cell-type="group" tn-bind-cell="col1" tn-child-position="static"
+        tn-bind-aux-prop="{ backgroundColor: compAux.bgc1 }"
+        style="display: inline-block; width: 85%; margin-top: 11px; border-radius: 16px;">
+        <li tn-sub-comp-loader></li>
+    </ul>
+</div>

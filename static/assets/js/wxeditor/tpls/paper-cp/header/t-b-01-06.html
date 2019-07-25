@@ -1,0 +1,22 @@
+<div style="display: inline-block;
+                padding: 0.2em 0.5em 0.15em 0.5em;
+                background-color: transparent;
+                border-left: 1px solid red;
+                border-right: 1px solid red;"
+         tn-bind-aux-prop="{ borderLeftColor: compAux.titleBdc , borderRightColor: compAux.titleBdc}">
+    <div style="line-height: 1em; vertical-align: top;"
+             tn-cell-type="text"  tn-bind-cell="txt1">
+        上方标题字多一点
+    </div>
+    <div style="margin-top: 0.5em;font-weight: bolder;
+                    line-height: 1;">
+        <div style="display: inline-block;
+                      padding: 0 0.5em;
+                      background-color: rgba(255, 255, 254, 0.992157);
+                      font-weight: bolder;" tn-cell-type="text"  tn-bind-cell="txt2">
+            主要标题
+        </div>
+        <div style="margin: -1em 0 1em 0; border-bottom: 1px solid red;"
+                 tn-bind-aux-prop="{ borderBottomColor: compAux.titleBdc}"></div>
+    </div>
+</div>

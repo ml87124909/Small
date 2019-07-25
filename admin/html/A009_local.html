@@ -1,0 +1,90 @@
+{% extends "local.html" %}
+	
+{% block html_local %}
+<table class="table">
+	<tr>
+		<td colspan="6">
+			<div id="form2"></div>
+		</td>
+	</tr>
+	<tr>
+	</tr>
+	<tr>
+		<td width="100">
+			<label for="">类型:</label>
+		</td>
+		<td width="250">
+			<select class="form-control" name="code">
+			  <option value="1" {{'selected="selected"' if item.code|string=='1'}}>注册送</option>
+			  <option value="2" {{'selected="selected"' if item.code|string=='2'}}>消费送</option>
+			  <option value="3" {{'selected="selected"' if item.code|string=='3'}}>好评送</option>
+			</select>
+		</td>
+	</tr>
+
+	<tr>
+		<td width="100">
+			<label for="">满足条件:</label>
+		</td>
+		<td >
+			<input type="text" class="form-control"  name="confine" value="{{item.confine}}" />
+		</td>
+	</tr>
+
+	<tr>
+		<td width="100">
+			<label for="">赠送积分:</label>
+		</td>
+		<td width="250">
+			<input type="text" class="form-control"  name="score" value="{{item.score}}" />
+		</td>
+	</tr>
+
+</table>
+
+
+{% endblock %}
+
+{% block page_script %}
+
+
+<script>
+$(function(){
+    /*$("select").click(function(){
+        alert("不用选择，自动读取！");
+        return false;
+    });*/
+})
+
+function setdaytime(obj){return WdatePicker({dateFmt:'yyyy-MM-dd'});}
+function formcheck_2(form){
+
+	var sp_bh = $('input[name=sp_bh]').val();
+	var num = $('input[name=num]').val();
+	var money = $("input[name=money]").val();
+	var in_date = $("input[name=in_date]").val();
+
+	if(sp_bh == ''){
+		layer.alert("请选择商品");
+		return false;
+	}
+	if(num == ''){
+		layer.alert("请输入数量");
+		return false;
+	}
+	if(money == ''){
+		layer.alert("请输入进货价格");
+		return false;
+	}
+	if(in_date == ''){
+		layer.alert("请输入进货日期");
+		return false;
+	}
+
+	return true;
+	
+}
+</script>
+
+{% endblock %}
+	

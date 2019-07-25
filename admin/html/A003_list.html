@@ -1,0 +1,95 @@
+{% extends "list.html" %}
+
+
+{% block topSearch %}
+{#<button class="btn btn-info btn-sm" type="button" onclick="layer_add()"><i class="fa fa-plus"></i> 增加类型</button>#}
+<button type="button" class="btn btn-success btn-sm" onclick="main_add()"><i class="fa fa-plus"></i>增加广告</button>
+{% endblock %}
+
+{% block mGrid %}
+<table class="table table-bordered">
+    <thead>
+        <tr style="background-color:#e5e5e5" bgcolor="#ffffff">
+
+            {%for n in NL[1:]%}
+            <th style="text-align:{{n[3]}};width:{{n[2]}};">{{n}}</th>
+            {%endfor%}
+            <th style="text-align:center">操作</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for row in dataList %}
+        <tr bgcolor="#ffffff">
+
+            {% for e in row %}
+
+            <td >{{e}}</td>
+
+            {% endfor %}
+            <td style="text-align:center;">
+                {% if lR[1] == '' %}
+                <a class="btn btn-xs btn-info" onclick="main_update({{row[0]}})" title="编辑"><i class="fa fa-edit"></i></a>
+                {% endif %}
+                {% if lR[2] == '' %}
+                <a  class="btn btn-xs btn-warning" onclick="main_delete({{row[0]}});" title="删除"><i class="fa fa-trash-o"></i></a>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+{% block page_script %}
+
+<script>
+    function layer_add(){
+
+            content_html='<div class="col-sm-10">';
+            content_html+='<label class="col-sm-4 control-label"><b style="color:#333333;">类型字段:</b></label>';
+            content_html+='<div class="col-sm-6">';
+            content_html+=' <input type="text" class="form-control"  name="field" value=""/>';
+            content_html+=' </div></div><br><br>';
+            content_html+='<div class="col-sm-10">';
+            content_html+='<label class="col-sm-4 control-label"><b style="color:#333333;">类型名称:</b></label>';
+            content_html+=' <div class="col-sm-6">';
+            content_html+=' <input type="text" class="form-control"  name="cname" value=""/>';
+            content_html+='</div></div><br><br>';
+            content_html+='<div class="col-sm-10">';
+            content_html+='<label class="col-sm-4 control-label"><b style="color:#333333;">排序:</b></label>';
+            content_html+=' <div class="col-sm-6">';
+            content_html+=' <input type="number" class="form-control"  name="sort" value=""/>';
+            content_html+='</div></div>';
+
+            layer.open({
+                type: 1,
+                skin: 'layui-layer-rim', //加上边框
+                area: ['30rem;', '20rem;'], //宽高
+                content: content_html,
+                title: "增加类型",
+                btn: ['提交']
+                ,yes: function(index, layero){
+                   var field = $('input[name=field]').val();
+                   var cname = $('input[name=cname]').val();
+                   var sort = $('input[name=sort]').val();
+                    if(field=='' || cname=='' || sort==''){
+				   		layer.msg('必须全部填写！')
+				   		return false;
+				   }
+                   $.ajax({
+                        url:"admin?viewid=C002&part=save_type&type=2&field="+field+"&cname="+cname+"&sort="+sort,
+                        async:false,
+                        success: function(data){
+                            layer.close(index);
+                            layer.msg(data.MSG);
+                            location.reload();
+                        }
+                    });
+                 }
+            });
+        }
+
+</script>
+{% endblock %}
+
+

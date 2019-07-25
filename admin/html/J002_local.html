@@ -1,0 +1,166 @@
+{% extends "local.html" %}
+	
+{% block html_local %}
+<table class="tb single-table">
+	<tr>
+		<td width="100">
+			<label for="">角色名称<span class="badge mybadge">必填</span></label>
+		</td>
+		<td>
+			<input type="text" class="form-control" id="roleName" name="roleName" value="{{item.role_name}}"/>
+		</td>
+	</tr>
+
+	<tr>
+		<td>
+			<label for="">排序号</label>
+		</td>
+		<td>
+			<input type="text" class="form-control" id="sort" name="sort" value="{{item.sort}}"/>
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2>
+			<table id="table_roleMenu" class="table table-hover">
+            
+			<thead>
+				
+			<tr>	
+				<th>
+					菜单ID
+				</th>
+				<th>
+					菜单名字
+				</th>
+				<th>
+					全部权限
+				</th>
+				<th>
+					查询
+				</th>
+				<th>
+					增减
+				</th>
+				<th>
+					删除
+				</th>
+				<th>
+					修改
+				</th>
+			</tr>
+			</thead>
+			
+			<tbody class="table table-hover">
+			{%for role in rolelist%}
+				{% if role.t_menu == 1%}
+				<tr class="success">
+				{% elif role.t_menu == 2 and role.t_type == 1 %}
+				<tr class="info">
+				{%else%}
+				<tr>
+				{%endif%}
+
+					<td>{{role.t_menu_id}}</td>
+					<td>{{role.t_menu_name}}</td>
+				
+					<td><input{{' checked="checked"' if role.t_can_see == 1 and role.t_can_add == 1 and role.t_can_del == 1 and role.t_can_upd == 1}} name="all" id="all_{{role.t_menu_id}}" type="checkbox" onclick="checkedAll({{role.t_menu_id}});" /></td>
+					<td><input{{' checked="checked"' if role.t_can_see == 1}} value="{{role.t_menu_id}}" name="see" type="checkbox" id="see_{{role.t_menu_id}}" /></td>
+					<td><input{{' checked="checked"' if role.t_can_add == 1}} value="{{role.t_menu_id}}" name="add" type="checkbox" id="add_{{role.t_menu_id}}" /></td>
+					<td><input{{' checked="checked"' if role.t_can_del == 1}} value="{{role.t_menu_id}}" name="del" type="checkbox" id="del_{{role.t_menu_id}}" /></td>
+					<td><input{{' checked="checked"' if role.t_can_upd == 1}} value="{{role.t_menu_id}}" name="upd" type="checkbox" id="upd_{{role.t_menu_id}}" /></td>
+				{#
+				{% if role.t_can_see == 1 or role.t_can_add == 1 or role.t_can_del == 1 or role.t_can_upd == 1%}
+				{%endif%}
+				#}
+				</tr>
+			{%endfor%}
+			</tbody>
+			
+			</table>
+		</td>
+	</tr>
+</table>
+{% endblock %}
+
+{% block page_script %}
+<script>
+function checkedAll(num){
+        
+	/* jq 1.6 之后，使用prop 获取 特性值*/
+	var all = document.getElementById('all_'+num);
+	var see = document.getElementById('see_'+num);
+	var add = document.getElementById('add_'+num);
+	var del = document.getElementById('del_'+num);
+	var upd = document.getElementById('upd_'+num);
+	
+	see.checked = all.checked;
+	add.checked = all.checked;
+	del.checked = all.checked;
+	upd.checked = all.checked;
+	
+}
+function formcheck(form){
+            
+	var roleName = $('#roleName').val(); 
+	
+	var sort = $('#sort').val(); 
+	
+	var flag = false;
+	
+	if ( checkRoleName(roleName)  && checkSort(sort) ) {
+		
+		/*设置处理的模块*/
+		form.part.value = 'insert';
+		flag = true;
+	}
+	
+	return flag;
+	
+}
+function checkRoleName(name){
+        
+	/* 角色名只能是中文 或者 单词字符（英文或者下划线），或者两者混合，不为空 */
+	var reg_roleName = /^([\u4e00-\u9fa5]|\w)([\u4e00-\u9fa5]|\w)*$/ ;
+	
+	var val = $.trim(name);
+	
+	var flag = false;
+	
+	if(reg_roleName.test(val)){
+		//showOrHidMsg('roleName','ok','success','show');
+		flag = true;
+	}else{
+		//showOrHidMsg('roleName','只能输入中文、英文、下划线的其中一种或者混合，不能为空','danger','show');
+		layer.alert('只能输入中文、英文、下划线的其中一种或者混合，不能为空');
+	}
+	
+	return flag;
+	
+}
+
+function checkSort(sort){
+
+	/* 校验是否纯数字的正则，数字别太大了，装不下的。所以限制为9位 ，可以空 */
+	var reg_num = /^\d{0,9}$/ ;
+	
+	var val = $.trim(sort);
+	
+	var flag = false;
+	
+	if(reg_num.test(val)){
+		//showOrHidMsg('sort','ok','success','show')
+		flag = true;
+	}else{
+		//showOrHidMsg('sort','只能输入纯数字，不能为空','danger','show')
+		layer.alert('只能输入纯数字，不能为空');
+	}
+	
+	return flag;
+	
+}
+</script>
+
+{% endblock %}
+        
+            
+	

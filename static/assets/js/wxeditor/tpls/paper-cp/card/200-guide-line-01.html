@@ -1,0 +1,19 @@
+<div style="display: inline-block; vertical-align: top; width:18%;">
+    <img tn-cell-type="image" tn-bind-cell="img1" />
+</div><div style="display: inline-block; vertical-align: top; width: 80%">
+    <div style="display: inline-block;
+                float: left;width: 1em;
+                height: 1em;margin: 1.5em 0px -2em -0.5em;
+                border: 1px solid #000000;
+                border-radius: 100%;"
+         tn-bind-aux-prop="{ backgroundColor: compAux.bgc, borderColor: compAux.bdc }">
+    </div>
+    <div style=" border-left: 1px solid #ccc; height: 1.2em;"
+             tn-bind-aux-prop="{ borderColor: compAux.bdc}"></div>
+    <div style=" border-left: 1px solid #CCCCCC;"
+             tn-bind-aux-prop="{ borderColor: compAux.bdc}">
+        <ul tn-cell-type="group" tn-bind-cell="col1" tn-child-position="static">
+            <li tn-sub-comp-loader></li>
+        </ul>
+    </div>
+</div>

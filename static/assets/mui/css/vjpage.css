@@ -1,0 +1,198 @@
+@charset "utf-8";
+
+/*---------------------button.css------------------*/
+/* CSS Document */
+.btnsize_default{padding-top:5px;padding-bottom:6px;}
+.btnsize_big{padding:12px 16px; font-size:16px;}
+.btnsize_small{padding-top:3px;padding-bottom:3px;}
+	
+.mui-btn-block.btnsize_default{padding-top:6px;padding-bottom:6px; }
+.mui-btn-block.btnsize_big{padding-top:15px;padding-bottom:15px;font-size:18px;}
+.mui-btn-block.btnsize_small{padding-top:3px;padding-bottom:3px;}
+
+.mui-bar-footer .btnsize_default{ line-height:32px;}
+.mui-bar-footer .btnsize_big{ line-height:32px;}
+.mui-bar-footer .btnsize_small{ line-height:32px;}
+
+.vjinputbtn{
+	position: absolute;
+    right: 2px;
+    line-height: 1;
+    margin-top: 6px;
+    border: none;
+    background-color: #eee;
+}
+.vjinputbtn.act{background-color: #3f6;}
+.vjtransp_w,.vjtransp_b{border-radius:0; border-bottom:none; border-top:none;border-left:none; border-right:solid; border-width:1px;}
+.vjtransp_w { background-color:rgba(255,255,255,.1); border-color:rgba(255,255,255,.5);color:#ffffff; }
+.vjtransp_b { background-color:rgba(0,0,0,.06); border-color:rgba(0,0,0,.3);color:#000000;}
+.mui-pull-right.vjtransp_w,.mui-pull-right.vjtransp_b{ border-right:none; }
+.mui-pull-right.vjtransp_w {border-left:solid 1px rgba(255,255,255,.5);}
+.mui-pull-right.vjtransp_b {border-left:solid 1px rgba(0,0,0,.3);}
+
+.mui-btn-link.mui-btn-primary, .mui-btn-link.mui-btn-blue{color:#000aff}
+.mui-btn-link.mui-btn-positive, .mui-btn-link.mui-btn-success, .mui-btn-link.mui-btn-green{color:#4cd964}
+.mui-btn-link.mui-btn-warning, .mui-btn-link.mui-btn-yellow{color:#f0ad4e}
+.mui-btn-link.mui-btn-negative, .mui-btn-link.mui-btn-danger, .mui-btn-link.mui-btn-red{color:#dd524d}
+.mui-btn-link.mui-btn-royal, .mui-btn-link.mui-btn-purple{color:#8a6de9}
+.mui-btn-link.mui-btn-grey{color:#ffffff}
+.mui-bar .mui-btn-link{ color:#ffffff}
+.mui-bar .mui-btn-link:enabled:active{ border:none}
+
+/*---------------------timage.css------------------*/
+/* CSS Document */
+.Timage{
+	
+}
+.Timageaoto
+{
+width:100%
+}
+
+/*---------------------ComboBox.css------------------*/
+/* CSS Document */
+.mui-content select{    
+	font-size: 14px;
+    padding: 8px;
+}
+
+/*---------------------Panel.css------------------*/
+/* CSS Document */
+/* 块定义---------------------------------------------------------------------------------------------------------- */
+.Panel_c{
+	
+}
+
+.vjcenterpanel { margin:auto}
+header .vjcenterpanel { position:absolute;left:40px; right:40px;}
+/*.vjcenterpanel h1,.vjcenterpanel h2,.vjcenterpanel h3,.vjcenterpanel h4,.vjcenterpanel h5,.vjcenterpanel h6,.vjcenterpanel p,.vjcenterpanel { text-align:center}*/
+.vjcenterpanel .mui-btn-block{ padding:5px; margin-top:10px;}
+.mui-bar-footer{position: fixed; z-index: 10;right: 0; left: 0;height: 44px;border-bottom: 0; padding-right:0px;}
+.mui-bar-footer .vjtransp_b,.mui-bar-footer .vjtransp_w{  border:none; background-color:transparent;}
+.mui-bar .vjtransp_b,.mui-bar .vjtransp_w{top:0px;}
+
+/*圆角样式*/
+.vjradius_s,.vjradius_s .mui-popup-inner{ border-radius:3px}
+.vjradius_no,.vjradius_no .mui-popup-inner{ border-radius:0px}
+.vjradius_m,.vjradius_m .mui-popup-inner{ border-radius:10px}
+.vjradius_l,.vjradius_l .mui-popup-inner{ border-radius:20px}
+.vjradius_c,.vjradius_c .mui-popup-inner{border-radius:50%;text-algin:center}
+
+/*强制圆形*/
+.vj_circular,.vj_circular .mui-popup-inner{border-radius:50%; overflow:hidden;}
+
+/*遮罩样式*/
+.vjmaskbox{ height:100%; width:100%; background:rgba(0,0,0,.4); position:fixed; left:0px; top:0px; 
+    right: 0; bottom: 0;z-index:999;-webkit-transition-duration: 400ms;
+    transition-duration: 400ms;}
+
+
+
+
+/*---------------------PopPanel.css------------------*/
+/* CSS Document */
+/* 弹出定义---------------------------------------------------------------------------------------------------------- */
+/*浮动窗口的样式*/
+.Poppanel.Poppanel-in {
+    display: block;
+    -webkit-transition-duration: 400ms;
+    transition-duration: 400ms;
+    -webkit-transform: translate3d(-50%,-50%,0) scale(1);
+    transform: translate3d(-50%,-50%,0) scale(1);
+    opacity: 1;
+    background-color:#FFF;
+}
+.Poppanel {
+    position: fixed;
+    z-index: 10000;
+    top: 50%;
+    left: 50%;
+    display: none;
+    overflow: hidden;
+    width: 270px;
+    -webkit-transition-property: -webkit-transform,opacity;
+    transition-property: transform,opacity;
+    -webkit-transform: translate3d(-50%,-50%,0) scale(1.185);
+    transform: translate3d(-50%,-50%,0) scale(1.185);   
+    opacity: 0;
+    color: #000;
+}
+
+/*---------------------Turns.css------------------*/
+/* CSS Document */
+/* 块定义---------------------------------------------------------------------------------------------------------- */
+.vjdistitle .mui-slider-title{ display:none}
+.mui-fullscreen .mui-slider-title{top:15%; width:200px; border-radius:50%; margin-left:50%; left:-100px; border:#ffffff solid 1px; text-align:center; font-size:2em; ba
+none; background-color:transparent; height:200px; color:#fff; line-height:200px; background-color:rgba(0,0,0,.1)}
+
+/*---------------------navbar.css------------------*/
+﻿/*之前默认为边框型*/
+
+.navbar .mui-control-item,.navbar.mui-segmented-control{position: relative; overflow: initial;}
+.navbar ul,.navbar li{ list-style:none; padding:0; margin:0}
+.navbar {z-index: 10;}
+nav.navbar.mui-segmented-control{ position:fixed; bottom:0px}
+.mui-segmented-control li .mui-control-item { width:1%}
+.mui-segmented-control.mui-segmented-control-inverted .mui-control-item:after{content:''; display:block;height:2px;  width:100%}
+.mui-segmented-control.mui-segmented-control-inverted a.mui-control-item.mui-active:after{ display:none;}
+
+.navbar .mui-icon,.navbar .mui-icon-extra{ position:relative}
+.navbar .mui-tab-label{font-size:13px;}
+.navbar .mui-tab-label label{font-size:4vw;}
+.mui-icon, .mui-icon-extra{ border:none;font-size:7vw}
+.mui-slider-indicator .mui-icon,.mui-slider-indicator .mui-icon-extra{ border:none;font-size:7vw}
+.nav-inline.mui-slider-indicator .mui-icon,.nav-inline.mui-slider-indicator .mui-icon-extra{ font-size:5.5vw}
+
+.mui-segmented-control div{ line-height:1.4;}
+.nav-inline label{ display:inline-block; margin-left:5px;}
+
+
+.navbar_style1{border:none}/*有底无框型*/
+.navbar_style1 .mui-control-item{ line-height:1;vertical-align:middle}
+.navbar_style1.mui-segmented-control .mui-control-item{border:none}
+.navbar_style1.mui-slider-indicator .mui-icon{ line-height:1;
+     line-height:auto;
+	 width:auto; height:auto; margin:auto;}
+/*图文上下结构.navbar_style1 .mui-icon-extra,.navbar_style1 .mui-icon{ display:block;}*/
+
+.navbar_style2{}/*底边型*/
+.navbar_style2 .mui-control-item{ vertical-align:middle}
+.navbar_style2.mui-slider-indicator .mui-icon{ line-height:1;
+    line-height:auto;
+	width:auto; height:auto; margin:auto;}
+
+/*图文上下结构.navbar_style2 .mui-icon-extra,.navbar_style2 .mui-icon{ display:block;}*/
+
+.navbar_style3  .mui-control-item.mui-active,.navbar_style3.mui-segmented-control.mui-segmented-control-inverted   .mui-control-item.mui-active{
+	border-bottom:none;
+}/*无框无边 带背景*/
+
+.navbar_style3 .mui-control-item{ vertical-align:middle}
+.navbar_style3.mui-slider-indicator .mui-icon{ line-height:1;line-height:auto;width:auto; height:auto; margin:auto;}
+
+.navbar_style3 .mui-icon-extra,.navbar_style1 .mui-icon{}
+.navbar_style3.mui-segmented-control,.navbar_style3.mui-segmented-control .mui-control-item{ border:none}
+
+
+
+
+.navimg_circle .mui-icon-extra,.navimg_circle .mui-icon{margin:auto; border-radius:50%; border: 1px solid ; font-size:5.5vw}/*圆环*/
+.navimg_circlefill .mui-icon-extra,.navimg_circlefill .mui-icon{margin:auto; border-radius:50%;font-size:5.5vw }/*实心圆环*/
+
+.nav-inline.navimg_circle .mui-icon,.nav-inline.navimg_circle .mui-icon-extra,.nav-inline.navimg_circlefill .mui-icon,.nav-inline.navimg_circlefill .mui-icon-extra,
+.mui-slider-indicator.nav-inline.navimg_circle .mui-icon,
+.mui-slider-indicator.nav-inline.navimg_circle .mui-icon-extra,
+.mui-slider-indicator.nav-inline.navimg_circlefill .mui-icon,
+.mui-slider-indicator.nav-inline.navimg_circlefill .mui-icon-extra
+{ font-size:4vw}
+/*新增表格支持 */
+.mui-slider-indicator.mui-table-view{ position:relative; bottom:auto;}
+.mui-table-view .vj-tablecell{ display:table-cell;  text-align:center; width:1%;    line-height: 1.1;padding: 1vh 1vw;}
+.mui-table-view .vj-tablecell .mui-icon-extra,.mui-table-view .vj-tablecell .mui-icon{ line-height:1.1}
+
+/*---------------------chart.css------------------*/
+.TJChart {
+	border-color: #99bce8;
+	overflow:auto;
+	position:absolute;
+}

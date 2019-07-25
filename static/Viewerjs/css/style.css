@@ -1,0 +1,72 @@
+.topbar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 150px;
+    background: transparent url(../img/lineartop.png) repeat-x center top;
+    z-index: 900;
+}
+.toppic {
+    max-width: 1170px;
+    min-width: 980px;
+    width: 80%;
+    height: 75px;
+    margin: 0 auto;
+}
+.logoLink {
+    float: left;
+    display: block;
+    width: 125px;
+    height: 0px;
+    overflow: hidden;
+    padding-top: 76px;
+    font-size: 0;
+    background: transparent url(../img/imlogo.png) no-repeat left 15px;
+}
+.topNav {
+    float: left;
+    width: 450px;
+    padding-left: 18px;
+}
+.topNav li{
+    float: left;
+    margin-left: 20px;
+    padding: 0 20px;
+    font: 18px/75px "微软雅黑";
+    color: #fff;
+}
+.images{
+    width: 725px;
+    height: 735px;
+    overflow: hidden;
+    margin: 0 auto;
+    font-size: 0;
+}
+.images .item {
+    position: relative;
+    float: left;
+    width: 33.3333%;
+    padding: 0;
+    margin: 0;
+    border-width: 0 0 5px 5px;
+    border-style: solid;
+    border-color: transparent;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.images .item img{
+    display: block;
+    width: 240px;
+    height: 240px;
+}
+.main {
+    max-width: 1170px;
+    min-width: 980px;
+    width: 80%;
+    margin: 150px auto;
+}
+.viewer-toolbar {
+    margin: 0 auto 45px;
+}

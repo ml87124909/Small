@@ -1,0 +1,100 @@
+<html>
+<style>
+	
+ul,li{list-style-type: none;}
+.logo-login{
+  float:left;
+}
+body{background-color: #fff;
+	background:url(static/assets/images/admin_back.jpg) no-repeat center;
+	background-size: 100%;
+}
+.login-main-div {
+  width: 500px;
+  height: 400px;
+  margin: 0 auto;
+  padding-top:1%;
+  margin-top: 15%;
+  background:url(static/assets/images/admin_bjk.png)no-repeat center;
+  border-radius:15px;
+}
+.aside-xxl{float: left;
+  height:330px;margin: auto;
+}
+.log-title{color:#004d85; font-size: 24px; font-weight:bold;width: 360px;margin-bottom:15px;}
+
+.aside-xxl .cinput{font-size:16px;border-radius:0px;border:0px;background:#fff;width:100%;height:40px;padding-left:8px;width: 90%;}
+#sbt_save{background:url(static/assets/images/dl.png) no-repeat center;color:#fff;margin-top:20px;}
+#sbt_remake{background:rgb(0, 174, 240);margin-left:20px;color:#fff;}
+
+.log-title2{float: left; color:#004d85; font-size: 24px; font-weight:bold;border-bottom:1px solid #959595;width: 250px;height:42px;margin-bottom:0px;}
+.lbtn{float: left;background:#4ab332;color:#fff;font-size:16px;border:1px solid #dbd7d6;border-radius:5px;width:110px;height:41px;padding-right:6px;}
+.aside-xxl .cinput2{font-size:16px;border-radius:0px;border:0px;background:#fff;width:100px;height:35px;padding-left:8px;font-size: 16px;border-radius:10px;cursor: pointer; }
+.aside-xxl .cinputimg{font-size:16px;border-radius:0px;border:0px;background:#fff;width:100px;height:35px;padding-left:8px;font-size: 16px;border-radius:10px;cursor: pointer; }
+.box-shadow-3{
+	-webkit-box-shadow: 0 0 25px rgb(158,211,249);
+	-moz-box-shadow:0 0 25px rgb(158,211,249);
+	box-shadow: 0 0 25px rgb(158,211,249);
+}
+input:focus{
+    border:0;/*这里你可以自己调节边框样式*/
+    outline:none;/*去除蓝色边框*/
+}
+</style>
+
+<body>
+	<div class="login-body" style="overflow:hidden;">
+		<div class="login-main-div box-shadow-3" style="position:relative;">
+		  <div class="aside-xxl" style="position:absolute;">
+	        <div style="width:420px;height: 80px;margin-left: 15px;">
+				<div style="width:73px;height: 73px;float:left;">
+				   <img src="static/assets/images/admin_Logo.png" style="width:73px;height:73px;margin-left: 190px"/>
+				</div>
+
+	        </div>
+				<!--login-->
+				  <div style="margin-left:0px;text-align: center;margin-top:-20px;">
+						<div class="log-title" style="margin: 15px auto;border: 1px solid rgb(0,129,0);border-radius: 5px;width: 98%;">
+
+							{%if code==0%}
+
+								<div class="start-content">
+									<h1 class="title">配置成功</h1>
+								</div>
+								<div class="start-content" style="font-size:14px;">
+
+									<p>请关掉install.py运行的安装</p>
+									<p>然后运行python3 start.py进行启动项目</p>
+									<p>如有问题，请删除项目根目录下的dbconfig.py再运行python3 install.py重新安装</p>
+
+								</div>
+							{%else%}
+								<div class="start-content">
+									<h1 class="title">配置失败!</h1>
+								</div>
+								<div class="start-content" style="font-size:14px;">
+
+									<p class="b-btn">
+									<a class="btn btn-default" href="{{url_for('setup',step=1)}}">重新配置</a>
+									</p>
+								</div>
+
+							{%endif%}
+
+
+						</div>
+
+
+
+
+
+				  </div>
+				<!--login end-->
+			</div>							
+		</div>
+		<div style="width:99%;height:20px;position:absolute;bottom:50px;text-align:center;font-size:13px;color:#999999;">
+			简道 粤ICP备15060984号-2
+		</div>
+	</div>	
+</body>
+</html>

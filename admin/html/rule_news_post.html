@@ -1,0 +1,516 @@
+{% extends "index.html" %}
+{% block cssjs %}
+<link href='static/assets/css/common.css' rel='stylesheet'>
+{% endblock %}
+{% block breadcrumb %}
+<ol class="breadcrumb">
+	<li><a href="admin?viewid=home">主页</a></li>
+	<li><a href="admin?viewid=common">微信公众号</a></li>
+</ol>
+{% endblock %}
+
+{% block contentpanel %}
+<ul class="nav nav-tabs">
+	<li><a href="admin?viewid=news">管理规则</a></li>
+	{% if rule.id %}
+	<li class="active"><a href="admin?viewid=news&part=localform&id={{rule.id}}"><i class="glyphicon glyphicon-edit"></i> 编辑规则</a></li>
+	<li><a href="admin?viewid=news&part=localform">添加规则</a></li>
+	{% else %}
+	<li class="active"><a href="admin?viewid=news&part=localform"><i class="glyphicon glyphicon-plus"></i> 添加规则</a></li>
+	{% endif %}
+</ul>
+<div class="main">
+	<form class="form-horizontal form" action="admin" method="post" enctype="multipart/form-data" onsubmit="return formcheck(this)">
+		<input type="hidden" name="pk" value="{{rule.id}}" />
+		<h4>添加规则 <small>删除，修改规则、关键字以及回复后，请提交规则以保存操作。</small></h4>
+		<table class="tb">
+			<tr>
+				<th><label for="">规则名称</label></th>
+				<td>
+					<input type="text" id="rule-name" class="form-control" placeholder="" name="name" value="{{rule.name}}" /> &nbsp;
+					
+					<span class="help-block">您可以给这条规则起一个名字, 方便下次修改和查看
+				</td>
+			</tr>
+			<tr>
+				<th><label for="">状态</label></th>
+				<td>
+					<label for="status_1" class="radio inline">
+						<input type="radio" name="status" id="status_1" value="1"{{' checked="checked"' if not rule.status or rule.status|string == '1' else ''}}/> 启用
+					</label>
+					<label for="status_0" class="radio inline">
+						<input type="radio" name="status" id="status_0" value="0"{{' checked="checked"' if rule.status|string == '0' else ''}}/> 禁用
+					</label>
+				</td>
+			</tr>
+			<tr>
+				<th><label for="">回复类型</label></th>
+				<td>
+					混合图文回复
+					<input type="hidden" name="module" value="news" />
+					<!--select name="module" id="module" class="form-control" onchange="changeReply()">
+						<option value="1" selected="selected" description="">基本文字回复</option>
+						<option value="2" description="">基本混合图文回复</option>
+						<option value="3" description="">基本语音回复</option>
+						
+					</select-->
+				</td>
+			</tr>
+			<tr>
+				<th><label for="">触发关键字</label></th>
+				<td>
+					<input type="text" class="form-control" size="100" placeholder="" name="keywords" value="{{keyword}}" /> &nbsp;
+					<span class="help-block">当用户的对话内容符合以上的关键字定义时，会触发这个回复定义。多个关键字请使用逗号隔开。</span>
+				</td>
+			</tr>
+			<tr>
+				<th><label for="">添加关键字</label></th>
+				<td>
+					<span class="help-block">根据此处设置的关键字进行对应回复，关键词单次添一个，可多次添加</span>
+					<span class="help-block">【包含关键字】用户进行交谈时，对话中包含上述关键字就执行这条规则。</span>
+					<span class="help-block">【正则表达式匹配】如果你不明白正则表达式的工作方式，请不要使用正则匹配</span>
+					<div class="keywordDiv">
+						<!--div class="keyword-cell">
+							<input type="text" name="keywordname" class="form-control" size="50" autocomplete="off" value=""/>
+							<input type="hidden" name="keywordvalue" value="" />
+							<div class="btn-group" data-toggle="buttons-radio">
+								<span class="btn btn-default active" value="2">包含关键字</span>
+								<span class="btn btn-default " value="3">正则表达式匹配</span>
+							</div>
+						</div-->
+						{% for kw in specialkeyword %}
+							{% if kw.type != 1 %}
+							<div class="keyword-cell">
+								<input type="text" name="keywordname" class="form-control" size="50" autocomplete="off" value="{{kw.content}}"/>
+								<input type="hidden" name="keywordvalue" value="{{kw.type}}" />
+								<div class="btn-group" data-toggle="buttons-radio">
+									<span class="btn btn-default{{' active' if kw.type == 2 else ''}}" onclick="$(this).parent().parent().find('input[name=keywordvalue]').val(2)" value="2">包含关键字</span>
+									<span class="btn btn-default{{' active' if kw.type == 3 else ''}}" onclick="$(this).parent().parent().find('input[name=keywordvalue]').val(3)" value="3">正则表达式匹配</span>
+								</div>
+								<span class="btn btn-danger" onclick="$(this).parent().remove()">删除</span>
+							</div>
+							{% endif %}
+						{% endfor %}
+					</div>
+					<a href="javascript:;" onclick="addKeyword()" class="add-kw-button"><i class="glyphicon glyphicon-plus"></i> 添加关键字</a>
+				</td>
+			</tr>
+			
+			<tr>
+				<th><label for="">回复</label></th>
+				<td>
+					<div id="module-form" style="width:600px;">
+						{% for reply in replylist %}
+						<div class="item old-item">
+							<div id="show" class="alert alert-info reply-news-list" >
+								<div class="reply-news-list-cover"><img src="attachment/{{reply.thumb}}" alt=""></div>
+								<div class="reply-news-list-detail">
+									<div class="title">{{reply.title}}</div>
+									<div class="content">{{reply.description}}</div>
+									<span class="pull-left">
+									<a onclick="delContent(this , '{{reply.id}}')" href="javascript:;" style="margin-right:5px;">删除</a>
+									<a onclick="zhankai(this)" href="javascript:;">编辑</a>
+									</span>
+								</div>
+							</div>
+							<table id="form" class="tb reply-news-edit " style="display: none;">
+								<tr>
+									<th width="100">标题</th>
+									<td>
+										<input type="text" id="title" size="50" class="form-control" placeholder="" name="news-title_{{reply.id}}" value="{{reply.title}}">
+									</td>
+								</tr>
+								<tr>
+									<th>封面</th>
+									<td>
+										<div id="" class="uneditable-input reply-edit-cover">
+											<div class="detail">
+												<span class="pull-right">大图片建议尺寸：700像素 * 300像素</span>
+												<input type="button" id="news-picture" fieldname="news-picture" class="btn btn-mini btn-success reply-edit-cover-upload" value="<i class='glyphicon glyphicon-upload'></i> 上传" style="" />
+												<button type="button" class="btn btn-mini btn-danger reply-news-edit-cover-remove" id="upload-delete" onclick="doDeleteItemImage(this)" {{'style="display:none;"' if not reply.thumb else ''}}><i class="icon-remove"></i> 删除</button>
+											</div>
+											<input type="hidden" name="news_reply_id" value="{{reply.id}}">
+											<input type="hidden" name="news-picture-old_{{reply.id}}" value="{{reply.thumbid}}">
+											<div id="upload-file-view" class="upload-view">
+												<input value="{{reply.thumb}}" type="hidden" name="news-picture_{{reply.id}}" class="news-picture" />
+												{% if reply.thumb %}
+												<img src="attachment/{{reply.thumb}}" width="500" />
+												{% endif %}
+											</div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th>描述</th>
+									<td>
+										<textarea style="height:80px;" class="form-control" cols="70" id="description" name="news-description_{{reply.id}}">{{reply.description}}</textarea>
+									</td>
+								</tr>
+								<tr>
+									<th>内容</th>
+									<td>
+										<textarea style="height:200px; width:538px;" class="richtext" name="news-content_{{reply.id}}" cols="70" id="reply-add-text">{{reply.content}}</textarea>
+									</td>
+								</tr>
+								<tr>
+									<th>来源</th>
+									<td>
+										<input type="text" id="url" class="form-control" size="50" placeholder="" name="news-url_{{reply.id}}" value="{{reply.url}}" />
+										<span class="help-block">设置来源后打开该条图文将跳转到指定链接（注：外部链接需加http://）</span>
+										<button type="button" class="btn btn-info" onclick="shouqi(this)" style="width:100%"><i class="glyphicon glyphicon-resize-small"></i> 收起</button>
+									</td>
+								</tr>
+							</table>
+													
+						</div>
+						{% endfor %}
+					</div>
+					<div style="clear:both;"></div>
+					<a href="javascript:;" onclick="addContent()" class="add-kw-button"><i class="glyphicon glyphicon-plus"></i> 添加回复图文</a>
+				</td>
+			</tr>
+			<tr>
+				<th></th>
+				<td>
+					<button type="submit" class="btn btn-primary span3" name="submit" value="提交">提交</button>
+					<input type="hidden" name="viewid" value="news" />
+					<input type="hidden" name="part" value="Post" />
+
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<div class="add-keyword-cell hide">
+	<input type="text" name="keywordname" class="form-control" size="50" autocomplete="off" value=""/>
+	<input type="hidden" name="keywordvalue" value="2" />
+	<div class="btn-group" data-toggle="buttons-radio">
+		<span class="btn btn-default active" onclick="$(this).parent().parent().find('input[name=keywordvalue]').val(2)" value="2">包含关键字</span>
+		<span class="btn btn-default" onclick="$(this).parent().parent().find('input[name=keywordvalue]').val(3)" value="3">正则表达式匹配</span>
+	</div>
+	<span class="btn btn-danger" onclick="$(this).parent().remove()">删除</span>
+</div>
+<div class="hide" id="news-item-1">
+	<div id="show" class="alert alert-info reply-news-list" style="display: none;">
+		<div class="reply-news-list-cover"><img src="http://hdc.sls.liantop.net/resource/attachment/" alt=""></div>
+		<div class="reply-news-list-detail">
+			<div class="title">1111111</div>
+			<div class="content">22222</div>
+			<span class="pull-left">
+			<a onclick="delContent(this , '')" href="javascript:;" style="margin-right:5px;">删除</a>
+			<a onclick="zhankai(this)" href="javascript:;">编辑</a>
+			</span>
+		</div>
+	</div>
+	<table id="form" class="tb reply-news-edit " style="display: block;">
+		<tr>
+			<th width="100">标题</th>
+			<td>
+				<input type="text" id="title" size="50" class="form-control" placeholder="" name="news-title" value="">
+			</td>
+		</tr>
+		<tr>
+			<th>封面</th>
+			<td>
+				<div id="" class="uneditable-input reply-edit-cover">
+					<div class="detail">
+						<span class="pull-right">大图片建议尺寸：700像素 * 300像素</span>
+						<input type="button" id="news-picture" fieldname="news-picture" class="btn btn-mini btn-success reply-edit-cover-upload" value="<i class='glyphicon glyphicon-upload'></i> 上传" style="" />
+						<button type="button" class="btn btn-mini btn-danger reply-news-edit-cover-remove" id="upload-delete" onclick="doDeleteItemImage(this)" style="display:none;"><i class="icon-remove"></i> 删除</button>
+					</div>
+					<input type="hidden" name="news_reply_id" value="">
+					<input type="hidden" name="news-picture-old" value="">
+					<div id="upload-file-view" class="upload-view">
+						<input value="" type="hidden" name="news-picture" class="news-picture" />
+					</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<th>描述</th>
+			<td>
+				<textarea style="height:80px;" class="form-control" cols="70" id="description" name="news-description"></textarea>
+			</td>
+		</tr>
+		<tr>
+			<th>内容</th>
+			<td>
+				<textarea style="height:200px; width:538px;" class="richtext" name="news-content" cols="70" id="reply-add-text"></textarea>
+			</td>
+		</tr>
+		<tr>
+			<th>来源</th>
+			<td>
+				<input type="text" id="url" class="form-control" size="50" placeholder="" name="news-url" value="">
+				<span class="help-block">设置来源后打开该条图文将跳转到指定链接（注：外部链接需加http://）</span>
+				<button type="button" class="btn btn-info" onclick="shouqi(this)" style="width:100%"><i class="glyphicon glyphicon-resize-small"></i> 收起</button>
+			</td>
+		</tr>
+	</table>
+							
+</div>
+{% endblock %}
+
+{% block javascript %}
+<style>
+.keyword-cell{padding-bottom:12px;}
+.ke-upload-area .ke-upload-file {
+    top: -12px;
+    right: -12px;
+}
+.ke-inline-block {
+    display: -moz-inline-stack;
+    display: inline-block;
+    vertical-align: middle;
+    zoom: 1;
+}
+.ke-upload-area {
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+.ke-upload-area .ke-upload-file {
+    position: absolute;
+    font-size: 60px;
+    top: 0;
+    right: 0;
+    padding: 0;
+    margin: 0;
+    z-index: 811212;
+    border: 0 none;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+.reply-news-list-detail .title {
+    font-size: 16px;
+    font-weight: 600;
+}
+.reply-news-list-first .reply-news-list-cover {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    float: none;
+    width: 100%;
+    height: 200px;
+}
+.item .reply-news-list .reply-news-list-cover {
+    width: 200px;
+    height: 100px;
+    overflow: hidden;
+    margin-left: 10px;
+    float: right;
+    background: #CCC;
+}
+
+.item.first .reply-news-list .reply-news-list-cover {
+    width: 100%;
+    height: 100px;
+    overflow: hidden;
+    margin-left: 10px;
+    background: #CCC;
+}
+.item.first .reply-news-list-detail{position:absolute;background:rgba(0,0,0,0.5);color:#fff;width:583px;padding:10px;
+    filter: alpha(opacity=0.5);opacity=0.5;}
+.item.first .reply-news-list-detail a{color:#fff;}
+.reply-news-list .reply-news-list-cover img{width:100%;}
+
+.alert {
+    float: left;
+    width: 615px;
+    position: relative;
+}
+.reply-edit-cover {
+    width: 526px;
+    background: #FFF;
+    height: auto;
+}
+</style>
+<script src="attachment/ueditor/ueditor.config.js"></script>
+<script src="attachment/ueditor/ueditor.all.js"></script>
+<script src="attachment/ueditor/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript">
+function callback(uploadbutton, data){
+	var nrid =  $(uploadbutton.div.parent().parent()[0]).find("input[name=news_reply_id]").val();
+	if (nrid != '')
+	{
+		nrid = '_' + nrid;
+	}else{
+		nrid = '';
+	}
+	var old_pic = $(uploadbutton.div.parent().parent()[0]).find('input[name=news-picture-old'+nrid+']').val();
+	if (old_pic != '')
+	{
+		$.ajax({
+			url:"attachment?action=delete&fn=" + old_pic,
+			success:function(res){}
+		});
+	}
+	
+	$(uploadbutton.div.parent().parent()[0]).find('#upload-file-view').html('<input value="'+data.url+'" type="hidden" name="news-picture'+nrid+'" class="news-picture" /><img src="attachment/'+data.url+'" width="500" />');
+	//$(uploadbutton.div.parent().parent()[0]).find('#upload-file-view').addClass('upload-view');
+	$(uploadbutton.div.parent().parent()[0]).find('#upload-delete').show();
+	$(uploadbutton.div.parent().parent()[0]).find('input[name=news-picture-old'+nrid+']').val(data.picid);
+}
+function delContent(obj , id){
+	layer.confirm('删除后不能恢复，是否要删除这个回复？', {
+		btn: ['是','否'] //按钮
+	}, function(){
+		if(id){
+			$.ajax({
+				url:"admin?viewid=news&part=delnewsreply&id=" + id,
+				success:function(res){
+
+				}
+			});
+		}
+		$(obj).parent().parent().parent().parent().remove();
+		initItem();
+		layer.closeAll();
+	}, function(){
+		layer.closeAll();
+	});
+	
+
+}
+function initItem(){
+	$("#module-form .item").removeClass("first");
+	$("#module-form .item").eq(0).addClass("first");
+}
+function doDeleteItemImage(obj){
+	var nrid =  $(obj).parent().parent().find("input[name=news_reply_id]").val();
+	if (nrid != '')
+	{
+		nrid = '_' + nrid;
+	}else{
+		nrid = '';
+	}
+	var old_pic = $(obj).parent().parent().find('input[name=news-picture-old'+nrid+']').val();
+	if (old_pic != '')
+	{
+		$.ajax({
+			url:"attachment?action=delete&fn=" + old_pic,
+			success:function(res){
+				$(obj).hide();
+				$(obj).parent().parent().find("#upload-file-view").html('');
+				$(obj).parent().parent().find('input[name=news-picture-old'+nrid+']').val('');
+			}
+		});
+	}
+}
+function addKeyword(){
+	var content = $(".keywordDiv");
+	html = $(".add-keyword-cell").html();
+	content.append("<div class='keyword-cell'>" + html + "</div>");
+}
+function addContent(){
+	$("#module-form .item").each(function(){
+		itemHide(this);
+	});
+	var content = $("#module-form");
+	html = $("#news-item-1").html();
+	var item = $("<div class='item'>" + html + "</div>");
+	content.append(item);
+	kindeditor(item.find(".richtext"));
+	kindeditorUploadBtn(item.find("#news-picture"),callback);
+	if($("#module-form .item").length == 1){
+		$("#module-form .item").eq(0).addClass("first");
+	}
+	
+}
+function itemHide(item){
+	$(item).find("table").hide();
+	$(item).find("#show").show();
+	var title = $(item).find("table").find("#title").val();
+	var description = $(item).find("table").find("#description").val();
+	var picture = $(item).find("table").find(".news-picture").val();
+	if (picture != '')
+	{
+		picture = "attachment/"+picture;
+	}
+	$(item).find("#show").find(".title").html(title);
+	$(item).find("#show").find(".content").html(description);
+	$(item).find("#show").find(".reply-news-list-cover img").attr('src',picture);
+}
+function itemShow(item){
+	$(item).find("table").show();
+	$(item).find("#show").hide();
+}
+function shouqi(obj){
+	
+	var item = $(obj).parent().parent().parent().parent().parent();
+	//alert(item.html())
+	itemHide(item);
+}
+function zhankai(obj){
+	var item = $(obj).parent().parent().parent().parent();
+	$("#module-form .item").each(function(){
+		itemHide(this);
+	});
+	itemShow(item);
+	
+}
+
+function formcheck(form){
+	var name = $("#rule-name").val();
+	var keywords = $("input[name=keywords]").val();
+	var content = $("#module-form .item");
+	if(name == ""){
+		layer.alert("请填写规则名称");
+		return  false;
+	}
+	if(keywords == "" && $(".keyword-cell").length == 0){
+		layer.alert("请填写触发关键字");
+		return  false;
+	}
+
+	if($(".keyword-cell").length > 0){
+		for(var i=0;i<$(".keyword-cell").length;i++){
+			var kn = $(".keyword-cell").eq(i).find("input[name=keywordname]").val();
+			if(kn == ''){
+				layer.alert("第"+(i+1)+"项添加关键字请填写内容！");
+				return  false;
+			}
+		}
+	}
+	if(content.length == 0){
+		layer.alert("请添加回复内容");
+		return  false;
+	}else{
+		for (var i=0;i<	content.length;i++){
+			var title = content.eq(i).find("#title").val();	
+			var picture = content.eq(i).find(".news-picture").val();	
+			//var richtext = content.eq(i).find(".richtext").val();	
+			var richtext = content.eq(i).find("textarea.richtext").val();
+			var url = content.eq(i).find("#url").val();	
+			if (title == '')
+			{
+				layer.alert("第"+(i+1)+"项图文回复请填写标题！");
+				return false;
+			}
+			if (picture == '')
+			{
+				layer.alert("第"+(i+1)+"项图文回复请上传封面！");
+				return false;
+			}
+			if (url == '' && $.trim(richtext) == '')
+			{
+				layer.alert("第"+(i+1)+"项图文回复输入正文或添加链接！");
+				return false;
+			}
+		}
+	}
+	return true;
+}
+$(function(){
+	initItem();	
+	if($("#module-form .item").length > 0){
+		$("#module-form .item").each(function(){
+			kindeditor($(this).find(".richtext"));
+			kindeditorUploadBtn($(this).find("#news-picture"),callback);
+		});
+	}
+});
+</script>
+{% endblock %}
+		

@@ -1,0 +1,56 @@
+@charset "utf-8";
+/*theme:优惠促销 css comment */
+/*time:2016-06-21*/
+/*author:zg*/
+
+/*common*/
+html, body, div, span, object, h1, h2, h3, h4, h5, h6, p, a, address, cite, del, em, img, q, u, i, dl, dt, dd, ol, ul, li, form,
+label, table, tr, th, td,caption, tbody, tfoot, thead, article, aside, details, summary, figure, figcaption, footer, header, menu, nav,
+section, audio, input, select, textarea {margin:0;padding:0;border:0;;}
+header,footer,nav,section,menu,article,aside { display:block;}
+
+
+.clearfix { zoom:1;}
+.clear{ clear: both;}
+ul{ list-style: none;}
+.p-r{position:relative;}
+a{text-decoration:none;}
+/*iphone上的Safari解析input[typw="submit"]和input[type="submit"]按钮会以苹果浏览器默认的UI进行渲染，解决发放如下*/
+input,input[type="button"],input[type="submit"]，input[type="reset"]{-webkit-appearance:none;} 
+
+
+/*header*/
+.favor-header-bar{background-color: #fff;padding:0 1.1rem;overflow: hidden;height:3.46rem;line-height: 3.46rem;border-bottom: 1px solid #e1e1e1;}
+.favor-header-bar li{display: block;width:25%;text-align: center;float: left;margin-left:-1px;height:2.3rem;line-height: 2.3rem;margin-top:0.58rem;border-right: 1px solid #e1e1e1;position: relative;}
+.favor-header-bar a{font-size:1.1rem;color:#333;display:block;padding-bottom: 0.5rem;width:85%;margin:0 auto;}
+.favor-header-bar li:last-child{border-right:none;}
+.favor-header-bar li.default a{color:#139dea;border-bottom: 2px solid #139dea;}
+.favor-header-bar li span{position: absolute;display: block;width:25%;top:-0.4rem;right:0.2rem;max-width: 32px;}
+/*favor-list*/
+.favor-list.swiper-container{margin-top:1.1rem;width:100%;}
+.favor-list dl{overflow:hidden;padding:1.1rem;border-bottom: 1px solid #e1e1e1;background-color: #fff;}
+.favor-list a:first-child dl{border-top:1px solid #e1e1e1;}
+.favor-list dt,.favor-list dd{float: left;}
+.favor-list dt{width:30%;position: relative;}
+.favor-list dt span{display: block;width:0.92rem;height:0.92rem;background-color: #fd3d3d;border-radius: 100%;-webkit-border-radius: 100%;-moz-border-radius: 100%;-ms-border-radius: 100%;-o-border-radius: 100%;
+	position: absolute;top:-0.5rem;right: -0.5rem;}
+.favor-list dd{width:61%;margin-left:1rem;line-height:100%;}
+.favor-list dd small{color:#9c9c9c;font-size: 0.92rem;display: block;}
+.favor-list dd p{font-size:1.077rem;color:#666;display: block;text-overflow:ellipsis;overflow: hidden;white-space: nowrap;margin:0;}
+.favor-list dd h2{font-weight: normal;font-size:1.15rem;color:#333;}
+.favor-list a{display: block;width: 100%;}
+
+/*nofavor*/
+.nofavor{width:46.8%;margin:16.5% auto 0 auto;}
+
+
+ 
+ 
+ @media screen and (min-width: 319px) and (max-width : 374px){
+ 	.favor-list dt span{width:0.7rem;height:0.7rem;top:-0.3rem;right:-0.3rem;}
+ 	.favor-list dd{line-height: 90%;}	
+	.favor-list dd small{font-size: 0.85rem;}
+	.favor-list dd p{font-size:0.92rem;}
+	.favor-list dd h2{font-size:1.1rem;}
+
+}

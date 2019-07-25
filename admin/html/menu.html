@@ -1,0 +1,319 @@
+{% extends "index.html" %}
+{% block cssjs %}
+<link href='static/assets/css/common.css' rel='stylesheet'>
+{% endblock %}
+
+{% block form_block %}
+<form method="POST" action="admin" class="form-inline" name="frmMain" id="form">
+<input id="do" name="do" type="hidden" />
+<input name="viewid" type="hidden" value="menu" />
+<input name="part" type="hidden" value="saveMenu" />
+{% endblock %}
+
+{% block breadcrumb %}
+<ol class="breadcrumb">
+	<li><a href="admin?viewid=home">主页</a></li>
+	<li><a href="admin?viewid=menu&mnuid=9&sub1id=904">自定义菜单</a></li>
+</ol>
+{% endblock %}
+
+{% block contentpanel %}
+<div class="main">
+	<div class="form form-horizontal">
+		<h4>菜单设计器 <small>编辑和设置微信公众号码, 必须是服务号才能编辑自定义菜单。</small></h4>
+		<table class="tb table-striped">
+			<tbody class="mlist">
+			{% if menu.get('button') %}
+			{% for row in menu.get('button') %}
+			<tr class="hover" data-do="{{'forward' if row.type|string == 'click' else 'view'}}" data-url="{{row.url}}" data-forward="{{row.key}}">
+					<td>
+						<div>
+							<input type="text" class="span4 form-control" value="{{row.name}}" style="width:300px;"/> &nbsp; &nbsp;
+							<a href="javascript:;" class="glyphicon glyphicon-move" title="拖动调整此菜单位置"></a> &nbsp;
+							<a href="javascript:;" onclick="setMenuAction($(this).parent().parent().parent());" class="glyphicon glyphicon-edit" title="设置此菜单动作"></a> &nbsp;
+							<a href="javascript:;" onclick="deleteMenu(this)" class="glyphicon glyphicon-remove-sign" title="删除此菜单"></a> &nbsp;
+							<a href="javascript:;" onclick="addSubMenu($(this).parent().next());" title="添加子菜单" class="glyphicon glyphicon-plus-sign" title="添加菜单"></a>
+						</div>
+						<div class="smlist">
+							{% if row.get('sub_button') %}
+							{% for btn in row.get('sub_button') %}
+							<div style="margin-top:20px;padding-left:80px;background:url('asset/images/bg_repno.gif') no-repeat -245px -545px;" data-do="{{'forward' if btn.type|string == 'click' else 'view'}}" data-url="{{btn.url}}" data-forward="{{btn.key}}">
+								<input type="text" class="span3 form-control" value="{{btn.name}}"  style="width:220px;" /> &nbsp; &nbsp;
+								<a href="javascript:;" class="glyphicon glyphicon-move" title="拖动调整此菜单位置"></a> &nbsp;
+								<a href="javascript:;" onclick="setMenuAction($(this).parent());" class="glyphicon glyphicon-edit" title="设置此菜单动作"></a> &nbsp;
+								<a href="javascript:;" onclick="deleteMenu(this)" class="glyphicon glyphicon-remove-sign" title="删除此菜单"></a>
+							</div>
+							{% endfor %}
+							{% endif %}
+						</div>
+					</td>
+				</tr>
+			{% endfor %}
+			{% endif %}
+			</tbody>
+		</table>
+		<div class="well well-small" style="margin-top:20px;">
+			<a href="javascript:;" onclick="addMenu();">添加菜单 <i class="glyphicon glyphicon-plus-sign" title="添加菜单"></i></a> &nbsp; &nbsp; &nbsp;  <span class="help-inline">可以使用 <i class="icon-move"></i> 进行拖动排序</span>
+		</div>
+
+		<h4>操作 <small>设计好菜单后再进行保存操作</small></h4>
+		<table class="tb">
+			<tbody>
+				<tr>
+					<td>
+						<input type="button" value="保存菜单结构" class="btn btn-primary span3" style="width:300px;" onclick="saveMenu();"/>
+						<span class="help-block">保存当前菜单结构至公众平台, 由于缓存可能需要在24小时内生效</span>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="button" value="删除" class="btn btn-primary span3" style="width:300px;" onclick="$('input[name=action]').val('delete');$('#form')[0].submit();" />
+						<div class="help-block">清除自定义菜单</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="button" value="刷新" class="btn btn-primary span3" style="width:300px;" onclick="$('input[name=action]').val('refresh');$('#form')[0].submit();" />
+						<div class="help-block">重新从公众平台获取菜单信息</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+{% endblock %}
+{% block javascript %}
+<script type="text/javascript" src="asset/js/jquery-ui-1.10.3.min.js"></script>
+<script type="text/javascript">
+	var pIndex = 1;
+	var currentEntity = null;
+	$(function(){
+		$('tbody.mlist').sortable({handle: '.glyphicon-move'});
+		$('.smlist').sortable({handle: '.glyphicon-move'});
+		$('.mlist .hover').each(function(){
+			$(this).data('do', $(this).attr('data-do'));
+			$(this).data('url', $(this).attr('data-url'));
+			$(this).data('forward', $(this).attr('data-forward'));
+		});
+		$('.mlist .hover .smlist div').each(function(){
+			$(this).data('do', $(this).attr('data-do'));
+			$(this).data('url', $(this).attr('data-url'));
+			$(this).data('forward', $(this).attr('data-forward'));
+		});
+		
+		//$('#dialog').modal({backdrop: 'static', keyboard: false, show: false});
+		//$('#dialog').on('hide', saveMenuAction);
+	});
+	function addMenu() {
+		if($('.mlist .hover').length >= 3) {
+			return;
+		}
+		var html = '<tr class="hover">'+
+						'<td>'+
+							'<div>'+
+								'<input type="text" class="span4 form-control"  style="width:300px;" value="" /> &nbsp; &nbsp; '+
+								'<a href="javascript:;" class="glyphicon glyphicon-move" title="拖动调整此菜单位置"></a> &nbsp; '+
+								'<a href="javascript:;" onclick="setMenuAction($(this).parent().parent().parent());" class="glyphicon glyphicon-edit" title="设置此菜单动作"></a> &nbsp; '+
+								'<a href="javascript:;" onclick="deleteMenu(this)" class="glyphicon glyphicon-remove-sign" title="删除此菜单"></a> &nbsp; '+
+								'<a href="javascript:;" onclick="addSubMenu($(this).parent().next());" title="添加子菜单" class="glyphicon glyphicon-plus-sign" title="添加菜单"></a> '+
+							'</div>'+
+							'<div class="smlist"></div>'+
+						'</td>'+
+					'</tr>';
+		$('tbody.mlist').append(html);
+	}
+	function addSubMenu(o) {
+		if(o.find('div').length >= 5) {
+			return;
+		}
+		var html = '' +
+				'<div style="margin-top:20px;padding-left:80px;background:url(\'asset/images/bg_repno.gif\') no-repeat -245px -545px;">'+
+					'<input type="text" class="span3 form-control"  style="width:220px;" value="" /> &nbsp; &nbsp; '+
+					'<a href="javascript:;" class="glyphicon glyphicon-move" title="拖动调整此菜单位置"></a> &nbsp; '+
+					'<a href="javascript:;" onclick="setMenuAction($(this).parent());" class="glyphicon glyphicon-edit" title="设置此菜单动作"></a> &nbsp; '+
+					'<a href="javascript:;" onclick="deleteMenu(this)" class="glyphicon glyphicon-remove-sign" title="删除此菜单"></a> '+
+				'</div>';
+		o.append(html);
+	}
+	function deleteMenu(o) {
+		if($(o).parent().parent().hasClass('smlist')) {
+			$(o).parent().remove();
+		} else {
+			$(o).parent().parent().parent().remove();
+		}
+	}
+	function setMenuAction(o) {
+		if(o == null) return;
+		if(o.find('.smlist div').length > 0) {
+			return;
+		}
+		currentEntity = o;
+		
+		content = $('<div id="url" />');
+		content.append('<div class="well" />');
+		content.find(".well").append('<label class="radio inline"><input type="radio" name="ipt" value="url" checked="checked"> 链接</label>');
+		content.find(".well").append('<label class="radio inline"><input type="radio" name="ipt" value="forward" checked="checked"> 模拟关键字</label>');
+		html = '<div id="url-container" style="padding-top:10px;">'+
+				'<input class="form-control" id="ipt-url" size="80" type="text" value="http://" />'+
+				'<span class="help-block">指定点击此菜单时要跳转的链接（注：链接需加http://）</span>'+
+				'<span class="help-block"><strong>注意: 由于接口限制. 如果你没有网页oAuth接口权限, 这里输入链接直接进入微站个人中心时将会有缺陷(有可能获得不到当前访问用户的身份信息. 如果没有oAuth接口权限, 建议你使用图文回复的形式来访问个人中心)</strong></span>'+
+			'</div>'+
+			'<div id="forward-container" style="padding-top:10px;display:none;">'+
+				'<input class="form-control" id="ipt-forward" size="80" type="text" />'+
+				'<span class="help-block">指定点击此菜单时要执行的操作, 你可以在这里输入关键字, 那么点击这个菜单时就就相当于发送这个内容至微智引擎系统</span>'+
+				'<span class="help-block"><strong>这个过程是程序模拟的, 比如这里添加关键字: 优惠券, 那么点击这个菜单是, 微智引擎系统相当于接受了粉丝用户的消息, 内容为"优惠券"</strong></span>'+
+			'</div>';
+		content.find(".well").append(html);
+		layer.open({
+			type: 1,
+			title:'选择要执行的操作',
+			skin: 'layui-layer-rim', //加上边框
+			area: ['800px', 'auto'], //宽高
+			content: content.prop("outerHTML"),
+			btn:['确定','取消'],
+			success:function(){
+				$('#ipt-url').val($(o).data('url'));
+				$('#ipt-forward').val($(o).data('forward'));
+				if($(o).data('do') != 'forward') {
+					$(':radio').eq(0).attr('checked', 'checked');
+					$('#url-container').show();
+					$('#forward-container').hide();
+				} else {
+					$(':radio').eq(1).attr('checked', 'checked');
+					$('#url-container').hide();
+					$('#forward-container').show();
+				}
+				//$(':radio:checked')[0].click();
+				$(':radio[name="ipt"]').click(function(){
+					if(this.checked) {
+						if($(this).val() == 'url') {
+							$('#url-container').show();
+							$('#forward-container').hide();
+						} else {
+							$('#url-container').hide();
+							$('#forward-container').show();
+						}
+					}
+				});
+			},
+			yes:function(){
+				saveMenuAction();
+				layer.closeAll();
+			}
+		});
+		//alert($('#ipt-url').val())
+		//$('#dialog').modal('show');
+	}
+	function saveMenuAction() {
+		var o = currentEntity;
+		var t = $(':radio:checked').val();
+		t = t == 'url' ? 'url' : 'forward';
+		if(o == null) return;
+		$(o).data('do', t);
+		$(o).data('url', $('#ipt-url').val());
+		$(o).data('forward', $('#ipt-forward').val());
+	}
+	function saveMenu() {
+		if($('.span4:text').length > 3) {
+			layer.alert('不能输入超过 3 个主菜单才能保存.');
+			return;
+		}
+		if($('.span4:text,.span3:text').filter(function(){ return $.trim($(this).val()) == '';}).length > 0) {
+			layer.alert('存在未输入名称的菜单.');
+			return;
+		}
+		if($('.span4:text').filter(function(){ return $.trim($(this).val()).length > 5;}).length > 0) {
+			layer.alert('主菜单的名称长度不能超过5个字.');
+			return;
+		}
+		if($('.span3:text').filter(function(){ return $.trim($(this).val()).length > 8;}).length > 0) {
+			layer.alert('子菜单的名称长度不能超过8个字.');
+			return;
+		}
+		var dat = '[';
+		var error = false;
+		$('.mlist .hover').each(function(){
+			var name = $.trim($(this).find('.span4:text').val()).replace(/"/g, '\"');
+			var type = $(this).data('do') != 'forward' ? 'view' : 'click';
+			var url = $(this).data('url');
+			if(!url) {
+				url = '';
+			}
+			var forward = $.trim($(this).data('forward'));
+			if(!forward) {
+				forward = '';
+			}
+			dat += '{"name": "' + name + '"';
+			if($(this).find('.smlist div').length > 0) {
+				dat += ',"sub_button": [';
+				$(this).find('.smlist div').each(function(){
+					var sName = $.trim($(this).find('.span3:text').val()).replace(/"/g, '\"');
+					var sType = $(this).data('do') != 'forward' ? 'view' : 'click';
+					var sUrl = $(this).data('url');
+					if(!sUrl) {
+						sUrl = '';
+					}
+					var sForward = $.trim($(this).data('forward'));
+					if(!sForward) {
+						sForward = '';
+					}
+					dat += '{"name": "' + sName + '"';
+					if((sType == 'click' && sForward == '') || (sType == 'view' && !sUrl)) {
+						layer.alert('子菜单项 “' + sName + '”未设置对应规则.');
+						error = true;
+						return false;
+					}
+					if(sType == 'click') {
+						dat += ',"type": "click","key": "' + encodeURIComponent(sForward) + '"';
+					}
+					if(sType == 'view') {
+						dat += ',"type": "view","url": "' + sUrl + '"';
+					}
+					dat += '},';
+				});
+				if(error) {
+					return false;
+				}
+				dat = dat.slice(0,-1);
+				dat += ']';
+			} else {
+				if((type == 'click' && forward == '') || (type == 'view' && !url)) {
+					layer.alert('菜单 “' + name + '”不存在子菜单项, 且未设置对应规则.');
+					error = true;
+					return false;
+				}
+				if(type == 'click') {
+					dat += ',"type": "click","key": "' + encodeURIComponent(forward) + '"';
+				}
+				if(type == 'view') {
+					dat += ',"type": "view","url": "' + url + '"';
+				}
+			}
+			dat += '},';
+		});
+		if(error) {
+			return;
+		}
+		dat = dat.slice(0,-1);
+		dat += ']';
+		$('#do').val(dat);
+		/*$.ajax({
+			url:"admin",
+			data:{'viewid':"menu","action":"saveMenu","do":dat},
+			success:function(res){
+
+			}
+		});*/
+		//alert(dat)
+		$('#form')[0].submit();
+	}
+</script>
+<style type="text/css">
+	.table-striped td{padding-top: 10px;padding-bottom: 10px}
+	a{font-size:14px;}
+	a:hover, a:active{text-decoration:none; color:red;}
+	.hover td{padding-left:10px;}
+</style>
+{% endblock %}
+		

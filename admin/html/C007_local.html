@@ -1,0 +1,220 @@
+{% extends "local.html" %}
+
+
+{% block MUL_BTNS %}
+<table class="tb single-table clearfix top-line">
+    <tr>
+        <td style="text-align:left;">
+            <input type="submit" class="btn btn-sm btn-info" name="add_save" value="提交"/>
+            <input type="reset" class="btn btn-sm btn-info" name="add_save" value="重置"/>
+            {{sUrlBack}}
+        </td>
+    </tr>
+</table>
+{% endblock %}
+
+
+{% block html_local %}
+<link href="static/web-uploader/css/uploader-image.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="static/web-uploader/js/Q.js"></script>
+<script type="text/javascript" src="static/web-uploader/js/Q.Uploader.js"></script>
+<script type="text/javascript" src="static/web-uploader/js/Q.Uploader.UI.Image.js"></script>
+<div class="row">
+    <div class="form-group">
+        <label class="col-sm-2 control-label"><b style="color:#333333;">用户名字:</b></label>
+        <div class="col-sm-3">
+            <input type="text" class="form-control" name="usr_name" value="{{item.usr_name}}"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label"><b style="color:#333333;">用户头像:</b></label>
+        <div class="col-sm-3">
+            <input type="hidden" name="user_avatar" value="{{item.user_avatar}}"/>
+            <div class="row">
+                <div id="container" style="position: relative;">
+                    <a id="pickfiles"  style="position: relative; z-index: 1;">[选择本地文件]</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div id="logo">
+                {% if item.user_avatar %}
+                    <img class="col-sm-12" src="{{item.user_avatar}}"/>
+                {%endif%}
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">是否VIP：</label>
+        <div class="col-sm-3">
+            <select name="star_id"  class="form-control">
+                <option value="0"{{' selected="selected"' if item.star_id|string == '0'}}>否</option>
+                <option value="1"{{' selected="selected"' if item.star_id|string == '1'}}>是</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label"><b style="color:#333333;">商品:</b></label>
+        <div class="col-sm-3">
+            <input type="hidden" name="goods_id" value="{{item.goods_id}}"/>
+            <input type="text" class="form-control"  name="good_name" value="{{item.goods}}" readonly="1"/>{{Goods_mselect}}
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label"><b style="color:#333333;">评分:</b></label>
+        <div class="col-sm-5">
+            <div class="radio">
+                <label>
+                    <input type="radio"  value="1"  name="goods_star" {{' checked="checked"' if item.goods_star|string == '1'}}/>1分
+                </label>
+                <label>
+                    <input type="radio" value="2"  name="goods_star" {{' checked="checked"' if item.goods_star|string == '2'}} />2分
+                </label>
+                <label>
+                    <input type="radio" value="3"  name="goods_star" {{' checked="checked"' if item.goods_star|string == '3'}} />3分
+                </label>
+                <label>
+                    <input type="radio"  value="4"  name="goods_star" {{' checked="checked"' if item.goods_star|string == '4'}} />4分
+                </label>
+                <label>
+                    <input type="radio" value="5"  name="goods_star" {{' checked="checked"' if item.goods_star|string == '5'}} />5分
+                </label>
+            </div>
+        </div>
+    </div>
+
+	<div class="form-group">
+        <label class="col-sm-2 control-label"><b style="color:#333333;">评论:</b></label>
+        <div class="col-sm-8">
+            <input type="text" class="form-control" name="goods_reputation" value="{{item.goods_reputation}}"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label"><b style="color:#333333;">回复:</b></label>
+        <div class="col-sm-8">
+            <input type="text" class="form-control" name="goods_reply" value="{{item.goods_reply}}"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label"><b style="color:#333333;">添加日期:</b></label>
+        <div class="col-sm-8">
+            <input type="text" class="form-control" name="ctime" value="{{item.ctime}}" onclick="setdaytime(this)"
+                   readonly="1"/>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block page_script %}
+<script type="text/javascript">
+function setdaytime(obj){return WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'});}
+if({{save_alert}}==1){
+    var pk=$('input[name=pk]').val()
+	layer.alert('保存成功!',{yes:function(){
+         window.location = 'admin?viewid=D004&part=localfrm&pk='+pk;
+   }});
+}else if ({{save_alert}}==2){
+    layer.alert('保存失败!',{yes:function(){
+         window.location = 'admin?viewid=D004&part=localfrm&pk={{pk}}';
+   }});
+}
+</script>
+<script>
+
+	var ids = new Array("pickfiles","pickfilesa");
+	var divs = new Array("logo","share");
+    var hinames = new Array("user_avatar","home_pic_link");
+
+    $.each(ids,function(i,n){
+        var self = this.toString();
+        //实例化一个plupload上传对象
+        var Uploader = Q.Uploader,
+        formatSize = Q.formatSize,
+        boxView = document.getElementById(""+divs[i]+"")
+        var uploader = new Uploader({
+            url: '/admin?viewid=C001&part=QiniuUpload',
+            target: document.getElementById(""+self+""),
+            view: boxView,//如果去掉这个，会导致压缩效果不好
+            //将auto配置为false以手动上传
+            auto: true,
+            dataType: "json",
+            allows: ".jpg,.png,.gif,.bmp,.jpeg",
+            upName: "file",
+            //图片缩放
+            scale: {
+                //要缩放的图片格式
+                types: ".jpg,.png,.jpeg,.bmp",
+                //最大图片大小(width|height)
+                maxWidth: 500
+            },
+            on: {
+                //添加之前触发
+                add: function (task) {
+                	layer.load()
+                    if (task.disabled) return layer.alert("允许上传的文件格式为：" + this.ops.allows);
+                },
+                upload: function (task) {
+                	layer.load()
+                },
+                complete: function(task){
+                    var jsons=task.json;
+                    if(jsons){
+                        $("#"+divs[i]+"").html('');
+                        var innerDivHtml = '<img src="'+ task.json.url  +'" class="col-sm-12">';
+                        $("#"+divs[i]+"").append(innerDivHtml);
+                        $('input[name='+hinames[i]+']').val(task.json.url);
+                        layer.closeAll()
+                    }else{
+                        //layer.alert('上传图片故障！')
+                        layer.closeAll()
+                    }
+                }
+            }
+        });
+        uploader.start();
+    });
+
+</script>
+
+<script>
+$(function(){
+
+
+})
+
+
+function formcheck_2(form){
+
+	/*var sp_bh = $('input[name=sp_bh]').val();
+	var num = $('input[name=num]').val();
+	var money = $("input[name=money]").val();
+	var in_date = $("input[name=in_date]").val();
+
+	if(sp_bh == ''){
+		layer.alert("请选择商品");
+		return false;
+	}
+	if(num == ''){
+		layer.alert("请输入数量");
+		return false;
+	}
+	if(money == ''){
+		layer.alert("请输入进货价格");
+		return false;
+	}
+	if(in_date == ''){
+		layer.alert("请输入进货日期");
+		return false;
+	}*/
+
+	return true;
+	
+}
+</script>
+
+{% endblock %}
+	

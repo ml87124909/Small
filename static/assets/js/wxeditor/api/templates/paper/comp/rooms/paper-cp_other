@@ -1,0 +1,4387 @@
+{
+	"code": 0,
+	"message": "Common:OK",
+	"data": {
+		"roomId": "paper-cp:other",
+		"name": "其他",
+		"desc": "other",
+		"author": "triton info.",
+		"date": "2015-08-13",
+		"version": "1.0",
+		"order": 4,
+		"icon": "/images/tpl_icon/c09795.other.png",
+		"compSize": "large",
+		"items": [{
+			"tplId": "paper-cp:other/000-base-line",
+			"name": "横线",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {
+							"crop-image-merged": true
+						},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bgc1.value"]
+					},
+					"aux": {
+						"bgc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"pose": {},
+					"style": {
+						"padding": "0.5em 0"
+					},
+					"tplId": "paper-cp:other/000-base-line"
+				},
+				"line1": {
+					"type": "shape",
+					"style": {
+						"height": "1px"
+					}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/001-base-round-bd",
+			"name": "带边框圆(文字垂直居中)",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {
+							"text-merged": true
+						},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bdc1.value"]
+					},
+					"aux": {
+						"bgc1": {
+							"type": "color",
+							"value": "transparent"
+						},
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"pose": {},
+					"style": {
+						"textAlign": "center",
+						"marginTop": "10px",
+						"marginBottom": "10px"
+					},
+					"tplId": "paper-cp:other/001-base-round-bd"
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static",
+						"bgEditingType": "none"
+					},
+					"style": {
+						"width": "100%",
+						"padding": "15px",
+						"borderRadius": "100%"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {},
+								"pose": {
+									"resize": "h"
+								},
+								"themeColors": ["txt1.style.color"]
+							},
+							"aux": {},
+							"pose": {},
+							"style": {
+								"textAlign": "center"
+							}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>请输入订阅号名称</section>",
+							"style": {
+								"color": "rgb(249, 110, 87)",
+								"fontSize": "125%"
+							}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/001-base-round",
+			"name": "圆（文字垂直居中)",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"tplId": "paper-cp:middleware/023-round",
+					"constraint": {
+						"opMenu": {
+							"text-merged": true
+						},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bgc1.value"]
+					},
+					"aux": {
+						"bgc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"pose": {},
+					"style": {
+						"textAlign": "center",
+						"marginTop": "10px",
+						"marginBottom": "10px"
+					}
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static",
+						"bgEditingType": "none"
+					},
+					"style": {
+						"width": "100%",
+						"padding": "15px",
+						"borderRadius": "100%"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"aux": {},
+							"pose": {},
+							"style": {
+								"textAlign": "center"
+							}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>请输入订阅号名称</section>",
+							"style": {
+								"color": "white",
+								"fontSize": "125%"
+							}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/001-circle-txt-v1",
+			"name": "圆环文字",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {
+							"text-merged": true
+						},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bgc1.value", "col1.style.backgroundColor"]
+					},
+					"aux": {
+						"bgc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0",
+						"textAlign": "center"
+					},
+					"tplId": "paper-cp:other/001-circle-txt-v1"
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"padding": "10px",
+						"backgroundColor": "rgb(249, 110, 87)"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"aux": {},
+							"pose": {},
+							"style": {
+								"textAlign": "center"
+							}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<br/><br/><section>请输入订阅号名称</section>",
+							"style": {
+								"color": "white",
+								"fontSize": "125%"
+							}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/001-namecard-1",
+			"name": "活动卡片1",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bdc1.value"]
+					},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0",
+						"textAlign": "center"
+					},
+					"tplId": "paper-cp:other/001-namecard-1"
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"padding": "1em",
+						"textAlign": "center"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:other/001-circle-txt-v1",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								},
+								"themeColors": ["_comp.aux.bgc1.value", "col1.style.backgroundColor"]
+							},
+							"aux": {
+								"bgc1": {
+									"type": "color",
+									"value": "rgb(249, 110, 87)"
+								}
+							},
+							"pose": {},
+							"style": {
+								"margin": "0.5em 0",
+								"textAlign": "center"
+							}
+						},
+						"col1": {
+							"type": "group",
+							"constraint": {
+								"childLayout": "static"
+							},
+							"style": {
+								"width": "100%",
+								"padding": "10px",
+								"backgroundColor": "rgb(249, 110, 87)"
+							},
+							"items": [{
+								"_comp": {
+									"tplId": "paper-cp:header/1-txt-normal",
+									"constraint": {
+										"opMenu": {},
+										"pose": {
+											"resize": "h"
+										}
+									},
+									"aux": {},
+									"pose": {},
+									"style": {
+										"textAlign": "center"
+									}
+								},
+								"txt1": {
+									"type": "text",
+									"text": "<br/><br/><section>请输入订阅号名称</section>",
+									"style": {
+										"color": "white",
+										"fontSize": "125%"
+									}
+								}
+							}]
+						}
+					}, {
+						"_comp": {
+							"tplId": "paper-cp:header/t-a-01-02",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								},
+								"themeColors": ["_comp.aux.titleBgc.value"]
+							},
+							"pose": {},
+							"style": {
+								"margin": "1em 0 0",
+								"textAlign": "center"
+							},
+							"aux": {
+								"titleBgc": {
+									"type": "color",
+									"value": "rgb(249, 110, 87)"
+								}
+							}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>微信号:请输入微信号</section>",
+							"style": {
+								"color": "white",
+								"fontSize": "100%",
+								"padding": "0.5em 0.8em",
+								"lineHeight": 1
+							}
+						}
+					}]
+				},
+				"col2": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"padding": "1em",
+						"textAlign": "center"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>请输入内容请输入内容</section>",
+							"style": {
+								"color": "rgb(62, 62, 62)"
+							}
+						}
+					}, {
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>请输入内容请输入内容</section>",
+							"style": {
+								"color": "rgb(62, 62, 62)"
+							}
+						}
+					}, {
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>请输入内容请输入内容</section>",
+							"style": {
+								"color": "rgb(62, 62, 62)"
+							}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/002-conv-1-left-1",
+			"name": "对话左1",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"aux": {
+						"bgc1": {
+							"type": "color",
+							"value": "rgb(255, 228, 200)"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"tplId": "paper-cp:other/002-conv-1-left-1"
+				},
+				"img1": {
+					"type": "image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/701-other/002-conv-1-left-2-v2-img1.png",
+					"style": {}
+				},
+				"txt1": {
+					"type": "text",
+					"text": "<section>请输入</section>",
+					"style": {
+						"fontSize": "80%",
+						"color": "rgb(62, 62, 62)",
+						"textAlign": "center"
+					}
+				},
+				"img2": {
+					"type": "image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/701-other/002-conv-1-left-2-v2-img0.png",
+					"style": {}
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static",
+						"bgEditingType": "none"
+					},
+					"style": {
+						"padding": "16px"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"textAlign": "left"
+							}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>请输入对话</section>",
+							"style": {}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/002-conv-1-right-1",
+			"name": "对话右1",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"aux": {
+						"bgc1": {
+							"type": "color",
+							"value": "rgb(188, 227, 249)"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0",
+						"textAlign": "right"
+					},
+					"tplId": "paper-cp:other/002-conv-1-right-1"
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static",
+						"bgEditingType": "none"
+					},
+					"style": {
+						"padding": "16px"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"textAlign": "left"
+							}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>请输入对话</section>",
+							"style": {}
+						}
+					}]
+				},
+				"img1": {
+					"type": "image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/701-other/003-conv-1-right-2-v2-img0.png",
+					"style": {}
+				},
+				"img2": {
+					"type": "image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/701-other/003-conv-1-right-2-v2-img1.png",
+					"style": {}
+				},
+				"txt1": {
+					"type": "text",
+					"text": "<section>请输入</section>",
+					"style": {
+						"fontSize": "80%",
+						"color": "rgb(62, 62, 62)",
+						"textAlign": "center"
+					}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/003-conv-left",
+			"name": "对话（左）",
+			"version": "0.1",
+			"order": 1,
+			"matrix": {
+				"_comp": {
+					"tplId": "paper-cp:layout/row1-r1c2-c1to2-2-8",
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"aux": {},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					}
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"textAlign": "center"
+							}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/701-other/029-dialogue-img0.jpg",
+							"style": {}
+						}
+					}],
+					"style": {}
+				},
+				"col2": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {},
+							"aux": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>&nbsp; &nbsp; 输入名字</section>",
+							"style": {}
+						}
+					}, {
+						"_comp": {
+							"tplId": "paper-cp:header/t-b-41",
+							"constraint": {
+								"opMenu": {},
+								"pose": {
+									"resize": "h"
+								},
+								"themeColors": ["_comp.aux.textBgc2.value"]
+							},
+							"aux": {
+								"textBgc2": {
+									"type": "color",
+									"value": "rgb(249, 110, 87)"
+								}
+							},
+							"pose": {},
+							"style": {
+								"margin": "0"
+							}
+						},
+						"col1": {
+							"type": "group",
+							"constraint": {
+								"childLayout": "static",
+								"bgEditingType": "none"
+							},
+							"style": {
+								"padding": "8px",
+								"borderRadius": "0.5em"
+							},
+							"items": [{
+								"_comp": {
+									"tplId": "paper-cp:header/1-txt-normal",
+									"constraint": {
+										"opMenu": {
+											"text-merged": true
+										},
+										"pose": {
+											"resize": "h"
+										}
+									},
+									"pose": {},
+									"style": {}
+								},
+								"txt1": {
+									"type": "text",
+									"text": "<section>输入对话输入对话</section>",
+									"style": {
+										"color": "white"
+									}
+								}
+							}]
+						}
+					}],
+					"style": {
+						"textAlign": "left",
+						"padding": "0 10px"
+					}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/003-conv-right",
+			"name": "对话（右）",
+			"version": "0.1",
+			"order": 1,
+			"matrix": {
+				"_comp": {
+					"tplId": "paper-cp:layout/row1-r1c2-c2to1-2-8",
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"aux": {},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					}
+				},
+				"col2": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"textAlign": "center"
+							}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/701-other/030-dialogue-img0.jpg",
+							"style": {}
+						}
+					}],
+					"style": {}
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {},
+							"aux": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>输入名字&nbsp; &nbsp;</section>",
+							"style": {}
+						}
+					}, {
+						"_comp": {
+							"tplId": "paper-cp:header/t-b-42",
+							"constraint": {
+								"opMenu": {},
+								"pose": {
+									"resize": "h"
+								},
+								"themeColors": ["_comp.aux.textBgc2.value"]
+							},
+							"aux": {
+								"textBgc2": {
+									"type": "color",
+									"value": "rgb(249, 110, 87)"
+								}
+							},
+							"pose": {},
+							"style": {
+								"margin": "0"
+							}
+						},
+						"col1": {
+							"type": "group",
+							"constraint": {
+								"childLayout": "static",
+								"bgEditingType": "none"
+							},
+							"style": {
+								"padding": "8px",
+								"borderRadius": "0.5em"
+							},
+							"items": [{
+								"_comp": {
+									"tplId": "paper-cp:header/1-txt-normal",
+									"constraint": {
+										"opMenu": {
+											"text-merged": true
+										},
+										"pose": {
+											"resize": "h"
+										}
+									},
+									"pose": {},
+									"style": {}
+								},
+								"txt1": {
+									"type": "text",
+									"text": "<section>输入对话输入对话</section>",
+									"style": {
+										"color": "white"
+									}
+								}
+							}]
+						}
+					}],
+					"style": {
+						"textAlign": "right",
+						"padding": "0 10px"
+					}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/006-bottom-02",
+			"name": "底部原文指示左下）",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bdc1.value"]
+					},
+					"pose": {},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"style": {
+						"margin": "0.5em 0 1.8em"
+					},
+					"tplId": "paper-cp:other/006-bottom-02"
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"textAlign": "left"
+							}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>输入文字输入文字<br/>输入文字输入文字<br/>输入文字输入文字</section>",
+							"style": {
+								"textAlign": "center"
+							}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/006-bottom-03",
+			"name": "底部原文指示（左下）",
+			"version": "0.1",
+			"order": 1,
+			"matrix": {
+				"_comp": {
+					"tplId": "paper-cp:layout/row1-r1c1",
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"aux": {},
+					"style": {
+						"margin": "0.5em 0"
+					}
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>点击“阅读原文”</section>",
+							"style": {
+								"textAlign": "left"
+							}
+						}
+					}, {
+						"_comp": {
+							"tplId": "paper-cp:other/017-dividing-line-05",
+							"constraint": {
+								"opMenu": {},
+								"pose": {
+									"resize": "h"
+								},
+								"themeColors": ["_comp.aux.bdc1.value"]
+							},
+							"pose": {},
+							"style": {},
+							"aux": {
+								"bdc1": {
+									"type": "color",
+									"value": "rgb(249, 110, 87)"
+								},
+								"margin": {
+									"type": "margin",
+									"value": "0 8%"
+								}
+							}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/006-bottom-04",
+			"name": "t-b-91",
+			"version": "0.1",
+			"order": 1,
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bdc1.value"]
+					},
+					"style": {
+						"marginTop": "10px",
+						"marginBottom": "20px",
+						"textAlign": "center"
+					},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						},
+						"bgc1": {
+							"type": "color",
+							"value": "white"
+						}
+					},
+					"tplId": "paper-cp:other/006-bottom-04"
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section >“点击”‘阅读原文’</section>",
+							"style": {}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/006-bottom-05",
+			"name": "底部带图片的原文引导",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"tplId": "paper-cp:layout/row1-r1c2-c1to2-2-8",
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					}
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static",
+						"bgEditingType": "none"
+					},
+					"style": {},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"textAlign": "center"
+							}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/701-other/007-guide-bottom-1-img0.jpg",
+							"style": {}
+						}
+					}]
+				},
+				"col2": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static",
+						"bgEditingType": "none"
+					},
+					"style": {
+						"padding": "0 10px"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>输入文字输入文字<br/>点击下方<span style='color: rgb(249, 110, 87)'>“阅读原文”</span>查看更多</section>",
+							"style": {
+								"textAlign": "left"
+							}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/006-top-01",
+			"name": "顶部原文指示(左)",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bdc1.value"]
+					},
+					"pose": {},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"style": {
+						"margin": "1.8em 0 0.5em"
+					},
+					"tplId": "paper-cp:other/006-top-01"
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"textAlign": "left"
+							}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>点击上方“公众号”可订阅哦！</section>",
+							"style": {
+								"textAlign": "center"
+							}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/006-top-02",
+			"name": "顶部原文指示（右）",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bdc1.value"]
+					},
+					"pose": {},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"style": {
+						"margin": "1.8em 0 0.5em"
+					},
+					"tplId": "paper-cp:other/006-top-02"
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"textAlign": "left"
+							}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>点击上方“公众号”可订阅哦！</section>",
+							"style": {
+								"textAlign": "center"
+							}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/007-guide-bottom-02",
+			"name": "底部原文指示2",
+			"version": "0.1",
+			"order": 1,
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.themeColor.value", "_comp.aux.bdc1.value"]
+					},
+					"aux": {
+						"themeColor": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						},
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"tplId": "paper-cp:other/007-guide-bottom-02"
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"padding": "0.5em"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"textAlign": "left"
+							}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>点击下方“阅读原文”查看更多</section>",
+							"style": {
+								"color": "rgb(64, 84, 115)"
+							}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/007-guide-bottom-03",
+			"name": "引导卡片（左下）",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"pose": {
+							"resize": "h"
+						},
+						"opMenu": {}
+					},
+					"pose": {},
+					"style": {
+						"marginTop": "10px",
+						"marginBottom": "10px"
+					},
+					"aux": {
+						"bgc1": {
+							"type": "color",
+							"value": "rgb(136, 200, 151)"
+						}
+					},
+					"tplId": "paper-cp:other/007-guide-bottom-03"
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section ><span style='font-size: 120%'>你，满意吗？</span><br/>图片的新衣</section>",
+							"style": {
+								"textAlign": "left",
+								"color": "white"
+							}
+						}
+					}],
+					"style": {
+						"padding": "10px 0 10px 10px",
+						"width": "61.8%",
+						"backgroundColor": "transparent"
+					}
+				},
+				"col2": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"textAlign": "center",
+								"padding": "10px 0 0"
+							}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-06-v2-img1.jpg",
+							"style": {}
+						}
+					}],
+					"style": {
+						"padding": "0 10px",
+						"width": "38.2%",
+						"backgroundColor": "transparent"
+					}
+				},
+				"col3": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"padding": "5px 10px",
+								"width": "100%"
+							}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section >点击下面</section>",
+							"style": {
+								"textAlign": "left",
+								"color": "white"
+							}
+						}
+					}],
+					"style": {
+						"width": "100%",
+						"backgroundColor": "transparent"
+					}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/007-guide-bottom-05",
+			"name": "引导卡片",
+			"version": "0.1",
+			"order": 1,
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"pose": {
+							"resize": "h"
+						},
+						"opMenu": {},
+						"themeColors": ["_comp.aux.bdc1.value", "_comp.aux.bgc1.value"]
+					},
+					"pose": {},
+					"style": {
+						"marginTop": "10px",
+						"marginBottom": "10px",
+						"textAlign": "center"
+					},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						},
+						"bgc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"tplId": "paper-cp:other/007-guide-bottom-05"
+				},
+				"txt1": {
+					"type": "text",
+					"text": "<section >点击</section>",
+					"style": {}
+				},
+				"txt2": {
+					"type": "text",
+					"text": "<section >了解更多详情</section>",
+					"style": {}
+				},
+				"txt3": {
+					"type": "text",
+					"text": "<section >阅读原文</section>",
+					"style": {
+						"color": "white"
+					}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/008-guide-top-01-left",
+			"name": "顶部公众号指示1左",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bgc1.value"]
+					},
+					"aux": {
+						"bgc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"tplId": "paper-cp:other/008-guide-top-01-left"
+				},
+				"img1": {
+					"type": "image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/701-other/007-hint-top-1-v2-img0.png",
+					"style": {}
+				},
+				"txt1": {
+					"type": "text",
+					"text": "<section>点击上方<span style=\"color: #515c7d; font-size: 110%;\">“公众号”</span> 可以订阅哦！</section>",
+					"style": {
+						"color": "white",
+						"fontSize": "90%",
+						"lineHeight": "1.3"
+					}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/008-guide-top-01-right",
+			"name": "顶部公众号指示1右",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bgc1.value"]
+					},
+					"aux": {
+						"bgc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"tplId": "paper-cp:other/008-guide-top-01-right"
+				},
+				"img1": {
+					"type": "image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/701-other/007-hint-top-1-v2-img0.png",
+					"style": {}
+				},
+				"txt1": {
+					"type": "text",
+					"text": "<section>点击上方<span style=\"color: #515c7d; font-size: 110%;\">“公众号”</span> 可以订阅哦！</section>",
+					"style": {
+						"fontSize": "90%",
+						"color": "white",
+						"lineHeight": "1.3"
+					}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/008-guide-top-02-left",
+			"name": "顶部公众号指示2左",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bdc1.value"]
+					},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"tplId": "paper-cp:other/008-guide-top-02-left"
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								},
+								"themeColors": ["txt1.style.color"]
+							},
+							"pose": {},
+							"style": {
+								"textAlign": "center"
+							}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>点击上方“公众号”可以订阅哦</section>",
+							"style": {
+								"color": "rgb(249, 110, 87)"
+							}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/008-guide-top-02-right",
+			"name": "顶部公众号指示2右",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bdc1.value"]
+					},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"tplId": "paper-cp:other/008-guide-top-02-right"
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								},
+								"themeColors": ["txt1.style.color"]
+							},
+							"pose": {},
+							"style": {
+								"textAlign": "center"
+							}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>点击上方“公众号”可以订阅哦</section>",
+							"style": {
+								"color": "rgb(249, 110, 87)"
+							}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/009-012-triangle-text",
+			"name": "三角指引（向左）",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"tplId": "paper-cp:middleware/012-triangle-text",
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bdc1.value"]
+					},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						},
+						"bgc1": {
+							"type": "color",
+							"value": "white"
+						}
+					},
+					"pose": {},
+					"style": {
+						"paddingLeft": "19px",
+						"marginTop": "10px",
+						"marginBottom": "10px"
+					}
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static",
+						"bgEditingType": "none"
+					},
+					"style": {
+						"padding": "10px"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>请输入文字</section>",
+							"style": {
+								"fontSize": "120%"
+							}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/009-013-triangle-text",
+			"name": "三角指引（向右）",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"tplId": "paper-cp:middleware/013-triangle-text",
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bdc1.value"]
+					},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						},
+						"bgc1": {
+							"type": "color",
+							"value": "white"
+						}
+					},
+					"pose": {},
+					"style": {
+						"paddingRight": "20px",
+						"marginTop": "10px",
+						"marginBottom": "10px"
+					}
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static",
+						"bgEditingType": "none"
+					},
+					"style": {
+						"padding": "10px",
+						"marginRight": "-20px"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>请输入文字</section>",
+							"style": {
+								"fontSize": "120%"
+							}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/009-014-triangle-text",
+			"name": "三角指引（向上）",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"tplId": "paper-cp:middleware/014-triangle-text",
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bdc1.value"]
+					},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						},
+						"bgc1": {
+							"type": "color",
+							"value": "white"
+						}
+					},
+					"pose": {},
+					"style": {
+						"marginTop": "10px",
+						"marginBottom": "10px"
+					}
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static",
+						"bgEditingType": "none"
+					},
+					"style": {
+						"padding": "10px",
+						"marginTop": "-2px"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>请输入文字</section>",
+							"style": {
+								"fontSize": "120%"
+							}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/009-Q&A-01",
+			"name": "问答1",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.themeColor1.value"]
+					},
+					"aux": {
+						"themeColor1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0",
+						"height": "40px"
+					},
+					"tplId": "paper-cp:other/009-Q&A-01"
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/009-Q&A-02",
+			"name": "问答2",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.themeColor1.value"]
+					},
+					"aux": {
+						"themeColor1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						},
+						"themeColor2": {
+							"type": "color",
+							"value": "rgb(153, 153, 153)"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"tplId": "paper-cp:other/009-Q&A-02"
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/009-Q&A-03",
+			"name": "问答3",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.themeColor.value"]
+					},
+					"aux": {
+						"themeColor": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						},
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(100, 180, 191)"
+						},
+						"bdc2": {
+							"type": "color",
+							"value": "rgb(207, 190, 120)"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"tplId": "paper-cp:other/009-Q&A-03"
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/010-namecard-1",
+			"name": "名片1",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bgc2.value"]
+					},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(226, 226, 226)"
+						},
+						"bgc1": {
+							"type": "color",
+							"value": "transparent"
+						},
+						"bgc2": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"tplId": "paper-cp:other/010-namecard-1"
+				},
+				"txt6": {
+					"type": "text",
+					"text": "<section>请输入</section>",
+					"style": {
+						"fontSize": "80%",
+						"color": "rgb(120, 124, 129)"
+					}
+				},
+				"txt5": {
+					"type": "text",
+					"text": "<section>请输入请输入</section>",
+					"style": {
+						"fontSize": "80%",
+						"color": "rgb(120, 124, 129)"
+					}
+				},
+				"txt4": {
+					"type": "text",
+					"text": "<section>请输入请输入请输入</section>",
+					"style": {
+						"fontSize": "80%",
+						"color": "rgb(120, 124, 129)"
+					}
+				},
+				"txt3": {
+					"type": "text",
+					"text": "<section>请输入请输入请输入请输入</section>",
+					"style": {
+						"fontSize": "80%",
+						"color": "rgb(120, 124, 129)"
+					}
+				},
+				"txt2": {
+					"type": "text",
+					"text": "<section>标题</section>",
+					"style": {
+						"fontSize": "120%",
+						"color": "white"
+					}
+				},
+				"txt1": {
+					"type": "text",
+					"text": "<section>公众号名称</section>",
+					"style": {
+						"fontSize": "150%",
+						"color": "black"
+					}
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"padding": "0.5em"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"padding": "0.2em 0",
+								"textAlign": "left"
+							}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>微信号：请输入微信号</section>",
+							"style": {
+								"fontSize": "80%",
+								"color": "black"
+							}
+						}
+					}, {
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"padding": "0.2em 0",
+								"textAlign": "left"
+							}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>网址：请输入网址</section>",
+							"style": {
+								"fontSize": "80%",
+								"color": "rgb(120, 124, 129)"
+							}
+						}
+					}, {
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"padding": "0.2em 0",
+								"textAlign": "left"
+							}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>QQ群：请输入QQ群</section>",
+							"style": {
+								"fontSize": "80%",
+								"color": "rgb(120, 124, 129)"
+							}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/010-namecard-2",
+			"name": "名片2",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bgc2.value"]
+					},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(226, 226, 226)"
+						},
+						"bgc1": {
+							"type": "color",
+							"value": "transparent"
+						},
+						"bgc2": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"tplId": "paper-cp:other/010-namecard-2"
+				},
+				"img1": {
+					"type": "image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-08-v1-img0.jpg",
+					"style": {}
+				},
+				"txt6": {
+					"type": "text",
+					"text": "<section>请输入</section>",
+					"style": {
+						"fontSize": "80%",
+						"color": "rgb(120, 124, 129)"
+					}
+				},
+				"txt5": {
+					"type": "text",
+					"text": "<section>请输入请输入</section>",
+					"style": {
+						"fontSize": "80%",
+						"color": "rgb(120, 124, 129)"
+					}
+				},
+				"txt4": {
+					"type": "text",
+					"text": "<section>请输入请输入请输入</section>",
+					"style": {
+						"fontSize": "80%",
+						"color": "rgb(120, 124, 129)"
+					}
+				},
+				"txt3": {
+					"type": "text",
+					"text": "<section>请输入请输入请输入请输入</section>",
+					"style": {
+						"fontSize": "80%",
+						"color": "rgb(120, 124, 129)"
+					}
+				},
+				"txt2": {
+					"type": "text",
+					"text": "<section>标题</section>",
+					"style": {
+						"fontSize": "120%",
+						"color": "white"
+					}
+				},
+				"txt1": {
+					"type": "text",
+					"text": "<section>公众号名称</section>",
+					"style": {
+						"fontSize": "150%",
+						"color": "black"
+					}
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"padding": "0.5em"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"padding": "0.2em 0",
+								"textAlign": "left"
+							}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>微信号：请输入微信号</section>",
+							"style": {
+								"fontSize": "80%",
+								"color": "black"
+							}
+						}
+					}, {
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"padding": "0.2em 0",
+								"textAlign": "left"
+							}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>网址：请输入网址</section>",
+							"style": {
+								"fontSize": "80%",
+								"color": "rgb(120, 124, 129)"
+							}
+						}
+					}, {
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"padding": "0.2em 0",
+								"textAlign": "left"
+							}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>QQ群：请输入QQ群</section>",
+							"style": {
+								"fontSize": "80%",
+								"color": "rgb(120, 124, 129)"
+							}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/010-namecard-3",
+			"name": "名片1",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bgc1.value"]
+					},
+					"aux": {
+						"bgc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0",
+						"padding": "0.5em",
+						"boxShadow": "#e2e2e2 0 16px 1px -13px"
+					},
+					"tplId": "paper-cp:other/010-namecard-3"
+				},
+				"img1": {
+					"type": "image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/701-other/018-namecard-3-v1-img0.png",
+					"style": {
+						"width": "50px",
+						"marginTop": "12px",
+						"marginRight": "10px"
+					}
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"padding": "0.5em",
+						"textAlign": "left",
+						"width": "70%"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"textAlign": "left"
+							}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>XIUMI</section>",
+							"style": {
+								"fontSize": "120%",
+								"color": "white"
+							}
+						}
+					}, {
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"textAlign": "left"
+							}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>请输入</section>",
+							"style": {
+								"fontSize": "120%",
+								"color": "white"
+							}
+						}
+					}, {
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"textAlign": "left"
+							}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>请输入请输入请输入</section>",
+							"style": {
+								"fontSize": "80%",
+								"color": "white"
+							}
+						}
+					}]
+				},
+				"col2": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"padding": "0.5em",
+						"textAlign": "right",
+						"width": "50%"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"textAlign": "right"
+							}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>请输入请输入请输入</section>",
+							"style": {
+								"fontSize": "80%",
+								"color": "white"
+							}
+						}
+					}, {
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"textAlign": "right"
+							}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>请输入请输入</section>",
+							"style": {
+								"fontSize": "80%",
+								"color": "white"
+							}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/011-dividing-line-01",
+			"name": "分割线1",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bgc1.value"]
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"aux": {
+						"bgc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"tplId": "paper-cp:other/011-dividing-line-01"
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/011-dividing-line-02",
+			"name": "左右铃铛",
+			"version": "0.1",
+			"order": 1,
+			"matrix": {
+				"_comp": {
+					"tplId": "paper-cp:header/t-b-10-02",
+					"constraint": {
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bdc1.value"]
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0",
+						"paddingTop": "10px"
+					},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(192, 200, 209)"
+						}
+					}
+				},
+				"c-img1": {
+					"type": "crop-image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/001-header/t-b-10-02-img1.png",
+					"style": {
+						"backgroundPosition": "center center",
+						"backgroundRepeat": "no-repeat",
+						"backgroundSize": "cover"
+					}
+				},
+				"c-img2": {
+					"type": "crop-image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/001-header/t-b-10-02-img0.png",
+					"style": {
+						"backgroundPosition": "center center",
+						"backgroundRepeat": "no-repeat",
+						"backgroundSize": "cover"
+					}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/012-dividing-line-02",
+			"name": "圆脸分割线",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bgc1.value"]
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"aux": {
+						"bgc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"tplId": "paper-cp:other/012-dividing-line-02"
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/013-dividing-line-01",
+			"name": "剪刀分割线",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bgc1.value"]
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"aux": {
+						"bgc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"tplId": "paper-cp:other/013-dividing-line-01"
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/013-dividing-line-02",
+			"name": "中心方块分割线",
+			"version": "0.1",
+			"order": 1,
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bdc1.value"]
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"tplId": "paper-cp:other/013-dividing-line-02"
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/013-dividing-line-03",
+			"name": "圆心分割线",
+			"version": "0.1",
+			"order": 1,
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bdc1.value"]
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"tplId": "paper-cp:other/013-dividing-line-03"
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/013-dividing-line-05",
+			"name": "千千结分割线",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bdc1.value"]
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0",
+						"textAlign": "center"
+					},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"tplId": "paper-cp:other/013-dividing-line-05"
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/014-hint-bottom-01",
+			"name": "图 下引导线（左）",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "10px 0"
+					},
+					"aux": {},
+					"tplId": "paper-cp:other/014-hint-bottom-01"
+				},
+				"txt1": {
+					"type": "text",
+					"text": "<section>点击下方“阅读原文”查看更多</section>",
+					"style": {}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/014-hint-bottom-02",
+			"name": "下引导线（左）",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bdc1.value", "_comp.aux.bgc1.value"]
+					},
+					"pose": {},
+					"style": {
+						"margin": "10px 0"
+					},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						},
+						"bgc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"tplId": "paper-cp:other/014-hint-bottom-02"
+				},
+				"txt1": {
+					"type": "text",
+					"text": "<section>点击下方“阅读原文”查看更多</section>",
+					"style": {}
+				},
+				"c-img1": {
+					"type": "crop-image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/701-other/031-title-card.gif",
+					"style": {
+						"backgroundPosition": "center center",
+						"backgroundRepeat": "no-repeat",
+						"backgroundSize": "cover"
+					}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/014-hint-bottom-06",
+			"name": "下引导线（左）",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"tplId": "paper-cp:layout/row1-r1c2-c1to2-1-9",
+					"constraint": {
+						"pose": {
+							"resize": "h"
+						},
+						"opMenu": {
+							"group-cell-merged": true
+						}
+					},
+					"pose": {
+						"width": 150
+					},
+					"style": {}
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"margin": "0.5em 0"
+							}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/701-other/014-hint-bottom-06.gif",
+							"style": {}
+						}
+					}],
+					"style": {}
+				},
+				"col2": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section ><br/><br/>点击“阅读原文”</section>",
+							"style": {}
+						}
+					}],
+					"style": {
+						"paddingLeft": "5px"
+					}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/014-hint-bottom-07",
+			"name": "下引导线（左）",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"tplId": "paper-cp:layout/row1-r1c2-c1to2-1-9",
+					"constraint": {
+						"pose": {
+							"resize": "h"
+						},
+						"opMenu": {
+							"group-cell-merged": true
+						}
+					},
+					"pose": {
+						"width": 150
+					},
+					"style": {}
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"margin": "0.5em 0"
+							}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/701-other/014-hint-bottom-07.gif",
+							"style": {}
+						}
+					}],
+					"style": {}
+				},
+				"col2": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section ><br/>点击“阅读原文”</section>",
+							"style": {}
+						}
+					}],
+					"style": {
+						"padding": "5px"
+					}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/014-hint-bottom-08",
+			"name": "下引导线（左）",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"tplId": "paper-cp:image/img-autowidth",
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					}
+				},
+				"img1": {
+					"type": "image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/701-other/014-hint-bottom-08.gif",
+					"style": {}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/014-hint-bottom-20",
+			"name": "下引导线（左）",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"tplId": "paper-cp:image/img-autowidth",
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					}
+				},
+				"img1": {
+					"type": "image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/701-other/014-hint-bottom-20.gif",
+					"style": {}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/014-hint-bottom-23",
+			"name": "下引导线（左）",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"tplId": "paper-cp:image/img-autowidth",
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0",
+						"textAlign": "center"
+					}
+				},
+				"img1": {
+					"type": "image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/701-other/014-hint-bottom-23.gif",
+					"style": {}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/014-hint-bottom-26",
+			"name": "下引导线（左）",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"tplId": "paper-cp:image/img-autowidth",
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					}
+				},
+				"img1": {
+					"type": "image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/701-other/014-hint-bottom-26.gif",
+					"style": {}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/015-dividing-line-01",
+			"name": "下粗上细分割线",
+			"version": "0.1",
+			"order": 1,
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bdc1.value"]
+					},
+					"pose": {},
+					"style": {
+						"margin": "10px 0"
+					},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"tplId": "paper-cp:other/015-dividing-line-01"
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/015-dividing-line-02",
+			"name": "上粗下细分割线",
+			"version": "0.1",
+			"order": 1,
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bdc1.value"]
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"tplId": "paper-cp:other/015-dividing-line-02"
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/017-dividing-line-01",
+			"name": "大间距分割线",
+			"version": "0.1",
+			"order": 1,
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bdc1.value"]
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"tplId": "paper-cp:other/017-dividing-line-01"
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/017-dividing-line-02",
+			"name": "小间距分割线",
+			"version": "0.1",
+			"order": 1,
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bdc1.value"]
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"tplId": "paper-cp:other/017-dividing-line-02"
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/017-dividing-line-03-v1",
+			"name": "向下三角引导线(左）",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bdc1.value"]
+					},
+					"pose": {},
+					"style": {
+						"margin": "10px 0 16px"
+					},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"tplId": "paper-cp:other/017-dividing-line-03-v1"
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/017-dividing-line-04",
+			"name": "向下三角引导线(右）",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bdc1.value"]
+					},
+					"pose": {},
+					"style": {
+						"margin": "10px 0 16px"
+					},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"tplId": "paper-cp:other/017-dividing-line-04"
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/017-dividing-line-05",
+			"name": "下三角分割线",
+			"version": "0.1",
+			"order": 1,
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bdc1.value"]
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						},
+						"margin": {
+							"type": "margin",
+							"value": "auto"
+						}
+					},
+					"tplId": "paper-cp:other/017-dividing-line-05"
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/017-dividing-line-06",
+			"name": "上三角分割线",
+			"version": "0.1",
+			"order": 1,
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bdc1.value"]
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"tplId": "paper-cp:other/017-dividing-line-06"
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/017-dividing-line-07-02",
+			"name": "左三角分割线",
+			"version": "0.1",
+			"order": 1,
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bgc1.value", "_comp.aux.bdc1.value"]
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						},
+						"bgc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"tplId": "paper-cp:other/017-dividing-line-07-02"
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/017-dividing-line-07-03",
+			"name": "右三角分割线",
+			"version": "0.1",
+			"order": 1,
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bgc1.value", "_comp.aux.bdc1.value"]
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						},
+						"bgc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"tplId": "paper-cp:other/017-dividing-line-07-03"
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/017-dividing-line-07-05",
+			"name": "右三角分割线",
+			"version": "0.1",
+			"order": 1,
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bgc1.value", "_comp.aux.bdc1.value"]
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						},
+						"bgc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"tplId": "paper-cp:other/017-dividing-line-07-05"
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/017-dividing-line-07-06",
+			"name": "左三角分割线",
+			"version": "0.1",
+			"order": 1,
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bgc1.value", "_comp.aux.bdc1.value"]
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						},
+						"bgc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"tplId": "paper-cp:other/017-dividing-line-07-06"
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/017-dividing-line-07",
+			"name": "左右三角分割线",
+			"version": "0.1",
+			"order": 1,
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bgc1.value", "_comp.aux.bdc1.value"]
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						},
+						"bgc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"tplId": "paper-cp:other/017-dividing-line-07"
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/017-dividing-line-08",
+			"name": "三圆分割线",
+			"version": "0.1",
+			"order": 1,
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bgc1.value", "_comp.aux.bdc1.value"]
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0",
+						"overflow": "hidden"
+					},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						},
+						"bgc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"tplId": "paper-cp:other/017-dividing-line-08"
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/017-dividing-line-09",
+			"name": "两圆分割线",
+			"version": "0.1",
+			"order": 1,
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bdc1.value", "_comp.aux.bgc1.value"]
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0",
+						"overflow": "hidden"
+					},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						},
+						"bgc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"tplId": "paper-cp:other/017-dividing-line-09"
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/017-dividing-line-10",
+			"name": "分割线",
+			"version": "0.1",
+			"order": 1,
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bgc1.value"]
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"aux": {
+						"bgc1": {
+							"type": "color",
+							"value": "rgb(230, 200, 176)"
+						}
+					},
+					"tplId": "paper-cp:other/017-dividing-line-10"
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/017-dividing-line-11",
+			"name": "方块分割线",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bgc1.value"]
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"aux": {
+						"bgc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"tplId": "paper-cp:other/017-dividing-line-11"
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/017-dividing-line-12",
+			"name": "花纹分割线",
+			"version": "0.1",
+			"order": 1,
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bgc1.value"]
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"aux": {
+						"bgc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"tplId": "paper-cp:other/017-dividing-line-12"
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/020-namecard",
+			"name": "活动卡片02",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bdc1.value"]
+					},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "10px 0",
+						"padding": " 0 15px",
+						"textAlign": "center"
+					},
+					"tplId": "paper-cp:other/020-namecard"
+				},
+				"c-img1": {
+					"type": "crop-image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/701-other/020-namecard-2-v1-img0.png",
+					"style": {
+						"backgroundPosition": "center center",
+						"backgroundRepeat": "no-repeat",
+						"backgroundSize": "cover"
+					}
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"paddingLeft": "15px",
+						"paddingRight": "15px",
+						"paddingTop": "4em",
+						"paddingBottom": "10px",
+						"marginTop": "-4em"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>请输入标题</section>",
+							"style": {
+								"fontSize": "150%",
+								"textAlign": "center"
+							}
+						}
+					}, {
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>请输入内容<br/>请输入内容<br/>请输入内容<br/>请输入内容</section>",
+							"style": {
+								"textAlign": "center"
+							}
+						}
+					}, {
+						"_comp": {
+							"tplId": "paper-cp:other/000-base-line",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								},
+								"themeColors": ["_comp.aux.bgc1.value"]
+							},
+							"aux": {
+								"bgc1": {
+									"type": "color",
+									"value": "rgb(249, 110, 87)"
+								}
+							},
+							"pose": {},
+							"style": {
+								"padding": "0.5em 0"
+							}
+						},
+						"line1": {
+							"type": "shape",
+							"style": {
+								"height": "1px"
+							}
+						}
+					}, {
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>微信号</section>",
+							"style": {
+								"textAlign": "center"
+							}
+						}
+					}, {
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"margin": "auto",
+								"padding": "10px 0 0",
+								"width": "45%"
+							}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/701-other/020-namecard-2-v1-img1.jpg",
+							"style": {}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/021-activity",
+			"name": "活动卡片02",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bdc1.value"]
+					},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "10px 0",
+						"padding": " 0 15px"
+					},
+					"tplId": "paper-cp:other/021-activity"
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/t-b-25-02",
+							"constraint": {
+								"pose": {
+									"resize": "h"
+								},
+								"themeColors": ["col1.style.backgroundColor"]
+							},
+							"style": {},
+							"aux": {}
+						},
+						"col1": {
+							"type": "group",
+							"constraint": {
+								"childLayout": "static"
+							},
+							"style": {
+								"backgroundColor": "rgb(249, 110, 87)"
+							},
+							"items": [{
+								"_comp": {
+									"tplId": "paper-cp:header/1-txt-normal",
+									"constraint": {
+										"opMenu": {
+											"text-merged": true
+										},
+										"pose": {
+											"resize": "h"
+										}
+									},
+									"pose": {},
+									"style": {}
+								},
+								"txt1": {
+									"type": "text",
+									"text": "<section>请输入活动名称</section>",
+									"style": {
+										"fontSize": "150%",
+										"textAlign": "center"
+									}
+								}
+							}]
+						}
+					}, {
+						"_comp": {
+							"tplId": "paper-cp:header/tb-200-003-icon",
+							"constraint": {
+								"opMenu": {},
+								"pose": {
+									"resize": "h"
+								},
+								"themeColors": ["_comp.aux.bgc1.value"]
+							},
+							"aux": {
+								"bgc1": {
+									"type": "color",
+									"value": "rgb(249, 110, 87)"
+								}
+							},
+							"pose": {},
+							"style": {
+								"marginTop": "20px",
+								"marginBottom": "10px"
+							}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>请输入活动时间</section>",
+							"style": {}
+						}
+					}, {
+						"_comp": {
+							"tplId": "paper-cp:header/tb-200-003-02-icon",
+							"constraint": {
+								"opMenu": {},
+								"pose": {
+									"resize": "h"
+								},
+								"themeColors": ["_comp.aux.bgc1.value"]
+							},
+							"aux": {
+								"bgc1": {
+									"type": "color",
+									"value": "rgb(249, 110, 87)"
+								}
+							},
+							"pose": {},
+							"style": {
+								"marginTop": "10px",
+								"marginBottom": "20px"
+							}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>请输入活动时间</section>",
+							"style": {}
+						}
+					}, {
+						"_comp": {
+							"tplId": "paper-cp:header/t-b-10-01",
+							"constraint": {
+								"pose": {
+									"resize": "h"
+								},
+								"themeColors": ["_comp.aux.titleBdc.value"]
+							},
+							"pose": {},
+							"style": {
+								"margin": "0.5em 0"
+							},
+							"aux": {
+								"titleBdc": {
+									"type": "color",
+									"value": "rgb(249, 110, 87)"
+								}
+							}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>请输入标题</section>",
+							"style": {
+								"color": "#ffffff"
+							}
+						}
+					}, {
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"padding": "10px"
+							}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>请输入活动内容</br>请输入活动内容</br>请输入活动内容</br>......</br></section>",
+							"style": {}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/029-title-card-02",
+			"name": "左文字右图",
+			"version": "0.1",
+			"order": 1,
+			"matrix": {
+				"_comp": {
+					"tplId": "paper-cp:layout/row1-r1c2-c2to1-2-8",
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					}
+				},
+				"col2": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"textAlign": "center"
+							}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/701-other/029-title-card-img0.jpg",
+							"style": {}
+						}
+					}]
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"padding": "0 10px",
+						"textAlign": "right",
+						"verticalAlign": "middle"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/t-b-01-03-v1",
+							"constraint": {
+								"pose": {
+									"resize": "h"
+								},
+								"themeColors": ["_comp.aux.titleBdc.value"]
+							},
+							"pose": {},
+							"style": {},
+							"aux": {
+								"titleBdc": {
+									"type": "color",
+									"value": "rgb(249, 110, 87)"
+								}
+							}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section >秀米 ID：showme0225</section>",
+							"style": {
+								"color": "#000000",
+								"textAlign": "center"
+							}
+						},
+						"txt2": {
+							"type": "text",
+							"text": "<section >H5 | 排版 | 交流 | 分享</section>",
+							"style": {
+								"textAlign": "center"
+							}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/029-title-card",
+			"name": "左图右文字",
+			"version": "0.1",
+			"order": 1,
+			"matrix": {
+				"_comp": {
+					"tplId": "paper-cp:layout/row1-r1c2-c1to2-2-8",
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					}
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"textAlign": "center"
+							}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/701-other/029-title-card-img0.jpg",
+							"style": {}
+						}
+					}]
+				},
+				"col2": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"padding": "0 10px",
+						"textAlign": "left",
+						"verticalAlign": "middle"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/t-b-01-03-v1",
+							"constraint": {
+								"pose": {
+									"resize": "h"
+								},
+								"themeColors": ["_comp.aux.titleBdc.value"]
+							},
+							"pose": {},
+							"style": {},
+							"aux": {
+								"titleBdc": {
+									"type": "color",
+									"value": "rgb(249, 110, 87)"
+								}
+							}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section >秀米 ID：showme0225</section>",
+							"style": {
+								"color": "#000000",
+								"textAlign": "center"
+							}
+						},
+						"txt2": {
+							"type": "text",
+							"text": "<section >H5 | 排版 | 交流 | 分享</section>",
+							"style": {
+								"textAlign": "center"
+							}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/100-round-line",
+			"name": "小圆",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"pose": {
+							"resize": "h"
+						},
+						"opMenu": {},
+						"themeColors": ["_comp.aux.bdc1.value"]
+					},
+					"pose": {
+						"width": 150
+					},
+					"style": {
+						"fontSize": "60.00%"
+					},
+					"aux": {
+						"bgc1": {
+							"type": "color",
+							"value": "white"
+						},
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						},
+						"bd": {
+							"type": "border",
+							"value": "1px solid"
+						}
+					},
+					"tplId": "paper-cp:other/100-round-line"
+				},
+				"txt1": {
+					"type": "text",
+					"text": "<section>浪</section>",
+					"style": {
+						"textAlign": "center",
+						"width": "1.8em",
+						"height": "1.8em",
+						"lineHeight": "1.8em",
+						"borderRadius": "100%",
+						"marginLeft": "auto",
+						"marginRight": "auto",
+						"fontSize": "200%",
+						"color": "black"
+					}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/101-round",
+			"name": "小圆",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"pose": {
+							"resize": "h"
+						},
+						"opMenu": {},
+						"themeColors": ["_comp.aux.bdc1.value"]
+					},
+					"pose": {
+						"width": 150
+					},
+					"style": {
+						"fontSize": "60.00%",
+						"margin": "3px 0"
+					},
+					"aux": {
+						"bgc1": {
+							"type": "color",
+							"value": "white"
+						},
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						},
+						"bd": {
+							"type": "border",
+							"value": "1px solid"
+						}
+					},
+					"tplId": "paper-cp:other/101-round"
+				},
+				"txt1": {
+					"type": "text",
+					"text": "<section>漫</section>",
+					"style": {
+						"textAlign": "center",
+						"width": "1.8em",
+						"height": "1.8em",
+						"lineHeight": "1.8em",
+						"borderRadius": "100%",
+						"marginLeft": "auto",
+						"marginRight": "auto",
+						"fontSize": "200%",
+						"color": "black"
+					}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/300-mac-video",
+			"name": "视频",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {
+							"text-merged": true
+						},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"textAlign": "center",
+						"marginTop": "10px",
+						"marginBottom": "10px"
+					},
+					"tplId": "paper-cp:other/300-mac-video"
+				},
+				"video1": {
+					"type": "video",
+					"url": ""
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/301-qq-video",
+			"name": "qq视频",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {
+							"text-merged": true
+						},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"textAlign": "center",
+						"marginTop": "10px",
+						"marginBottom": "10px"
+					},
+					"tplId": "paper-cp:other/301-qq-video"
+				},
+				"video1": {
+					"type": "video",
+					"url": ""
+				},
+				"c-img1": {
+					"type": "crop-image",
+					"src": "images/placeholder-img.jpg",
+					"style": {
+						"backgroundPosition": "center center",
+						"backgroundRepeat": "no-repeat",
+						"backgroundSize": "cover"
+					}
+				},
+				"txt1": {
+					"type": "text",
+					"text": "<section>秀米公众号</section>",
+					"style": {
+						"color": "#666",
+						"textAlign": "center"
+					}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:other/302-img-video",
+			"name": "img视频",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {
+							"text-merged": true
+						},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"textAlign": "center",
+						"marginTop": "10px",
+						"marginBottom": "10px"
+					},
+					"tplId": "paper-cp:other/302-img-video"
+				},
+				"video1": {
+					"type": "video",
+					"url": ""
+				},
+				"img1": {
+					"type": "image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/701-other/037-video-1-img0.jpg",
+					"style": {}
+				},
+				"img2": {
+					"type": "image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/701-other/037-video-1-img1.jpg",
+					"style": {}
+				}
+			}
+		}]
+	}
+}

@@ -1,0 +1,36 @@
+/*元素绝对居中*/
+.abc{  
+  margin: auto;  
+  position: absolute;  
+  top: 0; left: 0; bottom: 0; right: 0;  
+} 
+
+.calendar{background:#ffffff url(../images/signin/signin_bottom.png) no-repeat 0 bottom;background-size:100%;}
+
+.calendar .signin_top{background: url(../images/signin/signin_top.png) no-repeat center center;background-size:100%;height:200px;margin-bottom: 15px;position:relative;}
+.signin_top .signin_btn{width:106px;height:106px;}
+.signin_top .btn_rule{color:#e36453;background:#fefadf;border-radius:10px;display:inline-block;padding:2px 5px 1px;position:absolute;right:20px;top:30px;}
+.signin_top .btn_rule1{color:#ff0000;position:absolute;right:20px;top:100px;background:#FFA07A;border-radius:10px;display:inline-block;padding:2px 5px 1px;}
+.signin_top .btn_rule2{color:#FF1493;position:absolute;right:20px;top:65px;background:#fefadf;border-radius:10px;display:inline-block;padding:2px 5px 1px;}
+.signin_top .sday{text-align:center;color:#e36453;background-color:#fee662;}
+
+.signin_middle{background-color:#fee662;border-radius:10px;padding:10px;margin:0px 10px;}
+.signin_middle_title{text-align:center;margin-bottom:10px;}
+.signin_middle_title font{vertical-align: text-top;}
+.signin_middle_in{background:#ffffff;border-radius:10px;padding:7px;}
+
+.calendar_body{margin:0px auto;width:100%;}
+.calendar_body th,.calendar_body td{padding:3px 7px;font-size:14px;text-align:center;}
+.calendar_body th{background:#f47117;border-radius:10px 0px 0 0;border-right:#ffffff solid 1px;color:#ffffff;}
+.calendar_body td{border:#f5f5f5 solid 1px;}
+.calendar_body .cur_day{color:red;}
+
+
+/*签到规则*/
+.rule_body{background:#fde1a1;}
+.rule_main{background:#f7ebd5;margin:30px 10px 15px 10px;max-height:100%;min-height:200px;border-radius:20px;border:2px solid #cfb583;padding:5px;}
+.rule_main .rule_title{color:#d36055;text-align:center;}
+.rule_main .rule{color:#c59581;margin-top:10px;font-size:16px;line-height:24px;}
+
+/*签到成功提示*/
+.alert_bg{border:none;font-size:24px;font-weight:bold;background:#fdf6cd;border-radius:20px;}

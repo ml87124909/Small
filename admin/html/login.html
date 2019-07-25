@@ -1,0 +1,121 @@
+<html>
+<style>
+	
+ul,li{list-style-type: none;}
+.logo-login{
+  float:left;
+}
+body{background-color: #fff;
+	background:url(static/assets/images/admin_back.jpg) no-repeat center;
+	background-size: 100%;
+}
+.login-main-div {
+  width: 500px;
+  height: 400px;
+  margin: 0 auto;
+  padding-top:1%;
+  margin-top: 15%;
+  background:url(static/assets/images/admin_bjk.png)no-repeat center;
+  border-radius:15px;
+}
+.aside-xxl{float: left;
+  height:330px;margin: auto;
+}
+.log-title{color:#004d85; font-size: 24px; font-weight:bold;width: 360px;margin-bottom:15px;}
+
+.aside-xxl .cinput{font-size:16px;border-radius:0px;border:0px;background:#fff;width:100%;height:40px;padding-left:8px;width: 90%;}
+#sbt_save{background:url(static/assets/images/dl.png) no-repeat center;color:#fff;margin-top:20px;}
+#sbt_remake{background:rgb(0, 174, 240);margin-left:20px;color:#fff;}
+
+.log-title2{float: left; color:#004d85; font-size: 24px; font-weight:bold;border-bottom:1px solid #959595;width: 250px;height:42px;margin-bottom:0px;}
+.lbtn{float: left;background:#4ab332;color:#fff;font-size:16px;border:1px solid #dbd7d6;border-radius:5px;width:110px;height:41px;padding-right:6px;}
+.aside-xxl .cinput2{font-size:16px;border-radius:0px;border:0px;background:#fff;width:100px;height:35px;padding-left:8px;font-size: 16px;border-radius:10px;cursor: pointer; }
+.aside-xxl .cinputimg{font-size:16px;border-radius:0px;border:0px;background:#fff;width:100px;height:35px;padding-left:8px;font-size: 16px;border-radius:10px;cursor: pointer; }
+.box-shadow-3{
+	-webkit-box-shadow: 0 0 25px rgb(158,211,249);
+	-moz-box-shadow:0 0 25px rgb(158,211,249);
+	box-shadow: 0 0 25px rgb(158,211,249);
+}
+input:focus{
+    border:0;/*这里你可以自己调节边框样式*/
+    outline:none;/*去除蓝色边框*/
+}
+
+</style>
+
+<body>
+	<div class="login-body" style="overflow:hidden;">
+		<div class="login-main-div box-shadow-3" style="position:relative;">
+		  <div class="aside-xxl" style="position:absolute;left:50%;">
+	        <div style="width:420px;height: 80px;margin-left: -225px;">
+				<div style="width:73px;height: 73px;float:left;">
+				   <img src="static/assets/images/admin_Logo.png" style="width:73px;height:73px;margin-left: 190px"/>
+				</div>
+
+	        </div>
+				<!--login-->
+				  <form action="admin" method="POST" target="_top" name="frmMain" style="margin-left: -200px;text-align: center;margin-top: -20px;">
+						<input type="hidden" name="viewid" value="login" />
+						<input type="hidden" name="part" value="qrlogin" />
+						<input type="hidden" name="txt" value="{{txt}}" />
+			 
+						<div class="log-title" style="margin: 15px auto;border-radius: 5px;width: 90%;">
+							<img src="{{aaa}}" style="width:150px;height:150px;">
+						</div>
+
+						<div class="log-title" style="margin: 15px auto;border: 1px solid rgb(0,129,0);border-radius: 5px;width: 90%;">
+							<img src="static/assets/images/mima.png" height="40px" style="float: left;position: relative;background-size: 100% 100%;width: 30px;height: 30px;padding: 5px;">
+							<input type="text"  name="qrcode" autocomplete="off"  class="cinput inputPassword" style="width:75%;margin-left: -8%;border-left: 1px solid rgb(0,129,0);background: rgba(0,0,0,0);" placeholder="输入验证码">
+						</div>
+					  	<div  style="margin:15px auto;border-radius: 5px;width: 90%;font-size:10px;">
+							<a href="/admin?viewid=login&part=account" class="z">帐号登录</a>
+						</div>
+
+						<button type="button"  name="submit"  id='sbt_save' class="cinput2" onclick="go_re()" style="background:rgb(0,129,0);width:90%;margin-top: 9px;">登&nbsp;&nbsp;录</button>
+						<input type="hidden" name="token" value="2399c5e8" />
+
+				  </form>
+				<!--login end-->
+			</div>							
+		</div>
+		<div style="width:99%;height:20px;position:absolute;bottom:50px;text-align:center;font-size:13px;color:#999999;">
+			简道 粤ICP备15060984号-2
+		</div>
+	</div>	
+</body>
+
+
+<script type="text/javascript" src="static/assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="static/assets/js/layer/layer.js"></script>
+<script>
+	function go_re(){
+        var qrcode = $('input[name=qrcode]').val();
+        if (qrcode==''){
+          	layer.msg('请输入微信验证码');
+            return false;
+        }
+
+        var data={
+            'viewid':'login',
+            'part':'qrlogin',
+            'qrcode':qrcode
+        }
+        $.ajax({
+            type: 'POST',
+            url:"/admin",
+            async:false,
+            data: data,
+            success: function(res){
+                if (res.code=='0'){
+                  	layer.msg(res.MSG);
+                    setTimeout(function(){
+                      window.location.href = "admin?viewid=home";
+                    },3000);
+                }else{
+                    layer.msg(res.MSG);
+                }
+            }
+        });
+    }
+</script>
+</html>

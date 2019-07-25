@@ -1,0 +1,80 @@
+{% extends "base_list.html" %}
+{% block topSearch %}
+<div class="panel-body">
+	<div class="row">
+		<div class="col-lg-6">
+			<div class="input-group">
+				<input type="text" class="form-control j-search" name="qqid" value="{{qqid}}" placeholder="搜索关键字">
+				<span class="input-group-btn">
+					<button class="btn btn-default" onclick="main_search('qqid')" type="button"><i class="fa fa-search"></i> 搜索</button>
+				</span>
+			</div><!-- /input-group -->
+		</div><!-- /.col-lg-6 -->
+		<div class="col-lg-4">
+			<!-- Small button group -->
+			<div class="btn-group j-select" name="orderbydir">
+				<button class="btn btn-default  dropdown-toggle" type="button" data-toggle="dropdown">
+				<font>顺序</font> <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu">
+					<li data-value="ASC" data-slt="{{'selected' if 'ASC' == orderbydir}}"><a href="#">顺序</a></li>
+					<li data-value="DESC" data-slt="{{'selected' if 'DESC' == orderbydir}}"><a href="#">逆序</a></li>
+				</ul>
+				<input type="hidden" class="j-search j-select-value" name="orderbydir" value="{{orderbydir}}" />
+			</div>
+			<div class="btn-group j-select" name="filter">
+				<button class="btn btn-default  dropdown-toggle" type="button" data-toggle="dropdown">
+				<font>信息类型</font> <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu">
+					{%for od in filter%}
+					<li data-value="{{od[0]}}" data-slt="{{'selected' if od[0]|string == param.filter}}"><a href="#">{{od[1]}}</a></li>
+					{%endfor%}
+				</ul>
+				<input type="hidden" class="j-search j-select-value" name="filter" value="{{param.filter}}" />
+			</div>
+		</div><!-- /.col-lg-6 -->
+	</div><!-- /.row -->
+</div>
+{% if lR[0] != '1' %}
+<div class="panel-footer">
+	<!--<button type="button" class="btn btn-success btn-sm" onclick="check_send()">&nbsp;&nbsp;发布&nbsp;&nbsp;</button>-->
+	<button type="button" class="btn btn-success btn-sm" onclick="main_add()"><i class="fa fa-plus"></i> 增加</button>
+	<div class="clearfix"></div>
+</div>
+{% endif %}
+						
+<input type="hidden" name="rel_id"/>
+{% endblock %}
+{% block page_script %}
+<script>
+function check_send(){
+	var v = $("input[name=item_id]:checked");
+	if(v.length==0){
+		layer.alert('请选择信息');
+		return false;
+		}
+		var j ='';
+		var ids='';
+		var rel_id=$("input[name=rel_id]")
+		for (i=0;i<v.length;i++){
+			 id=v[i].value;
+			 ids=ids+j+id;
+			 j=',';
+		}
+		rel_id.val(ids)
+		var surl='admin?viewid=XME&part=ajax&action=release&id='+rel_id.val();
+		$.get(surl,function(data){
+		   if (data>0)
+		   {
+			   layer.alert("发布成功");
+		   }else{
+			   layer.alert('发布失败，请联系管理人员');
+		   }
+		},'json');
+	}
+</script>
+{% endblock %}
+        
+            
+	

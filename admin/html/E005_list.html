@@ -1,0 +1,54 @@
+{% extends "list.html" %}
+
+
+{% block topSearch %}
+
+{% endblock %}
+{% block mGrid %}
+<table class="table table-bordered">
+    <thead>
+        <tr style="background-color:#e5e5e5" bgcolor="#ffffff">
+
+            {%for n in NL%}
+            <th style="text-align:{{n[3]}};width:{{n[2]}};">{{n}}</th>
+            {%endfor%}
+            <th style="">管理</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for row in dataList %}
+        <tr bgcolor="#ffffff">
+            {% for e in row %}
+            <td >{{e}}</td>
+            {% endfor %}
+            <td style="text-align:center;">
+                {#
+                {%if row[-1]|string=='0' %}
+                <a  class="btn btn-xs btn-warning" onclick="ajax_up({{row[0]}});" title="失效"><i class="fa fa-warning">失效</i></a>
+                {%endif%}
+                #}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+{% block page_script %}
+<script>
+    function sync_data(id){
+
+
+        $.ajax({
+            url:"admin?viewid=A005&part=sync_data&id="+id,
+            async:false,
+            success: function(res){
+                layer.alert(res.MSG)
+                //console.log(res)
+            }
+        });
+
+    }
+</script>
+{% endblock %}
+

@@ -1,0 +1,372 @@
+{% extends "local.html" %}
+
+
+{% block MUL_BTNS %}
+<table class="tb single-table clearfix top-line">
+    <tr>
+        <td style="text-align:left;">
+            {#<input type="submit" class="btn btn-sm btn-info" name="add_save" value="提交"/>
+            <input type="reset" class="btn btn-sm btn-info" name="add_save" value="重置"/>#}
+            {{sUrlBack}}
+        </td>
+    </tr>
+</table>
+{% endblock %}
+
+
+{% block html_local %}
+<div class="row">
+    <div class="col-sm-12">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                        <div class="col-sm-3">
+                            <label class="col-sm-12 control-label">订单号:{{item.order_num}}</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label class="col-sm-12 control-label">下单时间:{{item.ctime}}</label>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-12 control-label">{{item.ctype_str}}</label>
+                        </div>
+                        <div class="col-sm-4">
+                            <!--label class="col-sm-2 control-label"><b style="color:#333333;">商品标题:</b></label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control"  name="name" value="{{item.name}}"/>
+                            </div-->
+                        </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><font style="font-size:50px;color:#333333;">{{item.status_str}}</font></label>
+                    <div class="col-sm-7">
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="ibox">
+                        <div class="ibox-content">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            收货/配送信息
+                                        </div>
+                                        <div class="panel-body"  style="height:150px;">
+                                            <sapn>提货人：{{item.cname}}</sapn><br>
+                                            <span>联系电话：{{item.phone}}</span><br>
+                                            <span><b>配送方式：{{item.kuaid_str}}</b></span><br>
+                                            {%if item.kuaid|string=='0' %}
+                                            <span>用户地址：{{item.province}},{{item.city}},{{item.district}},{{item.address}}</span><br>
+                                            {%if item.shipper_id|string!='0'%}
+                                            <span>快递公司：
+
+                                                    <select name="shipper_id" class="input-sm" disabled="disabled">
+                                                        <option value="">未发货</option>
+                                                       <option value="0" {{' selected="selected"' if item.shipper_id|string == '0' }}>商家配送</option>
+                                                        <option value="1" {{' selected="selected"' if item.shipper_id|string == '1' }}>顺丰速运</option>
+                                                        <option value="2" {{' selected="selected"' if item.shipper_id|string == '2' }}>百世快递</option>
+                                                        <option value="3" {{' selected="selected"' if item.shipper_id|string == '3' }}>中通快递</option>
+                                                        <option value="4" {{' selected="selected"' if item.shipper_id|string == '4' }}>申通快递</option>
+                                                        <option value="5" {{' selected="selected"' if item.shipper_id|string == '5' }}>圆通速递</option>
+                                                        <option value="6" {{' selected="selected"' if item.shipper_id|string == '6' }}>韵达速递</option>
+                                                        <option value="7" {{' selected="selected"' if item.shipper_id|string == '7' }}>邮政快递包裹</option>
+                                                        <option value="8" {{' selected="selected"' if item.shipper_id|string == '8' }}>EMS</option>
+                                                        <option value="9" {{' selected="selected"' if item.shipper_id|string == '9' }}>天天快递</option>
+                                                        <option value="10" {{' selected="selected"' if item.shipper_id|string == '10' }}>京东快递</option>
+                                                        <option value="11" {{' selected="selected"' if item.shipper_id|string == '11' }}>优速快递</option>
+                                                        <option value="12" {{' selected="selected"' if item.shipper_id|string == '12' }}>德邦快递</option>
+                                                        <option value="13" {{' selected="selected"' if item.shipper_id|string == '13' }}>宅急送</option>
+                                                        <option value="14" {{' selected="selected"' if item.shipper_id|string == '14' }}>TNT快递</option>
+                                                        <option value="15" {{' selected="selected"' if item.shipper_id|string == '15' }}>UPS</option>
+                                                        <option value="16" {{' selected="selected"' if item.shipper_id|string == '16' }}>DHL</option>
+                                                        <option value="17" {{' selected="selected"' if item.shipper_id|string == '17' }}>FEDEX联邦(国内件）</option>
+                                                        <option value="18" {{' selected="selected"' if item.shipper_id|string == '18' }}>FEDEX联邦(国际件）</option>
+                                                    </select>
+
+                                                </span>
+                                            <br>
+                                            <span>快递单号：{{item.tracking_number}}</span>
+                                            {%endif%}
+                                            <br>
+
+                                            {%elif item.kuaid|string=='1'%}
+                                            <span>自提时间：请尽快到店自提</span><br>
+                                            <span>自提点：{{item.dname}}</span><br>
+                                            <span>自提点地址：{{item.md_address}}</span>
+                                            {%elif item.kuaid|string=='2'%}
+                                            无须配送
+
+                                            {%endif%}
+                                        </div>
+
+                                    </div>
+                                </div>
+                                {#
+                                <div class="col-sm-3">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            配送信息
+                                        </div>
+                                        <div class="panel-body"  style="height:150px;">
+                                            <span>配送方式：{{item.kuaid_str}}</span><br>
+                                            {%if item.kuaid|string=='0' %}
+                                                <span>用户地址：{{item.province}},{{item.city}},{{item.district}},{{item.address}}</span><br>
+                                                {%if item.shipper_id|string!='0'%}
+                                                <span>快递公司：
+
+                                                    <select name="shipper_id" class="input-sm" disabled="disabled">
+                                                        <option value="" >未发货</option>
+                                                       <option value="0" {{' selected="selected"' if item.shipper_id|string == '0' }}>商家配送</option>
+                                                        <option value="1" {{' selected="selected"' if item.shipper_id|string == '1' }}>顺丰速运</option>
+                                                        <option value="2" {{' selected="selected"' if item.shipper_id|string == '2' }}>百世快递</option>
+                                                        <option value="3" {{' selected="selected"' if item.shipper_id|string == '3' }}>中通快递</option>
+                                                        <option value="4" {{' selected="selected"' if item.shipper_id|string == '4' }}>申通快递</option>
+                                                        <option value="5" {{' selected="selected"' if item.shipper_id|string == '5' }}>圆通速递</option>
+                                                       <option value="6" {{' selected="selected"' if item.shipper_id|string == '6' }}>韵达速递</option>
+                                                        <option value="7" {{' selected="selected"' if item.shipper_id|string == '7' }}>邮政快递包裹</option>
+                                                        <option value="8" {{' selected="selected"' if item.shipper_id|string == '8' }}>EMS</option>
+                                                        <option value="9" {{' selected="selected"' if item.shipper_id|string == '9' }}>天天快递</option>
+                                                        <option value="10" {{' selected="selected"' if item.shipper_id|string == '10' }}>京东快递</option>
+                                                        <option value="11" {{' selected="selected"' if item.shipper_id|string == '11' }}>优速快递</option>
+                                                        <option value="12" {{' selected="selected"' if item.shipper_id|string == '12' }}>德邦快递</option>
+                                                        <option value="13" {{' selected="selected"' if item.shipper_id|string == '13' }}>宅急送</option>
+                                                        <option value="14" {{' selected="selected"' if item.shipper_id|string == '14' }}>TNT快递</option>
+                                                        <option value="15" {{' selected="selected"' if item.shipper_id|string == '15' }}>UPS</option>
+                                                        <option value="16" {{' selected="selected"' if item.shipper_id|string == '16' }}>DHL</option>
+                                                        <option value="17" {{' selected="selected"' if item.shipper_id|string == '17' }}>FEDEX联邦(国内件）</option>
+                                                        <option value="18" {{' selected="selected"' if item.shipper_id|string == '18' }}>FEDEX联邦(国际件）</option>
+                                                    </select>
+
+                                                </span>
+                                                <br>
+                                                <span>快递单号：{{item.tracking_number}}</span>
+                                                {%endif%}
+                                                <br>
+
+                                            {%elif item.kuaid|string=='1'%}
+                                            <span>自提时间：请尽快到店自提</span><br>
+                                            <span>自提点：{{item.dname}}</span><br>
+                                            <span>自提点地址：{{item.md_address}}</span>
+                                            {%elif item.kuaid|string=='2'%}
+                                            无须配送
+
+                                            {%endif%}
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                #}
+                                <div class="col-sm-3" >
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            付款信息
+                                        </div>
+                                        <div class="panel-body" style="height:150px;">
+                                            <span>实付金额：{{item.total}}</span><br>
+                                            <span>支付方式：{{item.pay_status_str}}</span><br>
+                                            <span>付款时间：{{item.pay_ctime}}</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-sm-3" >
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            买家信息
+                                        </div>
+                                        <div class="panel-body" style="height:150px;">
+                                            <span>买家：{{item.wcname}}</span><br>
+                                            <span>买家留言：{%if item.remark%} {{item.remark}}{%else%}-{%endif%}</span><br>
+                                            <span>卖家备注：{%if item.memo%} {{item.memo}}{%else%}-{%endif%}
+                                                <a class="btn btn-xs btn-success" onclick="edit_memo('{{item.id}}');"
+                                                   title=""><i class="fa fa-edit">修改卖家备注</i></a>
+                                            </span>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <table class="table table-bordered">
+                        <thead>
+                            {%for n in NL[1:]%}
+                            <th style="width:{{n[1]}};">{{n[0]}}</th>
+                            {%endfor%}
+                        </thead>
+                        <tbody>
+                        {% set rowloop = loop %}
+                        {% for D in item.detail%}
+                            <tr >
+                                <td class="col-sm-3" style="height:67px;">
+                                    <div class="col-sm-2">
+                                        <img src="{{D.pic}}" style="width:50px;height:50px;"/>
+
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <div class="col-sm-12">
+                                            <span>{{D.good_name}}</span>
+
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <b style="color:#333333;">{{D.property_str}}</b>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="col-sm-1" style="height:67px;">
+                                    {{D.price}}/{{D.amount}}
+                                </td>
+                                <td class="col-sm-1" style="height:67px;">
+                                    <i class="fa fa-cny"></i>{{D.total}}元
+                                </td>
+                                <td class="col-sm-1" style="height:67px;">
+                                    {% if D.status|string=='2'%}
+                                        {%if item.kuaid|string=='0'%}
+                                        <a class="btn btn-xs btn-info" onclick="order_shipment({{D.id}})" ><i class="fa fa-truck">发货</i></a>
+                                        {%elif item.kuaid|string=='1'%}
+                                            -
+                                        {%elif item.kuaid|string=='2'%}
+                                            -
+                                        {%endif%}
+                                    {% elif D.status|string=='5'%}
+                                        {{D.shipper_str}}<br>
+                                        {{D.tracking_number}}
+                                    {% elif D.status|string in ('6','7')%}
+                                        {%if item.kuaid|string=='0'%}
+                                            {{D.shipper_str}}<br>
+                                            {{D.tracking_number}}
+                                            <br>
+                                            <font color="red">已经收货</font>
+                                        {%endif%}
+                                    {%else%}
+                                     -
+                                    {% endif%}
+                                </td>
+                                {%if loop.index==1%}
+                                <td rowspan="{{item.qd}}" class="col-sm-1">
+                                    -{#退款状态--未开发#}
+                                </td>
+                                <td rowspan="{{item.qd}}" class="col-sm-1">
+
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-12">
+                                            <b style="color:#333333;">优惠券：</b><i class="fa fa-cny"></i>{{item.coupon_price}}元
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <b style="color:#333333;">会员优惠：</b><i class="fa fa-cny"></i>{{item.vip_small}}元
+                                         </div>
+                                    </div>
+
+                                </td>
+                                {%endif%}
+                            </tr>
+                        {%endfor%}
+                        <tr >
+
+                                <td colspan="6" style="text-align: right;">
+                                    <span class="col-sm-10">商品总价</span>
+                                    <span class="col-sm-2">{{item.goods_price}}</span>
+                                    <br>
+                                    <span class="col-sm-10">运费</span>
+                                    <span class="col-sm-2">{{item.logistics_price}}</span>
+                                    <br><br>
+                                    <span class="col-sm-10">订单金额：</span>
+                                    <span class="col-sm-2" style="color:red;">
+                                        <i class="fa fa-cny"></i>{{item.total}}
+                                    </span>
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+{% block page_script %}
+<SCRIPT language="Javascript" src="static/asset/js/My97DatePicker/WdatePicker.js"></SCRIPT>
+<script>
+
+
+function edit_memo(id){
+
+        content_html='<br><br>';
+        content_html+='<div class="col-sm-12">';
+        content_html+='<label class="col-sm-2"><b style="color:#333333;">卖家备注:</b></label>';
+        content_html+=' <div class="col-sm-10">';
+        content_html+=' <input type="text" class="form-control"  name="memo" value=""/>';
+        content_html+='</div></div><br><br>';
+
+
+        layer.open({
+            type: 1,
+            skin: 'layui-layer-rim', //加上边框
+            area: ['35rem;', '20rem;'], //宽高
+            content: content_html,
+            title: "修改价格",
+            btn: ['提交']
+            ,yes: function(index, layero){
+               var memo = $('input[name=memo]').val();
+
+               $.ajax({
+                    url:sUrl+"&part=editmemo&memo="+memo+"&id="+id,
+                    async:false,
+                    success: function(data){
+                        if (data.code=='0'){
+                            layer.close(index);
+                            layer.msg(data.MSG);
+                            location.reload();
+                        }else{
+                             layer.msg(data.MSG);
+                        }
+                    }
+                });
+             }
+        });
+
+
+}
+
+function mod_cou(){
+    var price = $('input[name=coupon_price]').val();
+    var totals = $('input[name=totals]').val();
+    if (price!=''){
+        a=parseInt(totals*1000)/1000-parseInt(price*1000)/1000
+        $('input[name=total]').val(a);
+
+    }
+}
+function setdaytime(obj){return WdatePicker({dateFmt:'yyyy-MM-dd HH:MM:ss'});}
+function formcheck_2(form){
+            
+	var title = $('input[name=title]').val(); 
+	
+	if(title == ''){
+		layer.alert("请输入首页名称");
+		return false;
+	}
+	return true
+}
+
+
+
+</script>
+{% endblock %}
+
+{% block javascript %}
+{% endblock %}       
+            
+	

@@ -1,0 +1,37 @@
+<div style="  padding: 10px;
+        "tn-bind-aux-prop="{ backgroundColor: compAux.bgc1}">
+    <div style=" border: 0.1em solid ;"
+     tn-bind-aux-prop="{ borderColor: compAux.bdc1}">
+        <div style="width: 0;margin: 1.5em auto -0.5em;
+                    border-left: 2.5em solid transparent !important;
+                    border-right: 2.5em solid transparent !important;
+                    border-bottom: 2.5em solid;"
+             tn-bind-aux-prop="{ borderBottomColor: compAux.triangleBdc}">
+        </div>
+        <div  style=" -transform: rotate(45deg);
+                    -ms-transform:rotate(45deg);
+                    -moz-transform:rotate(45deg);
+                    -webkit-transform:rotate(45deg);
+                    -o-transform:rotate(45deg);">
+            <div style="width: 9em; height: 9em; margin:1em auto;overflow: hidden;">
+                <div style="-ms-transform:rotate(-45deg);
+                            -moz-transform:rotate(-45deg);
+                            -webkit-transform:rotate(-45deg);
+                            -o-transform:rotate(-45deg);
+                            transform: rotate(-45deg);">
+                    <img tn-cell-type="image" tn-bind-cell="img1" style="max-width: 150% !important"/>
+                </div>
+            </div>
+        </div>
+        <div style="width: 0;margin: -0.5em auto 1em;
+                    border-left: 2.5em solid transparent !important;
+                    border-right:2.5em solid transparent !important;
+                    border-top: 2.5em solid #c95e57;"
+             tn-bind-aux-prop="{ borderTopColor: compAux.triangleBdc}">
+        </div>
+        <div tn-cell-type="group" tn-bind-cell="col1" tn-child-position="static"
+             tn-bind-aux-prop="{ borderColor: compAux.bdc2 }">
+            <div  tn-sub-comp-loader></div>
+        </div>
+    </div>
+</div>

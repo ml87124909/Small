@@ -1,0 +1,7842 @@
+{
+	"code": 0,
+	"message": "Common:OK",
+	"data": {
+		"roomId": "paper-cp:image",
+		"name": "图片",
+		"desc": "image",
+		"author": "triton info.",
+		"date": "2015-08-13",
+		"version": "1.0",
+		"order": 3,
+		"icon": "/images/tpl_icon/e5acdf.image.png",
+		"compSize": "large",
+		"items": [{
+			"tplId": "paper-cp:image/001-img-center",
+			"name": "图片 (中央对齐)",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"tplId": "paper-cp:image/img-autowidth",
+					"constraint": {
+						"opMenu": {
+							"crop-image-merged": true
+						},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {
+						"width": 150
+					},
+					"style": {
+						"textAlign": "center",
+						"marginTop": "10px",
+						"marginBottom": "10px"
+					}
+				},
+				"img1": {
+					"type": "image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-01-01-v1-img0-1.jpg",
+					"style": {}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/002-img-center",
+			"name": "图片 (中央对齐)",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"tplId": "paper-cp:image/img-autowidth",
+					"constraint": {
+						"opMenu": {
+							"crop-image-merged": true
+						},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {
+						"width": 150
+					},
+					"style": {
+						"textAlign": "center"
+					}
+				},
+				"img1": {
+					"type": "image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-12-img0.jpg",
+					"style": {}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/003-img-bd-03-02",
+			"name": "带阴影大图",
+			"version": "0.1",
+			"order": 1,
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "white"
+						},
+						"bgc1": {
+							"type": "color",
+							"value": "#666"
+						}
+					},
+					"pose": {},
+					"style": {
+						"textAlign": "center",
+						"marginTop": "0.5em",
+						"marginBottom": "0.5em",
+						"paddingLeft": "0.5em",
+						"paddingRight": "0.5em"
+					},
+					"tplId": "paper-cp:image/003-img-bd-03-02"
+				},
+				"img1": {
+					"type": "image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/tpl-paper/image/003-img-bd-03-02-img3.png",
+					"style": {}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/003-img-bd-03-03",
+			"name": "带阴影大图",
+			"version": "0.1",
+			"order": 1,
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "white"
+						},
+						"bgc1": {
+							"type": "color",
+							"value": "#666"
+						}
+					},
+					"pose": {},
+					"style": {
+						"textAlign": "center",
+						"marginTop": "0.5em",
+						"marginBottom": "0.5em",
+						"paddingLeft": "0.5em",
+						"paddingRight": "0.5em"
+					},
+					"tplId": "paper-cp:image/003-img-bd-03-03"
+				},
+				"img1": {
+					"type": "image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/tpl-paper/image/003-img-bd-03-03-img3.png",
+					"style": {}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/003-img-bd-03",
+			"name": "钉子图片",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {
+							"crop-image-merged": true
+						},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0",
+						"textAlign": "center"
+					},
+					"tplId": "paper-cp:image/003-img-bd-03"
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"width": "100%"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-13-img0.jpg",
+							"style": {}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/003-img-bd-04",
+			"name": "钉子图片",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {
+							"crop-image-merged": true
+						},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "#efefef"
+						},
+						"bgc1": {
+							"type": "color",
+							"value": "#ccc"
+						}
+					},
+					"style": {
+						"margin": "0.5em 0",
+						"paddingLeft": "0.5em",
+						"paddingRight": "0.5em",
+						"textAlign": "center"
+					},
+					"tplId": "paper-cp:image/003-img-bd-04"
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"width": "100%"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-13-img0.jpg",
+							"style": {}
+						}
+					}, {
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section >请输入文字</section>",
+							"style": {
+								"fontSize": "120%",
+								"textAlign": "left"
+							}
+						}
+					}, {
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section >请输入文字</section>",
+							"style": {
+								"textAlign": "left"
+							}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/003-img-bd-05",
+			"name": "顶针图片",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {
+							"crop-image-merged": true
+						},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"aux": {
+						"bgc1": {
+							"type": "color",
+							"value": "rgb(241, 236, 194)"
+						}
+					},
+					"style": {
+						"marginTop": "10px",
+						"marginBottom": "10px"
+					},
+					"tplId": "paper-cp:image/003-img-bd-05"
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"textAlign": "center",
+						"paddingBottom": "10px"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/004-img-bd",
+							"constraint": {
+								"opMenu": {},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"aux": {
+								"imgBdc1": {
+									"type": "color",
+									"value": "white"
+								}
+							},
+							"pose": {},
+							"style": {
+								"textAlign": "center",
+								"paddingRight": "2em"
+							}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/003-img-bd-04-img0.jpg",
+							"style": {
+								"borderWidth": "8px",
+								"borderStyle": "solid",
+								"boxShadow": "2px 2px 5px #666"
+							}
+						}
+					}]
+				},
+				"col2": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"padding": "10px"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section >输入文字输入文字<br/>输入文字输入文字</section>",
+							"style": {
+								"fontSize": "120%",
+								"textAlign": "left"
+							}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/003-img-bd",
+			"name": "图片 (中央对齐)",
+			"version": "0.1",
+			"order": 1,
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {
+							"crop-image-merged": true
+						},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0",
+						"padding": "0.5em",
+						"textAlign": "center",
+						"width": "100%"
+					},
+					"tplId": "paper-cp:image/003-img-bd"
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"width": "100%"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-40-img0.png",
+							"style": {}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/004-img-bd",
+			"name": "带边框图",
+			"version": "0.1",
+			"order": 1,
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"aux": {
+						"imgBdc1": {
+							"type": "color",
+							"value": "#ccc"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em auto",
+						"textAlign": "center"
+					},
+					"tplId": "paper-cp:image/004-img-bd"
+				},
+				"img1": {
+					"type": "image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-23-img0.jpg",
+					"style": {
+						"borderWidth": "8px",
+						"borderStyle": "solid"
+					}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/004-img-radius-02",
+			"name": "带弧度图",
+			"version": "0.1",
+			"order": 1,
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em auto",
+						"textAlign": "center"
+					},
+					"tplId": "paper-cp:image/004-img-radius-02"
+				},
+				"img1": {
+					"type": "image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/tpl-paper/image/004-imgradius-03.jpg",
+					"style": {}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/004-img-radius-03",
+			"name": "带弧度图",
+			"version": "0.1",
+			"order": 1,
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em auto",
+						"textAlign": "center"
+					},
+					"tplId": "paper-cp:image/004-img-radius-03"
+				},
+				"img1": {
+					"type": "image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/tpl-paper/image/004-imgradius-02.jpg",
+					"style": {}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/004-img-radius",
+			"name": "带弧度图",
+			"version": "0.1",
+			"order": 1,
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em auto",
+						"textAlign": "center"
+					},
+					"tplId": "paper-cp:image/004-img-radius"
+				},
+				"img1": {
+					"type": "image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-04-img0.jpg",
+					"style": {}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/005-img-bd-image",
+			"name": "带边框图",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"aux": {},
+					"pose": {},
+					"style": {
+						"margin": "0.5em auto",
+						"textAlign": "center"
+					},
+					"tplId": "paper-cp:image/005-img-bd-image"
+				},
+				"img1": {
+					"type": "image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/005-img-bd-mg0.jpg",
+					"style": {}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-01-02",
+			"name": "圆小图",
+			"version": "0.1",
+			"order": 1,
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "white"
+						}
+					},
+					"pose": {},
+					"style": {
+						"textAlign": "center",
+						"margin": "0.5em 0",
+						"paddingLeft": "0.5em",
+						"paddingRight": "0.5em"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-01-02"
+				},
+				"img1": {
+					"type": "image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-01-02-v1-img0.jpg",
+					"style": {}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-01-03-02",
+			"name": "带阴影大图",
+			"version": "0.1",
+			"order": 1,
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "white"
+						},
+						"bgc1": {
+							"type": "color",
+							"value": "#666"
+						}
+					},
+					"pose": {},
+					"style": {
+						"textAlign": "center",
+						"marginTop": "0.5em",
+						"marginBottom": "0.5em",
+						"paddingLeft": "0.5em",
+						"paddingRight": "0.5em"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-01-03-02"
+				},
+				"img1": {
+					"type": "image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-01-03-v1-img0.jpg",
+					"style": {}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-01-03",
+			"name": "带阴影大图",
+			"version": "0.1",
+			"order": 1,
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "white"
+						}
+					},
+					"pose": {},
+					"style": {
+						"textAlign": "center",
+						"marginTop": "0.5em",
+						"marginBottom": "0.5em",
+						"paddingLeft": "0.5em",
+						"paddingRight": "0.5em"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-01-03"
+				},
+				"img1": {
+					"type": "image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-01-03-v1-img0.jpg",
+					"style": {}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-01-04",
+			"name": "圆小图",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"aux": {},
+					"pose": {},
+					"style": {
+						"fontSize": "150%"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-01-04"
+				},
+				"c-img1": {
+					"type": "crop-image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-01-04-img0.jpg",
+					"style": {
+						"backgroundPosition": "center center",
+						"backgroundRepeat": "no-repeat",
+						"backgroundSize": "cover"
+					}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-01-05-bd",
+			"name": "带边框图片",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"tplId": "paper-cp:middleware/img-cropimg-3",
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.imgBdc1.value"]
+					},
+					"aux": {
+						"imgBdc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						},
+						"border": {
+							"type": "border",
+							"value": "6px solid"
+						}
+					},
+					"pose": {},
+					"style": {
+						"textAlign": "center",
+						"fontSize": "230.00%"
+					}
+				},
+				"c-img1": {
+					"type": "crop-image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/201-card/cd-i-01-13-img0.jpg",
+					"style": {
+						"backgroundPosition": "center center",
+						"backgroundRepeat": "no-repeat",
+						"backgroundSize": "cover"
+					}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-01-05",
+			"name": "固定大小、正方形图片",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"aux": {},
+					"pose": {},
+					"style": {
+						"fontSize": "230%"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-01-05"
+				},
+				"c-img1": {
+					"type": "crop-image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-01-17-img0.jpg",
+					"style": {
+						"backgroundPosition": "center center",
+						"backgroundRepeat": "no-repeat",
+						"backgroundSize": "cover"
+					}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-01-09-01",
+			"name": "圆小图",
+			"version": "0.1",
+			"order": 1,
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bdc1.value"]
+					},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"pose": {},
+					"style": {
+						"fontSize": "150%",
+						"marginTop": "10px",
+						"marginBottom": "10px"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-01-09-01"
+				},
+				"c-img1": {
+					"type": "crop-image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/newpages/tpl-a-1/b39-img0.png",
+					"style": {
+						"backgroundPosition": "center center",
+						"backgroundRepeat": "no-repeat",
+						"backgroundSize": "cover"
+					}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-01-09-05",
+			"name": "圆小图",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bdc1.value"]
+					},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"pose": {},
+					"style": {
+						"fontSize": "150%",
+						"marginTop": "10px",
+						"marginBottom": "10px"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-01-09-05"
+				},
+				"c-img1": {
+					"type": "crop-image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/newpages/tpls/booklet/v5-11-6-c-img19.jpg",
+					"style": {
+						"backgroundPosition": "center center",
+						"backgroundRepeat": "no-repeat",
+						"backgroundSize": "cover"
+					}
+				},
+				"c-img2": {
+					"type": "crop-image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/newpages/tpls/booklet/v5-11-6-c-img19.jpg",
+					"style": {
+						"backgroundPosition": "center center",
+						"backgroundRepeat": "no-repeat",
+						"backgroundSize": "cover"
+					}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-01-09-06",
+			"name": "圆小图",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bdc1.value"]
+					},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"pose": {},
+					"style": {
+						"fontSize": "150%",
+						"marginTop": "10px",
+						"marginBottom": "10px"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-01-09-06"
+				},
+				"c-img1": {
+					"type": "crop-image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/newpages/tpl-a-1/b39-img2.png",
+					"style": {
+						"backgroundPosition": "center center",
+						"backgroundRepeat": "no-repeat",
+						"backgroundSize": "cover"
+					}
+				},
+				"c-img2": {
+					"type": "crop-image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/newpages/tpl-a-1/b39-img2.png",
+					"style": {
+						"backgroundPosition": "center center",
+						"backgroundRepeat": "no-repeat",
+						"backgroundSize": "cover"
+					}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-01-10",
+			"name": "左文字大图(上)",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bgc1.value"]
+					},
+					"aux": {
+						"bgc1": {
+							"type": "color",
+							"value": "rgba(214, 233, 202, 0.8)"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-01-10"
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-01-10.jpg",
+							"style": {}
+						}
+					}, {
+						"_comp": {
+							"tplId": "paper-cp:middleware/002-round-text",
+							"constraint": {
+								"opMenu": {},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"aux": {
+								"bgc1": {
+									"type": "color",
+									"value": "rgba(214, 233, 202, 0.8)"
+								},
+								"bdc1": {
+									"type": "color",
+									"value": "white"
+								}
+							},
+							"pose": {},
+							"style": {
+								"marginTop": "-9em",
+								"marginBottom": "10px"
+							}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>XIUMI<br/>秀米</section>",
+							"style": {
+								"fontSize": "130%",
+								"color": "rgb(123, 129, 116)",
+								"display": "inline-block",
+								"borderTopWidth": "0.1em",
+								"borderTopStyle": "solid",
+								"borderBottomWidth": "0.2em",
+								"borderBottomStyle": "solid",
+								"textAlign": "left",
+								"padding": "2px",
+								"lineHeight": "1.3"
+							}
+						},
+						"txt2": {
+							"type": "text",
+							"text": "<section>输入文字<br/>输入文字</section>",
+							"style": {
+								"color": "rgb(123, 129, 116)",
+								"display": "inline-block"
+							}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-01-11",
+			"name": "右文字大图(上)",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bgc1.value"]
+					},
+					"aux": {
+						"bgc1": {
+							"type": "color",
+							"value": "rgba(214, 233, 202, 0.8)"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-01-11"
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"textAlign": "right"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-01-11-img0.jpg",
+							"style": {}
+						}
+					}, {
+						"_comp": {
+							"tplId": "paper-cp:middleware/002-round-text",
+							"constraint": {
+								"opMenu": {},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"aux": {
+								"bgc1": {
+									"type": "color",
+									"value": "rgba(237, 209, 216, 0.8)"
+								},
+								"bdc1": {
+									"type": "color",
+									"value": "white"
+								}
+							},
+							"pose": {},
+							"style": {
+								"marginTop": "-9em",
+								"marginBottom": "10px"
+							}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>XIUMI<br/>秀米</section>",
+							"style": {
+								"fontSize": "130%",
+								"color": "rgb(123, 129, 116)",
+								"display": "inline-block",
+								"borderTopWidth": "0.1em",
+								"borderTopStyle": "solid",
+								"borderBottomWidth": "0.2em",
+								"borderBottomStyle": "solid",
+								"textAlign": "right",
+								"padding": "2px",
+								"lineHeight": "1.3"
+							}
+						},
+						"txt2": {
+							"type": "text",
+							"text": "<section>输入文字<br/>输入文字</section>",
+							"style": {
+								"color": "rgb(123, 129, 116)",
+								"display": "inline-block"
+							}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-01-15",
+			"name": "左文字右大图",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"aux": {
+						"bgc1": {
+							"type": "color",
+							"value": "black"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-01-15"
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>物体朝向</section>",
+							"style": {
+								"fontSize": "120%",
+								"color": "black",
+								"textAlign": "right"
+							}
+						}
+					}]
+				},
+				"col2": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>有助引导阅读</section>",
+							"style": {
+								"fontSize": "90%",
+								"color": "rgb(120, 124, 129)",
+								"textAlign": "right"
+							}
+						}
+					}]
+				},
+				"col3": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"textAlign": "left"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-01-15-v1-img0.jpg",
+							"style": {}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-01-16",
+			"name": "左大图右文字",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"aux": {
+						"bgc1": {
+							"type": "color",
+							"value": "black"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-01-16"
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"textAlign": "right"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-01-16-v1-img0.jpg",
+							"style": {}
+						}
+					}]
+				},
+				"col2": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>S型排版</section>",
+							"style": {
+								"fontSize": "120%",
+								"color": "black",
+								"textAlign": "left"
+							}
+						}
+					}]
+				},
+				"col3": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>使阅读更流畅Y(^_^)Y</section>",
+							"style": {
+								"fontSize": "90%",
+								"color": "rgb(120, 124, 129)",
+								"textAlign": "left"
+							}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-01-17",
+			"name": "全屏图加右标题",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-01-17"
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"width": "100%",
+						"textAlign": "right"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-01-17-img0.jpg",
+							"style": {}
+						}
+					}]
+				},
+				"col2": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"padding": "0.1em 0.5em",
+						"backgroundColor": "rgba(200, 14, 71, 0.470588)"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>右标题</section><section style=\"font-size: 75%;\">背景色可调透明度</section>",
+							"style": {
+								"fontSize": "200%",
+								"color": "white",
+								"textAlign": "right"
+							}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-01-18",
+			"name": "全屏图加右标题",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-01-18"
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"width": "100%",
+						"textAlign": "left"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-01-18-img0.jpg",
+							"style": {}
+						}
+					}]
+				},
+				"col2": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"padding": "0.1em 0.5em",
+						"backgroundColor": "white"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section >左标题</section><section style=\"color: rgb(123, 129, 116); font-size: 75%;\">副标题小一号</section>",
+							"style": {
+								"fontSize": "200%",
+								"color": "rgb(62, 62, 62)",
+								"textAlign": "left"
+							}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-01-19",
+			"name": "1:1-2大图(下)",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "2em 0 0.5em",
+						"overflow": "hidden"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-01-19"
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"display": "inline-block",
+						"verticalAlign": "top",
+						"width": "40%"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<br/><br/><section>Dear _ _:</section>",
+							"style": {
+								"textAlign": "center"
+							}
+						}
+					}]
+				},
+				"col2": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"display": "inline-block",
+						"verticalAlign": "top",
+						"width": "56%",
+						"marginBottom": "-1em",
+						"paddingTop": "1em"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/004-img-bd",
+							"constraint": {
+								"opMenu": {},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"aux": {
+								"imgBdc1": {
+									"type": "color",
+									"value": "white"
+								}
+							},
+							"pose": {
+								"transform": "rotateZ(10deg)"
+							},
+							"style": {
+								"textAlign": "center",
+								"paddingRight": "2em"
+							}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-18-img0.jpg",
+							"style": {
+								"borderWidth": "8px",
+								"borderStyle": "solid",
+								"boxShadow": "2px 2px 5px #666"
+							}
+						}
+					}]
+				},
+				"col3": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"width": "100%",
+						"textAlign": "center"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-18-img1.jpg",
+							"style": {}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-01-20",
+			"name": "字(左)上下图",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "2em 0 0.8em",
+						"overflow": "hidden"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-01-20"
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"display": "inline-block",
+						"verticalAlign": "top",
+						"width": "40%"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<br/><br/><section>在森林<br/>游<br/>◈<br/>荡</section>",
+							"style": {
+								"textAlign": "center",
+								"color": "rgb(123, 129, 116)"
+							}
+						}
+					}]
+				},
+				"col2": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"display": "inline-block",
+						"verticalAlign": "top",
+						"width": "100%",
+						"marginBottom": "-1em",
+						"paddingTop": "1em"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/004-img-bd",
+							"constraint": {
+								"opMenu": {},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"aux": {
+								"imgBdc1": {
+									"type": "color",
+									"value": "white"
+								}
+							},
+							"pose": {
+								"transform": "rotateZ(-10deg)"
+							},
+							"style": {
+								"width": "100%",
+								"textAlign": "center",
+								"paddingRight": "2em"
+							}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-19-img0.jpg",
+							"style": {
+								"borderWidth": "8px",
+								"borderStyle": "solid",
+								"boxShadow": "2px 2px 5px #666"
+							}
+						}
+					}]
+				},
+				"col3": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"display": "inline-block",
+						"verticalAlign": "top",
+						"padding": "0 1em"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/004-img-bd",
+							"constraint": {
+								"opMenu": {},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"aux": {
+								"imgBdc1": {
+									"type": "color",
+									"value": "white"
+								}
+							},
+							"pose": {},
+							"style": {
+								"textAlign": "center"
+							}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-19-img1.jpg",
+							"style": {
+								"borderWidth": "8px",
+								"borderStyle": "solid",
+								"boxShadow": "2px 2px 5px #666"
+							}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-01-25",
+			"name": "旋转图片",
+			"version": "0.1",
+			"order": 1,
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0 0 0.5em",
+						"overflow": "hidden"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-01-25"
+				},
+				"c-img1": {
+					"type": "crop-image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-16-01-img0.jpg",
+					"style": {
+						"backgroundPosition": "center center",
+						"backgroundRepeat": "no-repeat",
+						"backgroundSize": "cover"
+					}
+				},
+				"txt1": {
+					"type": "text",
+					"text": "<section>风流花吹雪</section>",
+					"style": {
+						"textAlign": "center"
+					}
+				},
+				"txt2": {
+					"type": "text",
+					"text": "<section>片片不沾身</section>",
+					"style": {
+						"textAlign": "center"
+					}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-01-26",
+			"name": "带边框旋转图片",
+			"version": "0.1",
+			"order": 1,
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "black"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "2.5em 0"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-01-26"
+				},
+				"c-img1": {
+					"type": "crop-image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-16-img0.jpg",
+					"style": {
+						"backgroundPosition": "center center",
+						"backgroundRepeat": "no-repeat",
+						"backgroundSize": "cover"
+					}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-02-01",
+			"name": "旋转下图(右)",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-02-01"
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"width": "100%"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"textAlign": "center"
+							}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-02-01-img0.jpg",
+							"style": {}
+						}
+					}]
+				},
+				"col2": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"width": "60%",
+						"display": "inline-block",
+						"verticalAlign": "top",
+						"padding": "10px"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>请输入文字请输入文字</section>",
+							"style": {
+								"color": "rgb(102, 102, 102)",
+								"textAlign": "left"
+							}
+						}
+					}]
+				},
+				"col3": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"display": "inline-block",
+						"verticalAlign": "top",
+						"padding": "10px 13px 10px 10px",
+						"width": "40%",
+						"marginTop": "-2.2em"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/004-img-bd",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"aux": {
+								"imgBdc1": {
+									"type": "color",
+									"value": "white"
+								}
+							},
+							"pose": {
+								"transform": "rotateZ(15deg)"
+							},
+							"style": {
+								"textAlign": "center"
+							}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-02-01-img1.jpg",
+							"style": {
+								"borderWidth": "2px",
+								"borderStyle": "solid"
+							}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-02-02",
+			"name": "(上)图 字(下)",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-02-02"
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"display": "inline-block",
+						"verticalAlign": "top",
+						"width": "50%",
+						"paddingRight": "2px"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"textAlign": "center"
+							}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-02-02-img0.jpg",
+							"style": {}
+						}
+					}, {
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"padding": "5px"
+							}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>秀米上传的图片，用到图文里后，需要先保存图文，之后图库里面的就可以删除了</section>",
+							"style": {
+								"fontSize": "90%",
+								"color": "rgb(102, 102, 102)",
+								"textAlign": "left"
+							}
+						}
+					}]
+				},
+				"col2": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"width": "50%",
+						"display": "inline-block",
+						"verticalAlign": "top",
+						"paddingLeft": "2px"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"textAlign": "center"
+							}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-02-02-img1.jpg",
+							"style": {}
+						}
+					}, {
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"padding": "5px"
+							}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>图库的图片，定期清理，是个好习惯。</section>",
+							"style": {
+								"fontSize": "90%",
+								"color": "rgb(102, 102, 102)",
+								"textAlign": "left"
+							}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-02-03",
+			"name": "上大图-下文字右小图",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-02-03"
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"width": "100%"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"textAlign": "center"
+							}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-02-03-img0.jpg",
+							"style": {}
+						}
+					}]
+				},
+				"col2": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"padding": "0 10px"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:middleware/004-arrow-bg",
+							"constraint": {
+								"opMenu": {},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"aux": {
+								"bgc1": {
+									"type": "color",
+									"value": "black"
+								}
+							},
+							"pose": {},
+							"style": {
+								"marginTop": "10px",
+								"marginBottom": "10px"
+							}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>↑</section>",
+							"style": {
+								"color": "white",
+								"marginRight": "8px",
+								"marginTop": "2px",
+								"width": "1.2em",
+								"height": "1.2em",
+								"lineHeight": "1.2em",
+								"float": "left",
+								"textAlign": "center",
+								"fontWeight": "bolder"
+							}
+						},
+						"txt2": {
+							"type": "text",
+							"text": "<section>城市的</section>",
+							"style": {}
+						}
+					}, {
+						"_comp": {
+							"tplId": "paper-cp:middleware/004-arrow-bg",
+							"constraint": {
+								"opMenu": {},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"aux": {
+								"bgc1": {
+									"type": "color",
+									"value": "black"
+								}
+							},
+							"pose": {},
+							"style": {
+								"marginTop": "10px",
+								"marginBottom": "10px"
+							}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>→</section>",
+							"style": {
+								"color": "white",
+								"marginRight": "8px",
+								"marginTop": "2px",
+								"width": "1.2em",
+								"height": "1.2em",
+								"lineHeight": "1.2em",
+								"float": "left",
+								"textAlign": "center",
+								"fontWeight": "bolder"
+							}
+						},
+						"txt2": {
+							"type": "text",
+							"text": "<section>日日夜夜</section>",
+							"style": {}
+						}
+					}]
+				},
+				"col3": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"textAlign": "center"
+							}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-02-03-img1.jpg",
+							"style": {}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-01",
+			"name": "大图中间圆组件",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-03-01"
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"width": "100%",
+						"padding": "1em 0",
+						"backgroundImage": "url(/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-01-v2-img0.jpg)",
+						"backgroundPosition": "50.0000% 50.0000%",
+						"backgroundRepeat": "no-repeat",
+						"backgroundSize": "cover"
+					},
+					"items": [{
+						"_comp": {
+							"constraint": {
+								"layout": true,
+								"pose": {
+									"resize": "h"
+								},
+								"opMenu": {
+									"group-cell-merged": true
+								}
+							},
+							"pose": {
+								"position": "static",
+								"width": "100%",
+								"height": null
+							},
+							"style": {},
+							"tplId": "paper-cp:layout/row1-r1c1",
+							"aux": {}
+						},
+						"col1": {
+							"type": "group",
+							"constraint": {
+								"childLayout": "static"
+							},
+							"items": [],
+							"style": {}
+						}
+					}, {
+						"_comp": {
+							"tplId": "paper-cp:middleware/006-text-bd",
+							"constraint": {
+								"opMenu": {},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"aux": {
+								"bdc1": {
+									"type": "color",
+									"value": "white"
+								},
+								"bgc1": {
+									"type": "color",
+									"value": "rgb(200, 14, 71)"
+								}
+							},
+							"pose": {},
+							"style": {
+								"margin": "0.5em 0",
+								"textAlign": "center"
+							}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>秀米杂志</section>",
+							"style": {
+								"fontSize": "200%",
+								"color": "rgb(136, 200, 151)",
+								"lineHeight": "1"
+							}
+						},
+						"txt2": {
+							"type": "text",
+							"text": "<section>VOL ❤</section>",
+							"style": {
+								"fontSize": "120%",
+								"color": "rgb(169, 169, 169)",
+								"display": "inline-block",
+								"verticalAlign": "middle",
+								"paddingLeft": "5px",
+								"paddingRight": "5px"
+							}
+						},
+						"txt3": {
+							"type": "text",
+							"text": "<section>输入文字输入文字</section>",
+							"style": {
+								"color": "rgb(73, 37, 110)",
+								"margin": "0.5em 0"
+							}
+						},
+						"txt4": {
+							"type": "text",
+							"text": "<section>(☆_☆)</section>",
+							"style": {
+								"color": "rgb(169, 169, 169)"
+							}
+						}
+					}, {
+						"_comp": {
+							"constraint": {
+								"layout": true,
+								"pose": {
+									"resize": "h"
+								},
+								"opMenu": {
+									"group-cell-merged": true
+								}
+							},
+							"pose": {
+								"position": "static",
+								"width": "100%",
+								"height": null
+							},
+							"style": {},
+							"tplId": "paper-cp:layout/row1-r1c1",
+							"aux": {}
+						},
+						"col1": {
+							"type": "group",
+							"constraint": {
+								"childLayout": "static"
+							},
+							"items": [],
+							"style": {}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-02",
+			"name": "大图上二小图下",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-03-02"
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"width": "100%"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"textAlign": "center"
+							}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-02-v1-img0.jpg",
+							"style": {}
+						}
+					}]
+				},
+				"col2": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"textAlign": "center"
+							}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-02-v1-img1.jpg",
+							"style": {}
+						}
+					}]
+				},
+				"col3": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"textAlign": "center"
+							}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-02-v1-img2.jpg",
+							"style": {}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-03",
+			"name": "二图二文字覆盖",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-03-03"
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"padding": "0.5em 0 0 0.5em"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"textAlign": "center"
+							}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-03-v2-img0.png",
+							"style": {}
+						}
+					}]
+				},
+				"col2": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"padding": "0.5em 0 0 0.5em"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>前面图片挡住后面图片了</section>",
+							"style": {
+								"fontSize": "90%",
+								"color": "rgb(102, 102, 102)",
+								"textAlign": "left"
+							}
+						}
+					}]
+				},
+				"col3": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"padding": "0.1em 0.5em",
+						"backgroundColor": "transparent"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>左标题</section><section style=\"color: rgb(123, 129, 116); font-size: 75%;\">副标题小一号</section>",
+							"style": {
+								"fontSize": "200%",
+								"color": "rgb(62, 62, 62)",
+								"textAlign": "left"
+							}
+						}
+					}]
+				},
+				"col4": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"padding": "0.5em 0 0 0.5em"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"textAlign": "center"
+							}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-03-v2-img1.png",
+							"style": {}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-07",
+			"name": "图(左)字(右)",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"tplId": "paper-cp:image/imgtxt-a-03-25-01",
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					}
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"display": "inline-block",
+						"verticalAlign": "top",
+						"width": "50%"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/imgtxt-a-01-04",
+							"constraint": {
+								"opMenu": {},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"aux": {},
+							"pose": {},
+							"style": {
+								"textAlign": "left",
+								"fontSize": "140.00%"
+							}
+						},
+						"c-img1": {
+							"type": "crop-image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-07-v1-img0.jpg",
+							"style": {
+								"backgroundPosition": "center center",
+								"backgroundRepeat": "no-repeat",
+								"backgroundSize": "cover"
+							}
+						}
+					}]
+				},
+				"col2": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"display": "inline-block",
+						"verticalAlign": "top",
+						"width": "50%",
+						"textAlign": "right"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:middleware/020-text-c1",
+							"constraint": {
+								"opMenu": {},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"aux": {},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<br/><br/><br/><section>艺术是尖的。</section>",
+							"style": {
+								"display": "inline-block",
+								"verticalAlign": "top",
+								"margin": "0.5em 0",
+								"textAlign": "center",
+								"width": "1.2em"
+							}
+						},
+						"txt2": {
+							"type": "text",
+							"text": "<br/><br/><section>历史是长的，</section>",
+							"style": {
+								"display": "inline-block",
+								"verticalAlign": "top",
+								"margin": "0.5em 0",
+								"textAlign": "center",
+								"width": "1.2em"
+							}
+						},
+						"txt3": {
+							"type": "text",
+							"text": "<br/><section>地图是平的，</section>",
+							"style": {
+								"display": "inline-block",
+								"verticalAlign": "top",
+								"margin": "0.5em 0",
+								"textAlign": "center",
+								"width": "1.2em"
+							}
+						},
+						"txt4": {
+							"type": "text",
+							"text": "<section>木心说</section>",
+							"style": {
+								"display": "inline-block",
+								"verticalAlign": "top",
+								"margin": "0.5em 0",
+								"textAlign": "center",
+								"width": "1.2em"
+							}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-08",
+			"name": "上下图",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"tplId": "paper-cp:image/imgtxt-a-03-25-01",
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					}
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"display": "inline-block",
+						"verticalAlign": "top",
+						"width": "50%"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/imgtxt-a-01-04",
+							"constraint": {
+								"opMenu": {},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"aux": {},
+							"pose": {},
+							"style": {
+								"textAlign": "left",
+								"fontSize": "115%"
+							}
+						},
+						"c-img1": {
+							"type": "crop-image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-08-v1-img0.jpg",
+							"style": {
+								"backgroundPosition": "center center",
+								"backgroundRepeat": "no-repeat",
+								"backgroundSize": "cover"
+							}
+						}
+					}]
+				},
+				"col2": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"display": "inline-block",
+						"verticalAlign": "top",
+						"width": "50%",
+						"paddingTop": "10px"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:middleware/010-bd-text",
+							"constraint": {
+								"opMenu": {},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"aux": {
+								"bdc1": {
+									"type": "color",
+									"value": "rgb(123, 129, 116)"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>小确幸</section><section style=\"font-size: 50%;\">微小但確切的幸福</section>",
+							"style": {
+								"fontSize": "200%",
+								"color": "rgb(123, 129, 116)",
+								"borderLeftWidth": "2px",
+								"borderLeftStyle": "solid",
+								"padding": "5px 10px"
+							}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-09",
+			"name": "三个圆图",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-03-09"
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"display": "inline-block",
+						"verticalAlign": "top",
+						"width": "33.3333%",
+						"textAlign": "center"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/imgtxt-a-01-04",
+							"constraint": {
+								"opMenu": {},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"aux": {},
+							"pose": {},
+							"style": {
+								"fontSize": "70.00%"
+							}
+						},
+						"c-img1": {
+							"type": "crop-image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-09-v1-img0.jpg",
+							"style": {
+								"backgroundPosition": "center center",
+								"backgroundRepeat": "no-repeat",
+								"backgroundSize": "cover"
+							}
+						}
+					}]
+				},
+				"col2": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"display": "inline-block",
+						"verticalAlign": "top",
+						"width": "33.3333%",
+						"textAlign": "center"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/imgtxt-a-01-04",
+							"constraint": {
+								"opMenu": {},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"aux": {},
+							"pose": {},
+							"style": {
+								"fontSize": "70.00%"
+							}
+						},
+						"c-img1": {
+							"type": "crop-image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-09-v1-img1.jpg",
+							"style": {
+								"backgroundPosition": "center center",
+								"backgroundRepeat": "no-repeat",
+								"backgroundSize": "cover"
+							}
+						}
+					}]
+				},
+				"col3": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"display": "inline-block",
+						"verticalAlign": "top",
+						"width": "33.3333%",
+						"textAlign": "center"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/imgtxt-a-01-04",
+							"constraint": {
+								"opMenu": {},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"aux": {},
+							"pose": {},
+							"style": {
+								"fontSize": "70.00%"
+							}
+						},
+						"c-img1": {
+							"type": "crop-image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-09-v1-img2.jpg",
+							"style": {
+								"backgroundPosition": "center center",
+								"backgroundRepeat": "no-repeat",
+								"backgroundSize": "cover"
+							}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-11",
+			"name": "左图 右圆",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bgc1.value"]
+					},
+					"aux": {
+						"bgc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						},
+						"bgc2": {
+							"type": "color",
+							"value": "rgb(255, 255, 255)"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0 1.5em"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-03-11"
+				},
+				"c-img1": {
+					"type": "crop-image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-11-v1-img0.jpg",
+					"style": {
+						"backgroundPosition": "center center",
+						"backgroundRepeat": "no-repeat",
+						"backgroundSize": "cover"
+					}
+				},
+				"txt1": {
+					"type": "text",
+					"text": "<section>行走是一种态度！</section>",
+					"style": {}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-23-01",
+			"name": "左图右文字覆盖",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"tplId": "paper-cp:image/imgtxt-a-03-23",
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					}
+				},
+				"col2": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"textAlign": "left"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-23-img0.jpg",
+							"style": {}
+						}
+					}]
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"padding": "0 0.5em"
+							}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字</section>",
+							"style": {
+								"color": "rgb(102, 102, 102)",
+								"textAlign": "left"
+							}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-23",
+			"name": "左图右文字覆盖",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-03-23"
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"textAlign": "right"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-23-img0.jpg",
+							"style": {}
+						}
+					}]
+				},
+				"col2": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"padding": "0 0.5em"
+							}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字</section>",
+							"style": {
+								"color": "rgb(102, 102, 102)",
+								"textAlign": "left"
+							}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-25-01",
+			"name": "左图右文字覆盖",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-03-25-01"
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"float": "left"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/imgtxt-a-01-04",
+							"constraint": {
+								"opMenu": {},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"aux": {},
+							"pose": {},
+							"style": {
+								"marginRight": "5px"
+							}
+						},
+						"c-img1": {
+							"type": "crop-image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-53-img0.png",
+							"style": {
+								"backgroundPosition": "center center",
+								"backgroundRepeat": "no-repeat",
+								"backgroundSize": "cover"
+							}
+						}
+					}]
+				},
+				"col2": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字输入文字请输入文字请输入文字字请输入文字请输入文字</section>",
+							"style": {}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-25-02",
+			"name": "左图右文字覆盖",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"tplId": "paper-cp:image/imgtxt-a-03-25-01",
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					}
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"float": "right"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/imgtxt-a-01-04",
+							"constraint": {
+								"opMenu": {},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"aux": {},
+							"pose": {},
+							"style": {
+								"marginLeft": "5px"
+							}
+						},
+						"c-img1": {
+							"type": "crop-image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-53-img0.png",
+							"style": {
+								"backgroundPosition": "center center",
+								"backgroundRepeat": "no-repeat",
+								"backgroundSize": "cover"
+							}
+						}
+					}]
+				},
+				"col2": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字输入文字请输入文字请输入文字字请输入文字请输入文字</section>",
+							"style": {}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-25-03",
+			"name": "左浮动",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"tplId": "paper-cp:image/imgtxt-a-03-25-01",
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					}
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"float": "left",
+						"textAlign": "right",
+						"width": "50%",
+						"paddingRight": "5px"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-71-img1.jpg",
+							"style": {}
+						}
+					}]
+				},
+				"col2": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字输入文字请输入文字请输入文字字请输入文字请输入文字</section>",
+							"style": {}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-25-04",
+			"name": "右浮动",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"tplId": "paper-cp:image/imgtxt-a-03-25-01",
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					}
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"float": "right",
+						"textAlign": "left",
+						"width": "50%",
+						"paddingLeft": "5px"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-72-img1.jpg",
+							"style": {}
+						}
+					}]
+				},
+				"col2": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>请输入文字请输入文字请输入文字请输请输入文字入文字请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字输入文字请输入文字请输入文字字请输入文字请输入文字</section>",
+							"style": {}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-26-01",
+			"name": "左图右指引文字",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"tplId": "paper-cp:image/imgtxt-a-03-25-01",
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					}
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"display": "inline-block",
+						"verticalAlign": "top",
+						"width": "50%",
+						"textAlign": "right"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-14-02-img0.jpg",
+							"style": {}
+						}
+					}]
+				},
+				"col2": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"display": "inline-block",
+						"verticalAlign": "top",
+						"width": "50%",
+						"paddingLeft": "5px"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:middleware/012-triangle-text",
+							"constraint": {
+								"opMenu": {},
+								"pose": {
+									"resize": "h"
+								},
+								"themeColors": ["_comp.aux.bdc1.value"]
+							},
+							"aux": {
+								"bdc1": {
+									"type": "color",
+									"value": "rgb(249, 110, 87)"
+								},
+								"bgc1": {
+									"type": "color",
+									"value": "white"
+								}
+							},
+							"pose": {},
+							"style": {
+								"margin": "0.5em 0",
+								"paddingLeft": "19px"
+							}
+						},
+						"col1": {
+							"type": "group",
+							"constraint": {
+								"childLayout": "static",
+								"bgEditingType": "none"
+							},
+							"style": {
+								"padding": "10px"
+							},
+							"items": [{
+								"_comp": {
+									"tplId": "paper-cp:header/1-txt-normal",
+									"constraint": {
+										"opMenu": {
+											"text-merged": true
+										},
+										"pose": {
+											"resize": "h"
+										}
+									},
+									"pose": {},
+									"style": {}
+								},
+								"txt1": {
+									"type": "text",
+									"text": "<section>边框可以换颜色喔～</section>",
+									"style": {
+										"fontSize": "120%"
+									}
+								}
+							}]
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-26-02",
+			"name": "左指引文字右图",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"tplId": "paper-cp:image/imgtxt-a-03-25-01",
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					}
+				},
+				"col2": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"display": "inline-block",
+						"verticalAlign": "top",
+						"width": "50%",
+						"textAlign": "left"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-14-img0.jpg",
+							"style": {}
+						}
+					}]
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"display": "inline-block",
+						"verticalAlign": "top",
+						"width": "50%",
+						"paddingRight": "20px"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:middleware/013-triangle-text",
+							"constraint": {
+								"opMenu": {},
+								"pose": {
+									"resize": "h"
+								},
+								"themeColors": ["_comp.aux.bdc1.value"]
+							},
+							"aux": {
+								"bdc1": {
+									"type": "color",
+									"value": "rgb(249, 110, 87)"
+								},
+								"bgc1": {
+									"type": "color",
+									"value": "white"
+								}
+							},
+							"pose": {},
+							"style": {
+								"margin": "0.5em 0"
+							}
+						},
+						"col1": {
+							"type": "group",
+							"constraint": {
+								"childLayout": "static",
+								"bgEditingType": "none"
+							},
+							"style": {
+								"padding": "10px",
+								"marginRight": "-20px"
+							},
+							"items": [{
+								"_comp": {
+									"tplId": "paper-cp:header/1-txt-normal",
+									"constraint": {
+										"opMenu": {
+											"text-merged": true
+										},
+										"pose": {
+											"resize": "h"
+										}
+									},
+									"pose": {},
+									"style": {}
+								},
+								"txt1": {
+									"type": "text",
+									"text": "<section>会说话的产品更容易打动人心。</section>",
+									"style": {
+										"fontSize": "120%"
+									}
+								}
+							}]
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-26-03",
+			"name": "上图指引文字1:1",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"tplId": "paper-cp:image/imgtxt-a-03-25-01",
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					}
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"width": "100%"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"textAlign": "center"
+							}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-15-img0.jpg",
+							"style": {}
+						}
+					}]
+				},
+				"col2": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"width": "100%"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:middleware/014-triangle-text",
+							"constraint": {
+								"opMenu": {},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"aux": {
+								"bdc1": {
+									"type": "color",
+									"value": "white"
+								},
+								"bgc1": {
+									"type": "color",
+									"value": "white"
+								}
+							},
+							"pose": {},
+							"style": {
+								"margin": "-1em 0 0"
+							}
+						},
+						"col1": {
+							"type": "group",
+							"constraint": {
+								"childLayout": "static",
+								"bgEditingType": "none"
+							},
+							"style": {
+								"padding": "10px",
+								"marginTop": "-2px"
+							},
+							"items": [{
+								"_comp": {
+									"tplId": "paper-cp:header/1-txt-normal",
+									"constraint": {
+										"opMenu": {
+											"text-merged": true
+										},
+										"pose": {
+											"resize": "h"
+										}
+									},
+									"pose": {},
+									"style": {}
+								},
+								"txt1": {
+									"type": "text",
+									"text": "<section>输入文字</section>",
+									"style": {
+										"fontSize": "120%"
+									}
+								}
+							}]
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-29-03",
+			"name": "左字右图1-2:1-2",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bdc1.value"]
+					},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						},
+						"bgc1": {
+							"type": "color",
+							"value": "white"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0",
+						"overflow": "hidden"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-03-29-03"
+				},
+				"txt1": {
+					"type": "text",
+					"text": "<section>单行竖排标题</section>",
+					"style": {
+						"fontSize": "220%",
+						"textAlign": "center",
+						"color": "rgb(124, 127, 118)"
+					}
+				},
+				"col2": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"padding": "0  0 0 0.5em"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字</section>",
+							"style": {
+								"color": "rgb(102,102,102)"
+							}
+						}
+					}, {
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"textAlign": "center"
+							}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-29-03-img0.png",
+							"style": {}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-29-05",
+			"name": "左字右图1-2:1-2",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-03-29-05"
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"padding": "0 0.5em 0 0"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字</section>",
+							"style": {
+								"color": "rgb(102, 102, 102)"
+							}
+						}
+					}, {
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"textAlign": "center"
+							}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-29-05-img0.png",
+							"style": {}
+						}
+					}]
+				},
+				"col2": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"padding": "0 0 0 0.5em"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"textAlign": "center"
+							}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-29-05-img1.png",
+							"style": {}
+						}
+					}, {
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>悠然<br/>的<br/>阳光</section>",
+							"style": {
+								"fontSize": "220%",
+								"textAlign": "center"
+							}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-29",
+			"name": "左字右图1-2:1-2",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-03-29"
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"padding": "0  0 0 0.5em"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字</section>",
+							"style": {
+								"color": "rgb(102,102,102)"
+							}
+						}
+					}, {
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"textAlign": "center"
+							}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/202-cardheader/d22-card-img1.jpg",
+							"style": {}
+						}
+					}]
+				},
+				"col2": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"padding": "0 0.5em 0 0"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"textAlign": "center"
+							}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/202-cardheader/d22-card-img0.jpg",
+							"style": {}
+						}
+					}, {
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>下雨也<br/>是好天<br/>气</section>",
+							"style": {
+								"fontSize": "220%",
+								"textAlign": "center"
+							}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-30-01",
+			"name": "左字右图1-2:1",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"tplId": "paper-cp:image/imgtxt-a-03-25-01",
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					}
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"padding": "0 0.5em 0 0",
+						"display": "inline-block",
+						"verticalAlign": "top",
+						"width": "75%"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/imgtxt-a-01-04",
+							"constraint": {
+								"opMenu": {},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"aux": {},
+							"pose": {},
+							"style": {
+								"margin": "0.5em 0",
+								"textAlign": "center",
+								"fontSize": "170.00%"
+							}
+						},
+						"c-img1": {
+							"type": "crop-image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-53-img0.png",
+							"style": {
+								"backgroundPosition": "center center",
+								"backgroundRepeat": "no-repeat",
+								"backgroundSize": "cover"
+							}
+						}
+					}, {
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字</section>",
+							"style": {
+								"color": "rgb(102,102,102)"
+							}
+						}
+					}]
+				},
+				"col2": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"padding": "0 0 0 0.5em",
+						"width": "25%",
+						"display": "inline-block",
+						"verticalAlign": "top"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>此处<br/>输入<br/>标题</section>",
+							"style": {
+								"fontSize": "180%",
+								"textAlign": "center"
+							}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-30-02",
+			"name": "左字右图1:1-2",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"tplId": "paper-cp:image/imgtxt-a-03-25-01",
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					}
+				},
+				"col2": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"padding": "0 0.5em 0 0",
+						"width": "75%",
+						"display": "inline-block",
+						"verticalAlign": "top"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/imgtxt-a-01-04",
+							"constraint": {
+								"opMenu": {},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"aux": {},
+							"pose": {},
+							"style": {
+								"margin": "0.5em 0",
+								"textAlign": "center",
+								"fontSize": "170.00%"
+							}
+						},
+						"c-img1": {
+							"type": "crop-image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-53-img0.png",
+							"style": {
+								"backgroundPosition": "center center",
+								"backgroundRepeat": "no-repeat",
+								"backgroundSize": "cover"
+							}
+						}
+					}, {
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字</section>",
+							"style": {
+								"color": "rgb(102,102,102)"
+							}
+						}
+					}]
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"padding": "0 0 0 0.5em",
+						"width": "25%",
+						"display": "inline-block",
+						"verticalAlign": "top"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>此处<br/>输入<br/>标题</section>",
+							"style": {
+								"fontSize": "180%",
+								"textAlign": "center"
+							}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-30",
+			"name": "上图下文字3-35",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"aux": {
+						"bgc1": {
+							"type": "color",
+							"value": "black"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0",
+						"textAlign": "center"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-03-30"
+				},
+				"c-img1": {
+					"type": "crop-image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/202-cardheader/d23-card-text-img0.png",
+					"style": {
+						"backgroundPosition": "center center",
+						"backgroundRepeat": "no-repeat",
+						"backgroundSize": "cover"
+					}
+				},
+				"txt1": {
+					"type": "text",
+					"text": "<section>原艺术论封面设计</section>",
+					"style": {
+						"width": "2em",
+						"display": "inline-block",
+						"verticalAlign": "bottom"
+					}
+				},
+				"txt2": {
+					"type": "text",
+					"text": "<section>紫<br/>色<br/>的<br/>花</section>",
+					"style": {
+						"fontSize": "200%",
+						"color": "white",
+						"display": "inline-block",
+						"verticalAlign": "top",
+						"padding": "0.5em 0.8em",
+						"marginLeft": "0.3em",
+						"marginRight": "0.3em"
+					}
+				},
+				"txt3": {
+					"type": "text",
+					"text": "<section>模板设计鲁迅</section>",
+					"style": {
+						"color": "white",
+						"width": "2em",
+						"display": "inline-block",
+						"verticalAlign": "top"
+					}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-35",
+			"name": "上图下文字",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"tplId": "paper-cp:image/imgtxt-a-03-01",
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					}
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"display": "inline-block",
+						"verticalAlign": "top",
+						"margin": "0.5em 0",
+						"width": "100%"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/003-img-bd",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"col1": {
+							"type": "group",
+							"constraint": {
+								"childLayout": "static"
+							},
+							"style": {
+								"width": "100%"
+							},
+							"items": [{
+								"_comp": {
+									"tplId": "paper-cp:image/img-autowidth",
+									"constraint": {
+										"opMenu": {
+											"crop-image-merged": true
+										},
+										"pose": {
+											"resize": "h"
+										}
+									},
+									"pose": {},
+									"style": {
+										"textAlign": "center"
+									}
+								},
+								"img1": {
+									"type": "image",
+									"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/202-cardheader/d20-card-text-img0.jpg",
+									"style": {}
+								}
+							}]
+						}
+					}, {
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"padding": "5px 0"
+							}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>— 秀米</section>",
+							"style": {
+								"fontSize": "120%",
+								"textAlign": "right"
+							}
+						}
+					}, {
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>秀米是一个移动端内容制作和发布平台，提供丰富的模板和好用的体验，让你快速制作出极具新意的内容，打动你的人群。</section>",
+							"style": {
+								"color": "rgba(0, 0, 0, 0.611765)"
+							}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-36",
+			"name": "左图右文字1：1-2",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"tplId": "paper-cp:image/imgtxt-a-03-25-01",
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					}
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"display": "inline-block",
+						"verticalAlign": "top",
+						"margin": "0.5em 0",
+						"width": "65%"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/003-img-bd",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"col1": {
+							"type": "group",
+							"constraint": {
+								"childLayout": "static"
+							},
+							"style": {
+								"width": "100%"
+							},
+							"items": [{
+								"_comp": {
+									"tplId": "paper-cp:image/img-autowidth",
+									"constraint": {
+										"opMenu": {
+											"crop-image-merged": true
+										},
+										"pose": {
+											"resize": "h"
+										}
+									},
+									"pose": {},
+									"style": {
+										"textAlign": "center"
+									}
+								},
+								"img1": {
+									"type": "image",
+									"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/newpages/tpl-a-1/011-three-round-img0.jpg",
+									"style": {}
+								}
+							}]
+						}
+					}]
+				},
+				"col2": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"display": "inline-block",
+						"verticalAlign": "bottom",
+						"marginBottom": "1.3em",
+						"paddingLeft": "10px",
+						"width": "35%"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:middleware/010-bd-text",
+							"constraint": {
+								"opMenu": {},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"aux": {
+								"bdc1": {
+									"type": "color",
+									"value": "black"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>秀米</section>",
+							"style": {
+								"fontSize": "125%",
+								"borderBottomWidth": "1px",
+								"borderBottomStyle": "solid"
+							}
+						}
+					}, {
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>打动你的人群</section>",
+							"style": {}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-37",
+			"name": "左图右文字1：1-2",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"aux": {
+						"bgc1": {
+							"type": "color",
+							"value": "rgb(200, 14, 71)"
+						},
+						"bdc1": {
+							"type": "color",
+							"value": "white"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-03-37"
+				},
+				"img1": {
+					"type": "image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/701-other/023-bottom-hrnt-02-img0.jpg",
+					"style": {}
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"items": [{
+						"_comp": {
+							"constraint": {
+								"pose": {
+									"resize": "h"
+								},
+								"opMenu": {}
+							},
+							"pose": {},
+							"style": {
+								"fontSize": "60.00%"
+							},
+							"aux": {
+								"bgc1": {
+									"type": "color",
+									"value": "white"
+								},
+								"bdc1": {
+									"type": "color",
+									"value": "rgb(102, 102, 102)"
+								},
+								"bd": {
+									"type": "border",
+									"value": "1px solid"
+								}
+							},
+							"tplId": "paper-cp:other/100-round-line"
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>浪</section>",
+							"style": {
+								"textAlign": "center",
+								"width": "1.8em",
+								"height": "1.8em",
+								"lineHeight": "1.8em",
+								"borderRadius": "100%",
+								"marginLeft": "auto",
+								"marginRight": "auto",
+								"fontSize": "200%",
+								"color": "black"
+							}
+						}
+					}, {
+						"_comp": {
+							"constraint": {
+								"pose": {
+									"resize": "h"
+								},
+								"opMenu": {}
+							},
+							"pose": {},
+							"style": {
+								"fontSize": "60.00%",
+								"margin": "3px 0"
+							},
+							"aux": {
+								"bgc1": {
+									"type": "color",
+									"value": "white"
+								},
+								"bdc1": {
+									"type": "color",
+									"value": "rgb(102, 102, 102)"
+								},
+								"bd": {
+									"type": "border",
+									"value": "1px solid"
+								}
+							},
+							"tplId": "paper-cp:other/101-round"
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>漫</section>",
+							"style": {
+								"textAlign": "center",
+								"width": "1.8em",
+								"height": "1.8em",
+								"lineHeight": "1.8em",
+								"borderRadius": "100%",
+								"marginLeft": "auto",
+								"marginRight": "auto",
+								"fontSize": "200%",
+								"color": "black"
+							}
+						}
+					}],
+					"style": {
+						"display": "inline-block",
+						"verticalAlign": "top",
+						"width": "38.2%"
+					}
+				},
+				"col2": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"items": [{
+						"_comp": {
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {},
+							"tplId": "paper-cp:header/1-txt-normal"
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section><br/><span style='font-size: 160%'>小店</span><br/>周末不打烊<br/>左边的小圆环可以复制多个哦</section>",
+							"style": {}
+						}
+					}],
+					"style": {
+						"display": "inline-block",
+						"verticalAlign": "top",
+						"width": "61.8%"
+					}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-38",
+			"name": "左图右文字1：1-2",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bgc1.value"]
+					},
+					"aux": {
+						"bgc1": {
+							"type": "color",
+							"value": "rgb(200, 14, 71)"
+						},
+						"bdc1": {
+							"type": "color",
+							"value": "white"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-03-38"
+				},
+				"img1": {
+					"type": "image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/701-other/025-bottom-hrnt-03-img0.jpg",
+					"style": {}
+				},
+				"c-img1": {
+					"type": "crop-image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/701-other/025-bottom-hrnt-03-img0.jpg",
+					"style": {
+						"backgroundPosition": "center center",
+						"backgroundRepeat": "no-repeat",
+						"backgroundSize": "cover"
+					}
+				},
+				"txt1": {
+					"type": "text",
+					"text": "<section>输入文字输入文字</section>",
+					"style": {
+						"color": "white"
+					}
+				},
+				"txt2": {
+					"type": "text",
+					"text": "<section>输入文字</section>",
+					"style": {
+						"color": "white"
+					}
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>请输入文字请输入文字请输入文字请输入文字请输入文字</section>",
+							"style": {}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-39",
+			"name": "图-竖排文字",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"tplId": "paper-cp:image/imgtxt-a-03-01",
+					"constraint": {
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					}
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"width": "100%",
+						"padding": "1.5em 0 3em",
+						"backgroundColor": "rgb(249, 110, 87)",
+						"backgroundImage": "url(/hjnwx/asset/js/wxeditor/images/templates-assets/parts/701-other/027-title-img0.jpg)",
+						"backgroundPosition": "50.0000% 50.0000%",
+						"backgroundRepeat": "no-repeat",
+						"backgroundSize": "cover"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:middleware/008-bd-text",
+							"constraint": {
+								"opMenu": {},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"aux": {
+								"bdc1": {
+									"type": "color",
+									"value": "white"
+								}
+							},
+							"pose": {},
+							"style": {
+								"padding": "10px",
+								"textAlign": "center"
+							}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>目<br/>录</section>",
+							"style": {
+								"fontSize": "120%",
+								"color": "white",
+								"textAlign": "center",
+								"width": "2em",
+								"margin": "-0.5em auto"
+							}
+						}
+					}, {
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>奇<br/>幻<br/>的<br/>森<br/>林</section>",
+							"style": {
+								"fontSize": "120%",
+								"color": "white",
+								"textAlign": "center",
+								"width": "2em",
+								"margin": "auto"
+							}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-43",
+			"name": "左图右文字1：1-2",
+			"version": "0.1",
+			"order": 1,
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"aux": {
+						"bgc1": {
+							"type": "color",
+							"value": "white"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-03-43"
+				},
+				"c-img1": {
+					"type": "crop-image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/tpl-paper/image/003-img-bd-03-43-img1.jpg",
+					"style": {
+						"backgroundPosition": "center center",
+						"backgroundRepeat": "no-repeat",
+						"backgroundSize": "cover"
+					}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-44",
+			"name": "左图右文字1：1-2",
+			"version": "0.1",
+			"order": 1,
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"aux": {
+						"bgc1": {
+							"type": "color",
+							"value": "white"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-03-44"
+				},
+				"c-img1": {
+					"type": "crop-image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/tpl-paper/image/003-img-bd-03-44-img1.jpg",
+					"style": {
+						"backgroundPosition": "center center",
+						"backgroundRepeat": "no-repeat",
+						"backgroundSize": "cover"
+					}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-47",
+			"name": "三角文字 图(左)",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"tplId": "paper-cp:layout/row1-r1c2-c2to1-2-8",
+					"constraint": {
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					}
+				},
+				"col2": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/t-b-54",
+							"constraint": {
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"style": {},
+							"aux": {
+								"bdc1": {
+									"type": "color",
+									"value": "transparent"
+								},
+								"bdc2": {
+									"type": "color",
+									"value": "rgb(78, 140, 149)"
+								}
+							}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>10</section><section>月</section>",
+							"style": {
+								"width": "60%",
+								"textAlign": "center",
+								"lineHeight": "1.2em"
+							}
+						},
+						"txt2": {
+							"type": "text",
+							"text": "<section>某</section><section >日</section>",
+							"style": {
+								"textAlign": "center",
+								"width": "60%",
+								"float": "right",
+								"marginTop": "-0.9em",
+								"paddingLeft": "0.5em",
+								"lineHeight": "1.2em",
+								"color": "#ffffff"
+							}
+						}
+					}, {
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"marginTop": "10px",
+								"marginBottom": "10px"
+							}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>海边，<br/>&nbsp;&nbsp;&nbsp;&nbsp;记忆。</section>",
+							"style": {
+								"textAlign": "center"
+							}
+						}
+					}]
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"textAlign": "right"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-48-img0.jpg",
+							"style": {}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-48",
+			"name": "三角文字 图(右)",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"tplId": "paper-cp:layout/row1-r1c2-c1to2-2-8",
+					"constraint": {
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					}
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/t-b-55",
+							"constraint": {
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"style": {
+								"textAlign": "right"
+							},
+							"aux": {
+								"bdc1": {
+									"type": "color",
+									"value": "transparent"
+								},
+								"bdc2": {
+									"type": "color",
+									"value": "rgb(207, 190, 120)"
+								}
+							}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>某<br/>日</section>",
+							"style": {
+								"width": "60%",
+								"textAlign": "center",
+								"lineHeight": "1.2em",
+								"float": "right"
+							}
+						},
+						"txt2": {
+							"type": "text",
+							"text": "<section>10<br/>月</section>",
+							"style": {
+								"textAlign": "center",
+								"width": "60%",
+								"float": "left",
+								"marginTop": "-0.9em",
+								"lineHeight": "1.2em",
+								"color": "#ffffff"
+							}
+						}
+					}, {
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>听见，<br/>&nbsp;&nbsp;&nbsp;&nbsp;花开。</section>",
+							"style": {
+								"textAlign": "center"
+							}
+						}
+					}]
+				},
+				"col2": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"textAlign": "left"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-47-img0.jpg",
+							"style": {}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-49",
+			"name": "三角(四个)图3-49",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "white"
+						},
+						"bdc2": {
+							"type": "color",
+							"value": "rgb(171, 162, 121)"
+						},
+						"bdc3": {
+							"type": "color",
+							"value": "rgb(78, 140, 149)"
+						},
+						"bdc4": {
+							"type": "color",
+							"value": "rgb(186, 185, 183)"
+						}
+					},
+					"pose": {},
+					"style": {
+						"textAlign": "center",
+						"margin": "0.5em 0"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-03-49"
+				},
+				"img1": {
+					"type": "image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-45-img0.jpg",
+					"style": {}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-50",
+			"name": "三角(四个)图3-50",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(78, 140, 149)"
+						},
+						"bdc2": {
+							"type": "color",
+							"value": "rgb(78, 140, 149)"
+						},
+						"bdc3": {
+							"type": "color",
+							"value": "rgb(78, 140, 149)"
+						},
+						"bdc4": {
+							"type": "color",
+							"value": "rgb(78, 140, 149)"
+						}
+					},
+					"pose": {},
+					"style": {
+						"textAlign": "center",
+						"margin": "0.5em 0",
+						"overflow": "hidden"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-03-50"
+				},
+				"img1": {
+					"type": "image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-50-img0.jpg",
+					"style": {}
+				},
+				"txt1": {
+					"type": "text",
+					"text": "<section>北</section>",
+					"style": {}
+				},
+				"txt2": {
+					"type": "text",
+					"text": "<section>西</section>",
+					"style": {}
+				},
+				"txt3": {
+					"type": "text",
+					"text": "<section>东</section>",
+					"style": {}
+				},
+				"txt4": {
+					"type": "text",
+					"text": "<section>南</section>",
+					"style": {}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-51",
+			"name": "三角(四个)图3-51",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(78, 140, 149)"
+						},
+						"bdc2": {
+							"type": "color",
+							"value": "rgb(78, 140, 149)"
+						},
+						"bdc3": {
+							"type": "color",
+							"value": "rgb(78, 140, 149)"
+						},
+						"bdc4": {
+							"type": "color",
+							"value": "rgb(78, 140, 149)"
+						}
+					},
+					"pose": {},
+					"style": {
+						"textAlign": "center",
+						"margin": "0.5em 0",
+						"overflow": "hidden"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-03-51"
+				},
+				"c-img1": {
+					"type": "crop-image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-51-img0.jpg",
+					"style": {
+						"backgroundPosition": "center center",
+						"backgroundRepeat": "no-repeat",
+						"backgroundSize": "cover"
+					}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-52",
+			"name": "图文字1:1-2",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bdc1.value", "_comp.aux.bdc2.value"]
+					},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						},
+						"bdc2": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"pose": {},
+					"style": {
+						"textAlign": "center"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-03-52"
+				},
+				"c-img1": {
+					"type": "crop-image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-52-img0.png",
+					"style": {
+						"backgroundPosition": "center center",
+						"backgroundRepeat": "no-repeat",
+						"backgroundSize": "cover"
+					}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-58-02",
+			"name": "图文字1:1-2",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"tplId": "paper-cp:image/imgtxt-a-03-58",
+					"constraint": {
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					}
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"textAlign": "center"
+							}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-58-img0.png",
+							"style": {}
+						}
+					}]
+				},
+				"col3": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"display": "inline-block",
+						"verticalAlign": "middle",
+						"width": "45%",
+						"paddingLeft": "10px"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:middleware/img-cropimg-bd",
+							"constraint": {
+								"opMenu": {},
+								"pose": {
+									"resize": "h"
+								},
+								"themeColors": ["_comp.aux.imgBdc1.value"]
+							},
+							"aux": {
+								"imgBdc1": {
+									"type": "color",
+									"value": "rgb(249, 110, 87)"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"c-img1": {
+							"type": "crop-image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-58-img2.jpg",
+							"style": {
+								"backgroundPosition": "center center",
+								"backgroundRepeat": "no-repeat",
+								"backgroundSize": "cover"
+							}
+						}
+					}]
+				},
+				"col2": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"display": "inline-block",
+						"verticalAlign": "middle",
+						"width": "55%"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>公众号：秀米XIUMI</section>",
+							"style": {
+								"color": "white",
+								"textAlign": "right"
+							}
+						}
+					}, {
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>产品消息 | 交流 | 分享</section>",
+							"style": {
+								"textAlign": "right"
+							}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-58",
+			"name": "图文字1:1-2",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-03-58"
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"textAlign": "center"
+							}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-58-img0.png",
+							"style": {}
+						}
+					}]
+				},
+				"col2": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"display": "inline-block",
+						"verticalAlign": "middle",
+						"width": "45%",
+						"paddingRight": "10px"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:middleware/img-cropimg-bd",
+							"constraint": {
+								"opMenu": {},
+								"pose": {
+									"resize": "h"
+								},
+								"themeColors": ["_comp.aux.imgBdc1.value"]
+							},
+							"aux": {
+								"imgBdc1": {
+									"type": "color",
+									"value": "rgb(249, 110, 87)"
+								}
+							},
+							"pose": {},
+							"style": {
+								"textAlign": "right"
+							}
+						},
+						"c-img1": {
+							"type": "crop-image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-58-img2.jpg",
+							"style": {
+								"backgroundPosition": "center center",
+								"backgroundRepeat": "no-repeat",
+								"backgroundSize": "cover"
+							}
+						}
+					}]
+				},
+				"col3": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"display": "inline-block",
+						"verticalAlign": "middle",
+						"width": "55%"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>公众号：秀米XIUMI</section>",
+							"style": {
+								"color": "white",
+								"textAlign": "left"
+							}
+						}
+					}, {
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>产品消息 | 交流 | 分享</section>",
+							"style": {
+								"textAlign": "left"
+							}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-59-02",
+			"name": "大图竖排字",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"aux": {
+						"imgBdc1": {
+							"type": "color",
+							"value": "white"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0",
+						"textAlign": "center"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-03-59-02"
+				},
+				"c-img1": {
+					"type": "crop-image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-22-img1.jpg",
+					"style": {
+						"backgroundPosition": "center center",
+						"backgroundRepeat": "no-repeat",
+						"backgroundSize": "cover"
+					}
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"textAlign": "center"
+							}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-22-img0.jpg",
+							"style": {}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-59",
+			"name": "上下图",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"aux": {
+						"imgBdc1": {
+							"type": "color",
+							"value": "white"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0",
+						"textAlign": "center"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-03-59"
+				},
+				"c-img1": {
+					"type": "crop-image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-22-img1.jpg",
+					"style": {
+						"backgroundPosition": "center center",
+						"backgroundRepeat": "no-repeat",
+						"backgroundSize": "cover"
+					}
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {
+								"textAlign": "center"
+							}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-22-img0.jpg",
+							"style": {}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-61",
+			"name": "大图边框文字",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"tplId": "paper-cp:image/imgtxt-a-03-01",
+					"constraint": {
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					}
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"width": "100%",
+						"padding": "1em 0",
+						"backgroundColor": "rgb(249, 110, 87)",
+						"backgroundImage": "url(/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-61-img0.jpg)",
+						"backgroundPosition": "50.0000% 50.0000%",
+						"backgroundRepeat": "no-repeat",
+						"backgroundSize": "cover"
+					},
+					"items": [{
+						"_comp": {
+							"constraint": {
+								"layout": true,
+								"pose": {
+									"resize": "h"
+								},
+								"opMenu": {
+									"group-cell-merged": true
+								}
+							},
+							"pose": {
+								"position": "static",
+								"width": "100%",
+								"height": null
+							},
+							"style": {},
+							"tplId": "paper-cp:layout/row1-r1c1",
+							"aux": {}
+						},
+						"col1": {
+							"type": "group",
+							"constraint": {
+								"childLayout": "static"
+							},
+							"items": [],
+							"style": {}
+						}
+					}, {
+						"_comp": {
+							"constraint": {
+								"layout": true,
+								"pose": {
+									"resize": "h"
+								},
+								"opMenu": {
+									"group-cell-merged": true
+								}
+							},
+							"pose": {
+								"position": "static",
+								"width": "100%",
+								"height": null
+							},
+							"style": {},
+							"tplId": "paper-cp:layout/row1-r1c1",
+							"aux": {}
+						},
+						"col1": {
+							"type": "group",
+							"constraint": {
+								"childLayout": "static"
+							},
+							"items": [],
+							"style": {}
+						}
+					}, {
+						"_comp": {
+							"tplId": "paper-cp:middleware/009-bd-text",
+							"constraint": {
+								"opMenu": {},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"aux": {
+								"bdc1": {
+									"type": "color",
+									"value": "rgb(249, 110, 87)"
+								}
+							},
+							"pose": {},
+							"style": {
+								"padding": "10px",
+								"textAlign": "center"
+							}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>夏日风情</section>",
+							"style": {
+								"fontSize": "150%",
+								"color": "rgb(51, 124, 169)",
+								"margin": "0 -1.2em",
+								"padding": "3px 1.5em"
+							}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-62",
+			"name": "大图文字",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"tplId": "paper-cp:image/imgtxt-a-03-01",
+					"constraint": {
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					}
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"width": "100%",
+						"padding": "1em 10px",
+						"backgroundColor": "rgb(249, 110, 87)",
+						"backgroundImage": "url(/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-62-img0.jpg)",
+						"backgroundPosition": "50.0000% 50.0000%",
+						"backgroundRepeat": "no-repeat",
+						"backgroundSize": "cover"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>标题</section>",
+							"style": {
+								"fontSize": "120%",
+								"textAlign": "left"
+							}
+						}
+					}, {
+						"_comp": {
+							"tplId": "paper-cp:middleware/010-bd-text",
+							"constraint": {
+								"opMenu": {},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"aux": {
+								"bdc1": {
+									"type": "color",
+									"value": "black"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>输入文字输入文字</section>",
+							"style": {
+								"borderTopWidth": "2px",
+								"borderTopStyle": "solid"
+							}
+						}
+					}, {
+						"_comp": {
+							"constraint": {
+								"layout": true,
+								"pose": {
+									"resize": "h"
+								},
+								"opMenu": {
+									"group-cell-merged": true
+								}
+							},
+							"pose": {
+								"position": "static",
+								"width": "100%",
+								"height": null
+							},
+							"style": {},
+							"tplId": "paper-cp:layout/row1-r1c1",
+							"aux": {}
+						},
+						"col1": {
+							"type": "group",
+							"constraint": {
+								"childLayout": "static"
+							},
+							"items": [],
+							"style": {}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-63",
+			"name": "大图文字",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"tplId": "paper-cp:image/imgtxt-a-03-01",
+					"constraint": {
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					}
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"width": "100%",
+						"padding": "1em 10px",
+						"backgroundColor": "rgb(249, 110, 87)",
+						"backgroundImage": "url(/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-63-img0.jpg)",
+						"backgroundPosition": "50.0000% 50.0000%",
+						"backgroundRepeat": "no-repeat",
+						"backgroundSize": "cover"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>标题</section>",
+							"style": {
+								"fontSize": "120%",
+								"color": "rgb(164, 124, 98)",
+								"textAlign": "right"
+							}
+						}
+					}, {
+						"_comp": {
+							"tplId": "paper-cp:middleware/010-bd-text",
+							"constraint": {
+								"opMenu": {},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"aux": {
+								"bdc1": {
+									"type": "color",
+									"value": "rgb(164, 124, 98)"
+								}
+							},
+							"pose": {},
+							"style": {
+								"textAlign": "right"
+							}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>输入文字输入文字</section>",
+							"style": {
+								"color": "rgb(164, 124, 98)",
+								"borderTopWidth": "2px",
+								"borderTopStyle": "solid"
+							}
+						}
+					}, {
+						"_comp": {
+							"constraint": {
+								"layout": true,
+								"pose": {
+									"resize": "h"
+								},
+								"opMenu": {
+									"group-cell-merged": true
+								}
+							},
+							"pose": {
+								"position": "static",
+								"width": "100%",
+								"height": null
+							},
+							"style": {},
+							"tplId": "paper-cp:layout/row1-r1c1",
+							"aux": {}
+						},
+						"col1": {
+							"type": "group",
+							"constraint": {
+								"childLayout": "static"
+							},
+							"items": [],
+							"style": {}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-64",
+			"name": "左图右文字",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-03-64"
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"textAlign": "right"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-64-img0.jpg",
+							"style": {}
+						}
+					}]
+				},
+				"col2": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:middleware/011-bd-text-group",
+							"constraint": {
+								"opMenu": {},
+								"pose": {
+									"resize": "h"
+								},
+								"themeColors": ["_comp.aux.bgc1.value"]
+							},
+							"aux": {
+								"bdc1": {
+									"type": "color",
+									"value": "rgb(42, 118, 162)"
+								},
+								"bdc2": {
+									"type": "color",
+									"value": "rgb(254, 183, 182)"
+								}
+							},
+							"pose": {},
+							"style": {
+								"marginTop": "10px",
+								"marginBottom": "10px"
+							}
+						},
+						"col1": {
+							"type": "group",
+							"constraint": {
+								"childLayout": "static"
+							},
+							"style": {
+								"padding": "5px 0",
+								"width": "100%"
+							},
+							"items": [{
+								"_comp": {
+									"tplId": "paper-cp:header/1-txt-normal",
+									"constraint": {
+										"opMenu": {
+											"text-merged": true
+										},
+										"pose": {
+											"resize": "h"
+										}
+									},
+									"pose": {},
+									"style": {}
+								},
+								"txt1": {
+									"type": "text",
+									"text": "<section>输入文字输入文字输入文字输入文字输入文字输入文字输入文字输入文字</section>",
+									"style": {
+										"textAlign": "left"
+									}
+								}
+							}]
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-65",
+			"name": "左文字右图",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"tplId": "paper-cp:image/imgtxt-a-03-64",
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					}
+				},
+				"col2": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"textAlign": "left"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-64-img0.jpg",
+							"style": {}
+						}
+					}]
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:middleware/011-bd-text-group",
+							"constraint": {
+								"opMenu": {},
+								"pose": {
+									"resize": "h"
+								},
+								"themeColors": ["_comp.aux.bgc1.value"]
+							},
+							"aux": {
+								"bdc1": {
+									"type": "color",
+									"value": "rgb(42, 118, 162)"
+								},
+								"bdc2": {
+									"type": "color",
+									"value": "rgb(254, 183, 182)"
+								}
+							},
+							"pose": {},
+							"style": {
+								"marginTop": "10px",
+								"marginBottom": "10px"
+							}
+						},
+						"col1": {
+							"type": "group",
+							"constraint": {
+								"childLayout": "static"
+							},
+							"style": {
+								"padding": "5px 0",
+								"width": "100%"
+							},
+							"items": [{
+								"_comp": {
+									"tplId": "paper-cp:header/1-txt-normal",
+									"constraint": {
+										"opMenu": {
+											"text-merged": true
+										},
+										"pose": {
+											"resize": "h"
+										}
+									},
+									"pose": {},
+									"style": {}
+								},
+								"txt1": {
+									"type": "text",
+									"text": "<section>输入文字输入文字输入文字输入文字输入文字输入文字输入文字输入文字</section>",
+									"style": {
+										"textAlign": "left"
+									}
+								}
+							}]
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-66",
+			"name": "上下图 文字居中",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-03-66"
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"width": "50%",
+						"display": "inline-block",
+						"verticalAlign": "bottom",
+						"textAlign": "right"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-66-img0.jpg",
+							"style": {}
+						}
+					}]
+				},
+				"col2": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"width": "50%",
+						"display": "inline-block",
+						"verticalAlign": "bottom",
+						"textAlign": "left"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-66-img1.jpg",
+							"style": {}
+						}
+					}]
+				},
+				"col3": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:card/003-label-cd1-05",
+							"constraint": {
+								"pose": {
+									"resize": "h"
+								},
+								"themeColors": ["_comp.aux.bgc1.value"]
+							},
+							"style": {},
+							"aux": {
+								"bgc1": {
+									"type": "color",
+									"value": "rgb(249, 110, 87)"
+								},
+								"bdc1": {
+									"type": "color",
+									"value": "white"
+								}
+							}
+						},
+						"col1": {
+							"type": "group",
+							"constraint": {
+								"childLayout": "static"
+							},
+							"style": {
+								"white": "100%",
+								"padding": "10px",
+								"borderStyle": "solid",
+								"borderWidth": "2px"
+							},
+							"items": [{
+								"_comp": {
+									"tplId": "paper-cp:header/1-txt-normal",
+									"constraint": {
+										"opMenu": {
+											"text-merged": true
+										},
+										"pose": {
+											"resize": "h"
+										}
+									},
+									"pose": {},
+									"style": {}
+								},
+								"txt1": {
+									"type": "text",
+									"text": "<section>It's COFFEE TIME</section>",
+									"style": {
+										"color": "#ffffff",
+										"fontSize": "150%",
+										"textAlign": "center"
+									}
+								}
+							}]
+						}
+					}]
+				},
+				"col4": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"width": "50%",
+						"display": "inline-block",
+						"verticalAlign": "top",
+						"textAlign": "right"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-66-img2.jpg",
+							"style": {}
+						}
+					}]
+				},
+				"col5": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"width": "50%",
+						"display": "inline-block",
+						"verticalAlign": "top",
+						"textAlign": "left"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/img-autowidth",
+							"constraint": {
+								"opMenu": {
+									"crop-image-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-66-img3.jpg",
+							"style": {}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-69",
+			"name": "标签",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bgc1.value", "txt1.style.color"]
+					},
+					"aux": {
+						"bgc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-03-69"
+				},
+				"txt1": {
+					"type": "text",
+					"text": "<section>秀米XIUMI</section>",
+					"style": {
+						"fontSize": "150%",
+						"textAlign": "right",
+						"color": "rgb(249, 110, 87)"
+					}
+				},
+				"txt2": {
+					"type": "text",
+					"text": "<section>微信号：showme0225</section>",
+					"style": {}
+				},
+				"img1": {
+					"type": "image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/701-other/020-namecard-2-v1-img1.jpg",
+					"style": {}
+				},
+				"img2": {
+					"type": "image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-69-img1.png",
+					"style": {}
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>长按识别二维码关注我们</section>",
+							"style": {}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-70",
+			"name": "标签02",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bgc1.value", "txt1.style.color"]
+					},
+					"aux": {
+						"bgc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-03-70"
+				},
+				"txt1": {
+					"type": "text",
+					"text": "<section>RMB:299</section>",
+					"style": {
+						"fontSize": "150%",
+						"textAlign": "right",
+						"color": "rgb(249, 110, 87)"
+					}
+				},
+				"txt2": {
+					"type": "text",
+					"text": "<section>秀米</section>",
+					"style": {
+						"color": "transparent"
+					}
+				},
+				"img1": {
+					"type": "image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-70-img0.png",
+					"style": {}
+				},
+				"img2": {
+					"type": "image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-69-img1.png",
+					"style": {}
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>除了放二维码，还可以放png或好看的产品图片</section>",
+							"style": {}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-72-01",
+			"name": "03-72",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bgc1.value"]
+					},
+					"pose": {},
+					"aux": {
+						"bgc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"style": {
+						"marginTop": "35px",
+						"marginBottom": "15px"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-03-72-01"
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"padding": "10px"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>输入文字<br/>输入文字<br/>输入文字</section>",
+							"style": {
+								"textAlign": "left",
+								"color": "white"
+							}
+						}
+					}]
+				},
+				"col2": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"width": "50%"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/004-img-bd",
+							"constraint": {
+								"opMenu": {},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"aux": {
+								"imgBdc1": {
+									"type": "color",
+									"value": "white"
+								}
+							},
+							"pose": {
+								"transform": "rotateZ(5deg)"
+							},
+							"style": {}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/03-72-01-img0.jpg",
+							"style": {
+								"borderWidth": "8px",
+								"borderStyle": "solid",
+								"boxShadow": "2px 2px 5px #666"
+							}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-72-02",
+			"name": "03-72",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bgc1.value"]
+					},
+					"pose": {},
+					"aux": {
+						"bgc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"style": {
+						"marginTop": "35px",
+						"marginBottom": "15px"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-03-72-02"
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"padding": "10px 10px 10px 20px"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>输入文字<br/>输入文字<br/>输入文字</section>",
+							"style": {
+								"textAlign": "left",
+								"color": "white"
+							}
+						}
+					}]
+				},
+				"col2": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"width": "50%"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:image/004-img-bd",
+							"constraint": {
+								"opMenu": {},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"aux": {
+								"imgBdc1": {
+									"type": "color",
+									"value": "white"
+								}
+							},
+							"pose": {
+								"transform": "rotateZ(-5deg)"
+							},
+							"style": {}
+						},
+						"img1": {
+							"type": "image",
+							"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/03-72-02-img0.jpg",
+							"style": {
+								"borderWidth": "8px",
+								"borderStyle": "solid",
+								"boxShadow": "2px 2px 5px #666"
+							}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-73",
+			"name": "二维码",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bgc1.value", "_comp.aux.bdc1.value"]
+					},
+					"aux": {
+						"bgc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						},
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.8em 0 0.5em",
+						"textAlign": "center"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-03-73"
+				},
+				"img1": {
+					"type": "image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/701-other/020-namecard-2-v1-img1.jpg",
+					"style": {}
+				},
+				"txt1": {
+					"type": "text",
+					"text": "<section>长按二维码发现惊喜</section>",
+					"style": {}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-79",
+			"name": "3-79",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bgc1.value", "_comp.aux.bdc1.value"]
+					},
+					"aux": {
+						"bgc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						},
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-03-79"
+				},
+				"img1": {
+					"type": "image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-79-img0.jpg",
+					"style": {}
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字</section>",
+							"style": {}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-80",
+			"name": "3-79",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bgc1.value", "_comp.aux.bdc1.value"]
+					},
+					"aux": {
+						"bgc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						},
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-03-80"
+				},
+				"img1": {
+					"type": "image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/imgtxt-a-03-79-img0.jpg",
+					"style": {}
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>请输入文字请输入文字请输入文字请输入文字请输入文字请输入文字</section>",
+							"style": {}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-81",
+			"name": "3-81",
+			"version": "0.1",
+			"order": 1,
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						}
+					},
+					"aux": {
+						"bgc1": {
+							"type": "color",
+							"value": "white"
+						},
+						"bgc2": {
+							"type": "color",
+							"value": "#45536d"
+						}
+					},
+					"pose": {},
+					"style": {
+						"margin": "0.5em 0"
+					},
+					"tplId": "paper-cp:image/imgtxt-a-03-81"
+				},
+				"c-img1": {
+					"type": "crop-image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/v5paper-81-img0.jpg",
+					"style": {
+						"backgroundPosition": "center center",
+						"backgroundRepeat": "no-repeat",
+						"backgroundSize": "cover"
+					}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-82",
+			"name": "03-82",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bgc1.value"]
+					},
+					"pose": {},
+					"style": {
+						"marginTop": "10px",
+						"marginBottom": "10px"
+					},
+					"aux": {
+						"bgc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"tplId": "paper-cp:image/imgtxt-a-03-82"
+				},
+				"img1": {
+					"type": "image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/v5paper-82-img0.jpg",
+					"style": {}
+				},
+				"row1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static",
+						"bgEditingType": "none"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>摘要</section>",
+							"style": {
+								"fontSize": "150%",
+								"color": "white"
+							}
+						}
+					}],
+					"style": {}
+				},
+				"r2c1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section >输入文字输入文字输入文字输入文字输入文字输入文字输入文字输入文字输入文字输入文字输入文字输入文字输入文字</section>",
+							"style": {}
+						}
+					}],
+					"style": {}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-83",
+			"name": "03-83",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bdc1.value"]
+					},
+					"pose": {},
+					"style": {
+						"textAlign": "center"
+					},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"tplId": "paper-cp:image/imgtxt-a-03-83"
+				},
+				"img1": {
+					"type": "image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/110-image/v5paper-83-img0.jpg",
+					"style": {}
+				},
+				"col1": {
+					"type": "group",
+					"constraint": {
+						"childLayout": "static"
+					},
+					"style": {
+						"padding": "5px 10px"
+					},
+					"items": [{
+						"_comp": {
+							"tplId": "paper-cp:header/1-txt-normal",
+							"constraint": {
+								"opMenu": {
+									"text-merged": true
+								},
+								"pose": {
+									"resize": "h"
+								}
+							},
+							"pose": {},
+							"style": {}
+						},
+						"txt1": {
+							"type": "text",
+							"text": "<section>输入文字输入文字输入文字输入文字输入文字输入文字输入文字输入文字</section>",
+							"style": {
+								"textAlign": "left"
+							}
+						}
+					}]
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-85",
+			"name": "03-85",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bdc1.value"]
+					},
+					"pose": {},
+					"style": {
+						"marginTop": "10px",
+						"marginBottom": "10px"
+					},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						}
+					},
+					"tplId": "paper-cp:image/imgtxt-a-03-85"
+				},
+				"img1": {
+					"type": "image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/202-cardheader/d19-card-text-img0.jpg",
+					"style": {}
+				},
+				"txt1": {
+					"type": "text",
+					"text": "<section >产品推介</section>",
+					"style": {
+						"color": "white"
+					}
+				}
+			}
+		}, {
+			"tplId": "paper-cp:image/imgtxt-a-03-86",
+			"name": "03-86",
+			"version": "0.1",
+			"order": 1,
+			"hideForBooklet": "true",
+			"matrix": {
+				"_comp": {
+					"constraint": {
+						"opMenu": {},
+						"pose": {
+							"resize": "h"
+						},
+						"themeColors": ["_comp.aux.bdc1.value", "_comp.aux.bdc2.value"]
+					},
+					"pose": {},
+					"style": {
+						"marginTop": "10px",
+						"marginBottom": "10px"
+					},
+					"aux": {
+						"bdc1": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						},
+						"bgc1": {
+							"type": "color",
+							"value": "transparent"
+						},
+						"bdc2": {
+							"type": "color",
+							"value": "rgb(249, 110, 87)"
+						},
+						"bgc2": {
+							"type": "color",
+							"value": "transparent"
+						}
+					},
+					"tplId": "paper-cp:image/imgtxt-a-03-86"
+				},
+				"img1": {
+					"type": "image",
+					"src": "/hjnwx/asset/js/wxeditor/images/templates-assets/parts/202-cardheader/d20-card-text-img0.jpg",
+					"style": {}
+				},
+				"txt1": {
+					"type": "text",
+					"text": "<section >照片描述</section>",
+					"style": {}
+				}
+			}
+		}]
+	}
+}

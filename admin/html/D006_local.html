@@ -1,0 +1,367 @@
+{% extends "base_local.html" %}
+	
+{% block html_local %}
+<style>
+.btn-file {  /*  上传按钮*/
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    rightright: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: rightright;
+    filter: alpha(opacity = 0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+</style>
+<table class="tb single-table" style="width:80%">
+	<tr>
+		<td width="90">
+			<label for="">发布单号</label>
+			<input type="hidden" name="item_id" value="{{item.v_code}}">
+		</td>
+		<td>
+			{% if hidden.mode == 'add'%}自动生成{%else%}{{item.v_code}}{%endif%}
+		</td>
+	</tr>
+	<tr>
+		<td width="90">
+			<label for="">图片上传</label>
+		</td>
+		<td>	
+       <span class="btn btn-success btn-file"> 选择图片
+		   <i class="fa fa-picture-o" aria-hidden="true"></i>
+		   <input type="file" name="file_url" value="" id=""  />
+	   </span>
+		</td>
+	</tr>
+	<tr>
+		<td width="90">
+			<label for="">商品图片</label>
+		</td>
+		<td>
+			<img src="resource/tpgl/{{item.v_code}}.{{item.pic}}" alt="还未上传" width="200px" height="200px" id="img" />
+		</td>
+	</tr>
+	<tr>
+		<td width="90">
+			<label for="">活动名称</label>
+		</td>
+		<td colspan="3">
+			<input type="text" class="form-control" style="width:650px;" name="cname" value="{{item.cname}}" maxlength="60"/>
+		</td>
+	</tr>
+	<tr>
+		
+		<td width="100">
+			<label for="">是否开启</label>
+		</td>
+		<td>
+			<input type="checkbox" name="cstatus" {%if item.cstatus==1%}checked="checked"{%endif%} value="1"/>
+		</td>
+		<td width="100">
+			<label for="">每人每天持票数</label>
+		</td>
+		<td colspan="3">
+			<input type="number" class="form-control" name="alltimes" min="0" value="{{item.alltimes}}"/>&nbsp;<font style="color:#ff0000;">每人每天可以投的总票数;每个作品只能投一票。</font>
+		</td>
+	</tr>
+	<tr>
+		<td width="100">
+			<label for="">报名开始时间</label>
+		</td>
+		<td>
+			<input type="text" class="form-control" onCLick = "setdatetime(this)" name="btime" value="{{item.btime}}" readonly="readonly"/>
+		</td>
+		<td width="90">
+			<label for="">报名结束时间</label>
+		</td>
+		<td>
+			<input type="text" class="form-control" onCLick = "setdatetime(this)" name="etime" value="{{item.endtime}}" readonly="readonly"/>
+		</td>
+		
+	</tr>
+	<tr>
+		<td width="100">
+			<label for="">投票开始时间</label>
+		</td>
+		<td>
+			<input type="text" class="form-control" onCLick = "setdatetime(this)" name="tstime" value="{{item.tstime}}" readonly="readonly"/>&nbsp;&nbsp;
+		</td>
+		<td width="90">
+			<label for="">投票结束时间</label>
+		</td>
+		<td>
+			<input type="text" class="form-control" onCLick = "setdatetime(this)" name="tetime" value="{{item.tetime}}" readonly="readonly"/>&nbsp;&nbsp;
+		</td>
+		
+	</tr>
+	<tr>
+		<td width="100">
+			<label for="">活动说明1</label>
+		</td>
+		<td colspan="3">
+			<textarea class="form-control" style="width:650px;" rows = '10' name="memo"  placeholder="请输入300字内活动说明"maxlength="600"/>{{item.memo}}</textarea>
+	</tr>
+	<tr>
+		<td width="100">
+			<label for="">活动说明2</label>
+		</td>
+		<td colspan="3">
+			<a href="javascript:void(0);" onClick="showXME();">编辑</a>
+		</td>
+	</tr>
+	
+</table>
+<section class="panel panel-default">
+	<div class="title_comm" style="width:900px;"><span class="block_blue"></span><b style="color:#333333;">奖品明细表</b>
+	<input type="hidden" name="SelRow" value="">
+	{% if hidden.mode !='view' %}
+		{% if hidden.mode == 'add' and hidden.pk == '' %}
+			<img src="asset/images/add.png" onclick="addtr()" style="width:22px;height:22px;float:right;">
+		{%else%}
+			{% if item.cstatus == 1 or item.csetime != '' %}&nbsp;{%else%}<img src="asset/images/add.png" onclick="addtr()" style="width:22px;height:22px;float:right;">{%endif%}
+		{%endif%}
+	{% endif %}
+	</div>
+		<table id = "matListTable" class="list-table detail-list-tb" style="width:900px;">
+		<thead>
+			<tr>
+				<th width="20%" style="text-align:center;">
+					<label for="">货号</label>
+				</th>
+				<th width="25%" style="text-align:center;">
+					<label for="">条码</label>
+				</th>
+				<th width="45%" style="text-align:center;">
+					<label for="">商品名称</label>
+				</th>
+				<th width="10%" style="text-align:center;">
+					<label for="">排序</label>
+				</th>
+			</tr>
+		</thead>
+		<tbody class="add_list">
+			{% if hidden.mode == 'add' and hidden.pk == '' %}
+				<tr class="clone list-tr">
+					<td >
+						<input type="hidden" name="id" value=""/>
+						<input type="text" class="form-control"  name="item_id1" value="" readonly="readonly" onClick="SelectRows(this)" style="width:170px;"/>
+					</td>
+					<td >
+						<input type="text" class="form-control"  name="tm" value="" readonly="readonly" onClick="SelectRows(this)" style="width:185px;"/>
+					</td>
+					<td >
+						<input type="text" class="form-control"  name="itname" value=""  style="width:365px;"/>
+					</td>
+					<td >
+						<input type="number" class="form-control"  min="0" name="sort" value="0" style="width:80px;text-align:right;"/>
+					</td>
+				</tr>
+			{% else %}
+				{% for e in itemlist%}
+				<tr {%if loop.index0 == 0 %} class="clone list-tr"{%else%}class="list-tr" {%endif%} >
+					<td >
+						<input type="hidden" name="id" value="{{e[0]}}"/>
+						<input type="text" class="form-control"  name="item_id1" value="{%if e[1] == 0 %}{%else%}{{e[1]}}{%endif%}" readonly="readonly" style="width:170px;" onClick="SelectRows(this)"/>
+					</td>
+					<td >
+						<input type="text" class="form-control"  name="tm" value="{{e[2]}}" readonly="readonly" style="width:185px;" onClick="SelectRows(this)" />
+					</td>
+					<td >
+						<input type="text" class="form-control"  name="itname" value="{{e[3]}}"  {%if item.cstatus == 1 or item.csetime != '' %}readonly {%endif%} style="width:365px;"/>
+					</td>
+					<td >
+						<input type="number" class="form-control"  min="0" name="sort" value="{{e[4]}}" style="width:80px;;text-align:right;"/>
+					</td>
+				</tr>
+				{% endfor%}
+		   {%endif%}
+	
+		</tbody>
+	</table>
+</section>
+{{Rmselect}}
+{% endblock %}
+
+{% block page_script %}
+<script>
+function setdatetime(obj){
+	return WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'});
+}
+function setdate(obj){
+	return WdatePicker({dateFmt:'yyyy-MM-dd'});
+}
+function formcheck_2(form){
+	cstatus =  $('input[name="cstatus"]').is(":checked");
+	btime = $('input[name="btime"]').val();
+	etime = $('input[name="etime"]').val();
+	cname = $('input[name="cname"]').val();
+	tstime = $('input[name="tstime"]').val();
+	tetime = $('input[name="tetime"]').val();
+	if (cname == '')
+	{
+		layer.alert('请填写完整活动名称');
+		return false;
+	}
+	if (cstatus)
+    {	
+		if (btime == '' || etime == '')
+		{
+			layer.alert('请填写完整活动时间');
+			return false;
+		}
+		if (btime > etime)
+		{	
+			layer.alert('报名开始时间不能大于报名结束时间');
+			return false;
+		}
+
+		if (tstime < btime)
+		{
+			layer.alert('投票开始时间不能小于报名开始时间');
+			return false;
+		}
+
+		if (tetime < etime)
+		{
+			layer.alert('投票结束时间不能小于报名结束时间');
+			return false;
+		}
+
+		if (tetime < btime)
+		{
+			layer.alert('投票结束时间不能小于报名开始日期');
+			return false;
+		}
+
+		if (tetime < tstime )
+		{
+			layer.alert('投票结束时间不能小于投票开始时间');
+			return false;
+		}
+		
+    }
+	a = 0;
+	$('input[name="itname"]').each(
+		function(){
+			var val = $(this).val();
+			if (val != '')
+			{
+				a+=1;
+			}
+		}
+	);
+
+	if (a == 0)
+	{
+		layer.alert('至少填写一个明细');
+		return false;
+	}
+	return true;
+	
+}
+
+function addtr(){
+	var tr = $(".detail-list-tb").find(".clone").clone();
+	tr.removeClass("clone").removeClass("active").addClass("paste");
+	tr.find("input").val('');
+	tr.find("option").removeAttr("selected");
+	tr.find("input[name=itname]").removeAttr("readonly");
+	tr.find("input[name=amount]").removeAttr("readonly");
+	$(tr.find("td")[8]).html('&nbsp;');
+	tr.click(function(){
+		$(".detail-list-tb .list-tr").removeClass("active");	
+		$(this).addClass("active");
+		$("input[name=SelRow]").val(parseInt($(this).index()));
+	});
+	$(".detail-list-tb").append(tr);
+}
+
+function deltr(){
+	if ($("input[name=SelRow]").val() == 0)
+	{
+		layer.alert("此行不能删除！");
+	}
+	if($(".detail-list-tb .list-tr .active").length == 0){
+		layer.alert("请先选择要删去的列");
+		return;
+	}
+	if ($(".detail-list-tb .list-tr").length == 1)
+	{
+		layer.alert("明细至少要保留一列数据");
+		return;
+	}
+	$(".detail-list-tb .list-tr.active").remove();
+}
+
+function SelectRows(obj){
+	tr = $(obj).parent().parent();
+	tr_index = tr.index();
+	$("input[name=SelRow]").val(tr_index);
+	var typev = $('select[name=nvtype]').eq(tr_index).val();
+
+	var chg = $("input[name=chg]").eq(tr_index).val();
+	if (chg == 1)
+	{
+		layer.alert("已发布不能修改");
+		return false;
+	}
+
+	else {
+		rt_loadUsersList('');
+		return true;
+	}
+}
+
+var XME_id='{{item.XME_id}}'.toString();
+function getXME_id(){
+	$.ajax({
+		url: 'admin?viewid=A004&part=getXME_id&pk={{item.v_code}}',
+		async:false,
+		success: function(data){
+			if (data=='"new"') { data='new'.toString()}
+			XME_id=data;
+		}
+	});
+}
+
+function showXME(){
+	getXME_id();
+	layer.open({
+		type: 2,
+		title: '投票活动：{{item.cname}}',
+		shadeClose: true,
+		shade: 0.8,
+		area: ['90%', '90%'],
+		content: 'asset/js/wxeditor/index_A004.html#/for/'+XME_id.toString()
+	});
+}
+
+
+$(function(){
+	$(".detail-list-tb .list-tr").click(function(){
+		$(".detail-list-tb .list-tr").removeClass("active");	
+		$(this).addClass("active");
+		$("input[name=SelRow]").val(parseInt($(this).index()));
+	});
+
+	$("#setgq").click(function(){
+		$("input[name=edtime]").val("2099-12-31 12:59:59.000");
+	});
+}
+)
+</script>
+
+{% endblock %}
+{% block javascript %}
+{% endblock %}       
+            

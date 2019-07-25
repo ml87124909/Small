@@ -1,0 +1,465 @@
+{% extends "shop_base.html" %}
+
+{% block contentpanel %}
+<div class="wrapper wrapper-content">
+        <div class="row">
+            {{html_hidden}}
+			<div class="col-sm-10">
+                <div class="row">
+                    <div class="col-sm-12" >
+                        <button class="btn btn-info btn-sm"  type="button" onclick="main_shop()">
+                            <i class="fa fa-plus">创建店铺</i>
+                        </button>
+                    </div>
+                    <br><br>
+                    {%for a in applet%}
+					<div class="col-sm-4" onclick="set_shopid('{{a[0]}}')">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-content">
+                                <h2>
+                                    我的小程序{{a[0]}}<br>
+                                </h2>
+                                <p>
+                                    {{a[1]}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {%endfor%}
+
+				</div>
+			</div>
+			<div class="col-sm-2">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title" style="border-bottom:none;background:#fff;">
+						<h5>码力小店官方交流群</h5>
+                    </div>
+                    <div class="ibox-content" style="border-top:none;">
+                        <div class="wechat-group">
+							<img class="code" src="https://www.maliapi.com/img/qrcode/wechat.jpg" />
+							<div class="text">扫码添加客服微信<br/>交流更多开店知识</div>
+						</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+<style>
+.h2{
+	font-size:28px;
+	font-weight:300;
+}
+.btn-item {
+    color: red;
+    background-color: #ffffff;
+    border-color: red;
+}
+.oss_vip{
+	width: 110px;
+	height: 32px;
+	background-color: #3388ff;
+	border: 0;
+	color: #fff;
+	font-weight: normal;
+	border-radius: 100px;
+	line-height: 32px;
+	outline:none;
+}
+.ibox-sale-box{
+	border-top: none; 
+	height: 258px; 
+	box-shadow: 0 1px 1px rgba(0, 0, 0, .05); 
+	padding: 0;
+}
+.ibox-sale-box .sale-box{
+	display: flex;
+	border-bottom: 1px solid #f0f3f4;
+}
+.ibox-sale-box .sale-box .sale-box-header{
+	flex: 0 0 50%;
+	border-right: 1px solid #f0f3f4;
+	padding-bottom: 15px;
+}
+.ibox-sale-box .sale-box .sale-box-right{
+	border-right:none;
+}
+.ibox-sale-box .sale-box .sale-box-header .sale-name{
+	width: 90%;
+	margin: 0 auto;
+	height: 40px;
+	line-height: 45px;
+}
+.ibox-sale-box .sale-box .sale-box-header .sale-number{
+	color: #de6360;
+	font-size: 32px;
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom: 5px;
+}
+.ibox-sale-box .sale-box .sale-box-header .sale-text{
+	color: #999;
+	font-size: 12px;
+	text-align: center;
+}
+.ibox-sale-box marquee{
+	height: 40px;
+	display: flex;
+	align-items: center;
+	border-bottom: 1px solid #f0f3f4;
+}
+.ibox-sale-box .sale-center{
+	display: flex;
+	height: 85px;
+	align-items: center;
+	justify-content: center;
+}
+.ibox-sale-box .sale-center .sale-center-flex{
+	flex: 0 0 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.ibox-sale-box .sale-center .sale-center-flex .sale-center-vip{
+	width: 110px;
+	height: 32px;
+	background-color: #27c24c;
+	border: 0;
+	color: #fff;
+	font-weight: normal;
+	border-radius: 100px;
+	line-height: 32px;
+	outline:none;
+}
+
+.shop-price{
+	height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.shop-price .show-price-box{
+    border: 1px solid #f5f5f5;
+    box-shadow: 0 0 12px #f5f5f5;
+	border-radius: 5px;
+	padding-bottom: 20px;
+	cursor: pointer;
+	position: relative;
+}
+.shop-price .show-price-header{
+	text-align: center;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+    font-size: 14px;
+}
+.shop-price .show-price-number{
+	border-top: 1px solid #f2f2f2;
+    width: 80%;
+    margin: 0 auto;
+    height: 60px;
+    font-size: 36px;
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #27c24c;
+}
+.shop-price .show-price-oss-number{
+	color: #3388ff;
+}
+.shop-price .show-price-text{
+	border-bottom: 1px solid #f2f2f2;
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+    font-size: 10px;
+    color: #999;
+    margin-top: -5px;
+    padding-bottom: 15px;
+    font-weight: 300;
+}
+.shop-price .show-price-info{
+	width: 85%;
+    margin: 0 auto;
+    margin-top: 10px;
+    text-align: center;
+    color: #666;
+    font-size: 12px;
+}
+.layui-layer-molv .layui-layer-title {
+    background: #27c24c;
+}
+.layui-layer-lan .layui-layer-title {
+    background: #3388ff;
+}
+.layui-layer-lan .layui-layer-btn a {
+    background: #3388ff;
+    border: none;
+}
+.layui-layer-molv .layui-layer-btn a {
+	background: #27c24c;
+	border: none;
+}
+</style>
+<script>
+function main_shop(){
+    window.location.href='admin?viewid=shop&part=shop_add';
+
+}
+function set_shopid(shop_id){
+    $('input[name=shop_id]').val(shop_id);
+     window.location.href='admin?viewid=home&shop_id='+shop_id;
+
+}
+function upgrade_oss(){
+		itemvip=''
+		$.ajax({
+				url:sUrl+"&part=vip_oss",
+				async:false,
+				success: function(data){
+					if (data.code=='0'){
+						itemvip=data.data
+					}
+				}
+			});
+
+		if (itemvip!=''){
+
+			lenl=itemvip.length
+			if (lenl==1){
+				cl=12
+				lc=4
+			}else if(lenl==2){
+				cl=6
+				lc=6
+			}else{
+				cl=4
+				lc=12
+			}
+
+		content_html='<div class="col-sm-12 shop-price">';
+		for (var i=0;i<lenl;i++){
+			content_html+='<div class="col-sm-'+cl+'">';
+			content_html+='<div class="show-price-box" onclick="set_oss('+itemvip[i]['id']+')" id="v_'+itemvip[i]['id']+'">';
+			content_html+='<div class="show-price-header">存储'+itemvip[i]['name']+'M</div>';
+			content_html+='<div class="show-price-number show-price-oss-number"><text>¥</text>'+itemvip[i]['price']+'</div>';
+			content_html+='<div class="show-price-text">有效期：'+itemvip[i]['day']+'天</div>';
+			content_html+='<div class="show-price-info">注：存储到期后30天内不续费空间将被释放，数据不能在找回</div>';
+			content_html+='<input type="hidden" class="form-control"  name="oss_flag" value=""/>';
+			content_html+='</div>';
+			content_html+='</div>';
+		}
+		content_html+='</div>';
+		layer.open({
+			type: 1,
+			skin: 'layui-layer-lan', //加上边框
+			area: ['45rem;', '35rem;'], //宽高
+			content: content_html,
+			title: "选择要购买的存储包",
+			btn: ['确认购买']
+			,yes: function(index, layero){
+			   var oss_flag = $('input[name=oss_flag]').val();
+
+			   if(oss_flag==''){
+				 layer.msg('请选择套餐！');
+				 return false;
+			   }
+
+			   $.ajax({
+					url:sUrl+"&part=buy_oss&oss_flag="+oss_flag,
+					async:false,
+					success: function(data){
+
+						if (data.code=='0'){
+							layer.close(index);
+							//layer.msg(data.MSG);
+							//window.open(data.url);
+							window.location.href=data.url
+
+						}else{
+							 layer.msg(data.MSG);
+						}
+					}
+				});
+			 }
+		});
+		}else{
+			layer.msg('VIP套餐还没有设置好，请等待或者联系管理员');
+		}
+	}
+
+	function upgrade_vip(){
+		itemvip=''
+		$.ajax({
+				url:sUrl+"&part=vip_db",
+				async:false,
+				success: function(data){
+					if (data.code=='0'){
+						itemvip=data.data
+					}
+
+				}
+			});
+
+		if (itemvip!=''){
+
+		lenl=itemvip.length
+		if (lenl==1){
+			cl=12
+			lc=4
+		}else if(lenl==2){
+			cl=6
+			lc=6
+		}else{
+			cl=4
+			lc=12
+		}
+		content_html='<div class="col-sm-12 shop-price">';
+		for (var i=0;i<lenl;i++){
+			content_html+='<div class="col-sm-'+cl+'">';
+			content_html+='<div class="show-price-box" onclick="set_vip('+itemvip[i]['id']+')" id="v_'+itemvip[i]['id']+'">';
+			content_html+='<div class="show-price-header">'+itemvip[i]['name']+'</div>';
+			content_html+='<div class="show-price-number"><text>¥</text>'+itemvip[i]['price']+'</div>';
+			content_html+='<div class="show-price-text">有效期：'+itemvip[i]['day']+'天</div>';
+			content_html+='<div class="show-price-info">'+itemvip[i]['txt']+'</div>';
+			content_html+='<input type="hidden" class="form-control"  name="vip_flag" value=""/>';
+			content_html+='</div>';
+			content_html+='</div>';
+		}
+		content_html+='</div>';
+		layer.open({
+			type: 1,
+			skin: 'layui-layer-molv', //加上边框
+			area: ['45rem;', '35rem;'], //宽高
+			content: content_html,
+			title: "选择要购买的套餐",
+			btn: ['确认购买']
+			,yes: function(index, layero){
+			   var vip_flag = $('input[name=vip_flag]').val();
+
+			   if(vip_flag==''){
+				 layer.msg('请选择套餐！');
+				 return false;
+			   }
+
+			   $.ajax({
+					url:sUrl+"&part=buy_vip&vip_flag="+vip_flag,
+					async:false,
+					success: function(data){
+						if (data.code=='0'){
+							layer.close(index);
+							//layer.msg(data.MSG);
+							//window.open(data.url);
+							window.location.href=data.url
+
+						}else{
+							 layer.msg(data.MSG);
+						}
+					}
+				});
+			 }
+		});
+		}else{
+			layer.msg('VIP套餐还没有设置好，请等待或者联系管理员');
+		}
+	}
+	function set_vip(obj){
+		if (obj=='1'){
+			$("#v_1").css({"border":"1px solid #27c24c","box-shadow":"0 0 12px #27c24c17"});
+			$("#v_2").css({"border":"1px solid #f5f5f5","box-shadow":"0 0 12px #f5f5f5"});
+			$("#v_3").css({"border":"1px solid #f5f5f5","box-shadow":"0 0 12px #f5f5f5"});
+			$('input[name=vip_flag]').val('1');
+		}else if(obj=='2'){
+			$("#v_2").css({"border":"1px solid #27c24c","box-shadow":"0 0 12px #27c24c17"});
+			$("#v_3").css({"border":"1px solid #f5f5f5","box-shadow":"0 0 12px #f5f5f5"});
+			$("#v_1").css({"border":"1px solid #f5f5f5","box-shadow":"0 0 12px #f5f5f5"});
+			$('input[name=vip_flag]').val('2');
+		}else{
+			$("#v_3").css({"border":"1px solid #27c24c","box-shadow":"0 0 12px #27c24c17"});
+			$("#v_1").css({"border":"1px solid #f5f5f5","box-shadow":"0 0 12px #f5f5f5"});
+			$("#v_2").css({"border":"1px solid #f5f5f5","box-shadow":"0 0 12px #f5f5f5"});
+			$('input[name=vip_flag]').val('3');
+		}
+
+	}
+
+	function set_oss(obj){
+		if (obj=='4'){
+			$("#v_4").css({"border":"1px solid #3388ff","box-shadow":"0 0 12px #3388ff21"});
+			$("#v_5").css({"border":"1px solid #f5f5f5","box-shadow":"0 0 12px #f5f5f5"});
+			$("#v_6").css({"border":"1px solid #f5f5f5","box-shadow":"0 0 12px #f5f5f5"});
+			$('input[name=oss_flag]').val('4');
+		}else if(obj=='5'){
+			$("#v_5").css({"border":"1px solid #3388ff","box-shadow":"0 0 12px #3388ff21"});
+			$("#v_6").css({"border":"1px solid #f5f5f5","box-shadow":"0 0 12px #f5f5f5"});
+			$("#v_4").css({"border":"1px solid #f5f5f5","box-shadow":"0 0 12px #f5f5f5"});
+			$('input[name=oss_flag]').val('5');
+		}else{
+			$("#v_6").css({"border":"1px solid #3388ff","box-shadow":"0 0 12px #3388ff21"});
+			$("#v_4").css({"border":"1px solid #f5f5f5","box-shadow":"0 0 12px #f5f5f5"});
+			$("#v_5").css({"border":"1px solid #f5f5f5","box-shadow":"0 0 12px #f5f5f5"});
+			$('input[name=oss_flag]').val('6');
+		}
+
+	}
+
+	function show_vip(){
+		window.open('https://www.maliapi.com/#price');
+	}
+	function insert(){
+		//layer.msg('正在开发……');
+
+		content_html='<br><br><div class="col-sm-12">';
+		content_html+='<label class="col-sm-4 control-label"><b style="color:#333333;">小程序appid:</b></label>';
+		content_html+='<div class="col-sm-8">';
+		content_html+=' <input type="text" class="form-control"  name="appid" value=""/>';
+		content_html+='</div></div><br><br>';
+		content_html+='<div class="col-sm-12">';
+		content_html+='<label class="col-sm-4 control-label"><b style="color:#333333;">小程序secret:</b></label>';
+		content_html+=' <div class="col-sm-8">';
+		content_html+=' <input type="text" class="form-control"  name="secret" value=""/>';
+		content_html+='</div></div><br><br>';
+
+		layer.open({
+			type: 1,
+			skin: 'layui-layer-rim', //加上边框
+			area: ['35rem;', '20rem;'], //宽高
+			content: content_html,
+			title: "填写小程序基本信息",
+			btn: ['提交']
+			,yes: function(index, layero){
+			   var appid = $('input[name=appid]').val();
+			   var secret = $('input[name=secret]').val();
+
+			   if(appid==''){
+				 layer.msg('小程序appid不能为空');
+				 return false;
+			   }
+			   if(secret==''){
+				 layer.msg('小程序secret不能为空');
+				 return false;
+			   }
+			   $.ajax({
+					url:sUrl+"&part=sync&appid="+appid+"&secret="+secret,
+					async:false,
+					success: function(data){
+						if (data.code=='0'){
+							layer.close(index);
+							layer.msg(data.MSG);
+							location.reload();
+						}else{
+							 layer.msg(data.MSG);
+						}
+					}
+				});
+			 }
+		});
+
+	}
+</script>
+{% endblock %}
+			
+
+

@@ -1,0 +1,31 @@
+.container-login{background:url(../images/bottom.jpg) no-repeat bottom;background-size:100%;}
+.login-frm{width:74%;margin:10px auto 0;position:relative;background:#fff;}
+.txtinput{position:absolute;border:none;width:95%;height:38%;padding-left:16%;}
+.input-1{background:url(../images/input-1.jpg) no-repeat;background-size:100%;    top: 10%;
+    left: 3%;}
+
+
+.input-2{background:url(../images/input-2.jpg) no-repeat;background-size:100%;    top: 55%;
+    left: 3%;}
+
+.forget-psw{width:74%;margin:5px auto 0;text-align:right;font-size:12px;}
+.login-btn-frm{width:74%;margin:5% auto 0;}
+
+.wbsl{
+	width:100%;
+	border:none;
+	text-align:center;
+	font-size:12px;
+}
+.textInput{
+	border:none;border-bottom: 2px solid #d5d5d5;width: 90%;margin-left:5%;
+}
+
+.bggreyblue{background:#f2f6f9;}
+.bgtitle{background:#d8ebfb;color:#333333;font-size:24px;}
+.bgbc{background:#fae9d5;color:#333333;font-size:24px;}
+.bgbcselect{background:#036db7;}
+.duty_title{height:50px;background:#ffffff;padding-top:5px;}
+.duty_title div{float:left;display:inline-block;height:45px;line-height:45px;padding:0px 5px; border-radius:10px 10px 0px 0px;min-width:60px;text-align:center;}
+.dutysel{border:none;font-size:24px;color:#ffffff;background:none;vertical-align: middle;}
+.dutysel option{background:#036db7;border:none;}

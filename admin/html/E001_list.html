@@ -1,0 +1,603 @@
+{% extends "main_mul.html" %}
+{% block topSearch %}
+<table class="table table-bordered tb searchtbl">
+    <tbody>
+        <tr>
+            <th width="200" style="font-size:14px;">订单搜索:</th>
+            <td width="200">
+                <select name="ctype" class="form-control" >
+                    <option value="0"{{' selected="selected"' if '0' == ctype}}>订单号</option>
+                    <option value="1"{{' selected="selected"' if '1' == ctype}}>收货人姓名</option>
+                    <option value="2"{{' selected="selected"' if '2' == ctype}}>收货人手机号</option>
+                    <option value="3"{{' selected="selected"' if '3' == ctype}}>买家手机号</option>
+                    <option value="4" {{
+                    ' selected="selected"' if '4' == ctype}}>微信昵称</option>
+                </select>
+            </td>
+            <td width="200">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="qqid" value="{{qqid}}" />
+                </div>
+            </td>
+            <td></td>
+        </tr>
+
+		<tr>
+            <th style="font-size:14px;">下单时间:</th>
+            <td >
+                <input type="text" class="form-control" style="width:90%" name="sdate" value="{{sdate}}" onclick="setdaytime(this)"/>至
+            </td>
+            <td >
+                <input type="text" class="form-control" style="width:90%" name="edate" value="{{edate}}" onclick="setdaytime(this)"/>
+            </td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td colspan="6">
+                {% if lR[0] != '1' %}
+                 <button class="btn btn-info btn-sm" type="button" onclick="main_search()"><i class="fa fa-search"></i> 搜索</button>
+                <button type="button" class="btn btn-success btn-sm" onclick="main_excel()"><i
+                        class="fa fa-download"></i>
+                    导出发货excel
+                </button>
+
+                <button type="button" class="btn btn-success btn-sm" onclick="add_excel()"><i class="fa fa-upload"></i>
+                    导入发货excel
+                </button>
+                <a href="/static/asset/Template.xlsx">下载导入发货excel模板</a>
+                <button type="button" class="btn btn-success btn-sm" onclick="main_excel_all()"><i
+                        class="fa fa-download"></i>
+                    导出当前excel
+                </button>
+                {% endif %}
+            </td>
+
+        </tr>
+
+
+
+    </tbody>
+
+</table>
+{% endblock %}
+
+{% block mMul_Page_tabs %}
+<div class="row">
+	<div class="col-sm-12">
+		<div class="ibox">
+
+			<div class="ibox-content">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="panel panel-default">
+                                <div class="panel-heading" style="height:50px;">
+                                    <div class="row" >
+                                        <div class="col-sm-12 " >
+                                        {%for n in NL[1:]%}
+                                        <label class="col-sm-{{n[1]}} control-label"><b style="color:#333333;">{{n[0]}}</b></label>
+                                        {%endfor%}
+                                        <label class="col-sm-1 control-label"><b style="color:#333333;">操作</b></label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				{% for row in dataList %}
+                    <!--div class="row">
+                        <div class="col-sm-12">
+							<div class="panel panel-default">
+								<div class="panel-heading" style="height:30px;">
+									 <label class="col-sm-3 control-label">订单号：{{row[2]}}</label>
+                                     <label class="col-sm-3 control-label">下单时间：{{row[9]}}</b></label>
+								</div>
+                            </div>
+                        </div>
+                    </div-->{#{{row}}#}
+					<div class="row">
+						<div class="col-sm-12">
+                            <div class="row">
+							    <div class="panel panel-success">
+                                    <div class="panel-heading" style="height:40px;">
+                                        <div class="row">
+                                            <div class="col-sm-12" >
+                                                <label class="col-sm-4 control-label">订单号：{{row.order_num}}</label>
+                                                <label class="col-sm-3 control-label">下单时间：{{row.ctime}}</label>
+                                                <a class="btn btn-xs btn-info" onclick="main_view({{row.id}})"  style="float: right;">
+                                                    <i class="fa fa-eye">查看详情</i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel-body" >
+                                        <div class="row" >
+                                            <div class="col-sm-12" >
+
+                                                <table class="table table-bordered">
+                                                    <tbody>
+                                                    {% set rowloop = loop %}
+                                                    {% for D in row.detail%}
+                                                        <tr >
+                                                            <td class="col-sm-3" style="height:67px;">
+                                                                <div class="col-sm-3">
+                                                                     <img src="{{D.pic}}" style="width:50px;height:50px;"/>
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <div class="col-sm-12">
+                                                                        <b style="color:#333333;">{{D.good_name}}</b>
+                                                                    </div>
+                                                                    <div class="col-sm-12">
+                                                                        <span>{{D.property_str}}</span>
+                                                                     </div>
+                                                                </div>
+
+                                                            </td>
+                                                            <td class="col-sm-1" style="height:67px;">
+                                                                {{D.price}}/{{D.amount}}
+                                                            </td>
+                                                            <td class="col-sm-1" style="height:67px;">
+                                                                <i class="fa fa-cny"></i>{{D.total}}元
+                                                            </td>
+                                                            <td class="col-sm-1" style="height:67px;">
+                                                                {% if D.status|string=='2' and row.status|string in
+                                                                ('2','3') %}
+                                                                    {%if row.kuaid|string=='0'%}
+                                                                    <a class="btn btn-xs btn-info" onclick="order_shipment({{D.id}})" ><i class="fa fa-truck">发货</i></a>
+                                                                    {%elif row.kuaid|string=='1'%}
+                                                                        -
+                                                                    {%elif row.kuaid|string=='2'%}
+                                                                        -
+                                                                    {%endif%}
+
+                                                                {% elif D.status|string=='5'%}
+                                                                    {{D.shipper_str}}<br>
+                                                                    {{D.tracking_number}}
+                                                                {% elif D.status|string in ('6','7')%}
+                                                                    {%if row.kuaid|string=='0'%}
+                                                                        {{D.shipper_str}}<br>
+                                                                        {{D.tracking_number}}
+                                                                        <br>
+                                                                <font color="red">已经收货</font>
+                                                                    {%endif%}
+                                                                {%else%}
+                                                                 -
+                                                                {% endif%}
+                                                            </td>
+                                                            {%if loop.index==1%}
+                                                            <td rowspan="{{row.qd}}" class="col-sm-2">
+                                                                 {{row.cname}}<br>{{row.phone}}
+                                                            </td>
+
+                                                            <td rowspan="{{row.qd}}" class="col-sm-1">
+                                                                {%if row.kuaid|string=='0'%}
+                                                                    {{row.kuaid_str}}<br><i class="fa fa-cny"></i>{{row.logistics_price}}元
+                                                                {%elif row.kuaid|string=='1'%}
+                                                                    {{row.kuaid_str}}<br><i class="fa fa-cny"></i>{{row.logistics_price}}元<br>
+                                                                    门店：{{row.dname}}
+
+                                                                {%elif row.kuaid|string=='2'%}
+                                                                    {{row.kuaid_str}}<br><i class="fa fa-cny"></i>{{row.logistics_price}}元
+                                                                {%endif%}
+
+                                                            </td>
+                                                            <td rowspan="{{row.qd}}" class="col-sm-1">
+                                                                 <i class="fa fa-cny"></i>{{row.total}}元
+                                                            </td>
+                                                            <td rowspan="{{row.qd}}" class="col-sm-1">
+                                                                 {{row.status_str}}
+                                                            </td>
+                                                            <td rowspan="{{row.qd}}" class="col-sm-1">
+                                                                {%if row.status==1%}{#待支付#}
+                                                                <a class="btn btn-xs btn-info" onclick="edit_price({{row.id}})" ><i class="fa fa-edit">修改价格</i></a>
+                                                                <a class="btn btn-xs btn-info" onclick="pay_order({{row.id}})" ><i class="fa fa-money">支付订单</i></a>
+                                                                <a class="btn btn-xs btn-info" onclick="close_order({{row.id}})" ><i class="fa fa-close">关闭订单</i></a>
+                                                                {%elif row.status in (2,3)%}{#待发货/部分发货#}
+                                                                <a class="btn btn-xs btn-info" onclick="order_shipments({{row.id}})" ><i class="fa fa-truck">全部发货</i></a>
+
+                                                                <a class="btn btn-xs btn-info" onclick="close_order({{row.id}})" ><i class="fa fa-close">关闭订单</i></a>
+                                                                {%elif row.status==4%}{#待自提#}
+                                                                <a class="btn btn-xs btn-info" onclick="order_after({{row.id}})" ><i class="fa fa-retweet">核&emsp;销</i></a>
+
+                                                                <a class="btn btn-xs btn-info" onclick="close_order({{row.id}})" ><i class="fa fa-close">关闭订单</i></a>
+                                                                {%elif row.status==5%}{#待收货#}
+                                                                {#
+                                                                <a class="btn btn-xs btn-info" onclick="order_refund({{row.id}})" ><i class="fa fa-mail-reply">退&emsp;款</i></a>
+                                                                #}
+                                                                {%elif row.status==6%}{#待评价#}
+                                                                {#
+                                                                <a class="btn btn-xs btn-info" onclick="order_refund({{row.id}})" ><i class="fa fa-mail-reply">退&emsp;款</i></a>
+                                                                #}
+                                                                {%endif%}
+                                                            </td>
+                                                            {%endif%}
+                                                        </tr>
+                                                    {%endfor%}
+                                                    </tbody>
+                                                </table>
+
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+						</div>
+					</div>
+				{%endfor%}
+
+			</div>
+		</div>
+	</div>
+</div>
+<style>
+.btn {
+    margin-bottom: 5px;
+}
+</style>
+{% endblock %}
+
+{% block page_script %}
+<SCRIPT language="Javascript" src="static/asset/js/My97DatePicker/WdatePicker.js"></SCRIPT>
+<script>
+function setdaytime(obj){return WdatePicker({dateFmt:'yyyy-MM-dd'});}
+$(function(){
+	//$("input[name=pk]").val('');
+	//$("input[name=part]").val('main');
+});
+
+function main_excel_all(){
+	$("input[name=pk]").val('');
+	$("input[name=pageNo]").val('1');
+	$("input[name=part]").val('allexcel');
+	$("form[name=frmMain]")[0].submit();
+}
+
+function add_excel(){
+    content_html='<form id="tf"><input type="hidden" name="id" value="0">';
+    content_html+='<br><br><div class="col-sm-12">';
+    content_html+='<span style="color:red">请注意:非整单发货订单请不要使用放入表格中</span>';
+    content_html+=' <div class="col-sm-12">';
+    content_html+=' <input type="file" accept=".xlsx,.xls" class="form-control" name="excel"  id="upload_excel"/>';
+    content_html+='</div></div>';
+    content_html+='</form>';
+
+
+    layer.open({
+        type: 1,
+        skin: 'layui-layer-rim', //加上边框
+        area: ['30rem;', '20rem;'], //宽高
+        content: content_html,
+        title: "上传发货excel",
+        btn: ['提交']
+        ,yes: function(index, layero){
+
+           var eexcle =  $("#upload_excel").val();
+            if(eexcle == ''){
+                layer.msg("未选择Excel文件");
+                return false;
+            }
+           var form = new FormData(document.getElementById("tf"));
+
+           $.ajax({
+                url:"admin?viewid=F001&part=Excel_import",
+                type:"post",
+                data:form,
+                processData:false,
+                contentType:false,
+                success:function(data){
+                    layer.close(index);
+                    layer.msg(data.MSG);
+                    //setTimeout(location.reload(), 3000);
+
+                }
+            });
+
+         }
+    });
+
+}
+
+function order_after(id){
+    layer.confirm('核销后客户提货码将会失效，是否确认客户已经自提', {
+			btn: ['是','否'] //按钮
+		}, function(index,layero){
+			$.ajax({
+				url:sUrl+"&part=order_after&id="+id,
+				async:false,
+				success: function(data){
+				    if(data.code=='0'){
+				        layer.close(index);
+                        layer.msg(data.MSG);
+                        location.reload();
+				    }else{
+				        layer.msg(data.MSG);
+				    }
+
+				}
+			});
+
+		}, function(){
+			layer.closeAll();
+		});
+
+}
+
+
+
+function order_shipment(id){
+    content_html='<br><br><div class="col-sm-11">';
+    content_html+='<label class="col-sm-4 control-label"><b style="color:#333333;">快递公司:</b></label>';
+    content_html+='<div class="col-sm-8"><select name="shipper_id" class="form-control">';
+    content_html+='<option value="0">商家配送</option>';
+    content_html+='<option value="1">顺丰速运</option>';
+    content_html+='<option value="2">百世快递</option>';
+    content_html+='<option value="3">中通快递</option>';
+    content_html+='<option value="4">申通快递</option>';
+    content_html+='<option value="5">圆通速递</option>';
+    content_html+='<option value="6">韵达速递</option>';
+    content_html+='<option value="7">邮政快递包裹</option>';
+    content_html+='<option value="8">EMS</option>';
+    content_html+='<option value="9">天天快递</option>';
+    content_html+='<option value="10">京东快递</option>';
+    content_html+='<option value="11">优速快递</option>';
+    content_html+='<option value="12">德邦快递</option>';
+    content_html+='<option value="13">宅急送</option>';
+    content_html+='<option value="14">TNT快递</option>';
+    content_html+='<option value="15">UPS</option>';
+    content_html+='<option value="16">DHL</option>';
+    content_html+='<option value="17">FEDEX联邦(国内件）</option>';
+    content_html+='<option value="18">FEDEX联邦(国际件）</option>';
+    content_html+='</select></div></div><br><br>';
+    content_html+='<div class="col-sm-11">';
+    content_html+='<label class="col-sm-4 control-label"><b style="color:#333333;">快递单号:</b></label>';
+    content_html+=' <div class="col-sm-8">';
+    content_html+=' <input type="text" class="form-control"  name="tracking_number" value=""/>';
+    content_html+='</div></div><br><br>';
+
+
+    layer.open({
+        type: 1,
+        skin: 'layui-layer-rim', //加上边框
+        area: ['35rem;', '20rem;'], //宽高
+        content: content_html,
+        title: "发货",
+        btn: ['提交']
+        ,yes: function(index, layero){
+           var tracking_number = $('input[name=tracking_number]').val();
+           var shipper_id = $('select[name=shipper_id]').val();
+
+           if(tracking_number=='' && shipper_id!='0'){
+             layer.msg('快递单号不能为空');
+             return false;
+           }
+           $.ajax({
+                url:sUrl+"&part=order_shipment&sid="+shipper_id+"&number="+tracking_number+"&id="+id,
+                async:false,
+                success: function(data){
+                    if (data.code=='0'){
+                        layer.close(index);
+                        layer.msg(data.MSG);
+                        location.reload();
+                    }else{
+                         layer.msg(data.MSG);
+                    }
+                }
+            });
+         }
+    });
+
+}
+
+function order_shipments(id){
+    content_html='<br><br><div class="col-sm-11">';
+    content_html+='<label class="col-sm-4 control-label"><b style="color:#333333;">快递公司:</b></label>';
+    content_html+='<div class="col-sm-8"><select name="shipper_id" class="form-control">';
+    content_html+='<option value="0">商家配送</option>';
+    content_html+='<option value="1">顺丰速运</option>';
+    content_html+='<option value="2">百世快递</option>';
+    content_html+='<option value="3">中通快递</option>';
+    content_html+='<option value="4">申通快递</option>';
+    content_html+='<option value="5">圆通速递</option>';
+    content_html+='<option value="6">韵达速递</option>';
+    content_html+='<option value="7">邮政快递包裹</option>';
+    content_html+='<option value="8">EMS</option>';
+    content_html+='<option value="9">天天快递</option>';
+    content_html+='<option value="10">京东快递</option>';
+    content_html+='<option value="11">优速快递</option>';
+    content_html+='<option value="12">德邦快递</option>';
+    content_html+='<option value="13">宅急送</option>';
+    content_html+='<option value="14">TNT快递</option>';
+    content_html+='<option value="15">UPS</option>';
+    content_html+='<option value="16">DHL</option>';
+    content_html+='<option value="17">FEDEX联邦(国内件）</option>';
+    content_html+='<option value="18">FEDEX联邦(国际件）</option>';
+    content_html+='</select></div></div><br><br>';
+    content_html+='<div class="col-sm-11">';
+    content_html+='<label class="col-sm-4 control-label"><b style="color:#333333;">快递单号:</b></label>';
+    content_html+=' <div class="col-sm-8">';
+    content_html+=' <input type="text" class="form-control"  name="tracking_number" value=""/>';
+    content_html+='</div></div><br><br>';
+    content_html+='<div class="col-sm-12">';
+    content_html+='<label class="col-sm-12 control-label"><b style="color:red;">会将所有未发货的商品进行发货,单独发货请用发货按钮</b></label>';
+    content_html+=' </div>';
+
+    layer.open({
+        type: 1,
+        skin: 'layui-layer-rim', //加上边框
+        area: ['35rem;', '20rem;'], //宽高
+        content: content_html,
+        title: "发货",
+        btn: ['提交']
+        ,yes: function(index, layero){
+           var tracking_number = $('input[name=tracking_number]').val();
+           var shipper_id = $('select[name=shipper_id]').val();
+
+           if(tracking_number=='' && shipper_id!='0'){
+             layer.msg('快递单号不能为空');
+             return false;
+           }
+           $.ajax({
+                url:sUrl+"&part=order_shipments&sid="+shipper_id+"&number="+tracking_number+"&id="+id,
+                async:false,
+                success: function(data){
+                    if (data.code=='0'){
+                        layer.close(index);
+                        layer.msg(data.MSG);
+                        location.reload();
+                    }else{
+                         layer.msg(data.MSG);
+                    }
+                }
+            });
+         }
+    });
+
+}
+function close_order(id){
+    layer.confirm('你确信要关闭订单吗？', {
+			btn: ['是','否'] //按钮
+		}, function(index,layero){
+			$.ajax({
+				url:sUrl+"&part=close_order&id="+id,
+				async:false,
+				success: function(data){
+				    if(data.code=='0'){
+				        layer.close(index);
+                        layer.msg(data.MSG);
+                        location.reload();
+				    }else{
+				        layer.msg(data.MSG);
+				    }
+
+				}
+			});
+
+		}, function(){
+			layer.closeAll();
+		});
+
+}
+
+function pay_order(id){
+    content_html='<br><div class="col-sm-10">';
+    content_html+='<label class="col-sm-12 control-label">';
+    content_html+='<b style="color:#333333;">设置订单为已支付，请仔细选择操作按键！</b></label>';
+    content_html+='</div><br><br>';
+    layer.open({
+        type: 1,
+        skin: 'layui-layer-rim', //加上边框
+        area: ['45rem;', '16rem;'], //宽高
+        content:content_html,//'设置订单为已支付，请仔细选择操作按键！',
+        title: "选择支付方式:",
+        btn: ['使用用户余额支付','已线下收款，直接设置为待发货(已付款)']
+        ,yes: function(index, layero){
+           $.ajax({
+                url:sUrl+"&part=pay_order_pay&id="+id,
+                async:false,
+                success: function(data){
+                    if (data.code=='0'){
+                        layer.close(index);
+                        layer.msg(data.MSG);
+                        location.reload();
+                    }else{
+                         layer.msg(data.MSG);
+                    }
+                }
+           });
+
+        },btn2: function(index, layero){
+            $.ajax({
+                url:sUrl+"&part=pay_order_status&id="+id,
+                async:false,
+                success: function(data){
+                    if (data.code=='0'){
+                        layer.close(index);
+                        layer.msg(data.MSG);
+                        location.reload();
+                    }else{
+                         layer.msg(data.MSG);
+                    }
+                }
+            });
+
+        }
+    });
+}
+function edit_price(id){
+        var itemdata=''
+        $.ajax({
+            url:sUrl+"&part=order_status&id="+id,
+            async:false,
+            success: function(data){
+                if(data.code=='0'){
+                    itemdata=data.data
+                }else{
+                    layer.msg(data.MSG);
+                    location.reload();
+                }
+            }
+        });
+        if (itemdata==''){
+            return false;
+        }
+
+        content_html='<br><br><div class="col-sm-10">';
+        content_html+='<label class="col-sm-6 control-label"><b style="color:#333333;">当前实付金额(元):</b></label>';
+        content_html+='<div class="col-sm-6">';
+        content_html+=' <input type="text" class="form-control"  name="total" value="'+itemdata+'" readonly="1"/>';
+        content_html+=' </div></div><br><br><br>';
+        content_html+='<div class="col-sm-10">';
+        content_html+='<label class="col-sm-6 control-label"><b style="color:#333333;">修改后的金额(元):</b></label>';
+        content_html+=' <div class="col-sm-6">';
+        content_html+=' <input type="text" class="form-control"  name="new_total" value=""/>';
+        content_html+='</div></div><br><br>';
+        //content_html+='<div class="col-sm-10">';
+        //content_html+='<label class="col-sm-4 control-label"><b style="color:#333333;">排序:</b></label>';
+        //content_html+=' <div class="col-sm-6">';
+        //content_html+=' <input type="number" class="form-control"  name="sort" value="'+itemdata.sort+'"/>';
+        //content_html+='</div></div>';
+
+        layer.open({
+            type: 1,
+            skin: 'layui-layer-rim', //加上边框
+            area: ['35rem;', '20rem;'], //宽高
+            content: content_html,
+            title: "修改价格",
+            btn: ['提交']
+            ,yes: function(index, layero){
+               var new_total = $('input[name=new_total]').val();
+               var total = $('input[name=total]').val();
+               //var sort = $('input[name=sort]').val();
+               if(new_total==''){
+                 layer.msg('修改后的金额不能为空');
+                 return false;
+               }
+               $.ajax({
+                    url:sUrl+"&part=edit_price&total="+total+"&new_total="+new_total+"&id="+id,
+                    async:false,
+                    success: function(data){
+                        if (data.code=='0'){
+                            layer.close(index);
+                            layer.msg(data.MSG);
+                            location.reload();
+                        }else{
+                             layer.msg(data.MSG);
+                        }
+                    }
+                });
+             }
+        });
+
+
+}
+</script>
+{% endblock %}
+        
+            
+	

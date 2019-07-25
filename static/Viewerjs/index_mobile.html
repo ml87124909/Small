@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/><!-- 删除苹果默认的工具栏和菜单栏 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/><!-- 设置苹果工具栏颜色 -->
+    <meta name="format-detection" content="telephone=no, email=no"/><!--忽略页面中的数字识别为电话，忽略email识别 -->
+    <!-- 启用360浏览器的极速模式(webkit) -->
+    <meta name="renderer" content="webkit">
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
+    <meta name="HandheldFriendly" content="true">
+    <!-- 微软的老式浏览器 -->
+    <meta name="MobileOptimized" content="320">
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <link rel="stylesheet" type="text/css" href="css/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="css/viewer.min.css">
+    <link rel="stylesheet" type="text/css" href="css/mobie.css"/>
+    <title>jQuery图片查看器移动端viewer.js</title>
+</head>
+<body>
+<div class="wrap">
+    <div class="title">jQuery图片查看器</div>
+    <div class="main">
+        <ul class="images clearfix" id="dowebok">
+            <li class="item"><img data-original="img/tibet-1.jpg" src="img/tibet-1.jpg" alt="Cuo Na湖"></li>
+            <li class="item"><img data-original="img/tibet-2.jpg" src="img/tibet-2.jpg" alt="青藏高原"></li>
+            <li class="item"><img data-original="img/tibet-3.jpg" src="img/tibet-3.jpg" alt="大昭寺"></li>
+            <li class="item"><img data-original="img/tibet-4.jpg" src="img/tibet-4.jpg" alt="布达拉宫1"></li>
+            <li class="item"><img data-original="img/tibet-5.jpg" src="img/tibet-5.jpg" alt="布达拉宫2"></li>
+            <li class="item"><img data-original="img/tibet-6.jpg" src="img/tibet-6.jpg" alt="布达拉宫3"></li>
+            <li class="item"><img data-original="img/tibet-7.jpg" src="img/tibet-7.jpg" alt="拉萨河"></li>
+            <li class="item"><img data-original="img/tibet-8.jpg" src="img/tibet-8.jpg" alt="Namtso 1"></li>
+            <li class="item"><img data-original="img/tibet-9.jpg" src="img/tibet-9.jpg" alt="Namtso 2"></li>
+        </ul>
+    </div>
+</div>
+<script type="text/javascript" src="js/common.js"></script>
+<script src="js/jquery-1.12.3.js"></script>
+<script src="js/viewer-jquery.min.js"></script>
+<script>
+    $(function() {
+        $('#dowebok').viewer({
+            url: 'data-original'
+        });
+    });
+</script>
+
+</body>
+</html>

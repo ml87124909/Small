@@ -1,0 +1,28 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252"></head><body><ul class="dock paper tn-page-slot" tn-cell-type="group" tn-bind-cell="pages">
+  <li class="tn-page-piece" ng-repeat="chd in (cell.items || cell)">
+    <div class="tn-page-container">
+      <div class="tn-page tn-page-inst" tn-solo-comp-loader="chd" tn-bind-comp-tpl-id="paper-cp:sys-edit/pg-flw" tn-comp-role="page">
+      </div>
+    </div>
+
+    <menu class="tn-menu tn-page-toolbar" stop-propagation="click mousedown mouseup">
+      <li>
+        <a href="javascript:void(0)" ng-click="onEditingModeToggle($event, $index)">
+          <span class="glyphicon glyphicon-th-large" title="打开布局模式，深度排版" ng-show="preferEditingMode != 'layout'"></span>
+          <span class="glyphicon glyphicon-th" title="关闭布局模式，快速排版" ng-show="preferEditingMode == 'layout'"></span>
+        </a>
+      </li>
+      <li>
+        <a href="javascript:void(0)" ng-click="onPageProps($event, $index)">
+          <span class="glyphicon glyphicon-asterisk" title="设置全文属性"></span>
+        </a>
+      </li>
+      <li ng-if="false">
+        <a href="javascript:void(0)" ng-click="onPageRefreshAnim($event, $index)">
+          <span class="glyphicon glyphicon-play-circle" title="动态预览"></span>
+        </a>
+      </li>
+    </menu>
+  </li>
+</ul></body></html>

@@ -1,0 +1,51 @@
+﻿@charset "utf-8";
+body { width: 100%; height: 100%; color: #333; font-size: 12px; font-family: arial,"微软雅黑","宋体",sans-serif; }
+body, dl, dd, h1, h2, h3, h4, h5, h6, p, form { margin: 0; }
+ul, ol { margin: 0; padding: 0; }
+li { list-style: none; }
+img { border: none; }
+a { text-decoration: none; }
+
+.clearfix:after { content: ''; clear: both; display: table; }
+.clearfix { zoom: 1; }
+
+.header { height: 60px; line-height: 60px; font-size: 16px; text-align: center; border-bottom: 1px solid #ccc; }
+.main { overflow: hidden; }
+
+.sidebar { float: left; width: 220px; border-right: 1px solid #ccc; }
+.sidebar .title { font-size: 16px; padding: 8px 0 8px 15px; }
+.sidebar li { padding: 8px 0 8px 35px; border-top: 1px solid #ddd; }
+.sidebar li a { color: #0094ff; font-size: 14px; }
+.sidebar li.on, .sidebar li:hover { background-color: #efefef; }
+
+.content { float: right; width: 100%; margin-left: -240px; }
+.contentin { margin-left: 240px; min-width: 760px; _width: 760px; padding-top: 20px; margin-right: 20px; }
+.x-button { padding: 10px 25px; border-radius: 3px; text-align: center; text-decoration: none; background-color: #0a82e4; color: #ffffff; font-size: 17px; margin: 0; white-space: nowrap; cursor: pointer; min-width: 60px; _width: 60px; }
+
+.content .x-button { display: inline-block; vertical-align: top; margin-right: 5px; }
+
+#upload-target { margin-bottom: 15px; }
+#upload-view { min-height: 200px; _height: 200px; background: #fff; border: 1px solid green; }
+
+#log { margin: 10px 0; white-space: nowrap; clear: both; }
+
+.scroll-view { overflow: auto; height: 300px; }
+.h100 { height: 100px; }
+.h1000 { height: 1000px; }
+
+.tabTitle { overflow: hidden; zoom: 1; }
+.tabTitle li { float: left; margin-right: 4px; z-index: 10; position: relative; }
+.tabTitle li a { float: left; padding: 0 18px; border: 1px solid #cdcdcd; border-bottom: none; line-height: 44px; font-size: 14px; color: #333; text-decoration: none; font-weight: bold; background: url(bg-tab.png) repeat-x left bottom; }
+.tabTitle li a:hover, .tabTitle li.on a { border-top: 2px solid #336699; line-height: 44px; background: #fff; }
+
+.tabCont { margin-top: -1px; padding: 10px; border: 1px solid #cdcdcd; background: #fff; }
+
+.turn-box { min-height: 200px; _height: 200px; }
+.turn-box .x-button { margin: 10px; }
+
+#drop-area { width: 400px; height: 200px; line-height: 200px; text-align: center; font-size: 18px; color: #777; border: 1px solid red; margin: 10px 0; }
+
+@media screen and (min-width: 1200px) {
+    .hd .con { width: 1280px; }
+    .hd .side_r { width: 1039px; }
+}

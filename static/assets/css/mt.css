@@ -1,0 +1,12 @@
+.container-login{background:url(../images/bottom.jpg) no-repeat bottom;background-size:100%;}
+.login-frm{width:74%;margin:10px auto 0;position:relative;background:#fff;}
+.txtinput{position:absolute;border:none;width:95%;height:38%;padding-left:16%;}
+.input-1{background:url(../images/input-1.jpg) no-repeat;background-size:100%;    top: 10%;
+    left: 3%;}
+
+
+.input-2{background:url(../images/input-2.jpg) no-repeat;background-size:100%;    top: 55%;
+    left: 3%;}
+
+.forget-psw{width:74%;margin:5px auto 0;text-align:right;font-size:12px;}
+.login-btn-frm{width:74%;margin:5% auto 0;}

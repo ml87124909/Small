@@ -1,0 +1,89 @@
+{% extends "index_new.html" %}
+{% block breadcrumb %}
+	{{breadcrumb}}
+{% endblock %}
+
+{% block contentpanel %}
+
+			<div class="main" style="width:98%;">
+					<div class="search" >
+						{{html_hidden}}
+						{% block topSearch %}
+						<table class="table table-bordered tb searchtbl">
+							<tbody>
+								<tr>
+									<th style="font-size:14px;">关键字</th>
+									<td width="230">
+										<div class="input-group">
+											<input type="text" class="form-control" name="qqid" value="{{qqid}}" />
+											<span class="input-group-btn">
+											<button class="btn btn-default" type="button" onclick="main_search()"><i class="fa fa-search"></i> 搜索</button>
+											</span>
+										</div>
+									</td>
+
+									<td style="text-align:right" width="">
+										<select name="orderbydir" id="orderbydir" class="form-control" onchange="this.form.pageNo.value=1;this.form.submit();">
+											<option value="ASC"{{' selected="selected"' if 'ASC' == orderbydir}}>顺序</option>
+											<option value="DESC"{{' selected="selected"' if 'DESC' == orderbydir}}>逆序</option>
+										</select>
+										<select style="margin-right:15px;" onchange="this.form.pageNo.value=1;this.form.submit();" class="form-control" name="orderby">
+											{%for od in orderbylist%}
+												<option value="{{od[0]}}"{{' selected="selected"' if '%s'%od[0] == orderby}}>{{od[1]}}</option>
+											{%endfor%}
+										</select>
+									</td>
+								</tr>
+								<tr class="search-submit">
+									<td colspan="3">
+										{% if lR[0] != '1' %}
+										<button type="button" class="btn btn-success btn-sm" onclick="main_add()"><i class="fa fa-plus"></i> 增加</button>
+										{% endif %}
+									</td>
+								 </tr>
+							</tbody>
+						</table>
+						{% endblock %}
+					</div>
+					<div style="padding:15px 0 15px 15px;">
+						{% block multabs %}
+						 <div class="ibox-title" style="height:55px; background-color: #fff;padding-top: 0;">
+							 <input type="hidden" name="multab" value="{{tab}}" />
+							<div class="row">
+								<ul class="nav nav-tabs">
+									{% for t in tab_data %}
+									<li role="presentation"{{' class="active"' if tab == loop.index|string}}><a href="{{currentUrl}}&tab={{loop.index}}">{{t}}</a></li>
+									{% endfor %}
+								</ul>
+							</div>
+						 </div>
+						 {% endblock %}
+						<div class="ibox-content" style="border:none;">
+
+							{% block mMul_Page_tabs %}111111{% endblock %}
+						</div>
+
+
+
+
+						{{html_pager}}
+					</div>
+					{% block page_script %}{% endblock %}
+
+
+				<div id="global_show_div"></div>
+			</div>
+			<script>
+
+			    $(function(){
+			        $(".main").height($(window).height()-150);
+			    })
+
+			    $(window).resize(function(){
+			        $(".main").height($(window).height()-150);
+			    });
+			</script>
+{% endblock %}
+
+
+

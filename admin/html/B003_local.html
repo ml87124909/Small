@@ -1,0 +1,102 @@
+{% extends "list.html" %}
+{% block MUL_BTNS %}
+ <input type="button" class="btn btn-success btn-sm" value="返回个人模板库" onclick="window.location = 'admin?viewid=B003';">
+{% endblock %}
+
+{% block topSearch %}
+{#
+<button class="btn btn-info btn-sm" type="button" onclick="layer_add()"><i class="fa fa-plus"></i> 增加模板</button>
+#}
+<h3>小程序模板库</h3>
+{% endblock %}
+
+{% block mGrid %}
+<table class="table table-bordered">
+    <thead>
+        <tr style="background-color:#e5e5e5" bgcolor="#ffffff">
+            {%for n in NL%}
+            <th style="text-align:center;">{{n}}</th>
+            {%endfor%}
+            <th style="">操作</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for row in dataList %}
+        <tr bgcolor="#ffffff">
+            <td>{{row.id}}</td>
+            <td>{{row.title}}</td>
+
+            <td style="text-align:center;">
+                {% if lR[1] == '' %}
+                <a class="btn btn-xs btn-info" onclick="layer_add('{{row.id}}')" title="编辑"><i class="fa fa-plus">增加模板</i></a>
+                {% endif %}
+
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+{% block page_script %}
+<script>
+    function layer_add(id){
+        layer.msg('还没处理');
+        /*
+            content_html='<div class="row">';
+            content_html='<div class="form-group">';
+            content_html+='<label class="col-sm-3 control-label"><b style="color:#333333;">模板ID:</b></label>';
+            content_html+='<div class="col-sm-9">';
+            content_html+=' <input type="text" class="form-control"  name="tid" value=""/>';
+            content_html+=' </div></div><br><br>';
+
+            content_html+='<div class="form-group">';
+            content_html+='<label class="col-sm-3 control-label"><b style="color:#333333;">模板名称:</b></label>';
+            content_html+='<div class="col-sm-9">';
+            content_html+=' <input type="text" class="form-control"  name="ttitle" value=""/>';
+            content_html+=' </div></div><br><br>';
+
+            content_html+='<div class="col-sm-12"><div class="form-group">';
+            content_html+='<label class="col-sm-3 control-label"><b style="color:#333333;">选择放大关键词(多个请用逗号隔开):</b></label>';
+            content_html+='<div class="col-sm-9">';
+            content_html+=' <input type="text" class="form-control"  name="keywords" value=""/>';
+            content_html+=' </div></div></div>';
+
+            content_html+='<div class="form-group">';
+            content_html+='<label class="col-sm-3 control-label"><b style="color:#333333;">跳转页面URL:</b></label>';
+            content_html+='<div class="col-sm-9">';
+            content_html+=' <input type="text" class="form-control"  name="link" value=""/>';
+            content_html+=' </div></div>';
+            content_html+=' </div>';
+
+            layer.open({
+                type: 1,
+                skin: 'layui-layer-rim', //加上边框
+                area: ['40rem;', '30rem;'], //宽高
+                content: content_html,
+                title: "增加模板",
+                btn: ['提交']
+                ,yes: function(index, layero){
+                   var tid = $('input[name=tid]').val();
+                   var ttitle = $('input[name=ttitle]').val();
+                   var keywords = $('input[name=keywords]').val();
+                   var link = $('input[name=link]').val();
+
+                   $.ajax({
+                        url:"admin?viewid=B003&part=save_temp&ttitle="+ttitle+"&tid="+tid+"&keywords="+keywords+"&tid="+link,
+                        async:false,
+                        success: function(data){
+                            layer.close(index);
+                            layer.msg(data.MSG);
+                            location.reload();
+                        }
+                    });
+                 }
+            });
+            */
+       }
+
+</script>
+{% endblock %}
+
+	

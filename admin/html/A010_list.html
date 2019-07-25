@@ -1,0 +1,125 @@
+{% extends "list.html" %}
+
+{% block topSearch %}
+<table class="table table-bordered tb searchtbl">
+    <tbody>
+        <tr>
+            <th style="font-size:14px;">手机号码</th>
+            <td width="200">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="qqid" value="{{qqid}}" />
+
+                </div>
+            </td>
+
+            <th style="font-size:14px;">昵称</th>
+            <td width="200">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="qqid" value="{{qqid}}" />
+
+                </div>
+            </td>
+
+            <th style="font-size:14px;">类型</th>
+            <td width="200">
+                <div class="input-group">
+                    <select name="orderbydir" id="orderbydir" class="form-control" onchange="this.form.pageNo.value=1;this.form.submit();">
+                        <option value="ASC"{{' selected="selected"' if 'ASC' == orderbydir}}>全部</option>
+                        <option value="DESC"{{' selected="selected"' if 'DESC' == orderbydir}}>注册</option>
+                        <option value="ASC"{{' selected="selected"' if 'ASC' == orderbydir}}>邀请好友</option>
+                        <option value="DESC"{{' selected="selected"' if 'DESC' == orderbydir}}>每日签到</option>
+						<option value="ASC"{{' selected="selected"' if 'ASC' == orderbydir}}>兑换优惠券</option>
+                        <option value="DESC"{{' selected="selected"' if 'DESC' == orderbydir}}>管理员调整</option>
+                        <option value="ASC"{{' selected="selected"' if 'ASC' == orderbydir}}>充值送</option>
+                        <option value="DESC"{{' selected="selected"' if 'DESC' == orderbydir}}>消费返</option>
+						<option value="DESC"{{' selected="selected"' if 'DESC' == orderbydir}}>好评送积分</option>
+                    </select>
+
+                </div>
+            </td>
+
+            <th style="font-size:14px;">收支</th>
+            <td width="200">
+                <div class="input-group">
+                    <select name="orderbydir" id="orderbydir" class="form-control" onchange="this.form.pageNo.value=1;this.form.submit();">
+                        <option value="ASC"{{' selected="selected"' if 'ASC' == orderbydir}}>全部</option>
+                        <option value="DESC"{{' selected="selected"' if 'DESC' == orderbydir}}>收入</option>
+                        <option value="ASC"{{' selected="selected"' if 'ASC' == orderbydir}}>支出</option>
+                    </select>
+
+                </div>
+            </td>
+
+        </tr>
+
+		<tr>
+            <th style="font-size:14px;">交易时间起:</th>
+            <td width="200">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="qqid" value="{{qqid}}" />
+
+                </div>
+            </td>
+
+            <th style="font-size:14px;">交易时间止:</th>
+            <td width="200">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="qqid" value="{{qqid}}" />
+
+                </div>
+            </td>
+
+            <td colspan="4" width="200">
+                <button class="btn btn-info btn-sm" type="button" onclick="main_search()"><i class="fa fa-search"></i> 搜索</button>
+            </td>
+
+        </tr>
+        <!--tr class="search-submit">
+            <td colspan="8">
+                {% if lR[0] != '1' %}
+                <button class="btn btn-info btn-sm" type="button" onclick="main_search()"><i class="fa fa-search"></i> 搜索</button>
+                <button type="button" class="btn btn-success btn-sm" onclick="main_add()"><i class="fa fa-plus"></i> 增加</button>
+
+                {% endif %}
+            </td>
+         </tr-->
+    </tbody>
+</table>
+{% endblock %}
+
+{% block mGrid %}
+<table class="table table-bordered">
+    <thead>
+        <tr style="background-color:#e5e5e5" bgcolor="#ffffff">
+
+            {%for n in NL[1:]%}
+            <th style="text-align:{{n[3]}};width:{{n[2]}};">{{n}}</th>
+            {%endfor%}
+            <!--th style="text-align:center">操作</th-->
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for row in dataList %}
+        <tr bgcolor="#ffffff">
+
+            {% for e in row[1:] %}
+
+            <td >{{e}}</td>
+
+            {% endfor %}
+            <!--td style="text-align:center;">
+                {% if lR[1] == '' %}
+                <a class="btn btn-xs btn-info" onclick="main_update({{row[0]}})" title="编辑"><i class="icon-edit"></i></a>
+                {% endif %}
+                {% if lR[2] == '' %}
+                <a  class="btn btn-xs btn-warning" onclick="main_delete({{row[0]}});" title="删除"><i class="icon-trash"></i></a>
+                {% endif %}
+            </td-->
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+
+

@@ -1,0 +1,48 @@
+/*float高度塌陷清除*/
+.clearfix:after {
+    display: block;
+    height: 0;
+    content: '';
+    clear: both;
+}
+
+/*marginTop生效*/
+.befo:before, .afte:after {
+    content: '';
+    display: table;
+}
+
+html{font-size:-webkit-calc(100vw/7.5);font-size:calc(100vw/7.5);}
+.wrap{max-width: 750px;margin:0 auto;}
+body{  background: #f6f6f6; }
+.title{
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+    height: 0.88rem;
+    line-height: 0.88rem;
+    text-align: center;
+    font-size: 0.34rem;
+    color: #656565;
+    background: #ffffff;
+}
+.main{
+    padding: 0.25rem;
+    margin-top: 0.3rem;
+}
+.images .item {
+    position: relative;
+    float: left;
+    width: 33.3333%;
+    padding: 0;
+    margin: 0;
+    border-width: 0 0 2px 2px;
+    border-style: solid;
+    border-color: transparent;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.images .item img{
+    width: 2.4rem;
+    height: 2.4rem;
+}

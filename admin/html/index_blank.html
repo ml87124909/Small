@@ -1,0 +1,91 @@
+{% include 'header.html' %}
+<section class="vbox">
+  <header class="bg-dark dk header navbar navbar-fixed-top-xs" style="background: url(static/assets/images/u1.png);">
+    <div class="navbar-header aside-md" style="width:500px"> <a class="btn btn-link visible-xs" data-toggle="class:nav-off-screen" data-target="#nav"> <i class="fa fa-bars"></i> </a> 
+    	 <a href="#" class="navbar-brand" data-toggle="fullscreen" style="    margin-top: 2%;">
+<!--    	 	 <img src="asset/images/logo2.jpg" style="margin-left:10px;width: 90px;height: 50px;"/>-->
+    	      <h2 style="font-family:'黑体';font-size:20px;font-weight: 700;margin-left: 12px;color:#fff;font-size: 24px;font-weight: 500;"></h2>
+
+    	 </a>
+    </div>
+    <ul class="nav navbar-nav navbar-right hidden-xs nav-user">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="background:initial;color:#fff;">
+          <span class="thumb-sm avatar pull-left">
+            <img src="static/assets/images/avatar.jpg">
+          </span> {{session_user.usr_name}} <b class="caret"></b> </a>
+        <ul class="dropdown-menu animated fadeInRight">
+          <span class="arrow top"></span>
+          <li> <a href="admin?viewid=G001">个人设置</a> </li>
+          <li> <a href="admin?viewid=common&part=refeshmenu">刷新菜单</a> </li>
+          <li class="divider"></li>
+          <li> <a href="admin?viewid=login&part=logout">注销</a> </li>
+        </ul>
+      </li>
+    </ul>
+  </header>
+  <!--导航开始-->
+<!--   	<div class="hnav clearfix">
+  			<div class="row-fluid">                    
+  	        	<ul style="width:auto;" class="hnav-main text-center unstyled pull-left">            
+  	        		<li>            
+  	                    <a style="font-size:17px;" href="?viewid=home" class="hnav-parent">我的桌面</a>        
+  			        </li>        
+  	        		{% for m1 in system_menu.menu1 %}
+  	                    <li style="width:auto;" class="hnav-parent {{'active' if hidden.mnuid|string == m1[0]|string else ''}}">            
+  	                        <div class="hnav-div">            
+  	                            <a style="font-size:17px;" href="?viewid=common&part=Menu&mnuid={{m1[0]}}">{{m1[1]}}</a>
+  	                        </div>        
+  	                    </li>        
+  	                {% endfor %}
+  		        </ul> 
+  			</div>
+  		</div> -->	
+ 
+  <!--导航结束-->
+  <!--index_blank.html-->
+  <section style="margin-top:-40px;">
+    <section class="hbox stretch"> <!-- .aside -->
+          
+      <!-- /.aside -->
+      <section id="content">
+        <!--section class="vbox"-->
+        {% block form_block %}
+	    <form method="POST" action="admin" class="form-inline" name="frmMain">
+        {% endblock %}
+          <header class="dk header navbar navbar-fixed-top-xs">
+            <ul class="breadcrumb no-border no-radius b-b b-light scrollable">
+              <li><a href="admin?viewid=home"><i class="fa fa-home"></i><span style="color:#4190D3;margin-left:10px;">首页</span></a></li>
+              {% block breadcrumb %}
+              {% endblock %}
+            </ul>
+          </header>
+          <section class="scrollable padder" style="top:90px;"> 
+            {% block contentpanel %}
+            {% endblock %} 
+          </section>
+		</form>
+        <!--/section-->
+        <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen" data-target="#nav"></a>
+      </section>
+      <aside class="bg-light lter b-l aside-md hide" id="notes">
+        <div class="wrapper">Notification</div>
+      </aside>
+    </section>
+  </section>
+</section>
+
+
+<!-- App --> 
+{% block javascript %} 
+<script src="resource/js/charts/easypiechart/jquery.easy-pie-chart.js" cache="false"></script> 
+<script src="resource/js/charts/sparkline/jquery.sparkline.min.js" cache="false"></script> 
+<script src="resource/js/charts/flot/jquery.flot.min.js" cache="false"></script> 
+<script src="resource/js/charts/flot/jquery.flot.tooltip.min.js" cache="false"></script> 
+<script src="resource/js/charts/flot/jquery.flot.resize.js" cache="false"></script> 
+<script src="resource/js/charts/flot/jquery.flot.grow.js" cache="false"></script> 
+<script src="resource/js/calendar/bootstrap_calendar.js" cache="false"></script> 
+<script src="resource/js/sortable/jquery.sortable.js" cache="false"></script>
+<link rel="stylesheet" href="resource/js/calendar/bootstrap_calendar.css" type="text/css" cache="false" />
+{% endblock %}
+</body></html>

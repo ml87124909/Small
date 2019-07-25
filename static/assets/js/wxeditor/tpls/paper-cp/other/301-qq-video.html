@@ -1,0 +1,26 @@
+<div style="opacity: 0.5; text-align: center; display: none;" class="tn-video">
+    <div style="display: inline-block; padding: 0.4em; font-size: 1em; border-radius: 0.5em;
+            background-color: black; color: white; ">
+        点击边框调出视频工具条
+    </div>
+    <div style="width: 0; margin: 0 auto; border-top: 6px solid black;
+            border-left: 6px solid transparent; border-right: 6px solid transparent;">
+    </div>
+</div>
+<div style="padding:1em; width:100%; margin-bottom: 0.5em; border-radius: 1em;
+        background-color: #ededed;  border:1px solid #b1b1b1; box-shadow: 0 0.1em 0.3em #ccc; "
+     tn-cell-type="video" tn-bind-cell="video1">
+    <iframe style=" max-width: 100%; max-height: 100%; border: none; background-color: #000000; overflow: hidden;"
+            contenteditable="true" marginheight="0px" allowfullscreen frameborder="0" scrolling="no"
+            ng-src="{{ cell.url | unsafeResource }}"></iframe>
+</div>
+<span style=" height: 2em; border: 1px solid #b1b1b1; border-radius: 2em; box-shadow: 0 0.1em 0.3em  #ccc;
+        padding: 0.5em 1em; background-color: #ededed;"><div style=" display: inline-block; line-height: 1.8em;  vertical-align: middle; width: 1.8em; margin: 0 0 0.2em 0; padding: 0;
+        height: 1.8em;"tn-cell-type="crop-image" tn-bind-cell="c-img1">
+</div><div style=" display: inline-block; border-left: 1px solid #b2b2b2;  height: 1.2em; line-height: 1.2em; margin: 0 0.3em; padding: 0;
+                vertical-align: middle;">
+</div><div style=" display: inline-block; vertical-align: middle; height: 1.2em;margin: 0 0 0.3em 0; padding: 0; font-size: 0.9em;
+                text-align: center; white-space: nowrap; overflow: hidden;"
+           tn-cell-type="text" tn-bind-cell="txt1">
+</div>
+</span>

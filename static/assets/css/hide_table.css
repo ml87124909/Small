@@ -1,0 +1,29 @@
+#div_type{
+	position:fixed;
+	top:15%;
+	left:25%;
+	border:2px solid #ccc;
+	background-color:#eee;
+	z-index:999;
+	padding:0px;
+	width:50%;}
+#style1{
+	font-size:16px;
+	font-weight:bold;
+	background-color:#e0e0e0;
+	padding:5px;
+	}
+#style2{
+	font-size:14px;
+	font-weight:bold;
+	padding:5px;
+	}
+#select{
+	width:100%;
+	font-size:14px;
+	padding-left:5px;}
+#btn{
+	padding:5px;
+	float:right;
+	color:#FFF;
+	}

@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    
+<title>图文排版</title>
+
+
+<meta charset="GBK">
+
+
+<base target="_top"/>
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta http-equiv="x-rim-auto-match" content="none">
+
+<script>
+    var doc = document.documentElement;
+    doc.setAttribute('data-useragent', navigator.userAgent);
+</script>
+
+
+    <link rel="stylesheet" href="c9d771.paper.min.css">
+
+    <script id="__pre_data">
+        window.injectedData = window.injectedData || {};
+
+        injectedData.studioVersion = "1.18.0";
+        injectedData.upImageMaxSize = "5242880";
+        injectedData.userInfo = null;
+        injectedData.sendArticleUrl = "article/postarticles";
+        injectedData.sendAssetUrl = "resource/postresource";
+        injectedData.fetchUserListApi = "authorization/authlist";
+        injectedData.refreshUserListApi = "authorization/authlistrefresh";
+        injectedData.removeUserApi = "authorization/removeauth";
+        injectedData.sendPreviewApi = "article/previewarticle";
+        injectedData.isQQOEM = false;
+        injectedData.cdnBoundHost = "";
+        injectedData.thumbCdnHost = "";
+        injectedData.stringTable = {
+            "NOTHING"                     : "",
+            "CONFIRM_CLEAR"               : "清除全部编辑内容吗？",
+            "CONFIRM_CLOSE"               : "您正在编辑图文",
+            "CONFIRM_DROP"                : "您正在编辑图文，确定离开当前的图文吗？",
+            "CONFIRM_RESET_COLOR"         : "调色板将重置，您添加的自定义颜色会被清除，确认重置调色板吗？",
+            "CONFIRM_CLEAR_IMAGE"         : "您确定要清空图库吗？",
+            "ASSET_SAVE_OK"               : "图片已保存在您的图库中。您还可以继续添加。",
+            "ASSET_SAVE_ON_GOING"         : "努力记住您的图片中...",
+            "ASSET_SAVE_FAILED"           : "出错啦！",
+            "ASSET_SAVE_NOT_WXLINK"       : "微信图片链接不可用。",
+            "ASSET_SAVE_NOT_LINK"         : "您输入的不是链接吧？请输入图片链接哦！",
+            "ASSET_SAVE_NOT_IMAGE"        : "您提交的不是图片哦！",
+            "ASSET_SAVE_NOT_LOGIN"        : "登录以后才可以保存图片链接哦",
+            "ASSET_SAVE_INVALID_LINK"     : "您提交的链接无效！",
+            "SHOW_SAVE_ON_GOING"          : "正在保存，请不要关闭浏览器！",
+            "ASSET_OUT_OF_LIMIT"          : "不能上传更多图片了，请清理图库或者进入账号设置升级。",
+            "ASSET_OUT_OF_SIZE"           : "上传的图片文件大小不能超过{0}！",
+            "ASSET_ALREADY_EXIST"         : "您已经上传过该图片了！",
+            "ASSET_FILE_TYPE_INVALID"     : "您上传的文件格式不支持！",
+            "ASSET_EXT_ERROR"             : "图片{0}是{1}格式，请修改文件扩展名后再上传！",
+            "ASSET_NO_UPLOAD_ACCESS"      : "您还没有上传图片的权限，点击个人头像进入账号设置，升级用户等级吧。",
+            "ASSET_CLEAR_DONE"            : "图库已经清空",
+            "ASSET_DELETE_FAILED"         : "删除图片失败",
+            "AUDIO_SAVE_OK"               : "音乐已保存在您的音乐库中。您还可以继续添加。",
+            "AUDIO_OUT_OF_SIZE"           : "上传的音乐文件过大，请压缩剪切文件或者升级用户等级吧",
+            "AUDIO_OUT_OF_LIMIT"          : "不能上传更多音乐了，请清理下音乐或者升级用户等级吧。",
+            "AUDIO_ALREADY_EXIST"         : "您已经上传过该音乐了！",
+            "AUDIO_NO_UPLOAD_ACCESS"      : "您还没有上传音乐的权限，点击个人头像进入账号设置，升级用户等级吧。",
+            "DELETE_ASSET_IN_USED"        : "您正在使用该素材，无法删除。",
+            "FRAGMENTS_NO_CONTENT"        : "没有东西可保存哟",
+            "FRAGMENTS_SAVE_NOT_LOGIN"    : "登录后就可以保存了哟",
+            "FRAGMENTS_OUT_OF_LIMIT"      : "您最多只能收藏{0}个模板，请清理下模板或者升级用户等级吧。",
+            "FRAGMENTS_FAILED"            : "收藏模板出错了！",
+            "FRAGMENTS_OK"                : "收藏模板成功！",
+            "OUT_LINK_IMAGE_NOT_SUPPORTED": "图文制作目前不支持使用外链图片，请使用图片上传功能",
+            "PALETTE_IMPORT_SUCCESS"      : "导入调色板成功",
+            "PALETTE_IMPORT_INVALID_COLOR": "颜色列表中包含非法值",
+            "COLLECT_IMAGE_SUCCESS"       : "图片已成功收集到图库",
+            "COLLECT_IMAGE_FAILED"        : "收集图片失败",
+            "WEIXIN_LOGIN_SUCCESS"        : "公众号绑定成功",
+            "WEIXIN_LOGIN_FAILED"         : "公众号绑定失败",
+            "WEIXIN_LOGIN_NO_ACCESS"      : "公众号未认证",
+            "WEIXIN_REFRESH_USER_FAIL"    : "公众号更新用户列表失败",
+            "WEIXIN_XM_USER_NOT_LOGIN"    : "请先登录秀米账号",
+            "WEIXIN_AUTHOR_EXPIRED"       : "公众号已超时，请重新登录",
+            "WEIXIN_DATA_ERROR"           : "数据格式错误，发送失败",
+            "SHOW_SAVE_OK"                : "成功啦！",
+            "SHOW_SAVE_NOT_LOGIN"         : "登录以后才可以发布图文哦",
+            "SHOW_SAVE_NO_PAGE"           : "你还没创建任何页面哦",
+            "SHOW_SAVE_ALREADY_SAVED"     : "已经保存完毕",
+            "SHOW_SAVE_OUT_OF_LIMIT"      : "不能创建更多图文了，可以先收藏，再清理下不用的图文或者升级用户等级。",
+            "SHOW_SAVE_DATA_REJECTED"     : "保存失败：您用了不合法的链接或内容哦",
+            "SHOW_SAVE_DELETED_ASSET"     : "您删除了正在使用的素材，请重新上传该素材或更新您的图文",
+            "SHOW_SAVE_NOT_EMAIL"         : "您输入的不是邮箱地址哦",
+            "SHOW_SAVE_NOT_FIND_EMAIL"    : "保存失败：找不到使用该邮箱的秀米用户！",
+            "SHOW_SAVE_FAILED"            : "保存失败：出错啦！",
+            "SHOW_SAVE_INVALID_LINK"      : "保存失败：页面中包含非法链接",
+            "SHOW_SAVE_STATUS_ERROR"      : "保存失败：图文的状态错误",
+            "SHOW_SAVE_IS_LOCKED"         : "保存失败：图文已经被买断锁定。如需修改，请先解除锁定。",
+            "SHOW_SAVE_IS_LOCKING"        : "保存失败：您选择了买断锁定，但还未付款。如需修改，请先取消锁定订单。",
+            "SHOW_PAGE_OUT_OF_LIMIT"      : "不能创建更多页了，点击个人头像进入账号设置，升级用户等级吧。",
+            "SEND_PACKAGE_NO_DATA"        : "你还没创建任何内容哦",
+            "SEND_PACKAGE_INVALID_COVER"  : "您的图文未设置封面，或者使用了外链图片作为封面，请更新封面图片",
+            "SEND_PACKAGE_INVALID_MEDIA_ID": "之前的素材已经失效，请再试一次",
+            "SEND_PACKAGE_NOT_SELECT_AUTHOR": "您还没有选择要同步的公众号哦",
+            "SEND_PACKAGE_NOT_LOGIN"        : "您还没有绑定过公众号哦",
+            "SEND_PACKAGE_SUCCESS"          : "同步到公众号成功",
+            "SEND_PACKAGE_FAILED"           : "同步到公众号失败！{0}",
+            "SEND_PACKAGE_INVALID_IMAGE_LINK": "您使用了无效的外链图片，请尽量使用本地图片",
+            "SEND_PACKAGE_COUNT_OUT_OF_LIMIT": "微信素材库已满，请清理",
+            "SEND_PACKAGE_REQUIRESUBSCRIBE" : "预览者需要先关注公众号",
+            "SEND_PACKAGE_UNAUTHORIZED"     : "未认证的公众号无法预览",
+            "SEND_PREVIEW_SUCCESS"          : "发送图文预览成功",
+            "SEND_PACKAGE_TO_QQ_SUCCESS"    : "同步到企点成功",
+            "SEND_PACKAGE_TO_QQ_FAILED"     : "同步到企点失败！{0}",
+            "SHOW_METADATA_VALIDATION_MISSED" : "{0} 不能为空",
+            "SHOW_METADATA_VALIDATION_TITLE_LENGTH" : "标题字数超过64个字符",
+            "SHOW_METADATA_VALIDATION_DESC_LENGTH" : "描述字数超过120个字符"
+        };
+    </script>
+
+    <script id="__delete_pre_data">
+    var __pre_data = document.getElementById('__pre_data');
+    if (!!__pre_data) {
+        __pre_data.parentNode.removeChild(__pre_data);
+    }
+    var __pre_connect = document.getElementById('__pre_connect');
+    if (!!__pre_connect) {
+        __pre_connect.parentNode.removeChild(__pre_connect);
+    }
+    var __delete_pre_data = document.getElementById('__delete_pre_data');
+    if (!!__delete_pre_data) {
+        __delete_pre_data.parentNode.removeChild(__delete_pre_data);
+    }
+</script>
+<style>
+    [ng-cloak]{
+        display: none;
+    }
+</style>
+</head>
+<body class="tn-transition-end tn-studio-body tn-studio-paper" ng-controller="PaperRootController">
+
+<div class="container container-full-fill" ng-controller="DeskController"
+     ng-click="finishEditing($event)">
+
+    <header class="tn-header">
+        <nav class="x3-navbar navbar navbar-static-top" role="navigation">
+            <div class="container-fluid">
+                <div class="x3-nav-op-buttons text-center" ng-cloak>
+                    <button class="btn-img op-btn preview"
+                            ng-class="!!status.isPreviewMode && !status.isCopyMode ? 'active' : ''"
+                            ng-disabled="!!status.isCopyMode || !!status.isSavingShowData"
+                            tooltip-placement="bottom" tooltip="预览" tooltip-popup-delay="800"
+                            ng-click="onBtnClickPreview()">
+                        <span class="op-btn-inset-icon"></span>
+                    </button>
+                    <button class="btn-img op-btn save"
+                            ng-disabled="!!status.isCopyMode || !!status.isSavingShowData"
+                            tooltip-placement="bottom" tooltip="保存" tooltip-popup-delay="800"
+                            ng-click="onBtnClickSave()">
+                        <span class="op-btn-inset-icon"></span>
+                    </button>
+                    <!--<button class="btn-img op-btn done" data-toggle="dropdown"
+                            ng-class="{ active: status.isCopyMode }"
+                            ng-click="onBtnClickDone()"
+                            tooltip-placement="bottom"
+                            tooltip="{{ !status.isCopyMode? '复制到微信公众号' : '退出拷贝模式'}}"
+                            tooltip-popup-delay="800">
+                        <span class="op-btn-inset-icon"></span>
+                    </button>-->
+                    <button class="btn-img op-btn done active" data-toggle="dropdown"
+                            ng-show="status.isCopyMode"
+                            ng-click="onBtnClickDone()"
+                            tooltip-placement="bottom" tooltip="退出拷贝模式" tooltip-popup-delay="800">
+                        <span class="op-btn-inset-icon"></span>
+                    </button>
+                    <button class="btn-img op-btn done" data-toggle="dropdown"
+                            ng-show="!status.isCopyMode && wxAuthors.length === 0"
+                            ng-click="onBtnClickDone()"
+                            tooltip-placement="bottom" tooltip="复制到微信公众号" tooltip-popup-delay="800">
+                        <span class="op-btn-inset-icon"></span>
+                    </button>
+                    <div class="btn-dropdown op-more btn-group"
+                         ng-show="!status.isCopyMode && wxAuthors.length > 0">
+                        <button class="btn-img op-btn done" data-toggle="dropdown"
+                                ng-disabled="!!status.isCopyMode">
+                            <span class="op-btn-inset-icon"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li role="presentation">
+                                <a role="menuitem" tabindex="-1" href="javascript:void(0)"
+                                   ng-disabled="!!status.isCopyMode || !!status.isSavingShowData"
+                                   ng-click="onBtnClickSend()">
+                                    <span class="glyphicon glyphicon-cloud-upload"></span>
+                                    同步到公众号并预览
+                                </a>
+                            </li>
+                            <li role="presentation">
+                                <a role="menuitem" tabindex="-1" href="javascript:void(0)"
+                                   ng-click="onBtnClickDone()">
+                                    <span class="glyphicon glyphicon-new-window"></span>
+                                    继续使用复制粘贴
+                                </a>
+                            </li>
+                            <li role="presentation" class="divider"></li>
+                            <li role="presentation">
+                                <a role="menuitem" tabindex="-1" href="javascript:void(0)"
+                                   ng-click="onBtnClickSendWx()">
+                                    <span class="glyphicon glyphicon-cloud-upload"></span>
+                                    去同步多图文
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="btn-dropdown op-more btn-group">
+                        <button class="btn-img op-btn more" data-toggle="dropdown"
+                                ng-disabled="!!status.isCopyMode || !!status.isSavingShowData"
+                                tooltip-placement="right" tooltip="更多操作" tooltip-popup-delay="800">
+                            <span class="op-btn-inset-icon"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li role="presentation">
+                                <a role="menuitem" tabindex="-1" href="javascript:void(0)"
+                                   ng-disabled="!!status.isCopyMode || !!status.isSavingShowData"
+                                   ng-click="onBtnClickSaveFragment()">
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    加入我的收藏
+                                </a>
+                            </li>
+                            <li role="presentation" class="divider"></li>
+                            <li role="presentation">
+                                <a role="menuitem" tabindex="-1" href="javascript:void(0)"
+                                   ng-disabled="!!status.isCopyMode || !!status.isSavingShowData"
+                                   ng-click="onBtnClickTrashcan()">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                    清空编辑的内容
+                                </a>
+                            </li>
+                            <li role="presentation" class="divider"></li>
+                            <!-- <li role="presentation">
+                                <a role="menuitem" tabindex="-1" href="javascript:void(0)"
+                                   ng-disabled="!!status.isCopyMode || !!status.isSavingShowData"
+                                   ng-click="onBtnClickCollectImage()">
+                                    <span class="glyphicon glyphicon-import"></span>
+                                    收集图片
+                                </a>
+                            </li> -->
+                            <!-- <li role="presentation" class="divider"></li> -->
+                            <li role="presentation">
+                                <a role="menuitem" tabindex="-1" href="javascript:void(0)"
+                                   ng-disabled="!!status.isCopyMode || !!status.isSavingShowData"
+                                   ng-click="onBtnClickCreateNew()">
+                                    <span class="glyphicon glyphicon-file"></span>
+                                    新建一个图文
+                                </a>
+                            </li>
+                            <li role="presentation">
+                                <a role="menuitem" tabindex="-1" href="javascript:void(0)"
+                                   ng-disabled="!!status.isCopyMode || !!status.isSavingShowData"
+                                   ng-click="onBtnClickSaveAs()">
+                                    <span class="glyphicon glyphicon-floppy-save"></span>
+                                    另存一个图文
+                                </a>
+                            </li>
+                            <li role="presentation">
+                                <a role="menuitem" tabindex="-1" href="javascript:void(0)"
+                                ng-click="goto('/jjzxwx/admin?fid=A001')"
+                                   >
+                                    <span class="glyphicon "></span>
+                                    返回列表
+                                </a>
+                            </li>
+                            <!-- <li role="presentation">
+                                <a role="menuitem" tabindex="-1" href="javascript:void(0)"
+                                   ng-disabled="!!status.isCopyMode || !!status.isSavingShowData"
+                                   ng-click="onBtnClickSaveToOther()">
+                                    <span class="glyphicon glyphicon-share"></span>
+                                    另存给其他用户
+                                </a>
+                            </li> -->
+                        </ul>
+                    </div>
+                </div>
+
+               
+            </div>
+        </nav>
+    </header>
+    <!-- header END -->
+
+    <section class="x5-editing-panel text-center tn-scroll-to">
+
+        <div class="x5-sidebar-panel" stop-propagation="click mousedown"
+             ng-controller="SideBarController" tn-atom-once-binding>
+            <tabset class="x3-sidebar" vertical="true" type="pills" ng-cloak>
+                <tab class="x3-tab-item" active="actives['comps']"
+                     select="onTabSelected('comps')">
+                    <tab-heading class="templates">
+                        <span class="icon"></span>
+                        <span class="name">系统模板</span>
+                    </tab-heading>
+                    <div class="tn-tab-ctrl-pin" ng-controller="CompTplListController">
+                        <tabset class="tn-tpl-rooms-tab" type="pills">
+                            <tab class="tn-tpl-room-item" ng-repeat="room in rooms track by $index"
+                                 active="roomActives[$index]" select="onRoomSelected($index)">
+                                <tab-heading class="templates comp">
+                                    <img class="room-icon" ng-src="{{ ::room.icon }}"/>
+                                    <span class="room-name" ng-bind="::room.name"></span>
+                                </tab-heading>
+                                <ul class="tn-tpl-list tn-tpl-container-comp"
+                                    ng-class="[ { 'tn-from-house-booklet-cp': room.houseName == 'booklet-cp', 'tn-from-house-paper-cp': room.houseName == 'paper-cp' },
+                                     { 'usage-layout': room.usage == 'layout' },
+                                     { 'tn-scene-booklet': room.houseName == 'booklet-cp', 'tn-scene-paper': room.houseName == 'paper-cp' },
+                                     { 'small-tpl': room.compSize != 'large', 'large-tpl': room.compSize == 'large' } ]"
+                                    ui-sortable="tplCompSortableOpts" ng-model="room.items">
+                                    <li class="tn-tpl-item tn-tpl-comp tn-lighting-box"
+                                        ng-repeat="item in room.items track by $index"
+                                        ng-click="onCompTplItemClick($event, item.matrix)"
+                                        title="{{ item.name }}">
+                                        <section class="tn-tpl-comp-box lighting-hover">
+                                            <div class="tn-tpl-comp-item"
+                                                 tn-solo-comp-loader="item.matrix">
+                                            </div>
+                                        </section>
+                                        <div class="tn-tpl-id" ng-if="__show_template_id" ng-bind="item.tplId"></div>
+                                    </li>
+                                </ul>
+                            </tab>
+                            <div class="color-widget">
+                                <div class="theme-color"
+                                     tn-color-selector="compTheme.color"
+                                     is-open="compThemeState.isOpen"
+                                     on-color-choose="onThemeColorChoose(color)"></div>
+                                <div class="op-color-text">主题色</div>
+                            </div>
+                        </tabset>
+                    </div>
+                </tab>
+                <tab class="x3-tab-item" active="actives['fragments']"
+                     select="onTabSelected('fragments')">
+                    <tab-heading class="fragments">
+                        <span class="icon"></span>
+                        <span class="name">我的收藏</span>
+                    </tab-heading>
+                    <div class="x3-tab-content fragments" ng-controller="FragmentListController">
+                        <div class="no-content-prompt text-center" ng-if="!status.auth.userInfo">
+                            登录后可以将编辑的内容收藏哦
+                        </div>
+                        <div class="no-content-prompt text-center" ng-if="!!status.auth.userInfo && !(fragments.length !== 0)">
+                            您可以将编辑好的内容加入收藏，方便重复使用。
+                        </div>
+                
+                    <div class="tn-tpl-list tn-tpl-container-fragment"
+                         ui-sortable="fgSortableOpts" ng-model="fragments">
+                        <div class="tn-tpl-item tn-tpl-fragment tn-scene-paper tn-lighting-box"
+                             ng-repeat="fg in fragments track by $id(fg)"
+                             ng-click="onFragmentSelect($index)" ng-cloak>
+                            <div class="tn-tpl-fragment-box lighting-hover">
+                                <section class="tn-tpl-fragment-item"
+                                         tn-solo-comp-loader="fg.data"
+                                         tn-bind-comp-tpl-id="paper-cp:sys-edit/loader-flow-paper-fragment">
+                                </section>
+                                <section class="has-error" ng-if="!!fg.error">
+                                    <span class="glyphicon glyphicon-exclamation-sign"></span>
+                                    出错了! :(
+                                </section>
+                            </div>
+                            <span class="bar-item remove glyphicon glyphicon-trash"
+                                  ng-click="onFragmentRemove($event, $index)">
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                            </tab>
+            <tab class="x3-tab-item" active="actives['images']"
+                 select="onTabSelected('images')">
+                <tab-heading class="images">
+                    <span class="icon"></span>
+                    <span class="name">我的图库</span>
+                </tab-heading>
+                <div class="x3-tab-content images clearfix" ng-controller="ImageListController">
+                    <div class="col-xs-12 col-sm-12 text-center tn-assets-uploader">
+                        <input id="imageFileUploadInput" type="file" multiple class="form-control"
+                               accept="image/jpeg, image/png, image/gif"
+                               files-model="imageFiles" file-change="uploadImageFiles()" ng-cloak>
+        
+                        <p class="col-xs-12 col-sm-12">
+                            <a class="btn btn-green col-xs-12 col-sm-12" role="button"
+                               ng-disabled="!status.auth.userInfo || uploading"
+                               alias-as="#imageFileUploadInput" alias-event="click">
+                                上传图片(可多选)
+                            </a>
+                        </p>
+                    </div>
+        
+                    <div class="col-xs-12 col-sm-12 text-center">
+                        <p class="col-xs-12 col-sm-12">
+                            <button class="col-xs-12 col-sm-12 btn btn-green" ng-disabled="!status.auth.userInfo"
+                                    ng-click="onAddImageLinkClick($event)" ng-cloak>
+                                添加图片链接（微信图片链接不可用）
+                            </button>
+                        </p>
+        
+                    </div>
+        
+                    <div class="col-xs-12 col-sm-12 no-content-prompt text-center"
+                         ng-if="!status.auth.userInfo">
+                        <hr/>
+                        登录后可以使用图库功能哦
+                    </div>
+                    <div class="col-xs-12 col-sm-12 no-content-prompt text-center"
+                         ng-if="!!status.auth.userInfo && !(images.length !== 0)">
+                        <hr/>
+                        还没有图片呢，点击上面的按钮添加
+                    </div>
+        
+                    <br/>
+        
+                    <ul class="tn-tpl-list small-tpl tn-asset-container-image"
+                        ui-sortable="imgSortableOpts" ng-model="images">
+                        <li class="tn-tpl-item tn-asset-image tn-lighting-box"
+                            ng-repeat="img in images track by $id(img)"
+                            ng-click="onImageSelect($event, img, $index, false)">
+                            <div class="tn-image-item-box lighting-hover">
+                                <span class="bar-item remove glyphicon glyphicon-trash"
+                                      ng-click="onImageRemove($event, img, $index, false)"></span>
+                                <img class="asset-image-inst tn-drag-asset-image tn-can-drop-to-layer tn-can-drop-to-cell-image tn-can-drop-to-comp-bg"
+                                     ng-src="{{ ::img.target_uri }}"
+                                     tooltip-placement="top" tooltip="点击图片可直接添加图片模板到编辑区域" tooltip-popup-delay="800">
+                            </div>
+        
+                            <div class="display-name text-center" ng-bind="::img.display_name || '外链图片'"></div>
+                        </li>
+                    </ul>
+                    <a class="get-more-btn no-decoration xiumi-red" href="#" ng-hide="noMoreImage" ng-click="getMore($event)">加载更多</a>
+                    <div class="image-loading" ng-show="gettingMore">
+                        <span class="rolling glyphicon glyphicon-refresh"></span>
+                    </div>
+        
+                    <div class="col-xs-12 col-sm-12 text-center tn-assets-uploader">
+                        <p class="col-xs-12 col-sm-12">
+                            <button class="col-xs-12 col-sm-12 btn btn-red" ng-show="noMoreImage"
+                                    ng-disabled="!status.auth.userInfo || uploading || images.length === 0"
+                                    ng-click="onClearImageClick($event)" ng-cloak>
+                                清空图库
+                            </button>
+                        </p>
+                    </div>
+                </div>
+            </tab>
+            <tab class="x3-tab-item" ng-if="false" active="actives['audios']"
+                 select="onTabSelected('audios')">
+                <tab-heading class="music">
+                    <span class="icon"></span>
+                    <span class="name">我的音乐</span>
+                </tab-heading>
+                <div class="x3-tab-content audios clearfix" ng-controller="AudioListController">
+        
+                    <div class="col-xs-12 col-sm-12 text-center">
+                        <p class="col-xs-12 col-sm-12 tn-audio-uploader">
+                            <input id="audioFileUploadInput" type="file" class="form-control" accept=".mp3"
+                                   files-model="audioFiles" file-change="uploadAudioFiles()" ng-cloak>
+                            <a class="btn btn-green col-xs-12 col-sm-12" role="button"
+                               ng-disabled="!status.auth.userInfo || uploading" alias-as="#audioFileUploadInput"
+                               alias-event="click">
+                                上传音乐
+                            </a>
+                        </p>
+        
+                        <p class="col-xs-12 col-sm-12">
+                            点击查看
+                            <a class="no-decoration xiumi-red"
+                               href="http://v.xiumi.us/board/v3/2a5va/6252584" target="_blank">
+                                音乐教程
+                            </a>
+                        </p>
+                    </div>
+        
+                    <div class="col-xs-12 col-sm-12 no-content-prompt text-center"
+                         ng-if="!status.auth.userInfo">
+                        <hr/>
+                        登录后可以使用音乐库功能哦
+                    </div>
+                    <div class="col-xs-12 col-sm-12 no-content-prompt text-center"
+                         ng-if="!!status.auth.userInfo && !(audios.length !== 0)">
+                        <hr/>
+                        还没有音乐呢，点击上面的按钮添加
+                    </div>
+        
+                    <ul class="list-style-none col-xs-12 col-sm-12 tn-asset-container-audio">
+                        <li class="tpl-item audio clearfix tn-lighting-box"
+                            ng-repeat="aud in audios track by $id(aud)"
+                            ng-click="onAudioSelect($event, aud, $index, false)">
+                            <div class="tn-audio-item-box lighting-hover">
+                                <div class="audio-info" ng-bind="::aud.display_name"></div>
+                                <span class="bar-item remove glyphicon glyphicon-trash"
+                                      ng-click="onAudioRemove($event, aud, $index, false)"></span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </tab>
+        </tabset>
+            </div>
+    <!-- sidebar-panel END -->
+
+    <ul class="x5-right-toolbar list-style-none" ng-controller="RightToolbarController"
+        stop-propagation="click mousedown">
+        <li>
+            <a class="btn btn-default" role="button" href="javascript:void(0)"
+               ng-disabled="!undoStatus.canUndo" ng-click="onBtnUndoClick()"
+               title="Windows: Control + Z | Mac: Command + Z">
+                <span class="glyphicon glyphicon-share-alt flip-y"></span>
+
+                <div>撤销</div>
+            </a>
+        </li>
+        <li>
+            <a class="btn btn-default" role="button" href="javascript:void(0)"
+               ng-disabled="!undoStatus.canRedo" ng-click="onBtnRedoClick()"
+               title="Windows: Control + Y | Mac: Command + Shift + Z">
+                <span class="glyphicon glyphicon-share-alt"></span>
+
+                <div>重做</div>
+            </a>
+        </li>
+         <!-- <li>
+            <span class="btn btn-default" role="button" ng-click="onBtnClickTrashcan()">
+                <span class="glyphicon glyphicon-trash"></span>
+        
+                <div>清空</div>
+            </span>
+        </li>
+        <li>
+            <span class="btn btn-default" role="button" ng-click="onBtnClickSave()">
+                <span class="glyphicon glyphicon-floppy-save"></span>
+        
+                <div>保存</div>
+            </span>
+        </li>
+        <li>
+            <span class="btn btn-default" role="button" ng-click="onBtnClickPreview()">
+                <span class="glyphicon glyphicon-camera"></span>
+        
+                <div>预览</div>
+            </span>
+        </li> -->
+    </ul>
+    <!-- right-panel END -->
+
+    <div ng-view ng-show="false"></div>
+
+    <div class="alert alert-danger alert-dismissible tn-compatible-prompt" role="alert">
+        <button type="button" class="close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">关闭</span>
+        </button>
+        如您无法正常操作，请使用谷歌Chrome浏览器
+    </div>
+
+
+    <!--<div class="tn-space-place"></div>-->
+
+    <div class="tn-editing-block tn-layer">
+
+        <div class="inner">
+            <div class="tn-trash-receiver tn-cell-group"
+                ui-sortable="trashCompSlotSortableOpts" ng-model="trashList">
+            </div>
+
+            <div class="tn-panel-container">
+                <div class="tn-meta-panel form-horizontal" ng-controller="EditingMetaController" ng-cloak>
+                    <div class="top-group clearfix">
+                        <div class="left-part">
+                            <div class="image" ng-click="onCoverEditingStart($event)"
+                                 ng-style="{'background-image': 'url(' + (showData.cover || 'images/placeholder-img.jpg') + ')'}">
+                            </div>
+                            <div class="mask" ng-show="status.editingCover">
+                                <div class="inner">“我的图库”中<br>选择图片<br>图片不小于<br>300X300</div>
+                            </div>
+                        </div>
+                        <div class="right-part">
+                            <input type="text" class="form-control" placeholder="请输入图文的标题"
+                                   ng-model="showData.title" data-ng-change="onKVChanged('title', showData.title)">
+                <textarea class="form-control" placeholder="微信分享时的描述，点击左侧图片改封面"
+                          ng-model="showData.desc" data-ng-change="onKVChanged('desc', showData.desc)"></textarea>
+                        </div>
+                    </div>
+                    <div class="audio-group" ng-if="false">
+                        <input type="text" class="form-control bgm-input" placeholder="从我的音乐选择，或输入外链"
+                               ng-model="showData.backgroundMusic" ng-blur="onBgmEditingFinish(showData.backgroundMusic)"
+                               ng-click="onBgmEditingStart()">
+                        <audio class="bgm-audio" id="booklet-bgm-control" controls=""></audio>
+                    </div>
+
+                    <div class="top-group">
+                        <div>
+                            <span style="width:140px;display:inline-block;text-align:left;">发布时间</span><input style="width:230px;display:inline-block;" type="text" class="form-control bgm-input" placeholder="发布时间" data-ng-model="showData.sTime" data-ng-change="onKVChanged('sTime', showData.sTime)" readonly="1" data-ng-click="onDatePick($event)" id="d12">
+                        </div>
+                        <div>
+                            <span style="width:140px;display:inline-block;text-align:left;">信息类别</span><input style="width:230px;display:inline-block;" type="text" class="form-control bgm-input" placeholder="信息类别" data-ng-model="showData.mtype.type_name" data-ng-change="onKVChanged('mtype', showData.mtype)" readonly="1" data-ng-click="status.mtypeSelecting=1">
+                        </div>
+                        <div style="text-align:left;">
+                            <span style="width:140px;display:inline-block;text-align:left;">排序</span><label><input type="radio" data-ng-model="showData.msort" data-ng-change="onKVChanged('msort', showData.msort)" value="1">置顶</label><label style="padding-left:30px;"><input type="radio" data-ng-model="showData.msort" data-ng-change="onKVChanged('msort', showData.msort)" value="0">无</label>
+                        </div>
+                        <div>
+                            <span style="width:140px;display:inline-block;text-align:left;">外部链接</span><input style="width:230px;display:inline-block;" type="text" class="form-control bgm-input" placeholder="外部链接" data-ng-model="showData.external" data-ng-change="onKVChanged('external', showData.external)">
+                        </div>
+                        <div style="text-align:left;">
+                            <span style="width:140px;display:inline-block;text-align:left;">状态</span><label><input type="radio" data-ng-model="showData.mstatus" data-ng-change="onKVChanged('mstatus', showData.mstatus)" value="1">发布</label><label style="padding-left:30px;"><input type="radio" data-ng-model="showData.mstatus" data-ng-change="onKVChanged('mstatus', showData.mstatus)" value="0">停发</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tn-editing-panel" ng-controller="PaperEditingBoxController" ng-class="{
+                              'tn-editing-mode-layout': actingEditingMode == 'layout',
+                               'tn-editing-mode-preview': actingEditingMode == 'preview'}" ng-cloak>
+                    <div class="tn-no-page-prompt text-center" ng-show="showData.pages.length == 0">
+                        ← 点击页面模板加入新的一页
+                    </div>
+                
+                    <div class="box" tn-bind-editing-dock ng-show="!status.isCopyMode">
+                        <article class="dock-loader tn-scene-paper"
+                                 tn-solo-comp-loader="showData"
+                                 tn-bind-comp-tpl-id="paper-cp:sys-edit/loader-flow-paper"
+                                 tn-comp-role="root">
+                        </article>
+                
+                        <div class="op-dock">
+                            <div class="op-dock-item" ng-repeat="(opName, opView) in opList">
+                                <div class="op-loader" tn-mount-op="opName"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="drag-remove-hint-left" ng-hide="!showDragRemoveHint">拖到外面删除</div>
+                    <div class="drag-remove-hint-right" ng-hide="!showDragRemoveHint">拖到外面删除</div>
+                
+                    <div class="projection" ng-show="status.isCopyMode"
+                         stop-propagation="mousedown mouseup mouseover keydown keyup contextmenu click dblclick">
+                        <div class="tn-projection-print tn-scene-paper"
+                             ng-mouseenter="onProjectionMouseEnter($event)"
+                             ng-click="onProjectionClick($event)"
+                             ng-copy="onProjectionCopy($event)"
+                             ng-bind-html="transcodeHTML | unsafe">
+                        </div>
+                
+                        <div class="tn-projection-shadow" ng-show="false">
+                            <article class="dock-loader tn-scene-paper"
+                                     tn-solo-comp-loader="projectionShowData"
+                                     tn-bind-comp-tpl-id="paper-cp:sys/loader-flow-paper"
+                                     tn-comp-role="root">
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<section class="x3-asset-submit-layer full-fill-a" ng-show="status.assetSubmitting"
+         ng-click="onAssetCancel($event)" ng-cloak>
+    <div class="x3-asset-submit-panel container form-group">
+        <div class="center-v col-xs-12 col-sm-12">
+            <form class="inner" name="assetSubmitForm">
+                <h3 class="row title text-center">提交图片链接</h3>
+
+                <div class="row input form-group">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <input class="form-control text-center" name="imageUrlInput" type="url"
+                               ng-model="imageUrl" auto-focus-on="mouseover" auto-select-on="mouseover"
+                               stop-propagation="click"
+                               placeholder="粘贴或输入图片链接">
+                        <button type="submit" class="btn btn-green btn-over-input col-xs-12 col-sm-12"
+                                ng-click="onAssetSubmit($event)">
+                            <img src="images/9e2f0a.xry-btn-submit.png">
+                        </button>
+                    </div>
+                </div>
+                <div class="row prompt text-center" ng-bind="promptText"></div>
+            </form>
+        </div>
+    </div>
+</section>
+
+
+<section class="tn-loading-overlap black full-fill-a"
+         ng-show="status.show.initializing || status.show.updating || status.show.collectingImg">
+    <div class="loading">
+        <span class="rolling glyphicon glyphicon-refresh"></span>
+    </div>
+</section>
+
+<section class="tn-loading-overlap tn-progress-overlap black full-fill-a"
+         ng-style="{ 'display': status.sendingData ? 'block' : 'none' }">
+    <div class="progress progress-striped active">
+        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100"
+             ng-style="{ 'width': status.sendingProgress + '%' }" ng-bind="status.sendingProgress + '%'">
+        </div>
+    </div>
+</section>
+
+<section class="tn-loading-overlap tn-progress-overlap black full-fill-a"
+         ng-style="{ 'display': status.image.clearingImage ? 'block' : 'none' }">
+    <div class="progress progress-striped active">
+        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100"
+             ng-style="{ 'width': status.image.clearImageProgress + '%' }"
+             ng-bind="status.image.clearImageProgress + '%'">
+        </div>
+    </div>
+</section>
+
+<section class="x3-palette-export-layer full-fill-a" ng-show="status.paletteExporting"
+         ng-click="onPaletteExportCancel($event)" ng-cloak>
+    <div class="x3-palette-export-panel container form-group">
+        <div class="center-v col-xs-12 col-sm-12">
+            <form class="inner" name="assetSubmitForm">
+                <h3 class="row title text-center">导出调色板</h3>
+                <div class="row input form-group">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <textarea class="form-control text-left" ng-model="exportPaletteString" stop-propagation="click"
+                                  auto-focus-on="mouseover" auto-select-on="mouseover"></textarea>
+                    </div>
+                </div>
+                <div class="row text-center hint">
+                    将上面内容复制到一个本地文件<br>
+                    将来可以再次导入或者另存给他人。
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<section class="x3-palette-import-layer full-fill-a" ng-show="status.paletteImporting"
+         ng-click="onPaletteImportCancel($event)" ng-cloak>
+    <div class="x3-palette-import-panel container form-group">
+        <div class="center-v col-xs-12 col-sm-12">
+            <form class="inner" name="assetSubmitForm">
+                <h3 class="row title text-center">导入调色板</h3>
+                <div class="row input form-group text-center">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <textarea class="form-control text-left" ng-model="importPaletteString" stop-propagation="click"
+                                  placeholder="粘贴或输入颜色列表，以分号分隔"></textarea>
+                    </div>
+                    <button class="btn btn-green import-btn"
+                            ng-click="onPaletteImportSubmit($event)" ng-disabled="importPaletteString.length === 0">
+                        导入
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<section class="x3-palette-import-layer full-fill-a" ng-if="status.mtypeSelecting"
+         ng-cloak>
+    <div class="form-group mtype-select-layer">
+        <div class="modal-header">                        
+            <button aria-hidden="true" data-ng-click="status.mtypeSelecting=0" class="close" type="button" data-dismiss="modal">
+                ×
+            </button>        
+            <h3 id="hos_ModalLabel">
+                请勾选规则条件
+            </h3>        
+        </div>
+        <div style="padding:5px 10px;border-bottom: 1px solid #eee;">
+            <input type="text" class="input" data-ng-model="status.myMtypeRsh" data-ng-init="status.myMtypeRsh1='';status.myMtypeRsh='';"><input type="button" value="搜索" class="btn" data-ng-click="status.myMtypeRsh1 = status.myMtypeRsh">
+            <select data-ng-model="status.myMtype" ng-options="v.id as v.txt1 for v in filterMtypeData.parent " data-ng-init="status.myMtype='';" data-ng-show="false"></select>
+        </div>
+        <div class="modal-body">
+            <div class="mtype-select-body-left">
+                <div data-ng-repeat="v0 in filterMtypeData.mtype|filter:filterMtype|filter:{type_name:status.myMtypeRsh1}">
+                    <label><input type="radio" data-ng-model="status.myMtypeSel" data-ng-value="v0" data-ng-model="status.mtypeValue">{{v0.type_name}}</label>
+                </div>
+            </div><div class="mtype-select-body-right">
+                <div data-ng-repeat="v0 in filterMtypeData.mtype|filter:{id:status.myMtypeSel.id||-1}:true">
+                    <label><input type="radio" value="{{v0.id}}" checked="checked" data-ng-model="status.mtypeValue">{{v0.type_name}}</label>
+                </div>
+            </div>
+        </div>
+        <div class="modal-bottom">
+            <input type="button" value="确定" class="btn" data-ng-click="showData.mtype=status.myMtypeSel;onKVChanging('mtype', showData.mtype);status.mtypeSelecting=0"> &nbsp;&nbsp;&nbsp;
+            <input type="button" value="取消" class="btn" data-ng-click="status.mtypeSelecting=0">
+        </div>
+    </div>
+</section>
+
+
+</div>
+
+<script type="text/ng-template" id="previewDialog.html">
+    <section class="paper-preview">
+        <iframe class="paper-preview-frame" ng-src="{{ previewUrl }}"></iframe>
+        <div class="paper-preview-sider" stop-propagation="click">
+            <div class="qr-container text-center">
+                <div class="border">
+                    <qrcode qr-data="showInfo.show_url" qr-size="120" qr-foreground="#6c6d6f" qr-background="white"></qrcode>
+                </div>
+                <div class="modal-title">扫描二维码手机预览<br>或点击链接直接打开</div>
+            </div>
+            <input class="tn-show-link-area form-control-static form-control" type="text" readonly="true"
+                   auto-focus-on="mouseover" auto-select-on="mouseover"
+                   act-as-link href="{{ showInfo.show_url }}" value="{{ showInfo.show_url }}" ng-cloak>
+        </div>
+    </section>
+</script>
+
+<section class="tn-scripts">
+    <script src="/jjzxwx/My97DatePicker/WdatePicker.js"></script>
+
+    <script charset="utf-8" src="ueditor.4v5.config.js"></script>
+    <script charset="utf-8" src="ZeroClipboard.js"></script>
+    <script charset="utf-8" src="ueditor.all.min.js"></script>
+
+    <script charset="utf-8" src="89750.ng-tpl.min.js"></script>
+
+    <script charset="utf-8" src="1b0fbf.ng-tpl.min.js"></script>
+
+    <script charset="utf-8" src="061878.paper.min.js?v1"></script>
+</section>
+
+</body>
+</html>

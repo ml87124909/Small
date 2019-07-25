@@ -1,0 +1,68 @@
+{% extends "list.html" %}
+
+
+{% block topSearch %}
+
+{% endblock %}
+{% block mGrid %}
+<table class="table table-bordered">
+
+
+    <tbody>
+        <tr>
+            <th>
+                <div>设置信息</div>
+            </th>
+            <th>
+                <font style="color:red;"><a href="https://portal.qiniu.com/signup?code=3la79bgu5mrma" target="_blank">七牛云注册传送</a></font>
+            </th>
+        </tr>
+
+        <tr>
+            <td width="100">
+                <label>access_key:</label>
+            </td>
+            <td width="250">
+                <input type="text" class="form-control"  name="access_key" value="{{item.access_key}}" readonly="readonly" />
+            </td>
+        </tr>
+
+        <tr>
+            <td width="100">
+                <label>secret_key:</label>
+            </td>
+            <td >
+                <input type="text" class="form-control"  name="secret_key" value="{{item.secret_key}}" readonly="readonly" />
+            </td>
+        </tr>
+
+        <tr>
+            <td width="100">
+                <label>bucket_name:</label>
+            </td>
+            <td width="250">
+                <input type="text" class="form-control"  name="name" value="{{item.name}}" readonly="readonly" />
+            </td>
+        </tr>
+        <tr>
+            <td width="100">
+                <label >外链默认域名:</label>
+            </td>
+            <td width="250">
+                <input type="text" class="form-control"  name="domain" value="{{item.domain}}"  readonly="readonly" /></br>
+                <font style="color:red;">如：http://cdn.maliapi.cn/或https://cdn.maliapi.cn/ 注意：小程序只支持https协议，请在七牛开启https</font>
+                <br><font style="color:red;">注意：修改后请上传一张图，确认配置是否有误，如有问题请到微信群@简道</font>
+            </td>
+
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                <button type="button" class="btn btn-success btn-sm" onclick="main_update({{item.usr_id}})"><i class="fa fa-edit"></i>设置</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}
+
+

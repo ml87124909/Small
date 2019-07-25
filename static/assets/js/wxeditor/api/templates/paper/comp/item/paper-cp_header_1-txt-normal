@@ -1,0 +1,1 @@
+{"code":0,"message":"Common:OK","data":{"tplId":"paper-cp:header/1-txt-normal","name":"文字","version":"0.1","order":1,"hideForBooklet":"true","matrix":{"_comp":{"constraint":{"opMenu":{"text-merged":true},"pose":{"resize":"h"}},"pose":{},"style":{},"tplId":"paper-cp:header/1-txt-normal"},"txt1":{"type":"text","text":"<p>请输入正文</p>","style":{}}}}}

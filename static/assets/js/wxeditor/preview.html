@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+    <title ng-bind="pageTitle || 'null'">null</title>
+
+    <link rel="stylesheet" href="bootstrap/wxeditor/065421.paper.min.css">
+
+    <script id="__pre_data">
+        window.injectedData = window.injectedData || {};
+        injectedData.tplHostPath = "TODO";
+        injectedData.showInfo = {"type":2,"version":5,"title":null,"desc":null,"cover":null,"show_data_name":"1jjY/67b021f7bba693f4360225fe28acd1e7","show_data_url":"../../admin?fid=B001&part=ajax&action=getData&pk=1","show_url":"http://v.xiumi.us/board/v5/2xHQD/7881371","no_logo":0,"no_advert":0,"freeshow":0,"traffic":0,"points":0,"history_hits":1,"cur_hits":1,"high_peak":50000,"created_at":"2015-12-16T09:32:51.000Z","updated_at":"2015-12-16T18:41:38.000Z","owner":{"nickname":"hmvc","avatar_url":"http://q.qlogo.cn/qqapp/101147695/7F16AEC48E7A5A38DE1532DFD16E09F5/100","brand_name":null,"agreement_access":1,"level":1,"level_remain_life":0}};
+        injectedData.boundHost = "";
+        injectedData.cdnBoundHost = "";
+        injectedData.wxSign = {"timestamp":1450319857,"nonceStr":"yZggxsHTYtjr3zfv","signature":"6fe15ac6de9a13171d1e9fc75dd60c93b5129498"};
+        injectedData.advertList = [];
+    </script>
+
+    <script id="__delete_pre_data">
+    var __pre_data = document.getElementById('__pre_data');
+    if (!!__pre_data) {
+        __pre_data.parentNode.removeChild(__pre_data);
+    }
+    var __pre_connect = document.getElementById('__pre_connect');
+    if (!!__pre_connect) {
+        __pre_connect.parentNode.removeChild(__pre_connect);
+    }
+    var __delete_pre_data = document.getElementById('__delete_pre_data');
+    if (!!__delete_pre_data) {
+        __delete_pre_data.parentNode.removeChild(__delete_pre_data);
+    }
+</script>
+</head>
+<body class="tn-transition-end" ng-controller="PaperRootReaderController">
+
+<div class="tn-reader-paper container" ng-controller="PaperReaderController">
+
+    <section class="row tn-board-head">
+        
+        <h3 style="color: #aaa;">无标题</h3>
+        
+        <div class="tn-head-info">
+            <span class="time" ng-bind="showInfo.created_at | date:'yyyy-M-d'"></span>
+            <span class="hor-sep"></span>
+            <span class="brand" ng-bind="showInfo.owner.brand_name"></span>
+        </div>
+    </section>
+
+    <hr/>
+
+    <div class="loading-progress" ng-show="!isReady">
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+    </div>
+
+    <section class="row tn-article-body">
+        <article class="dock-loader tn-scene-paper tn-show-root"
+                 tn-solo-comp-loader="showData"
+                 tn-bind-comp-tpl-id="paper-cp:sys/loader-flow-paper"
+                 tn-comp-role="root" ng-cloak>
+        </article>
+    </section>
+
+    <hr/>
+
+    <!-- <section class="row tn-board-foot">
+        <div class="col-xs-4 text-left">
+            阅读 <span ng-bind="2 | hitCountText"></span>
+        </div>
+        <div class="col-xs-8 text-right">
+                本内容由用户创建并负责
+        </div>
+    </section>
+
+    <section class="row tn-board-foot tn-board-foot-margin">
+        <div class="col-xs-12 text-right">
+            <a class="no-decoration text-right" href="/follow">
+                由秀米提供技术支持
+            </a>
+        </div>
+    </section> -->
+
+</div>
+
+<section class="tn-scripts tn-last-block">
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+
+    <script src="bootstrap/wxeditor/701069.paper.min.js"></script>
+
+</section>
+
+</body>
+</html>

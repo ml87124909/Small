@@ -1,0 +1,39 @@
+{% extends "base_local.html" %}
+	{% block breadcrumb %}
+	{{breadcrumb}}
+    <div id="div_mul_btns">
+    {% block MUL_BTNS %}
+        <table class="tb single-table clearfix top-line">
+            <tr>
+                <td style="text-align:right;">
+                    {{sUrlBack}}
+                </td>
+            </tr>
+        </table>
+    {% endblock %}
+    </div>
+{% endblock %}
+{% block html_local %}
+<div style="width:100%;height:520px">
+	<iframe style="width:100%;height:100%;" src="static/assets/js/wxeditor/index_A004.html#/for/{{pk}}"></iframe>
+</div>
+{% endblock %}
+{% block page_script %}
+<script>
+//function formcheck_2(form){
+    //var cname = $("input[name=cname]").val();
+	//if ($.trim(cname) == '')
+	//{
+		//layer.alert("请输入部门名称");
+		//return false;
+	//}
+	//return true;
+	
+//}
+</script>
+{% endblock %}
+{% block javascript %}
+{% endblock %}
+        
+            
+	

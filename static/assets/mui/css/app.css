@@ -1,0 +1,129 @@
+﻿/*
+ *这是单独为hello mui准备的个性化css，可以覆盖标准mui的css定义；
+ * 在实际项目开发时，建议为App单独写一个css文件，从而实现项目的自定义皮肤功能；
+ * 
+ * */
+ body,.mui-input-row label,input, select, textarea{font-family:"微软雅黑", "宋体", "楷体";}
+ body,input, select, textarea,.mui-input-row select	{font-size:14px;}
+.mui-plus.mui-android header.mui-bar{
+	display: none;
+}
+.mui-plus.mui-android .mui-bar-nav~.mui-content{
+	padding: 0;
+}
+
+.mui-row.mui-fullscreen>[class*="mui-col-"] {
+	height: 100%;
+}
+.mui-col-xs-3,
+.mui-control-content {
+	overflow-y: auto;
+	height: 100%;
+}
+
+.mui-segmented-control .mui-control-item {
+	line-height:1.1;
+	padding:1vh 1vw;	
+	width: 100%;
+}
+.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+	background-color: #fff;
+}
+
+.mui-icon-extra .mui-badge {
+    font-size: 10px;
+    line-height: 1.4;
+    position: absolute;
+    top: -2px;
+    left: 100%;
+    margin-left: -10px;
+    padding: 1px 5px;
+    color: #fff;
+    background: red;
+}
+.mui-bar-tab .mui-tab-item .mui-icon-extra {
+    top: 3px;
+    width: 24px;
+    height: 24px;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.mui-bar .mui-icon-extra {
+    font-size: 24px;
+    position: relative;
+    z-index: 20;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.mui-bar-tab .mui-tab-item .mui-icon-extra~.mui-tab-label {
+    font-size: 11px;
+    display: block;
+} 
+
+/*以下是muireset*/
+.mui-content h3{}
+.mui-content h4{}
+.mui-content h5,.mui-content h6{ line-height:24px; margin-top:10px;}
+.mui-card-media{ color:inherit}
+a.mui-navigate-right{ display: block; position: relative;}
+.mui-table-view-chevron .mui-table-view-cell{padding-right: 5px;border-bottom: 1px solid #c8c7cc;}
+.mui-table-view-chevron .mui-table-view-chevron .mui-table-view-cell{padding-right: 65px;}
+.mui-table-view-chevron .mui-table-view-cell>a:not(.mui-btn){margin-right:-35px;}
+.mui-table-view-chevron .mui-table-view-chevron .mui-table-view-cell>a:not(.mui-btn){margin-right:-65px;}
+.mui-table-view-chevron .input-name{border: none;
+    background-color: #ffffff;
+    width: 72%;
+    height: 20px;
+    margin-bottom: 0px;
+	padding:0px;
+	color:#000000;}
+.mui-table-view-cell.mui-collapse .mui-table-view.mui-table-view-chevron{margin-right:-35px;}
+.mui-table-view-cell.mui-collapse .mui-collapse-content{ margin:11px -35px -11px -15px}
+.mui-table-view-cell.mui-collapse .mui-table-view .mui-table-view-cell{ padding-left:15px;}
+
+.mui-table-view-cell.mui-collapse .mui-table-view .mui-table-view-cell:after{ left:0px;}
+/*fpgcpcmpntsg*/
+p.vjtext{ line-height:1.5; background-color:transparent}
+li.mui-table-view-cell label{  font-weight:100; min-width:35%; margin:0px; float:left}/*列表里H4作为标题样式*/
+li.mui-table-view-cell .mui-input-row label{padding:0px; line-height:21px;}
+li.mui-table-view-cell label~.vjtext{ color:#555; line-height:21px;}
+li.mui-table-view-cell .mui-input-row input,li.mui-table-view-cell .mui-input-row .mui-numbox{padding:0px; line-height:21px; height:auto}
+li.mui-table-view-cell .mui-input-row .mui-numbox{ margin:auto;}
+li.mui-table-view-cell .mui-input-row .mui-input-clear~.mui-icon-clear, li.mui-table-view-cell .mui-input-row .mui-input-password~.mui-icon-eye, li.mui-table-view-cell .mui-input-row .mui-input-speech~.mui-icon-speech{top:auto}
+li.mui-table-view-cell.mui-collapse a{ font-size:14px;}
+li.mui-table-view-cell.mui-collapse.mui-active a{ font-weight:700}
+/*透明*/
+.vjtransparent{ background:transparent;}
+
+.mui-table-view .lan {
+    line-height: 40px;
+    max-width: 40px;
+    height: 40px;
+}
+
+.list_headr{
+		width: 100%;
+		height: 30px;
+		line-height: 30px;
+		border-bottom: 1px solid#c8c7cc;
+		padding-right:5px;
+	}
+
+.zhankai_1{
+	color:#0000FF;
+}
+
+.mui-content .a_1{
+height: initial;width: 100%;display: block;
+}
+
+.mui-content  .mmui-media {
+	height:50px;
+    border-bottom: 1px solid #c8c7cc;}
+
+.mui-content  .mui-vname {
+width: 78%;border:none;background-color:#fff;padding: 5px 10px;
+}
+.mui-content .mui-db-list-am{
+width: 22%;line-height:40px;text-align:right;float:right;
+}

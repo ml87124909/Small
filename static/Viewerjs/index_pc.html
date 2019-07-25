@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="utf-8">
+    <title>jQuery图片查看器viewer.js</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/viewer.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<!--S header-->
+<div class="topbar topicfixed">
+    <div class="toppic">
+        <div class="topside">
+            <a href="#" class="logoLink">图片查看器logo</a>
+            <ul class="topNav">
+                <li class="">jQuery版本</li>
+                <li class="">图片查看器</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--E header-->
+<!--S main-->
+<div class="center_main befo afte">
+    <div class="main">
+        <ul class="images clearfix" id="dowebok">
+            <li class="item"><img data-original="img/tibet-1.jpg" src="img/tibet-1.jpg" alt="Cuo Na湖"></li>
+            <li class="item"><img data-original="img/tibet-2.jpg" src="img/tibet-2.jpg" alt="青藏高原"></li>
+            <li class="item"><img data-original="img/tibet-3.jpg" src="img/tibet-3.jpg" alt="大昭寺"></li>
+            <li class="item"><img data-original="img/tibet-4.jpg" src="img/tibet-4.jpg" alt="布达拉宫1"></li>
+            <li class="item"><img data-original="img/tibet-5.jpg" src="img/tibet-5.jpg" alt="布达拉宫2"></li>
+            <li class="item"><img data-original="img/tibet-6.jpg" src="img/tibet-6.jpg" alt="布达拉宫3"></li>
+            <li class="item"><img data-original="img/tibet-7.jpg" src="img/tibet-7.jpg" alt="拉萨河"></li>
+            <li class="item"><img data-original="img/tibet-8.jpg" src="img/tibet-8.jpg" alt="Namtso 1"></li>
+            <li class="item"><img data-original="img/tibet-9.jpg" src="img/tibet-9.jpg" alt="Namtso 2"></li>
+        </ul>
+    </div>
+</div>
+<!--E main-->
+<script src="js/jquery-1.12.3.js"></script>
+<script src="js/viewer-jquery.min.js"></script>
+<script>
+    $(function() {
+        $('#dowebok').viewer({
+            url: 'data-original',
+            title: false,
+            navbar:true
+        });
+    });
+</script>

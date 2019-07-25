@@ -1,0 +1,327 @@
+{% extends "base_local.html" %}
+	
+{% block html_local %}
+<style>
+.btn-file {  /*  上传按钮*/
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    rightright: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: rightright;
+    filter: alpha(opacity = 0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+</style>
+<table class="tb single-table" style="width:80%">
+	<tr>
+		<td width="90">
+			<label>发布单号</label>
+
+		</td>
+		<td>
+			{% if hidden.mode == 'add'%}自动生成{%else%}{{item.v_code}}{%endif%}
+		</td>
+	</tr>
+	<tr>
+		<td width="90">
+			<label>活动名称</label>
+		</td>
+		<td colspan="3">
+			<input type="text" class="form-control" style="width:650px;" name="cname" value="{{item.cname}}" maxlength="60"/>
+		</td>
+	</tr>
+	<tr>
+
+		<td width="100">
+			<label>每天次数</label>
+		</td>
+		<td>
+			<input type="number" class="form-control" name="daytimes" value="{{item.daytimes}}"/>
+		</td>
+		<td width="100">
+			<label>活动总限次</label>
+		</td>
+		<td colspan="3">
+			<input type="number" class="form-control" name="maxdaytimes" value="{{item.maxdaytimes}}"/>&nbsp;<font style="color:#ff0000;">总限次不设置（0），按每天次数实行。</font>
+		</td>
+	</tr>
+
+	<tr>
+		<td width="100">
+			<label>开始时间</label>
+		</td>
+		<td>
+			<input type="text" class="form-control" onCLick = "setdatetime(this)" name="btime" value="{{item.btime}}" readonly="readonly"/>
+		</td>
+		<td width="90">
+			<label>结束时间</label>
+		</td>
+		<td>
+			<input type="text" class="form-control" onCLick = "setdatetime(this)" name="etime" value="{{item.endtime}}" readonly="readonly"/>
+		</td>
+		
+	</tr>
+	<tr>
+		
+		<td width="100">
+			<label>是否开启</label>
+		</td>
+		<td>
+			<input type="checkbox" name="cstatus" {%if item.cstatus==1%}checked="checked"{%endif%} value="1"/>
+		</td>
+		<td width="90">
+			<label>领取过期时间</label>
+		</td>
+		<td>
+			<input type="text" class="form-control" onCLick = "setdatetime(this)" name="edtime" value="{{item.edtime}}" readonly="readonly"/>&nbsp;<font style="color:#ff0000;">红包过期时间。</font>
+		</td>
+		
+	</tr>
+
+	<tr>
+		<td width="100">
+			<label>活动说明</label>
+		</td>
+		<td colspan="3">
+			<textarea class="form-control" style="width:650px;" rows = '10' name="memo"  placeholder="请输入300字内活动说明" maxlength="600"/>{{item.memo}}</textarea>
+		</td>
+	</tr>
+	
+</table>
+<section class="panel panel-default" style="width:40%">
+	<div class="title_comm"><span class="block_blue"></span><b style="color:#333333;">红包明细表</b>
+	<input type="hidden" name="SelRow" value="">
+	{% if hidden.mode !='view' %}
+	<img src="static/assets/images/add.png" onclick="addtr()" style="width:22px;height:22px;float:right;">
+	{% endif %}
+	</div>
+		<table id = "matListTable" class="list-table detail-list-tb" style="width:100%">
+		<thead>
+			<tr>
+				<th width="8%" style="text-align:center;">
+					<label>可与优惠券同时使用</label>
+				</th>
+
+				<th width="9%" style="text-align:center;">
+					数量
+				</th>
+				<th width="9%" style="text-align:center;">
+					<label>面值</label>
+				</th>
+
+			</tr>
+		</thead>
+		<tbody class="add_list">
+			{% if hidden.mode == 'add' and hidden.pk == '' %}
+				<tr class="clone list-tr">
+					<td width="8%">
+						<select class="form-control" name='xs_type' style="width:120px;">
+							<option value="0">是</option>
+							<option value="1">否</option>
+						</select>
+					</td>
+					<td width="9%">
+						<input type="hidden" name="id" value="">
+						<input type="number" class="form-control"  name="amount" value="0"  style="width:110px;text-align:right;"/>
+					</td>
+					<td width="9%">
+						<input type="text" class="form-control"  name="price" value="0"  onKeyup="onlyNum_test(event,this)" style="width:110px;text-align:right;"/>
+					</td>
+
+				</tr>
+			{% else %}
+				{% for e in itemlist%}
+				<tr {%if loop.index0 == 0 %} class="clone list-tr"{%else%}class="list-tr" {%endif%} >
+					<td width="8%" ">
+						<select class="form-control" name='xs_type' style="width:120px;" >
+							<option value="0" {{' selected="selected"' if e[1]|string == '0'}}>是</option>
+							<option value="1" {{' selected="selected"' if e[1]|string == '1'}}>否</option>
+						</select>
+					</td>
+					<td width="9%">
+						<input type="hidden" name="id" value="{{e[0]}}">
+						<input type="number" class="form-control"  name="amount" value="{{e[2]}}" style="width:110px;"/>
+
+					</td>
+
+
+					<td width="10%">
+						<input type="text" class="form-control"  name="price" value="{{e[3]}}"  style="width:110px;" onKeyup="onlyNum_test(event,this)" />
+					</td>
+
+				</tr>
+				{% endfor%}
+		   {%endif%}
+	
+		</tbody>
+	</table>
+</section>
+{{Rmselect}}
+{% endblock %}
+
+{% block page_script %}
+<script>
+function setdatetime(obj){
+	return WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'});
+}
+function formcheck_2(form){
+	cstatus =  $('input[name="cstatus"]').is(":checked");
+	amount = $('input[name="daytimes"]').val();
+	mamount = $('input[name="maxdaytimes"]').val();
+	btime = $('input[name="btime"]').val();
+	etime = $('input[name="etime"]').val();
+	edays = $('input[name="edays"]').val();
+	edtime = $('input[name="edtime"]').val();
+
+	if (cstatus)
+    {	
+		if (amount == '' || amount <=0)
+		{
+			layer.alert('请填写每天抽取次数');
+			return false;
+		}
+		if (mamount == '' || mamount <0)
+		{
+			layer.alert('请填写每天限制总限次');
+			return false;
+		}
+		if (btime == '' || etime == '' )
+		{
+			layer.alert('请填写完整活动时间');
+			return false;
+		}
+		if (btime > etime)
+		{	
+			layer.alert('开始时间不能大于结束时间');
+			return false;
+		}
+
+		if (edtime == '')
+		{	
+			layer.alert('领取过期时间必须填写');
+			return false;
+		}
+		
+    }
+	return true;
+	
+}
+
+function addtr(){
+	var tr = $(".detail-list-tb").find(".clone").clone();
+	tr.removeClass("clone").removeClass("active").addClass("paste");
+	tr.find("input").val('');
+	//tr.find("input[name=xg_amount]").val(0);
+	//tr.find("option").removeAttr("selected");
+	tr.find("input[name=amount]").val(0);
+	tr.find("input[name=price]").val(0);
+	tr.click(function(){
+		$(".detail-list-tb .list-tr").removeClass("active");	
+		$(this).addClass("active");
+		$("input[name=SelRow]").val(parseInt($(this).index()));
+	});
+	$(".detail-list-tb").append(tr);
+}
+
+function deltr(){
+	if ($("input[name=SelRow]").val() == 0)
+	{
+		layer.alert("此行不能删除！");
+	}
+	if($(".detail-list-tb .list-tr .active").length == 0){
+		layer.alert("请先选择要删去的列");
+		return;
+	}
+	if ($(".detail-list-tb .list-tr").length == 1)
+	{
+		layer.alert("明细至少要保留一列数据");
+		return;
+	}
+	$(".detail-list-tb .list-tr.active").remove();
+}
+
+function SelectRows(obj){
+	tr = $(obj).parent().parent();
+	tr_index = tr.index();
+	$("input[name=SelRow]").val(tr_index);
+	var typev = $('select[name=xs_type]').eq(tr_index).val();
+	var itemv = $('input[name=item_id]').eq(tr_index).val();
+	tr.find("input[name=xg_amount]").attr("readonly","readonly");
+	if (itemv == -10000)
+	{
+		layer.alert("此记录默认不能修改");
+		tr.find("input[name=xg_amount]").val(0);
+	}
+	else if (typev == 233)
+	{
+		layer.alert("储值类型不能设为商品");
+		tr.find("input[name=xg_amount]").val(0);
+	}
+	else if (typev == 231)
+	{
+		tr.find("input[name=xg_amount]").removeAttr("readonly");
+		rt_loadUsersList('');
+	}
+	else{
+		rt_loadUsersList('');
+		tr.find("input[name=xg_amount]").val(0);
+	}
+}
+
+function changeRow(obj){
+	tr = $(obj).parent().parent();
+	tr_index = tr.index();
+	val = $(obj).val();
+	tr.find("input[name=xg_amount]").attr("readonly","readonly");
+	if (val == 231){
+		tr.find("input[name=xg_amount]").removeAttr("readonly");
+	}
+	else{
+		tr.find("input[name=xg_amount]").val(0);
+	}
+}
+
+function testVal(obj){
+	tr = $(obj).parent().parent();
+	tr_index = tr.index();
+	val = $(obj).val();
+	var tval = tr.find("select[name=xs_type]").val();
+	var mdtimes = $('input[name=mdtimes]').val();
+	if (val < 0)
+	{
+		layer.alert("不能小于0");
+		$(obj).val(0);
+		return false;
+	}
+	if (tval == 231 && mdtimes > 0 && val >mdtimes)
+	{
+		layer.alert("已设置优惠券每天总限量，前台使用限量不能大于总限量");
+		$(obj).val(0);
+		return false;
+	}
+}
+
+$(function(){
+	$(".detail-list-tb .list-tr").click(function(){
+		$(".detail-list-tb .list-tr").removeClass("active");	
+		$(this).addClass("active");
+		$("input[name=SelRow]").val(parseInt($(this).index()));
+	});
+}
+)
+</script>
+
+{% endblock %}
+{% block javascript %}
+{% endblock %}       
+            

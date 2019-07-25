@@ -1,0 +1,120 @@
+{% include 'header.html' %}
+<section class="vbox">
+  <header class="bg-dark dk header navbar navbar-fixed-top-xs" style="background-color: royalblue;">
+    <div class="navbar-header aside-md" style="width:500px"> <a class="btn btn-link visible-xs" data-toggle="class:nav-off-screen" data-target="#nav"> <i class="fa fa-bars"></i> </a> 
+    	<a href="#" class="navbar-brand" data-toggle="fullscreen" style="    margin-top: 2%;">
+<!--    		<img src="asset/images/logo2.jpg" style="margin-left:10px;width: 90px;height: 50px;" />-->
+    		    <h2 style="font-family:'黑体';font-size:20px;font-weight: 700;margin-left: 12px;color:#fff;font-size: 24px;font-weight: 500;"></h2>
+
+    	</a>
+    </div>
+    <ul class="nav navbar-nav navbar-right hidden-xs nav-user">
+      <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="background:initial;color:#fff;height:45px;line-height:15px;">
+          {{session_user.usr_name or '登录名未设置'}}<b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu animated fadeInRight">
+              <span class="arrow top"></span>
+              <li> <a href="admin?viewid=H001">个人设置</a> </li>
+              {%if usr_id==1%}
+                <li> <a href="admin?viewid=common&part=refeshmenu">刷新菜单</a> </li>
+              {%endif%}
+              <li class="divider"></li>
+              <li> <a href="admin?viewid=login&part=logout">注销</a> </li>
+          </ul>
+      </li>
+    </ul>
+  </header>
+  
+  <section style="width:1440px;margin:0 auto;left:0;right:0;bottom:0;top:45px;background-color:#ffffff;">
+    <section class="hbox stretch"> <!-- .aside -->
+      <aside class="bg-dark lter aside-md hidden-print" id="nav" >
+        <section class="vbox">
+          <section class="w-f scrollable" >
+            <div class="slim-scroll"  data-height="auto" data-disable-fade-out="true" data-distance="0" data-size="5px" data-color="#333333">
+              <!-- nav -->			
+              <nav class="nav-primary hidden-xs">
+                <ul class="nav">
+                  <li{{' class="active"' if not hidden.mnuid or hidden.mnuid < 0 else ''}}> <a href="admin?viewid=home" class="active"> <i class="fa fa-home icon" style="line-height: 46px;"> <b class="bg-danger"></b> </i> <span style="font-size: 15px;">主页</span> </a>
+                  </li>
+                  {% for m1 in system_menu.menu1 %} <li{{' class="active"' if hidden.mnuid|string == m1[0]|string else ''}}> <a 
+						{% if system_menu.menu2.get(m1[0]) %}
+						href="#{{m1[0]}}"
+						{% else %}
+						href="admin?viewid={{m1[2]}}"
+						{% endif %}> <i class="fa {{m1[3]}} icon" style="line-height: 46px;"> <b class="bg-success"></b></i> {% if system_menu.menu2.get(m1[0]) %} <span class="pull-right"> <i class="fa fa-angle-down text"></i> <i class="fa fa-angle-up text-active"></i> </span> {% endif %} <span style="font-size: 15px;">{{m1[1]}}</span> </a> {% if system_menu.menu2.get(m1[0]) %}
+                  <ul class="nav lt">
+                    {% for m2 in system_menu.menu2.get(m1[0]) %} <li{{' class="active"' if hidden.sub1id|string == m2[0]|string else ''}}> <a href="admin?viewid={{m2[2]}}" {{' class="active"' if hidden.sub1id|string == m2[0]|string else ''}}> <i class="fa fa-angle-right fa-lg"></i>
+                    <span style="font-size: 15px;">{{m2[1]}}</span>
+                    {% if m2[2]=='A003':%}                       
+					   {% if yjd :%}
+							<span class="label label-danger" style="margin-left:10px;font-size: 15px;" id="nav_dcsl_total">{{yjd}}</span>
+					   {% else:%}
+							<span class="label label-danger" style="margin-left:10px;" id="nav_dcsl_total"></span>
+					   {% endif%}							    
+					{% endif%}                   
+                    </a></li>
+                    {% endfor %}
+                  </ul>
+                  {% endif %}
+                  </li>
+                  {% endfor %}
+                </ul>
+              </nav>
+              <!-- / nav --> </div>
+          </section>
+
+        </section>
+      </aside>
+      <!-- /.aside -->
+      <section id="content">
+        <!--section class="vbox"-->
+        {% block form_block %}
+	    <form method="POST" action="admin" class="form-inline" name="frmMain">
+        {% endblock %}
+          <header class="dk header navbar navbar-fixed-top-xs">
+            <ul class="breadcrumb no-border no-radius b-b b-light scrollable">
+              <li style="float:left;"><a href="admin?viewid=home"><i class="fa fa-home"></i><span style="color:#4190D3;margin-left:10px;">首页</span></a></li>
+              {% block breadcrumb %}
+              {% endblock %}
+            </ul>
+          </header>
+           <div class="col-sm-12">
+             <label class="col-sm-4 control-label">
+                <div id="div_mul_btns">
+                    {% block MUL_BTNS %}
+
+                    {% endblock %}
+                    </div>
+            </label>
+           </div>
+
+
+          <section class="scrollable padder" style="top:90px;">
+            {% block contentpanel %}
+            {% endblock %} 
+          </section>
+		</form>
+        <!--/section-->
+        <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen" data-target="#nav"></a>
+      </section>
+      <aside class="bg-light lter b-l aside-md hide" id="notes">
+        <div class="wrapper">Notification</div>
+      </aside>
+    </section>
+  </section>
+</section>
+
+<!-- App --> 
+{% block javascript %} 
+<script src="static/assets/js/charts/easypiechart/jquery.easy-pie-chart.js" cache="false"></script>
+<script src="static/assets/js/charts/sparkline/jquery.sparkline.min.js" cache="false"></script>
+<script src="static/assets/js/charts/flot/jquery.flot.min.js" cache="false"></script>
+<script src="static/assets/js/charts/flot/jquery.flot.tooltip.min.js" cache="false"></script>
+<script src="static/assets/js/charts/flot/jquery.flot.resize.js" cache="false"></script>
+<script src="static/assets/js/charts/flot/jquery.flot.grow.js" cache="false"></script>
+<script src="static/assets/js/calendar/bootstrap_calendar.js" cache="false"></script>
+<script src="static/assets/js/sortable/jquery.sortable.js" cache="false"></script>
+<link rel="stylesheet" href="static/assets/js/calendar/bootstrap_calendar.css" type="text/css" cache="false" />
+{% endblock %}
+</body></html>

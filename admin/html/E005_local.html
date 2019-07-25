@@ -1,0 +1,63 @@
+{% extends "local.html" %}
+	
+{% block html_local %}
+<table class="table">
+	<tr>
+		<td colspan="6">
+			<div id="form2"></div>
+		</td>
+	</tr>
+	<tr>
+	</tr>
+
+
+	<tr>
+		<td width="100">
+			<label >个性域名:</label>
+		</td>
+		<td width="250">
+			<input type="text" class="form-control"  name="synurl" value="{{item.synurl}}" /></br>
+			<font style="color:red;">请填写API工厂后台首页——基本信息——个性域名</font>
+		</td>
+
+	</tr>
+
+<!--
+	<tr>
+		<td>
+			<label for="">选择部门</label>
+		</td>
+		<td>
+			<select name="dept_id" class="form-control">
+				{% for d in deptlist %}
+				<option value="{{d[0]}}"{{d[2]}}>{{d[1]}}</option>
+				{% endfor %}
+			</select>
+		</td>
+	</tr>
+-->
+	
+</table>
+
+
+{% endblock %}
+
+{% block page_script %}
+
+
+<script>
+
+function setdaytime(obj){return WdatePicker({dateFmt:'yyyy-MM-dd'});}
+function formcheck_2(form){
+	var synurl = $('input[name=synurl]').val();
+	if(synurl == ''){
+		layer.alert("请填写个性域名");
+		return false;
+	}
+	return true;
+	
+}
+</script>
+
+{% endblock %}
+	

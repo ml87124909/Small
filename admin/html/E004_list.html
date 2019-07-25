@@ -1,0 +1,510 @@
+{% extends "list.html" %}
+
+
+{% block topSearch %}
+{#
+<table class="table table-bordered tb searchtbl">
+    <tbody>
+        <tr>
+            <th style="font-size:14px;">标题:</th>
+            <td width="200">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="qqid" value="{{qqid}}" />
+
+                </div>
+            </td>
+
+            <th style="font-size:14px;">类型</th>
+            <td width="200">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="qqid" value="{{qqid}}" />
+
+                </div>
+            </td>
+
+            <th style="font-size:14px;">是否展示:</th>
+            <td  width="200">
+                <div class="input-group">
+                    <select name="orderbydir" id="orderbydir" class="form-control" onchange="this.form.pageNo.value=1;this.form.submit();">
+                        <option value="ASC"{{' selected="selected"' if 'ASC' == orderbydir}}>全部</option>
+                        <option value="DESC"{{' selected="selected"' if 'DESC' == orderbydir}}>正常</option>
+                        <option value="ASC"{{' selected="selected"' if 'ASC' == orderbydir}}>禁用</option>
+
+                    </select>
+
+                </div>
+            </td>
+
+
+
+        </tr>
+
+		<tr>
+
+
+
+            <th style="font-size:14px;">添加时间起:</th>
+            <td width="200">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="qqid" value="{{qqid}}" />
+
+                </div>
+            </td>
+
+            <th style="font-size:14px;">添加时间止:</th>
+            <td width="200">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="qqid" value="{{qqid}}" />
+
+                </div>
+            </td>
+            <td colspan="5">
+                {% if lR[0] != '1' %}
+                 <button class="btn btn-info btn-sm" type="button" onclick="main_search()"><i class="fa fa-search"></i> 搜索</button>
+
+                {% endif %}
+            </td>
+
+        </tr>
+        <tr>
+            <td colspan="6">
+                {% if lR[0] != '1' %}
+                <button type="button" class="btn btn-success btn-sm" onclick="main_add()"><i class="fa fa-plus"></i> 增加</button>
+                {% endif %}
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+#}
+{% endblock %}
+
+{% block mGrid %}
+<link rel="stylesheet" type="text/css" href="static/Viewerjs/css/viewer.min.css">
+<!--link rel="stylesheet" type="text/css" href="static/Viewerjs/css/mobie.css"/-->
+<table class="table table-bordered">
+    <thead>
+        <tr style="background-color:#e5e5e5" bgcolor="#ffffff">
+
+            {%for n in NL[1:]%}
+            <th style="text-align:{{n[2]}};width:{{n[1]}};">{{n[0]}}</th>
+            {%endfor%}
+            <th style="text-align:center">操作</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for row in dataList %}
+        <tr bgcolor="#ffffff">
+            {%set rowloop=loop.index%}
+            {%for e in row[1:-3]%}
+                {#{%if loop.index==1%}
+                    <td ><a href="admin?viewid=F001&pageNo=1&part=localfrm&pk={{row[-2]}}" target="_blank">{{e}}</td>
+                #}
+                {%if loop.index==5%}
+                <td class="col-sm-1">
+                    <div id="uploadFiles{{rowloop}}">
+                        {%if e[0]%}
+                        <img src="{{e[0]}}" class="col-sm-6"/>
+                        {%endif%}
+                        {%if e[1]%}
+                        <img src="{{e[1]}}" class="col-sm-6"/>
+                        {%endif%}
+
+                        {%if e[2]%}
+                        <img src="{{e[2]}}" class="col-sm-6"/>
+                        {%endif%}
+                        {%if e[3]%}
+                        <img src="{{e[3]}}" class="col-sm-6"/>
+                        {%endif%}
+                    </div>
+                </td>
+                {%elif loop.index==6%}
+                <td class="col-sm-2">
+                    {%for d in e%}
+                        <div style="width:170px;">
+                            <img src="{{d.f3}}" style="width:41px;height:41px;"/>
+                            <div style="float:right;width:128px;">
+                            <span style="color:black;font-size: 15px;">{{d.f2}}</span><br><span style="height:10px;font-size:6px;">{{d.f4}}</span>
+                                </div>
+                        </div><br>
+                    {%endfor%}
+                </td>
+                {%else%}
+                <td >{{e}}</td>
+                {%endif%}
+
+            {%endfor%}
+            <td style="text-align:center;">
+                {%if row[-1]==89%}
+                    {%if row[-3]==0%}{#退换货#}
+                        <a class="btn btn-xs btn-info" onclick="order_ok({{row[0]}})" title="同意申请"><i class="fa fa-mail-reply">同意申请</i></a>
+                        <a  class="btn btn-xs btn-warning" onclick="retweet({{row[0]}});" title="驳回"><i class="fa fa-retweet">驳回</i></a>
+                    {%elif row[-3]==1%}{#仅退款#}
+                        <a class="btn btn-xs btn-info" onclick="order_reply({{row[0]}})" title="退款"><i class="fa fa-mail-reply">退款</i></a>
+                        <a  class="btn btn-xs btn-warning" onclick="retweet({{row[0]}});" title="驳回"><i class="fa fa-retweet">驳回</i></a>
+                    {%elif row[-3]==2%}{#退货退款#}
+                        <a class="btn btn-xs btn-info" onclick="order_ok({{row[0]}})" title="同意申请"><i class="fa fa-mail-reply">同意申请</i></a>
+                        <a  class="btn btn-xs btn-warning" onclick="retweet({{row[0]}});" title="驳回"><i class="fa fa-retweet">驳回</i></a>
+                    {%endif%}
+                {%endif%}
+                {%if row[-1]==87%}
+                    <a  class="btn btn-xs btn-warning" onclick="retweet_v({{row[0]}});" title="驳回原因"><i class="fa fa-eye">驳回原因</i></a>
+                {%endif%}
+                {%if row[-1]==85%}
+                    {%if row[-3]==0%}{#退换货#}
+                        <a class="btn btn-xs btn-info" onclick="order_ig({{row[0]}})" title="退货信息"><i class="fa fa-mail-reply">退货信息</i></a>
+                        <a  class="btn btn-xs btn-warning" onclick="retweet_ig({{row[0]}});" title="驳回"><i class="fa fa-retweet">驳回</i></a>
+                    {%elif row[-3]==2%}{#退货退款#}
+                        <a class="btn btn-xs btn-info" onclick="order_ig_reply({{row[0]}})" title="退货信息"><i class="fa fa-mail-reply">退货信息</i></a>
+                        <a  class="btn btn-xs btn-warning" onclick="retweet_ig({{row[0]}});" title="驳回"><i class="fa fa-retweet">驳回</i></a>
+                    {%endif%}
+                {%endif%}
+            </td>
+
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
+{% block page_script %}
+<script src="static/Viewerjs/js/viewer-jquery.min.js"></script>
+<script>
+    var divs = new Array("uploadFiles1","uploadFiles2","uploadFiles3","uploadFiles4","uploadFiles5",
+						"uploadFiles6","uploadFiles7","uploadFiles8","uploadFiles9","uploadFiles10");
+    $.each(divs,function(){
+        var selfv = this.toString();
+        $('#'+selfv+'').viewer({
+                url: 'data-original',
+                title: false,
+                navbar:true
+        });
+        $( '#'+selfv+'').sortable({
+            handle: "img",
+            stop: function( event, ui ) {
+            }
+        });
+    });
+
+</script>
+<script>
+
+function order_ig_reply(id){
+    var kd_number='';
+    var kuaname='';
+    var r_money='';
+    $.ajax({
+        url:sUrl+"&part=order_ig_r&id="+id,
+        async:false,
+        success: function(data){
+            if (data.code=='1'){
+                layer.close(index);
+                layer.msg(data.MSG);
+                location.reload();
+            }else{
+                 kd_number=data.kd_number;
+                 kuaname=data.kuaname;
+                 r_money=data.r_money;
+            }
+        }
+    });
+
+    content_html='<br><br><div class="col-sm-11">';
+    content_html+='<label class="col-sm-4 control-label"><b style="color:#333333;">快递公司:</b></label>';
+    content_html+='<div class="col-sm-8">';
+    content_html+=''+kuaname+'</div></div><br><br>';
+    content_html+='<div class="col-sm-11">';
+    content_html+='<label class="col-sm-4 control-label"><b style="color:#333333;">快递单号:</b></label>';
+    content_html+=' <div class="col-sm-8">';
+    content_html+=''+kd_number+'';
+    content_html+='</div></div><br><br>';
+    content_html+='<div class="col-sm-11">';
+    content_html+='<label class="col-sm-6 control-label"><b style="color:#333333;">用户申请退款金额:</b></label>';
+    content_html+=' <div class="col-sm-6">';
+    content_html+=''+r_money+'元';
+    content_html+='</div></div>';
+    content_html+='<br><br><div class="col-sm-11">';
+    content_html+='<label class="col-sm-4 control-label"><b style="color:#333333;">退款方式:</b></label>';
+    content_html+='<div class="col-sm-8"><select name="sid" class="form-control">';
+    content_html+='<option value="1">原支付方式退回</option>';
+    content_html+='<option value="2">退还到用户余额</option>';
+    content_html+='</select></div></div>';
+    content_html+='<br><br><div class="col-sm-11">';
+    content_html+='<label class="col-sm-4 control-label"><b style="color:#333333;">退款金额(元):</b></label>';
+    content_html+='<div class="col-sm-8">';
+    content_html+='<input type="text" name="t_money" value="" class="form-control"/>';
+    content_html+='</div></div><br><br>';
+    content_html+='<div class="col-sm-12">';
+    content_html+='<label class="col-sm-12 control-label"><b style="color:red;">如果订单有余额抵扣,只会退款到用户余额</b></label>';
+    content_html+=' </div>';
+    layer.open({
+        type: 1,
+        skin: 'layui-layer-rim', //加上边框
+        area: ['35rem;', '30rem;'], //宽高
+        content: content_html,
+        title: "退货信息",
+        btn: ['确认退换','取消']
+        ,yes: function(index, layero){
+           var sid = $('select[name=sid]').val();
+           var t_money = $('input[name=t_money]').val();
+           if (t_money==''){
+            layer.msg('请填写退款金额')
+                return false;
+           }
+           $.ajax({
+                url:sUrl+"&part=order_ig_reply&sid="+sid+"&t_money="+t_money+"&id="+id,
+                async:false,
+                success: function(data){
+                    if (data.code=='0'){
+                        layer.close(index);
+                        layer.msg(data.MSG);
+                        location.reload();
+                    }else{
+                         layer.msg(data.MSG);
+                    }
+                }
+            });
+        },function(){
+			layer.closeAll();
+		}
+    });
+
+}
+
+
+
+function order_ig(id){
+    var kd_number='';
+    var kuaname='';
+    $.ajax({
+        url:sUrl+"&part=order_ig&id="+id,
+        async:false,
+        success: function(data){
+            if (data.code=='1'){
+                layer.close(index);
+                layer.msg(data.MSG);
+                location.reload();
+            }else{
+                 kd_number=data.kd_number;
+                 kuaname=data.kuaname;
+            }
+        }
+    });
+
+    content_html='<br><br><div class="col-sm-11">';
+    content_html+='<label class="col-sm-4 control-label"><b style="color:#333333;">快递公司:</b></label>';
+    content_html+='<div class="col-sm-8">';
+    content_html+=''+kuaname+'</div></div><br><br>';
+    content_html+='<div class="col-sm-11">';
+    content_html+='<label class="col-sm-4 control-label"><b style="color:#333333;">快递单号:</b></label>';
+    content_html+=' <div class="col-sm-8">';
+    content_html+=''+kd_number+'';
+    content_html+='</div></div><br>';
+
+    layer.open({
+        type: 1,
+        skin: 'layui-layer-rim', //加上边框
+        area: ['35rem;', '20rem;'], //宽高
+        content: content_html,
+        title: "退货信息",
+        btn: ['确认退换','取消']
+        ,yes: function(index, layero){
+           $.ajax({
+                url:sUrl+"&part=order_ig_save&id="+id,
+                async:false,
+                success: function(data){
+                    if (data.code=='0'){
+                        layer.close(index);
+                        layer.msg(data.MSG);
+                        location.reload();
+                    }else{
+                         layer.msg(data.MSG);
+                    }
+                }
+            });
+        },function(){
+			layer.closeAll();
+		}
+    });
+
+}
+
+function order_reply(id){
+    content_html='<br><br><div class="col-sm-11">';
+    content_html+='<label class="col-sm-4 control-label"><b style="color:#333333;">退款方式:</b></label>';
+    content_html+='<div class="col-sm-8"><select name="sid" class="form-control">';
+    content_html+='<option value="1">原支付方式退回</option>';
+    content_html+='<option value="2">退还到用户余额</option>';
+    content_html+='</select></div></div>';
+    content_html+='<br><br><div class="col-sm-11">';
+    content_html+='<label class="col-sm-4 control-label"><b style="color:#333333;">退款金额(元):</b></label>';
+    content_html+='<div class="col-sm-8">';
+    content_html+='<input type="text" name="t_money" value="" class="form-control"/>';
+    content_html+='</div></div><br><br>';
+    content_html+='<div class="col-sm-12">';
+    content_html+='<label class="col-sm-12 control-label"><b style="color:red;">如果订单有余额抵扣,只会退款到用户余额</b></label>';
+    content_html+=' </div>';
+
+    layer.open({
+        type: 1,
+        skin: 'layui-layer-rim', //加上边框
+        area: ['30rem;', '20rem;'], //宽高
+        content: content_html,
+        title: "选择退款方式并填写退款金额",
+        btn: ['提交']
+        ,yes: function(index, layero){
+           var sid = $('select[name=sid]').val();
+           var t_money = $('input[name=t_money]').val();
+           if (t_money==''){
+            layer.msg('请填写退款金额')
+                return false;
+           }
+
+           $.ajax({
+                url:sUrl+"&part=order_reply&sid="+sid+"&t_money="+t_money+"&id="+id,
+                async:false,
+                success: function(data){
+                    if (data.code=='0'){
+                        layer.close(index);
+                        layer.msg(data.MSG);
+                        location.reload();
+                    }else{
+                         layer.msg(data.MSG);
+                    }
+                }
+            });
+        }
+    });
+
+}
+
+
+function order_ok(id){
+    layer.confirm('你确定要同意该申请吗？', {
+			btn: ['是','否'] //按钮
+		}, function(index,layero){
+			layer.close(index);
+			$.ajax({
+				url:sUrl+"&part=order_ok&id="+id,
+				async:false,
+				success: function(data){
+					layer.msg(data.MSG);
+					location.reload();
+				}
+			});
+
+		}, function(){
+			layer.closeAll();
+		});
+
+}
+
+
+function retweet_ig(id){
+    content_html='<br><br><div class="col-sm-12">';
+    content_html+='<label class="col-sm-2 control-label"><b style="color:#333333;">原因:</b></label>';
+    content_html+='<div class="col-sm-10">';
+    content_html+='<textarea name="memo" style="height:7rem;width:24rem;"></textarea>';
+    content_html+='</div></div>';
+
+    layer.open({
+        type: 1,
+        skin: 'layui-layer-rim', //加上边框
+        area: ['35rem;', '20rem;'], //宽高
+        content: content_html,
+        title: "驳回退款原因填写",
+        btn: ['提交']
+        ,yes: function(index, layero){
+           var sid = $('textarea[name=memo]').val();
+
+           $.ajax({
+                url:sUrl+"&part=retweet_ig&sid="+sid+"&id="+id,
+                async:false,
+                success: function(data){
+                    if (data.code=='0'){
+                        layer.close(index);
+                        layer.msg(data.MSG);
+                        location.reload();
+                    }else{
+                         layer.msg(data.MSG);
+                    }
+                }
+            });
+         }
+    });
+
+}
+
+
+function retweet(id){
+    content_html='<br><br><div class="col-sm-12">';
+    content_html+='<label class="col-sm-2 control-label"><b style="color:#333333;">原因:</b></label>';
+    content_html+='<div class="col-sm-10">';
+    content_html+='<textarea name="memo" style="height:7rem;width:24rem;"></textarea>';
+    content_html+='</div></div>';
+
+    layer.open({
+        type: 1,
+        skin: 'layui-layer-rim', //加上边框
+        area: ['35rem;', '20rem;'], //宽高
+        content: content_html,
+        title: "驳回退款原因填写",
+        btn: ['提交']
+        ,yes: function(index, layero){
+           var sid = $('textarea[name=memo]').val();
+
+           $.ajax({
+                url:sUrl+"&part=retweet&sid="+sid+"&id="+id,
+                async:false,
+                success: function(data){
+                    if (data.code=='0'){
+                        layer.close(index);
+                        layer.msg(data.MSG);
+                        location.reload();
+                    }else{
+                         layer.msg(data.MSG);
+                    }
+                }
+            });
+         }
+    });
+
+}
+
+
+function retweet_v(id){
+    var memo='';
+    $.ajax({
+        url:sUrl+"&part=retweet_v&id="+id,
+        async:false,
+        success: function(data){
+            if (data.code=='1'){
+                layer.close(index);
+                layer.msg(data.MSG);
+                location.reload();
+            }else{
+                 memo=data.memo
+            }
+        }
+    });
+    content_html='<br><br><div class="col-sm-12">';
+    content_html+='<label class="col-sm-2 control-label"><b style="color:#333333;">原因:</b></label>';
+    content_html+='<div class="col-sm-10">';
+    content_html+='<textarea name="memo" style="height:7rem;width:24rem;">'+memo+'</textarea>';
+    content_html+='</div></div>';
+
+    layer.open({
+        type: 1,
+        skin: 'layui-layer-rim', //加上边框
+        area: ['35rem;', '20rem;'], //宽高
+        content: content_html,
+        title: "驳回退款原因查询",
+    });
+
+}
+
+
+</script>
+{% endblock %}
+

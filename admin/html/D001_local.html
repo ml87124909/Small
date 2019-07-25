@@ -1,0 +1,427 @@
+{% extends "local.html" %}
+	
+{% block html_local %}
+<link href="static/web-uploader/css/uploader-image.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="static/asset/liger/ligerUI/skins/Aqua/css/ligerui-all.css">
+<link rel="stylesheet" type="text/css" href="static/asset/liger/ligerUI/skins/Aqua/css/ligerui-layout.css">
+<link rel="stylesheet" type="text/css" href="static/asset/liger/ligerUI/skins/Aqua/css/ligerui-grid.css">
+<link rel="stylesheet" type="text/css" href="static/asset/liger/ligerUI/skins/Aqua/css/ligerui-common.css">
+<script type="text/javascript" src="static/asset/liger/ligerUI/js/core/base.js"></script>
+<script type="text/javascript" src="static/asset/liger/ligerUI/js/plugins/ligerTree.js"></script>
+<script type="text/javascript" src="static/asset/liger/ligerUI/js/plugins/ligerGrid.js"></script>
+<script type="text/javascript" src="static/asset/liger/ligerUI/js/plugins/ligerResizable.js"></script>
+<script type="text/javascript" src="static/asset/liger/ligerUI/js/plugins/ligerDialog.js"></script>
+<script type="text/javascript" src="static/asset/liger/ligerUI/js/plugins/ligerMenu.js"></script>
+<script type="text/javascript" src="static/asset/liger/ligerUI/js/plugins/ligerSpinner.js"></script>
+<script type="text/javascript" src="static/asset/liger/ligerUI/js/plugins/ligerDrag.js"></script>
+<script type="text/javascript" src="static/asset/liger/ligerUI/js/plugins/ligerFilter.js"></script>
+<script type="text/javascript" src="static/asset/liger/ligerUI/js/plugins/ligerToolBar.js"></script>
+<script src="static/asset/liger/ligerUI/js/plugins/ligerComboBox.js" type="text/javascript"></script>
+<script type="text/javascript" src="static/web-uploader/js/Q.js"></script>
+<script type="text/javascript" src="static/web-uploader/js/Q.Uploader.js"></script>
+<script type="text/javascript" src="static/web-uploader/js/Q.Uploader.UI.Image.js"></script>
+
+<div class="row">
+    <div class="form-group">
+        <label class="col-sm-2 control-label"><b style="color:#333333;">优惠券名称:</b></label>
+        <div class="col-sm-3">
+            <input type="text" class="form-control" name="cname" value="{{item.cname}}"/>
+        </div>
+    </div>
+	<div class="form-group">
+        <label class="col-sm-2 control-label"><b style="color:#333333;">优惠券备注:</b></label>
+        <div class="col-sm-3">
+            <input type="text" class="form-control"  name="remark" value="{{item.remark}}" />
+        </div>
+    </div>
+	<div class="form-group">
+        <label class="col-sm-2 control-label"><b style="color:#333333;">优惠券数量:</b></label>
+        <div class="col-sm-3">
+            <input type="number" class="form-control"  name="total" value="{{item.total}}" />
+        </div>
+    </div>
+	<div class="form-group">
+        <label class="col-sm-2 control-label"><b style="color:#333333;">每人限领(张):</b></label>
+        <div class="col-sm-3">
+            <input type="number" class="form-control"  name="amount" value="{{item.amount or 1}}" />
+        </div>
+    </div>
+
+	<div class="form-group">
+        <label class="col-sm-2 control-label"><b style="color:#333333;">优惠类型:</b></label>
+        <input type="hidden"  name="type_str" value="{{item.type_str or '普通优惠券'}}"/>
+        <div class="col-sm-3">
+            <select name="type_id"  class="form-control" onchange="set_tye_id(this);">
+                <option value="0"{{'selected="selected"' if item.type_id|string == '0'}}>普通优惠券</option>
+                <option value="1"{{' selected="selected"' if item.type_id|string == '1'}}>积分优惠券</option>
+                <option value="2"{{' selected="selected"' if item.type_id|string == '2'}}>口令优惠券</option>
+                <option value="3" {{
+                ' selected="selected"' if item.type_id|string == '3'}}>买单优惠券</option>
+            </select>
+        </div>
+		<div class="col-sm-3" id="type_id_str" style="display:none">
+			<input type="text" class="form-control"  name="type_ext"  value="{{item.type_ext}}" onchange="check_ps(this)"/>
+		</div>
+    </div>
+
+	<div class="form-group">
+        <label class="col-sm-2 control-label"><b style="color:#333333;">适用形式:</b></label>
+        <input type="hidden"  name="apply_str" value="{{item.apply_str or '满减'}}"/>
+        <div class="col-sm-3">
+            <select name="apply_id"  class="form-control" onchange="set_apply_id(this);">
+                <option value="0"{{' selected="selected"' if item.apply_id|string == '0'}}>满减</option>
+                <option value="1"{{' selected="selected"' if item.apply_id|string == '1'}}>折扣</option>
+            </select>
+        </div>
+		<div class="col-sm-6" id="apply_id_str">
+            <div class="col-sm-6">
+            <span id="applyidstr" ></span>
+                <input type="number" class="col-sm-6 form-control" name="apply_ext_num" value="{{item.apply_ext_num}}"/>
+            </div>
+            <div class="col-sm-6">
+            <span>起用金额</span>
+                <input type="number" class="col-sm-6 form-control" name="apply_ext_money"
+                       value="{{item.apply_ext_money or 0}}"/>
+            </div>
+		</div>
+    </div>
+
+	<div class="form-group">
+        <label class="col-sm-2 control-label"><b style="color:#333333;">适用商品:</b></label>
+        <input type="hidden"  name="apply_goods_str" value="{{item.apply_goods_str or '全部商品'}}"/>
+        <div class="col-sm-3">
+            <select name="apply_goods"  class="form-control" onchange="set_apply_goods(this);">
+                <option value="0"{{' selected="selected"' if item.apply_goods|string == '0'}}>全部商品</option>
+                <option value="1"{{' selected="selected"' if item.apply_goods|string == '1'}}>指定商品</option>
+            </select>
+        </div>
+		<div class="col-sm-6" id="goods_info" style="display:none">
+			<!--label class="col-sm-3 control-label"><b style="color:#333333;">商品:</b></label-->
+			<div class="col-sm-12">
+                <div class="col-sm-8">
+				<input type="text" class="form-control" name="goods_id" value="{{item.apply_goods_id}}" readonly="readonly"/>
+                </div>
+                <div class="col-sm-4">
+                {{show_Goods}}
+                </div>
+			</div>
+		</div>
+    </div>
+
+	<div class="form-group">
+        <label class="col-sm-2 control-label"><b style="color:#333333;">使用时间:</b></label>
+        <input type="hidden"  name="use_time_str" value="{{item.use_time_str or '固定时间'}}"/>
+        <div class="col-sm-3">
+            <select name="use_time"  class="form-control" onchange="set_use_time(this);">
+                <option value="0"{{' selected="selected"' if item.use_time|string == '0'}}>固定时间</option>
+                <option value="1"{{' selected="selected"' if item.use_time|string == '1'}}>固定时长</option>
+            </select>
+        </div>
+		<div class="col-sm-6" >
+            <div class="col-sm-6" id="use_time_1" style="display:">
+			    <span>开始时间</span>
+                <input type="text" class="col-sm-6 form-control"  name="datestart"  value="{{item.datestart}}" onclick="setdaytime(this)" readonly="readonly"/>
+            </div>
+            <div class="col-sm-6" id="use_time_2" style="display:none">
+                <span>有效期(天)</span>
+			    <input type="text" class="col-sm-6 form-control"  name="validday"  value="{{item.validday}}" />
+            </div>
+            <div class="col-sm-6">
+			    <span>结束时间</span>
+                <input type="text" class="col-sm-6 form-control"  name="dateend"  value="{{item.dateend}}" onclick="setdaytime(this)" readonly="readonly"/>
+            </div>
+		</div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label"><b style="color:#333333;">在优惠券列表接口显示:</b></label>
+        <div class="col-sm-1">
+            <input type="checkbox" class="form-control" style="width:20px;" name="isshow" value="1" {{'checked="checked"' if item.isshow|string == '1'}}/>
+        </div>
+    </div>
+	<div class="form-group">
+        <label class="col-sm-2 control-label"><b style="color:#333333;">优惠券图标:</b></label>
+        <div class="col-sm-3">
+
+            <div class="row">
+                <div id="container" style="position: relative;">
+                    <a id="pickfiles"  style="position: relative; z-index: 1;">[选择本地文件]</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div id="logo">
+                {% if item.icons %}
+                    <div class="picsDiv col-sm-12">
+                    <img class="col-sm-12" src="{{item.icons}}"/>
+                    <input type="hidden" name="icons" value="{{item.icons}}"/>
+                    </div>
+                {%endif%}
+            </div>
+        </div>
+    </div>
+
+
+	<div class="form-group">
+        <label class="col-sm-2 control-label"><b style="color:#333333;">优惠券图片:</b></label>
+        <div class="col-sm-3">
+
+            <div class="row">
+                <div id="containera" style="position: relative;">
+                    <a id="pickfilesa"  style="position: relative; z-index: 1;">[选择本地文件]</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div id="share">
+                {% if item.pics %}
+                    <div class="picsDiv col-sm-12">
+                    <img class="col-sm-12" src="{{item.pics}}"/>
+                    <input type="hidden" name="pics" value="{{item.pics}}"/>
+                    </div>
+                {%endif%}
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-9 control-label">
+            <font style="color:red;font-size:20px;">优惠类型，适用形式，适用商品，使用时间这三个的修改，不会改变修改前已被领取的属性</font>
+        </label>
+    </div>
+</div>
+{% endblock %}
+
+{% block page_script %}
+<script>
+    function check_ps(obj){
+        var typeid=$('select[name=type_id]').val();
+        console.log(typeid)
+        if (typeid=='2'){
+            ps=obj.value
+            $.ajax({
+                url:"admin?viewid=E001&part=check_ps&cid="+ps,
+                async:false,
+                success: function(data){
+                    if (data.code!='0'){
+                        layer.msg(data.MSG);
+                        $('input[name=type_ext]').val('');
+                    }
+                }
+            });
+        }
+    }
+    function set_tye_id(obj){
+        var typeid=obj.value;
+        if (typeid!='0'){
+            $('#type_id_str').show()
+            if (typeid=='1'){
+                $('input[name=type_str]').val('积分优惠券');
+                $('input[name=type_ext]').val('0');
+            }else if(typeid=='3'){
+                $('#type_id_str').hide();
+                $('input[name=type_str]').val('买单优惠券');
+                $('input[name=type_ext]').val('');
+            }else{
+                $('input[name=type_str]').val('口令优惠券');
+                $('input[name=type_ext]').val('');
+            }
+        }else{
+            $('#type_id_str').hide();
+            $('input[name=type_str]').val('普通优惠券');
+             $('input[name=type_ext]').val('');
+        }
+    }
+
+    function set_apply_id(obj){
+        var applyid=obj.value;
+        if (applyid=='1'){
+            $('input[name=apply_str]').val('折扣');
+            $('#applyidstr').html('折扣(%)');
+        }else{
+            $('input[name=apply_str]').val('满减');
+            $('#applyidstr').html('面额');
+        }
+    }
+
+    function set_apply_goods(obj){
+        var goodsid=obj.value;
+        if (goodsid=='1'){
+            $('input[name=apply_goods_str]').val('指定商品');
+            $('#goods_info').show()
+            $('input[name=goods_id]').val('')
+        }else{
+            $('input[name=apply_goods_str]').val('全部商品');
+           $('#goods_info').hide()
+           $('input[name=goods_id]').val('0')
+        }
+    }
+
+    function set_use_time(obj){
+
+        var tid=obj.value;
+        if (tid=='1'){
+            $('input[name=use_time_str]').val('固定时长');
+            $('#use_time_2').show()
+            $('#use_time_1').hide()
+        }else{
+            $('input[name=use_time_str]').val('固定时间');
+           $('#use_time_1').show()
+           $('#use_time_2').hide()
+        }
+    }
+
+$(function(){
+
+        if($('select[name=apply_id]').val()=='0'){
+            $('#applyidstr').html('面额');
+        }else{
+            $('#applyidstr').html('折扣');
+        }
+
+        if($('select[name=type_id]').val()=='0'){
+            $('#type_id_str').hide()
+        }else{
+            $('#type_id_str').show()
+        }
+
+        if($('select[name=apply_goods]').val()=='0'){
+            $('#goods_info').hide()
+        }else{
+            $('#goods_info').show()
+        }
+
+        if($('select[name=use_time]').val()=='0'){
+            $('#use_time_1').show()
+            $('#use_time_2').hide()
+        }else{
+            $('#use_time_1').hide()
+            $('#use_time_2').show()
+        }
+
+ });
+
+//function setdaytime(obj){return WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'});}
+function setdaytime(obj){return WdatePicker({dateFmt:'yyyy-MM-dd'});}
+function formcheck_2(form){
+    /* 
+	var login_id = $('input[name=login_id]').val();
+	var usr_name = $('input[name=usr_name]').val(); 
+	*/
+	var dateend = $("input[name=dateend]").val();
+	var type_ext = $("input[name=type_ext]").val();
+
+	var type_id = $("select[name=type_id]").val();
+	//var flag = false;
+	if(type_id == '2' && type_ext.length <6){
+		layer.alert("口令优惠券的口令必须大于等于6位");
+		return false;
+	}
+
+	if(dateend == ''){
+		layer.alert("请输入结束时间");
+		return false;
+	}
+	/*
+	if(password == ''){
+		layer.alert("请输入密码");
+		return false;
+	}
+	if(mobile == ''){
+		layer.alert("请输入手机");
+		return false;
+	}
+	if(dept_id == ''){
+		layer.alert("请选择部门");
+		return false;
+	}*/
+	return true;
+	
+}
+</script>
+<script type="text/javascript">
+if({{save_alert}}==1){
+    var pk=$('input[name=pk]').val()
+	layer.alert('保存成功!',{yes:function(){
+         window.location = 'admin?viewid=D003&part=localfrm&pk='+pk;
+   }});
+}else if ({{save_alert}}==2){
+    layer.alert('保存失败!',{yes:function(){
+         window.location = 'admin?viewid=D003&part=localfrm&pk={{pk}}';
+   }});
+}
+</script>
+<script>
+
+	var ids = new Array("pickfiles","pickfilesa");
+	var divs = new Array("logo","share");
+    var hinames = new Array("icons","pics");
+
+    $.each(ids,function(i,n){
+        var self = this.toString();
+        //实例化一个plupload上传对象
+        var Uploader = Q.Uploader,
+        formatSize = Q.formatSize,
+        boxView = document.getElementById(""+divs[i]+"")
+        var uploader = new Uploader({
+            url: '/admin?viewid=D003&part=QiniuUpload',
+            target: document.getElementById(""+self+""),
+            view: boxView,//如果去掉这个，会导致压缩效果不好
+            //将auto配置为false以手动上传
+            auto: true,
+            multiple:false,
+            dataType: "json",
+            allows: ".jpg,.png,.gif,.bmp,.jpeg",
+            upName: "file",
+            //图片缩放
+            scale: {
+                //要缩放的图片格式
+                types: ".jpg,.png,.jpeg,.bmp",
+                //最大图片大小(width|height)
+                maxWidth: 500
+            },
+            on: {
+                //添加之前触发
+                add: function (task) {
+                	layer.load()
+                    if (task.disabled) return layer.alert("允许上传的文件格式为：" + this.ops.allows);
+                },
+                upload: function (task) {
+                	layer.load()
+                },
+                complete: function(task){
+                    var jsons=task.json;
+                    if(jsons){
+
+                        $("#"+divs[i]+"").html('');
+                        var innerDivHtml = '<div class="picsDiv col-sm-12">';
+                        innerDivHtml+= '<img src="'+ task.json.url  +'" class="col-sm-12">';
+                        innerDivHtml+= '<input name="'+hinames[i]+'" value="'+ task.json.url+'" type="hidden">';
+                        innerDivHtml += '<a href="javascript:" onclick="deletePic(this,\''+ task.json.url+'\')">[删除]</a>';
+                        innerDivHtml += '</div>';
+                        $("#"+divs[i]+"").append(innerDivHtml);
+                        layer.closeAll()
+
+                    }else{
+                        //layer.alert('上传图片故障！')
+                        layer.closeAll()
+                    }
+                }
+            }
+        });
+        uploader.start();
+    });
+    function deletePic (aObj,picname) {
+		//var picv = $(aObj).parents(".picsDiv").find("input[name="+picname+"]").val()
+		$.ajax({
+			url:"admin?viewid=D003&part=del_qiniu_pic&path_url="+picname,
+			async:false,
+			success: function(data){
+			   layer.alert(data.MSG)
+			   if(data.code=='0'){
+			        $(aObj).parents(".picsDiv").remove();
+			   }
+            }
+        });
+	}
+</script>
+{% endblock %}
+	

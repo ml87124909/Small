@@ -1,0 +1,14 @@
+<div style="width: 33%; float: left;">
+    <div style="width: 2.5em;line-height: 1.2;
+                border-top: 15px solid;
+                border-left: 15px solid;"
+         tn-bind-aux-prop="{ borderLeftColor: compAux.bdc1,borderTopColor: compAux.bdc1}">
+        <div style="width: 1em; margin: 0.5em"
+             tn-cell-type="text" tn-bind-cell="txt1"></div>
+    </div>
+    <div style="width: 20px; height: 10em; background-color: #ffffff; margin-top: -10em;"
+         tn-bind-aux-prop="{ backgroundColor: compAux.bgc1}"></div>
+</div><ul tn-cell-type="group" tn-bind-cell="col2" tn-child-position="static"
+    style="display: inline-block; width: 67%; vertical-align: top;">
+    <li tn-sub-comp-loader></li>
+</ul>

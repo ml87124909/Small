@@ -1,0 +1,229 @@
+{% extends "base_list.html" %}
+
+
+{% block topSearch %}
+<table class="table table-bordered tb searchtbl">
+    <tbody>
+        <tr>
+            <td colspan="5">
+                {% if lR[0] != '1' %}
+                <button type="button" class="btn btn-success btn-sm" onclick="layer_add()"><i class="fa fa-plus"></i>增加热销商品</button>
+                {% endif %}
+            </td>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}
+
+{% block mGrid %}
+<table class="table table-bordered">
+    <thead>
+        <tr style="background-color:#e5e5e5" bgcolor="#ffffff">
+
+            {%for n in NL[1:]%}
+            <th style="text-align:{{n[3]}};width:{{n[2]}};">{{n}}</th>
+            {%endfor%}
+            <th style="text-align:center">操作</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for row in dataList %}
+        <tr bgcolor="#ffffff">
+
+            {% for e in row[1:] %}
+            {%if loop.index==6%}
+            {%if e %}
+            <td>
+                {%for i in e%}
+                <img src="{{i.f1}}"/>
+                {%endfor%}
+            </td>
+            {%else%}
+            <td>-</td>
+            {%endif%}
+
+            {%else%}
+            <td >{{e}}</td>
+            {%endif%}
+            {% endfor %}
+            <td style="text-align:center;">
+                {% if lR[1] == '' %}
+                <a class="btn btn-xs btn-info" onclick="main_update({{row[0]}})" title="编辑"><i class="fa fa-edit"></i></a>
+                {% endif %}
+                {% if lR[2] == '' %}
+                <a  class="btn btn-xs btn-warning" onclick="main_delete({{row[0]}});" title="删除"><i class="fa fa-trash-o"></i></a>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+ {{hot_mselect}}
+{% endblock %}
+
+
+{% block page_script %}
+
+<script>
+
+function ajax_del(del_pk){
+		layer.confirm('你确信要删除记录吗？', {
+			btn: ['是','否'] //按钮
+		}, function(index,layero){
+			layer.close(index);
+			$.ajax({
+				url:sUrl+"&part=ajax_del&pk="+del_pk,
+				async:false,
+				success: function(data){
+					layer.msg(data.MSG);
+					location.reload();
+				}
+			});
+
+		}, function(){
+			layer.closeAll();
+		});
+
+	}
+    function ajax_update(id){
+            var itemdata=''
+			$.ajax({
+				url:sUrl+"&part=ajax_update&pk="+id,
+				async:false,
+				success: function(res){
+				    console.log(res)
+					if (res.code!='0'){
+					    layer.msg('数据请求有误');
+                        location.reload();
+                    }else{
+					    itemdata=res.data
+					}
+				}
+			});
+            if (itemdata!=''){
+            content_html='<br><div class="col-sm-12">';
+            content_html+='<label class="col-sm-1 control-label" style="width:61px;"><b style="color:#333333;">商品:</b></label>';
+            content_html+='<div class="col-sm-10">';
+            content_html+='<div class="col-sm-12"><div class="col-sm-8" style="width:180px;">'
+            content_html+='<input type="hidden" name="goods_id" value="'+itemdata.gid+'"/>'
+            content_html+='<input type="text" class="form-control"  name="good_name" value="'+itemdata.gname+'" readonly="1"/>'
+            content_html+='</div>'
+            content_html+='&nbsp;<button class="btn btn-sm btn-info" type="button" onclick="Goods_loadUsersList(\'\')">选择商品</button>';
+            //content_html+='&nbsp;<button class="btn btn-sm btn-info" type="button" onclick="Goods_clearPutOut()">清除</button>';
+            content_html+='</div>';
+            content_html+='</div></div><br><br>';
+            content_html+='<div class="col-sm-10">';
+            content_html+='<label class="col-sm-3 control-label"><b style="color:#333333;">排序:</b></label>';
+            content_html+='<div class="col-sm-6">';
+            content_html+='<input type="number" class="form-control"  name="sort" value="'+itemdata.sort+'"/>';
+            content_html+='</div></div>';
+
+
+            layer.open({
+                type: 1,
+                skin: 'layui-layer-rim', //加上边框
+                area: ['40rem;', '28rem;'], //宽高
+                content: content_html,
+                title: "修改热销商品",
+                zIndex:999,
+                btn: ['提交']
+                ,yes: function(index, layero){
+                   var goods_id = $('input[name=goods_id]').val();
+                   var good_name = $('input[name=good_name]').val();
+                   var sort = $('input[name=sort]').val();
+
+				   if(goods_id=='' || good_name==''){
+				   		layer.msg('请选择商品！')
+				   		return false;
+				   }
+
+				   if(sort==''){
+				   		layer.msg('请填写排序！')
+				   		return false;
+				   }
+
+                   formdata={'viewid':'D006','part':'insert','multab':'1','goods_id':goods_id,
+                        'good_name':good_name,'sort':sort,'id':id
+                   }
+                   $.ajax({
+                        url:"admin",
+                        type:"post",
+                        data:formdata,
+                        async:false,
+                        success: function(res){
+                            layer.close(index);
+                            layer.msg(res.MSG);
+                            location.reload();
+                        }
+                   });
+                 }
+            });
+            }
+        }
+
+       function layer_add(){
+
+            content_html='<br><div class="col-sm-12">';
+            content_html+='<label class="col-sm-1 control-label" style="width:61px;"><b style="color:#333333;">商品:</b></label>';
+            content_html+='<div class="col-sm-10">';
+            content_html+='<div class="col-sm-12"><div class="col-sm-9" >'
+            content_html+='<input type="hidden" name="goods_id" value=""/>'
+            content_html+='<input type="text" class="form-control"  name="good_name" value="" readonly="1"/>'
+            content_html+='</div>'
+            content_html+='&nbsp;<button class="btn btn-sm btn-info" type="button" onclick="Goods_loadUsersList(\'\')">选择商品</button>';
+            //content_html+='&nbsp;<button class="btn btn-sm btn-info" type="button" onclick="Goods_clearPutOut()">清除</button>';
+            content_html+='</div>';
+            content_html+='</div></div><br><br>';
+
+            content_html+='<div class="col-sm-10">';
+            content_html+='<label class="col-sm-3 control-label"><b style="color:#333333;">排序:</b></label>';
+            content_html+='<div class="col-sm-6">';
+            content_html+='<input type="number" class="form-control"  name="sort" value=""/>';
+            content_html+='</div></div>';
+
+
+            layer.open({
+                type: 1,
+                skin: 'layui-layer-rim', //加上边框
+                area: ['40rem;', '28rem;'], //宽高
+                content: content_html,
+                title: "增加热销团商品",
+                zIndex:999,
+                btn: ['提交']
+                ,yes: function(index, layero){
+                   var goods_id = $('input[name=goods_id]').val();
+                   var good_name = $('input[name=good_name]').val();
+                   var sort = $('input[name=sort]').val();
+
+				   if(goods_id=='' || good_name==''){
+				   		layer.msg('请选择商品！')
+				   		return false;
+				   }
+
+				   if(sort==''){
+				   		layer.msg('请填写排序！')
+				   		return false;
+				   }
+
+                   formdata={'viewid':'D006','part':'insert','multab':'1','goods_id':goods_id,
+                        'good_name':good_name,'sort':sort
+                   }
+                   $.ajax({
+                        url:"admin",
+                        type:"post",
+                        data:formdata,
+                        async:false,
+                        success: function(res){
+                            layer.close(index);
+                            layer.msg(res.MSG);
+                            location.reload();
+                        }
+                   });
+                 }
+            });
+        }
+
+
+</script>
+{% endblock %}

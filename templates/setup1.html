@@ -1,0 +1,176 @@
+<html>
+<link rel="stylesheet" href="static/assets/css/bootstrap.min.css" type="text/css" />
+<style>
+
+ul,li{list-style-type: none;}
+.logo-login{
+  float:left;
+}
+body{background-color: #fff;
+	background:url(static/assets/images/admin_back.jpg) no-repeat center;
+	background-size: 100%;
+}
+.login-main-div {
+  width: 500px;
+  height: 400px;
+  margin: 0 auto;
+  padding-top:1%;
+  margin-top: 15%;
+  background:url(static/assets/images/admin_bjk.png)no-repeat center;
+  border-radius:15px;
+}
+.aside-xxl{float: left;
+  height:330px;margin: auto;width: 500px;
+}
+.log-title{color:#004d85; font-size: 24px; font-weight:bold;width: 360px;margin-bottom:15px;}
+
+.aside-xxl .cinput{
+	font-size:14px;
+	border-radius:1px;
+	border:2px solid #004d85;
+	background:#fff;
+	height:35px;
+	padding-left:8px;
+	width:65%;
+
+	}
+
+.aside-xxl .binput{
+	font-size:14px;
+	border-radius:1px;
+	border:2px solid #004d85;
+	background:#fff;
+	height:35px;
+	padding-left:8px;
+	width:40%;
+
+	}
+
+
+.aside-xxl .sinput{
+	font-size:14px;
+	border-radius:1px;
+	border:2px solid #004d85;
+	background:#fff;
+	height:35px;
+	padding-left:8px;
+	width:30%;
+
+	}
+#sbt_save{background:url(static/assets/images/dl.png) no-repeat center;color:#fff;margin-top:20px;}
+#sbt_remake{background:rgb(0, 174, 240);margin-left:20px;color:#fff;}
+
+.log-title2{float: left; color:#004d85; font-size: 24px; font-weight:bold;border-bottom:1px solid #959595;width: 250px;height:42px;margin-bottom:0px;}
+.lbtn{float: left;background:#4ab332;color:#fff;font-size:16px;border:1px solid #dbd7d6;border-radius:5px;width:110px;height:41px;padding-right:6px;}
+.aside-xxl .cinput2{font-size:16px;border-radius:0px;border:0px;background:#fff;width:100px;height:35px;padding-left:8px;font-size: 16px;border-radius:10px;cursor: pointer; }
+.aside-xxl .cinputimg{font-size:16px;border-radius:0px;border:0px;background:#fff;width:100px;height:35px;padding-left:8px;font-size: 16px;border-radius:10px;cursor: pointer; }
+.box-shadow-3{
+	-webkit-box-shadow: 0 0 25px rgb(158,211,249);
+	-moz-box-shadow:0 0 25px rgb(158,211,249);
+	box-shadow: 0 0 25px rgb(158,211,249);
+}
+</style>
+
+<body>
+	<div class="login-body" style="overflow:hidden;">
+		<div class="login-main-div box-shadow-3" style="position:relative;">
+		  <div class="aside-xxl" style="position:absolute;">
+	        <div style="width:420px;height: 80px;margin-left: 15px;">
+				<div style="width:73px;height: 73px;float:left;">
+				   <img src="static/assets/images/admin_Logo.png" style="width:73px;height:73px;margin-left: 190px"/>
+				</div>
+
+	        </div>
+				<!--login-->
+				  <div style="margin-left:0px;text-align: center;margin-top:-20px;">
+						<div class="log-title" style="margin: 15px auto;border: 1px solid rgb(0,129,0);border-radius: 5px;width: 98%;">
+							<div class="start-content">
+								<h1 class="title">配置数据库</h1>
+							</div>
+							<div class="start-content" style="font-size:14px;">
+
+								<p>请正确填写如下的数据库信息!</p>
+								<form onsubmit="return formcheck(this)"  method="post"  action="{{url_for('setup', step=2)}}" >
+									<div class="form-group">
+										<div class="col-sm-12">
+											数据库主机:<input name="host" class="cinput" type="text" value="localhost" >
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-sm-12">
+											数据库名称:<input name="dbname" class="sinput" type="text" value="wxmall">
+											端口:<input name="port" class="sinput" type="text" value="5432">
+										</div>
+									</div>
+
+									<div class="form-group">
+										<div class="col-sm-12">
+											用户名:<input name="username" placeholder="请输入用户名" class="binput" type="text" value="">
+											密码:<input name="passwd" placeholder="请输入密码" class="binput" type="password" value="">
+										</div>
+
+									</div>
+
+
+									<div class="form-group">
+										<div class="col-sm-offset-2 col-sm-8">
+											<button type="submit" class="btn btn-info">提交</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+
+
+
+
+
+				  </div>
+				<!--login end-->
+			</div>							
+		</div>
+		<div style="width:99%;height:20px;position:absolute;bottom:50px;text-align:center;font-size:13px;color:#999999;">
+			简道 粤ICP备15060984号-2
+		</div>
+	</div>	
+</body>
+
+
+<script type="text/javascript" src="static/assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="static/assets/js/layer/layer.js"></script>
+<script>
+
+	function formcheck(){
+
+		var host = $('input[name=host]').val();
+		var dbname = $('input[name=dbname]').val();
+		var port = $('input[name=port]').val();
+		var username = $('input[name=username]').val();
+		var passwd = $('input[name=passwd]').val();
+
+		if(host==''){
+			layer.alert("请输入数据库地址");
+			return false;
+		}
+		if (dbname==""){
+			layer.alert("请输入数据库名");
+			return false;
+		}
+		if (port==""){
+			layer.alert("请输入数据库端口号");
+			return false;
+		}
+		if (username==""){
+			layer.alert("请输入用户名");
+			return false;
+		}
+		if (passwd==""){
+			layer.alert("请输入密码");
+			return false;
+		}
+		return true;
+	}  
+	
+
+</script>
+</html>

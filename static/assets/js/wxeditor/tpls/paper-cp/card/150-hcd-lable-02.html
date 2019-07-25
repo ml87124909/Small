@@ -1,0 +1,24 @@
+<div style="width: 100%; display: inline-block; vertical-align: bottom;">
+    <div style=""
+          tn-cell-type="text" tn-bind-cell="title1"
+         tn-bind-aux-prop="{ backgroundColor: compAux.bdc1 }">
+    </div>
+    <div style="width:0; float: left;
+                border-right:4px solid;
+                border-top:4px solid;
+                border-left:4px solid transparent !important;
+                border-bottom:4px solid transparent !important;"
+         tn-bind-aux-prop="{ borderRightColor: compAux.bdc1,borderTopColor: compAux.bdc1 }">
+    </div>
+    <div style="width:0; float: right;
+                border-left:4px solid;
+                border-top:4px solid;
+                border-right:4px solid transparent !important;
+                border-bottom:4px solid transparent !important;"
+         tn-bind-aux-prop="{ borderLeftColor: compAux.bdc1,borderTopColor: compAux.bdc1 }">
+    </div>
+</div>
+<ul tn-cell-type="group" tn-bind-cell="col1" tn-child-position="static"
+    tn-bind-aux-prop="{ borderColor: compAux.bdc2 }">
+    <li tn-sub-comp-loader></li>
+</ul>

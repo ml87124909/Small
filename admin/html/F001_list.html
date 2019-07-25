@@ -1,0 +1,60 @@
+{% extends "list.html" %}
+
+
+{% block topSearch %}
+
+{% endblock %}
+
+{% block mGrid %}
+<table class="table table-bordered">
+    <thead>
+        <tr style="background-color:#e5e5e5" bgcolor="#ffffff">
+
+            {%for n in NL[1:]%}
+            <th style="text-align:{{n[3]}};width:{{n[2]}};">{{n}}</th>
+            {%endfor%}
+            <th style="">管理</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for row in dataList %}
+        <tr bgcolor="#ffffff">
+            {% for e in row[1:-1] %}
+            <td >{{e}}</td>
+            {% endfor %}
+            <td style="text-align:center;">
+                {%if row[-1]|string=='0' %}
+                <a  class="btn btn-xs btn-warning" onclick="ajax_up({{row[0]}});" title="失效"><i class="fa fa-warning">失效</i></a>
+                {%endif%}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+
+{% block page_script %}
+<script>
+    function ajax_up(id){
+        layer.confirm('你确信要失效该记录吗？', {
+			btn: ['是','否'] //按钮
+		}, function(index,layero){
+			layer.close(index);
+			$.ajax({
+				url:"admin?viewid=G002&part=Up_status&cid="+id,
+				async:false,
+				success: function(data){
+					layer.msg(data.MSG);
+					location.reload();
+				}
+			});
+
+		}, function(){
+			layer.closeAll();
+		});
+
+    }
+</script>
+{% endblock %}
+

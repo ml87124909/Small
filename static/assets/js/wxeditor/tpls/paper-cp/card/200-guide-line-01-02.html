@@ -1,0 +1,26 @@
+<div style="background:-webkit-linear-gradient(left, {{compAux.blgc.value}}, {{compAux.blgc.value}}, #fff);background:linear-gradient(to right, {{compAux.blgc.value}}, {{compAux.blgc.value}}, #fff);
+border-radius: 2em;
+padding:15px;
+">
+    <div style="display: inline-block; vertical-align: top; width:18%;">
+        <img tn-cell-type="image" tn-bind-cell="img1" />
+    </div><div style="display: inline-block; vertical-align: top; width: 80%;">
+        <div style="text-align: left;
+                height: 1em;">
+            <ul tn-cell-type="group" tn-bind-cell="col1" tn-child-position="static">
+                <li tn-sub-comp-loader></li>
+            </ul>
+        </div>
+        <div style=" border-left: 1px solid #ccc; height: 1.2em;"
+             tn-bind-aux-prop="{ borderColor: compAux.bdc}">
+            <ul tn-cell-type="group" tn-bind-cell="col2" tn-child-position="static">
+                <li tn-sub-comp-loader></li>
+            </ul>
+            </div>
+        <div style=" border-left: 1px solid #CCCCCC;">
+            <ul tn-cell-type="group" tn-bind-cell="col3" tn-child-position="static">
+                <li tn-sub-comp-loader></li>
+            </ul>
+        </div>
+    </div>
+</div>
