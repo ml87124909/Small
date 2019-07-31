@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  webapp:
+    build: .
+    volumes:
+      - .:/small/
+    ports:
+      - "5000:5000"
+    depends_on:
+      - nginx
+
+  nginx:
+    restart: always
+    image: nginx:stable
+    volumes:
+      - ./webconf/nginx/conf.d/:/etc/nginx/conf.d/
+      - ./webconf/nginx/log/:/var/log/nginx/
+      - ./webconf/nginx/cert/:/opt/cert/
+      - ./static/:/opt/static/
+    ports:
+      - "80:80"
+      - "443:443"
+
+  db:
+    image: postgres:11.4
+    container_name: "small_postgres"
+    ports:
+      - "54320:54320"
+    volumes:
+      # 数据卷所挂载路径设置
+      - ./db/postgresql:/var/lib/postgresql/data
