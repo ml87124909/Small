@@ -3,7 +3,7 @@ simplejson
 six
 lxml
 xmltodict
-psycopg2
+psycopg2-binary
 phpserialize
 flask
 Jinja2
@@ -28,5 +28,5 @@ xlrd
 sanic
 sanic_cors
 gunicorn
-
+sqlalchemy
 
