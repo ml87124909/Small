@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-
 ##############################################################################
 # Copyright (c) wxmall.janedao.cn
-# Author：hyj
-# Start  Date:  2019
+# Author：QQ173782910
+#QQ group:528289471
 ##############################################################################
+""" admin/dl/A001_dl.py"""
 
 from imp import reload
 from basic.publicw import DEBUG
@@ -22,7 +22,6 @@ class cA001_dl(cBASE_DL):
 
     #在子类中重新定义         
     def myInit(self):
-
         self.part = self.GP('part','Localfrm')
         self.tab = self.GP("tab", "1")
 
@@ -95,8 +94,6 @@ class cA001_dl(cBASE_DL):
                 l,t= self.db.fetchall(sql,[self.md5code,self.md5code,self.usr_id_p])
                 if t>0:
                     L=l
-            # elif str(self.tab) =='5':
-            #     L= self.db.fetch(sql,[self.md5code,self.usr_id_p])
             else:
                 L = self.db.fetch(sql, [self.usr_id_p])
         return L
@@ -154,7 +151,7 @@ class cA001_dl(cBASE_DL):
                         self.db.query(sql,parm)
                         sqlq = "update users set qiniu_flag=1 where usr_id = %s"
                         self.db.query(sqlq, [self.usr_id_p])
-
+                        self.oQINIU.update(self.usr_id_p)
                         self.use_log('店铺设置--修改七牛设置')
                         dR['code'] = '0'
                         dR['MSG'] = '保存成功!'
@@ -179,7 +176,7 @@ class cA001_dl(cBASE_DL):
                         self.db.query(sqlq, [self.usr_id_p])
 
                     self.use_log('店铺设置--修改七牛设置')
-
+                    self.oQINIU.update(self.usr_id_p)
                     dR['code'] = '0'
                     dR['MSG'] = '修改保存成功!'
                     return dR
@@ -187,8 +184,6 @@ class cA001_dl(cBASE_DL):
                     dR['code'] = '1'
                     dR['MSG'] = '更新数据失败，请联系平台管理员!'
                     return dR
-
-
 
             elif str(self.tab)=='2':
                 cname=self.GP('cname','')#店铺名称
@@ -203,27 +198,21 @@ class cA001_dl(cBASE_DL):
                     'logo_pic_link':logo_pic_link,
                     'home_title':home_title,
                     'home_pic_link':home_pic_link,
-                    #'gadds':"encrypt('%s','%s','aes')"%(gadds,self.md5code),
                     'times':times,
-                    #'phone':phone,
                 }
 
                 l, t = self.db.select(sql,self.usr_id_p)
-
                 if t == 0:  # insert
                     data['usr_id'] = self.usr_id_p
                     data['cid']=self.usr_id
                     data['ctime']=self.getToday(9)
                     self.db.insert('shop_set', data)
-
                 else:  # update
-
                     data['uid']=self.usr_id
                     data['utime']=self.getToday(9)
                     self.db.update('shop_set', data, " id = %s " % l[0][0])
                 sqlu="update shop_set set gadds=encrypt(%s,%s,'aes'),phone=encrypt(%s,%s,'aes') where usr_id=%s"
                 self.db.query(sqlu,[gadds,self.md5code,phone,self.md5code,self.usr_id_p])
-
                 self.use_log('店铺设置--修改店铺信息')
 
             elif str(self.tab) == '3':
@@ -261,8 +250,6 @@ class cA001_dl(cBASE_DL):
                                 self.db.query(sql, L)
                 else:
                     self.db.query("delete from  shopconfig where usr_id=%s;", self.usr_id_p)
-
-
                 self.use_log('店铺设置--修改商铺设置')
 
 
@@ -280,7 +267,6 @@ class cA001_dl(cBASE_DL):
                 evaluate_url = self.REQUEST.get('evaluate_url', '')  # 订单评价通知
                 complete_url = self.REQUEST.get('complete_url', '')  # 订单完成通知
 
-                #if use_money==''
                 data = {
                     'use_money': use_money or None,
                     'close_time': close_time or None,
@@ -295,7 +281,6 @@ class cA001_dl(cBASE_DL):
                     'evaluate_url':evaluate_url,
                     'complete_url':complete_url,
 
-
                 }  #
                 l, t = self.db.select(sql, self.usr_id_p)
 
@@ -304,8 +289,6 @@ class cA001_dl(cBASE_DL):
                     data['cid'] = self.usr_id
                     data['ctime'] = self.getToday(9)
                     self.db.insert('shop_set', data)
-
-
                 else:  # update
                     # 如果是插入 就去掉 uid，utime 的处理
                     oid=l[0][0]
@@ -313,9 +296,7 @@ class cA001_dl(cBASE_DL):
                     data['utime'] = self.getToday(9)
                     self.db.update('shop_set', data, " id = %s " % oid)
                 self.save_logistics_way()
-
                 self.use_log('店铺设置--修改订单设置')
-                #self.oSHOP_T.update(self.usr_id_p)
 
             elif str(self.tab) == '5':
 
@@ -363,16 +344,12 @@ class cA001_dl(cBASE_DL):
                 vip_price = self.GP('vip_price', '')  # 年费会员价格
                 up_type = self.GP('up_type', '')  # 会员升级方式
                 discount = self.GP('discount', '')  # 会员折扣百分比
-                up_type_str = self.GP('up_type_str', '')  # 会员升级方式
                 vip_sale = self.GP('vip_sale', '')  # 会员每年可省元
-                # complete_id = self.GP('complete_id', '')  # 订单完成通知
                 data = {
                     'vip_price': vip_price or None,
                     'up_type': up_type,
                     'discount': discount or None,
-                    #'up_type_str': up_type_str,
                     'vip_sale': vip_sale or None,
-                    # 'complete_id': complete_id
                 }  #
                 l, t = self.db.select(sql, self.usr_id_p)
 
@@ -409,7 +386,6 @@ class cA001_dl(cBASE_DL):
 
                 self.save_hy_up_level()
                 self.use_log('店铺设置--修改会员设置')
-                #self.oGOODS_D.update(self.usr_id_p)
 
 
             elif str(self.tab) == '7':
@@ -418,7 +394,6 @@ class cA001_dl(cBASE_DL):
                 shop_goods = self.GP('shop_goods', '')  # 购物车推荐商品设置
                 shop_goods_id = self.GP('goods_ids', '')  # 购物车推荐指定商品（多）
                 order_goods = self.GP('order_goods', '')  # 订单页推荐商品设置
-                #order_goods_str = self.GP('order_goods_str', '')  # 订单页推荐商品设置
                 order_goods_id = self.GP('order_goods_id', '')  # 订单页推荐指定商品（多）
                 menu_memo = self.GP('menu_memo', '')  # 菜单页面搜索关键词设置（多）
                 shop_cart_memo = self.GP('shop_cart_memo', '')  # 购物车页信息设置（多）
@@ -444,14 +419,12 @@ class cA001_dl(cBASE_DL):
                     data['cid'] = self.usr_id
                     data['ctime'] = self.getToday(9)
                     self.db.insert('shop_set', data)
-                    #oid = self.db.fetchcolumn("select id from shop_set where usr_id=%s", self.usr_id_p)
 
                 else:  # update
                     #oid = l[0][0]
                     data['uid'] = self.usr_id
                     data['utime'] = self.getToday(9)
                     self.db.update('shop_set', data, " id = %s " % l[0][0])
-
                 self.use_log('店铺设置--修改全局设置')
 
             elif str(self.tab) == '8':
@@ -470,9 +443,7 @@ class cA001_dl(cBASE_DL):
                     data['cid'] = self.usr_id
                     data['ctime'] = self.getToday(9)
                     self.db.insert('shop_set', data)
-
                 else:  # update
-
                     data['uid'] = self.usr_id
                     data['utime'] = self.getToday(9)
                     self.db.update('shop_set', data, " id = %s " % l[0][0])
@@ -481,20 +452,12 @@ class cA001_dl(cBASE_DL):
                 self.use_log('店铺设置--修改积分规则设置')
 
             elif str(self.tab) == '9':
-                #arrive = self.GP('arrive', '')
-                #mini_cash = self.GP('mini_cash', '')
                 topup = self.GP('topup', '')
                 topup_str = self.GP('topup_str', '')
-                #drawal = self.GP('drawal', '')
-                #drawal_str = self.GP('drawal_str', '')
-
                 data = {
-                    #'arrive': arrive or None,
-                    #'mini_cash': mini_cash,
                     'topup': topup or None,
                     'topup_str': topup_str,
-                    #'drawal': drawal or None,
-                    #'drawal_str': drawal_str
+
                 }
                 l, t = self.db.select(sql, self.usr_id_p)
                 if t == 0:
@@ -508,13 +471,11 @@ class cA001_dl(cBASE_DL):
                     self.db.update('shop_set', data, 'usr_id=%s' % self.usr_id_p)
 
                 self.save_top_set()
-
                 self.use_log('店铺设置--修改充值设置')
 
             elif str(self.tab) == '10':
                 ebusinessid = self.REQUEST.get('ebusinessid', '')  # 快递鸟ID
                 appkey = self.REQUEST.get('appkey', '')  # 快递鸟KEY
-                # if use_money==''
                 data = {
                     'ebusinessid': ebusinessid,
                     'appkey': appkey
@@ -689,35 +650,35 @@ class cA001_dl(cBASE_DL):
             self.db.query("delete from  hy_up_level where usr_id=%s;", [self.usr_id_p])
         return
 
-    def save_global_memo(self):
-        lid = self.REQUEST.getlist('lid')
-        memo = self.REQUEST.getlist('memo')
-        if len(memo) > 0:
-            sql = "select id from global_memo where usr_id=%s;"
-            l, t = self.db.select(sql, [self.usr_id])
-            if t > 0:
-                for j in l:
-                    if str(j[0]) not in lid:
-                        self.db.query("delete from  global_memo where id=%s and usr_id=%s;", [j[0],self.usr_id_p])
-            for i in range(len(memo)):
-                if memo[i] != '':
-                    if lid[i] == '':
-                        sql = """
-                                insert into global_memo(usr_id,memo,cid,ctime)
-                                    values(%s,%s,%s,now());
-                                """
-                        L = [self.usr_id_p, memo[i],self.usr_id]
-                        self.db.query(sql, L)
-                    else:
-                        sql = """
-                                update global_memo set memo=%s,uid=%s,utime=now()
-                                        where id=%s
-                                """
-                        L = [memo[i], self.usr_id, lid[i]]
-                        self.db.query(sql, L)
-        else:
-            self.db.query("delete from  global_memo where usr_id=%s ;", [self.usr_id_p])
-        return
+    # def save_global_memo(self):
+    #     lid = self.REQUEST.getlist('lid')
+    #     memo = self.REQUEST.getlist('memo')
+    #     if len(memo) > 0:
+    #         sql = "select id from global_memo where usr_id=%s;"
+    #         l, t = self.db.select(sql, [self.usr_id])
+    #         if t > 0:
+    #             for j in l:
+    #                 if str(j[0]) not in lid:
+    #                     self.db.query("delete from  global_memo where id=%s and usr_id=%s;", [j[0],self.usr_id_p])
+    #         for i in range(len(memo)):
+    #             if memo[i] != '':
+    #                 if lid[i] == '':
+    #                     sql = """
+    #                             insert into global_memo(usr_id,memo,cid,ctime)
+    #                                 values(%s,%s,%s,now());
+    #                             """
+    #                     L = [self.usr_id_p, memo[i],self.usr_id]
+    #                     self.db.query(sql, L)
+    #                 else:
+    #                     sql = """
+    #                             update global_memo set memo=%s,uid=%s,utime=now()
+    #                                     where id=%s
+    #                             """
+    #                     L = [memo[i], self.usr_id, lid[i]]
+    #                     self.db.query(sql, L)
+    #     else:
+    #         self.db.query("delete from  global_memo where usr_id=%s ;", [self.usr_id_p])
+    #     return
 
 
     def get_logistics_way(self):
@@ -731,13 +692,13 @@ class cA001_dl(cBASE_DL):
             L=l
         return L
 
-    def get_global_memo(self):
-        L=[]
-        sql=" select id,memo from global_memo where usr_id =%s "
-        l,n=self.db.fetchall(sql,self.usr_id_p)
-        if n>0:
-            L=l
-        return L
+    # def get_global_memo(self):
+    #     L=[]
+    #     sql=" select id,memo from global_memo where usr_id =%s "
+    #     l,n=self.db.fetchall(sql,self.usr_id_p)
+    #     if n>0:
+    #         L=l
+    #     return L
     def get_score_set(self):
         L=[]
         sql="""

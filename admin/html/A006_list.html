@@ -1,12 +1,9 @@
 {% extends "list.html" %}
 
-
-
 {% block topSearch %}
 <table style="width:100%;">
 	<tbody>
 		<tr style="width:100%;">
-
 			<td style="width:300px">
 				<div class="input-group">
 					<input type="text" class="form-control" name="qqid" value="{{qqid}}"  placeholder="请输入昵称"/>
@@ -15,16 +12,12 @@
 					</span>
 				</div>
 			</td>
-
 		</tr>
-
 	</tbody>
 </table>
 {% endblock %}
 
 {% block mGrid %}
-
-
 <table class="table table-bordered">
     <thead>
         <tr style="background-color:#e5e5e5" bgcolor="#ffffff">
@@ -46,7 +39,6 @@
             {%else%}
                  <td>{{e}}</td>
             {%endif%}
-
 
             {% endfor %}
             <td style="text-align:center;">

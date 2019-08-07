@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 # Copyright (c) wxmall.janedao.cn
-# Author：hyj
-# Start  Date:  2019
+# Author：QQ173782910
+#QQ group:528289471
 ##############################################################################
 """basic/preload.py"""
 
@@ -141,11 +141,29 @@ class cSHOP:
             dT[str(k)]['ShopInfo']=ShopInfo
 
             #以上为shopinfo接口
+            #advertis_banner接口开始
+            sqlb = """select id,field,cname,buseid,linkurl,picurl 
+                 from advertis where coalesce(del_flag,0)=0 and coalesce(status,0)=0 and usr_id=%s  order by sort
+                                """
+            lB, iB = self.db.fetchall(sqlb,[k])
+            advertis_banner = []
+            if iB > 0:
+                for bb in lB:
+                    field = bb['id']
+                    sql = """select id,business_id,link_url,pic_url,remark,status,title 
+                            from banner where COALESCE(del_flag,0)=0 and ctype =%s  and usr_id=%s order by sort 
+                            """
+                    l, t = self.db.fetchall(sql, [field,k])
+                    if t > 0:
+                        bb['data'] = l
+                    advertis_banner.append(bb)
+            dT[str(k)]['advertis_banner'] = advertis_banner
+
             #banner_list接口开始
-            sql = """select id,business_id,link_url,pic_url,remark,title,ctype,sort,topic_id
-                    
-                    from banner 
-                    where COALESCE(del_flag,0)=0 and usr_id = %s and COALESCE(status,0)=0 order by sort """
+            sql = """select b.id,b.business_id,b.link_url,b.pic_url,b.remark,
+                    b.title,b.ctype,b.sort,b.topic_id
+                    from banner b
+                    where COALESCE(b.del_flag,0)=0 and b.usr_id =%sand COALESCE(b.status,0)=0 order by b.sort """
             banner_list, t = self.db.fetchall(sql,k)
             dT[str(k)]['banner_list'] = banner_list
             #textarea_list
@@ -294,9 +312,30 @@ class cSHOP:
         self.__d[str(sType)]['ShopInfo'] = ShopInfo
 
         # 以上为shopinfo接口
+        # advertis_banner接口开始
+        sqlb = """select id,field,cname,buseid,linkurl,picurl 
+                    from advertis where coalesce(del_flag,0)=0 
+                    and coalesce(status,0)=0 and usr_id=%s order by sort
+                                        """
+        lB, iB = self.db.fetchall(sqlb,[sType])
+        advertis_banner = []
+        if iB > 0:
+            for bb in lB:
+                field = bb['id']
+                sql = """select id,business_id,link_url,pic_url,remark,status,title 
+                    from banner where COALESCE(del_flag,0)=0 and ctype =%s and usr_id=%s order by sort 
+                                    """
+                l, t = self.db.fetchall(sql, [field,sType])
+                if t > 0:
+                    bb['data'] = l
+                advertis_banner.append(bb)
+        self.__d[str(sType)]['advertis_banner'] = advertis_banner
         # banner_list接口开始
-        sql = """select id,business_id,link_url,pic_url,remark,title,ctype,sort,topic_id 
-        from banner where COALESCE(del_flag,0)=0 and usr_id = %s and COALESCE(status,0)=0 order by sort"""
+        sql = """select b.id,b.business_id,b.link_url,b.pic_url,
+                    b.remark,b.title,b.ctype,b.sort,b.topic_id
+                    from banner b
+                    
+                    where COALESCE(b.del_flag,0)=0 and b.usr_id =%s and COALESCE(b.status,0)=0 order by b.sort"""
         banner_list, t = self.db.fetchall(sql,sType)
         self.__d[str(sType)]['banner_list'] = banner_list
         # textarea_list
@@ -627,13 +666,18 @@ class cQINIU:
     def loaddata(self):
         dT = {}
         sql = """
-            select q.usr_id,access_key,secret_key,q.cname,domain_url,endpoint,COALESCE(ctype,0)ctype 
+            select q.usr_id,
+            convert_from(decrypt(q.access_key::bytea, %s, 'aes'),'SQL_ASCII') as access_key,
+            convert_from(decrypt(q.secret_key::bytea, %s, 'aes'),'SQL_ASCII') as secret_key,
+            convert_from(decrypt(q.cname::bytea, %s, 'aes'),'SQL_ASCII') as cname,
+            convert_from(decrypt(q.domain_url::bytea, %s, 'aes'),'SQL_ASCII') as domain_url,
+            endpoint,COALESCE(ctype,0)ctype 
                     from qiniu  q
              left join users u on u.usr_id=q.usr_id 
             where   coalesce(u.expire_flag,0)=0 order by q.usr_id 
         
         """
-        lT, iN = self.db.fetchall(sql)
+        lT, iN = self.db.fetchall(sql,[self.md5code,self.md5code,self.md5code,self.md5code])
         for e in lT:
             k = e.pop('usr_id')
             dT[str(k)]= e
@@ -642,11 +686,15 @@ class cQINIU:
 
     def update(self, sType):
         self.__d[str(sType)] = {}
-        sql = """ select access_key,secret_key,q.cname,domain_url,endpoint,COALESCE(ctype,0)ctype 
+        sql = """ select  convert_from(decrypt(q.access_key::bytea, %s, 'aes'),'SQL_ASCII') as access_key,
+            convert_from(decrypt(q.secret_key::bytea, %s, 'aes'),'SQL_ASCII') as secret_key,
+            convert_from(decrypt(q.cname::bytea, %s, 'aes'),'SQL_ASCII') as cname,
+            convert_from(decrypt(q.domain_url::bytea, %s, 'aes'),'SQL_ASCII') as domain_url,
+            endpoint,COALESCE(ctype,0)ctype 
                     from qiniu  q
              left join users u on u.usr_id=q.usr_id 
             where   coalesce(u.expire_flag,0)=0  and q.usr_id=%s"""
-        self.__d[str(sType)] = self.db.fetch(sql,[sType])
+        self.__d[str(sType)] = self.db.fetch(sql,[self.md5code,self.md5code,self.md5code,self.md5code,sType])
 
         return
 
@@ -1888,123 +1936,6 @@ class cCATEGORY:
     def get(self, sType):
         return self.__d.get(str(sType),[])
 
-
-class cTOLL:
-    """功能：将goods_info表装进内存中，提供上新接口调用。当该表修改时调用oGOODS_G.update()
-       用法：get(self,sType)
-    """
-    def __init__(self,db,md5code):
-        self.db = db
-        self.md5code=md5code
-        self.__d = {}
-        self.loaddata()
-
-    def loaddata(self):
-
-        sql = """ select 
-	            convert_from(decrypt(wx_appid::bytea, %s, 'aes'),'SQL_ASCII') as wx_appid,
-	            convert_from(decrypt(wx_secret::bytea, %s, 'aes'),'SQL_ASCII') as wx_secret,
-	            convert_from(decrypt(wx_token::bytea, %s, 'aes'),'SQL_ASCII') as wx_token,
-	            convert_from(decrypt(wx_aeskey::bytea, %s, 'aes'),'SQL_ASCII') as wx_aeskey,
-	            convert_from(decrypt(mchid::bytea, %s, 'aes'),'SQL_ASCII') as mchid,
-	            convert_from(decrypt(mchkey::bytea, %s, 'aes'),'SQL_ASCII') as mchkey,
-	            callback_url,
-	            convert_from(decrypt(sms_appid::bytea, %s, 'aes'),'SQL_ASCII') as sms_appid,
-	            convert_from(decrypt(sms_appkey::bytea, %s, 'aes'),'SQL_ASCII') as sms_appkey,
-	            convert_from(decrypt(sms_appcode::bytea, %s, 'aes'),'SQL_ASCII') as sms_appcode,
-                try_out,
-                combo_one_name,
-                combo_one_price,
-                combo_one_day,
-                combo_one_txt,
-                combo_two_name,
-                combo_two_price,
-                combo_two_day,
-                combo_two_status,
-                combo_two_txt,
-                combo_thr_name,
-                combo_thr_price,
-                combo_thr_day,
-                combo_thr_status,
-                combo_thr_txt,
-                oss_one_day,
-                oss_one_size,
-                oss_one_price,
-                oss_two_day,
-                oss_two_size,
-                oss_two_price,
-                oss_thr_day,
-                oss_thr_size,
-                oss_thr_price,
-                coalesce(invite_days,0)invite_days,
-	            coalesce(pay_days,0)pay_days,
-                convert_from(decrypt(dbname::bytea, %s, 'aes'),'SQL_ASCII') as dbname,
-                notices,
-                memo,
-                convert_from(decrypt(help_appid::bytea, %s, 'aes'),'SQL_ASCII') as help_appid,
-	            convert_from(decrypt(help_secret::bytea, %s, 'aes'),'SQL_ASCII') as help_secret
-            from toll_config where id=1
-            """
-        parm = [self.md5code, self.md5code,self.md5code, self.md5code, self.md5code, self.md5code, self.md5code,
-                self.md5code, self.md5code, self.md5code, self.md5code, self.md5code]
-        l = self.db.fetch(sql,parm)
-        self.__d = l
-
-    def update(self):
-        self.__d={}
-        sql = """ select 
-	            convert_from(decrypt(wx_appid::bytea, %s, 'aes'),'SQL_ASCII') as wx_appid,
-	            convert_from(decrypt(wx_secret::bytea, %s, 'aes'),'SQL_ASCII') as wx_secret,
-	            convert_from(decrypt(wx_token::bytea, %s, 'aes'),'SQL_ASCII') as wx_token,
-	            convert_from(decrypt(wx_aeskey::bytea, %s, 'aes'),'SQL_ASCII') as wx_aeskey,
-	            convert_from(decrypt(mchid::bytea, %s, 'aes'),'SQL_ASCII') as mchid,
-	            convert_from(decrypt(mchkey::bytea, %s, 'aes'),'SQL_ASCII') as mchkey,
-	            callback_url,
-	            convert_from(decrypt(sms_appid::bytea, %s, 'aes'),'SQL_ASCII') as sms_appid,
-	            convert_from(decrypt(sms_appkey::bytea, %s, 'aes'),'SQL_ASCII') as sms_appkey,
-	            convert_from(decrypt(sms_appcode::bytea, %s, 'aes'),'SQL_ASCII') as sms_appcode,
-                try_out,
-                combo_one_name,
-                combo_one_price,
-                combo_one_day,
-                combo_one_txt,
-                combo_two_name,
-                combo_two_price,
-                combo_two_day,
-                combo_two_status,
-                combo_two_txt,
-                combo_thr_name,
-                combo_thr_price,
-                combo_thr_day,
-                combo_thr_status,
-                combo_thr_txt,
-                oss_one_day,
-                oss_one_size,
-                oss_one_price,
-                oss_two_day,
-                oss_two_size,
-                oss_two_price,
-                oss_thr_day,
-                oss_thr_size,
-                oss_thr_price,
-                coalesce(invite_days,0)invite_days,
-	            coalesce(pay_days,0)pay_days,
-                convert_from(decrypt(dbname::bytea, %s, 'aes'),'SQL_ASCII') as dbname,
-                notices,
-                memo,
-                convert_from(decrypt(help_appid::bytea, %s, 'aes'),'SQL_ASCII') as help_appid,
-	            convert_from(decrypt(help_secret::bytea, %s, 'aes'),'SQL_ASCII') as help_secret
-            from toll_config where id=1
-                    """
-        parm = [self.md5code, self.md5code,self.md5code, self.md5code, self.md5code, self.md5code, self.md5code,
-                self.md5code, self.md5code, self.md5code, self.md5code, self.md5code]
-        l = self.db.fetch(sql,parm)
-        self.__d = l
-
-    def get(self, sType=''):
-        if sType == '':
-            return self.__d
-        return self.__d.get(str(sType), '')
 
 
 

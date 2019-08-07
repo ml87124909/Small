@@ -1,5 +1,11 @@
 # -*-coding: utf-8 -*-
-# !/usr/bin/env python
+##############################################################################
+# Copyright (c) wxmall.janedao.cn
+# Author：QQ173782910
+#QQ group:528289471
+##############################################################################
+"""api/helper.py"""
+
 from __future__ import unicode_literals
 
 """

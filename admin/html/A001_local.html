@@ -48,7 +48,7 @@
             <label class="col-sm-3 control-label">外链默认域名:</label>
             <div class="col-sm-8">
                 <input type="text" class="form-control"  name="domain_url" value="{{item.domain_url}}"  style="width:50%"/>(会被加密保存)</br>
-			    <font style="color:red;">如：http://cdn.maliapi.cn/或https://cdn.maliapi.cn/ 注意：小程序海报功能需开启https</font>
+			    <font style="color:red;">如：http://cdn.janedao.cn/或https://cdn.janedao.cn/<br>注意：小程序海报功能需开启https</font>
 
             </div>
 
@@ -232,7 +232,7 @@
         formatSize = Q.formatSize,
         boxView = document.getElementById(""+divs[i]+"")
         var uploader = new Uploader({
-            url: '/admin?viewid=A001&part=QiniuUpload',
+            url: '/upload?viewid={{viewid}}&part=Img',
             target: document.getElementById(""+self+""),
             view: boxView,//如果去掉这个，会导致压缩效果不好
             //将auto配置为false以手动上传
@@ -982,7 +982,7 @@ function setSerialNo(tablename){
         formatSize = Q.formatSize,
         boxView = document.getElementById(""+divs[i]+"")
         var uploader = new Uploader({
-            url: '/admin?viewid=A001&part=Pem_upload',
+            url: '/upload?viewid={{viewid}}&part=Pem',
             target: document.getElementById(""+self+""),
             //view: boxView,//如果去掉这个，会导致压缩效果不好
             //将auto配置为false以手动上传
@@ -1084,7 +1084,7 @@ function setSerialNo(tablename){
                         <th style="text-align:center;width:60px;">序号</th>
                         <th style="text-align:center;width:260px;">级别名称</th>
                         <th style="text-align:center;width:250px;">升级价格(元)</th>
-                        <th style="text-align:center;width:80px;">级别折扣(%)</th>
+                        <th style="text-align:center;width:80px;">会员折扣百分比(%)</th>
                     </tr>
                 </thead>
                 <tbody>

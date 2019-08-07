@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
-
 ##############################################################################
 # Copyright (c) wxmall.janedao.cn
-# Author：hyj
-# Start  Date:  2019
+# Author：QQ173782910
+#QQ group:528289471
 ##############################################################################
+""" admin/dl/H006_dl.py"""
+
 from imp import reload
 from basic.publicw import DEBUG
 
@@ -13,14 +14,11 @@ if DEBUG == '1':
     import admin.dl.BASE_DL
     reload(admin.dl.BASE_DL)
 from admin.dl.BASE_DL  import cBASE_DL
-import hashlib , os , time , random
+
 
 class cH006_dl(cBASE_DL):
     def init_data(self):
-        #self.usr_dept_id = self.dActiveUser['usr_dept'][0]
-        # 以字典形式创建列表上要显示的字段
-        # 以下字典为列表逻辑所用 , 所有数组元素的位置必须对应好
-        # [列表名,查询用别名,表格宽度,对齐]
+
         self.FDT = [
             ['ID', "u.usr_id", '', ''],  # 0
             ['login_id', "u.login_id", '', ''],  # 1
@@ -30,16 +28,9 @@ class cH006_dl(cBASE_DL):
             ['状态', "u.login_lock", '', ''],  # 5
 
         ]
-        # self.GNL=[] #列表上出现的
-        # self.SNL=[]     #排序
-        # self.QNL=''  #where查询
+
         self.GNL = self.parse_GNL([0, 1, 4])
 
-
-    #在子类中重新定义         
-    def myInit(self):
-        self.src = 'H006'
-        pass
 
     def mRight(self):
 

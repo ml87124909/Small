@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
-
 ##############################################################################
 # Copyright (c) wxmall.janedao.cn
-# Author：hyj
-# Start  Date:  2019
+# Author：QQ173782910
+#QQ group:528289471
 ##############################################################################
 """admin/dl/MODEL_DL.py"""
 
@@ -14,11 +13,11 @@ if DEBUG == '1':
     reload(admin.dl.DL_BASE)
 from admin.dl.DL_BASE  import cDL_BASE
 
-import time,hashlib,os
-from qiniu import Auth, put_stream, put_data
+import os
+
 from wechatpy import WeChatClient
 from wechatpy.client.api import WeChatWxa
-from basic.wxbase import wx_minapp_login,WXBizDataCrypt,WxPay
+
 class cMODEL_DL(cDL_BASE):
 
     def getTopMenu(self):
@@ -42,8 +41,8 @@ class cMODEL_DL(cDL_BASE):
         d = {'"': '\\"', "'": "\\'", "\0": "\\\0", "\\": "\\\\"}
         return ''.join(d.get(c, c) for c in s)
 
-
-
+    # 代替了self.REQUEST.get()
+    # key为参数名， default为默认值，type为是否需要过滤字符
     def GPRQ(self, key, default=None, ctype=1):
         value = self.REQUEST.get(key, default)
         if ctype == 1 and value and isinstance(value, str):
@@ -94,16 +93,7 @@ class cMODEL_DL(cDL_BASE):
                 sql = "update file_pic set SRC='%s' , m_id = %s where seq = %s" % (src, pk, file_pk)
                 self.db.query(sql)
 
-    def get_upload_file(self, pk):
-        if pk and self.src:
-            sql = '''
-            select fp.seq , fp.file_name , fp.file_size , fp.is_pic ,u.usr_name , to_char(fp.ctime,'YYYY-MM-DD') , fp.fname 
-            from file_pic fp left join users u on u.usr_id = fp.cid where fp.m_id = %s  and fp.src = '%s' order by fp.seq asc
-            ''' % (pk, self.src)
-            L, t = self.db.select(sql)
-            return L
-        else:
-            return []
+
 
     def list_for_grid(self, List,iTotal_length, pageNo=1, select_size=10):
 
@@ -141,10 +131,6 @@ class cMODEL_DL(cDL_BASE):
                 D[i[0]]=i[1]
         return D
 
-    def toll_config(self):
-        sql = "select notices,memo from toll_config"
-        tol = self.db.fetch(sql)
-        return tol
 
 
 
@@ -196,50 +182,6 @@ class cMODEL_DL(cDL_BASE):
         wxa = WeChatWxa(client)
         return wxa
 
-    def getWxClient(self):
-
-        self.wx_appid = self.oTOLL.get('wx_appid')
-        self.wx_secret = self.oTOLL.get('wx_secret')
-        return WeChatClient(self.wx_appid,self.wx_secret)
-
-
-    def getWxUserInfo(self,openid):
-        if self.wxstatus==1:
-            wxClient = self.getWxClient()
-            wxUserInfo = wxClient.user.get(openid)
-            return wxUserInfo
-        return {}
-
-    def QRCode_create(self,vtype):
-        wxClient = self.getWxClient()
-        res = wxClient.qrcode.create({
-            'action_name': 'QR_LIMIT_STR_SCENE',
-            'action_info': {
-                'scene': {'scene_str': vtype},
-            }
-        })
-        ticket=res.get('ticket','')
-        #url=res.get('url','')
-        sql="select qr_ticket from service_qrcode where vtype=%s "
-        l,t=self.db.select(sql,[vtype])
-        if t==0:
-            sql="insert into service_qrcode(vtype,qr_ticket,qr_ticket_time,ctime)values(%s,%s,now(),now())"
-            self.db.query(sql,[vtype,ticket])
-            return
-        sql = "update service_qrcode set qr_ticket=%s,qr_ticket_time=now(),utime=now() where vtype=%s;"
-        self.db.query(sql, [ticket,vtype])
-        return
-
-    def get_QR_code_url(self,vtype):
-        wxClient = self.getWxClient()
-        sql = "select qr_ticket from service_qrcode where vtype=%s"
-        l, t = self.db.select(sql, [vtype])
-        if t==0:
-            self.QRCode_create(vtype)
-            l, t = self.db.select(sql, [vtype])
-        ticket=l[0][0]
-        url = wxClient.qrcode.get_url(ticket)
-        return url
 
     def use_log(self,memo):
         sql="insert into use_log(usr_id,viewid,memo,ctime)values(%s,%s,%s,now())"

@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 # Copyright (c) wxmall.janedao.cn
-# Author：hyj
-# Start  Date:  2019
+# Author：QQ173782910
+#QQ group:528289471
 ##############################################################################
+"""admin/vi/login.py"""
+
 from imp import reload
 from basic.publicw import  DEBUG,user_menu
 if DEBUG=='1':
@@ -19,8 +21,7 @@ class clogin(cVI_BASE):
         self.dl_name = ''
 
     def goPartList(self):
-        aaa = self.dl.get_QR_code_url('login_code')
-        self.assign('aaa', aaa)
+
         return self.runApp('login.html')
     
     def goPartDologin(self):

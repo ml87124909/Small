@@ -64,42 +64,7 @@
 			</table>
 		</div>
 	</div>
-    <div class="row" style="">
 
-        <div class="col-sm-12">
-            <table class="table table-bordered addRowtb" >
-                <thead>
-					<tr bgcolor="#ffffff">
-						<th style="text-align:center;width:60px;">订单ID</th>
-						<th style="text-align:center;width:150px;">订单号</th>
-						<th style="text-align:center;width:50px;">类型</th>
-						<th style="text-align:center;width:70px;">支付金额</th>
-						<th style="text-align:center;width:120px;">支付时间</th>
-						<th style="text-align:center;width:80px;">支付套餐</th>
-						<th style="text-align:center;width:120px;">提交时间</th>
-						<th style="text-align:center;width:120px;">到期时间</th>
-						<th style="text-align:center;width:50px;">查询</th>
-					</tr>
-                </thead>
-                <tbody>
-
-                {% for row in dataList %}
-                <tr>
-                    {% for e in row[:-1]%}
-                    <td style="text-align:center;">{{e}}</td>
-                    {% endfor %}
-                    <td style="text-align:center;">
-						{%if row[-1]==0%}
-                        <a class="btn btn-xs btn-info" onclick="pay_search({{row[0]}})" title="编辑"><i class="fa fa-search">查询</i></a>
-                    	{%endif%}
-					</td>
-                </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-            {{html_pager}}
-        </div>
-    </div>
 </div>
 
 <style>

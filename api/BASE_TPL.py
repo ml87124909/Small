@@ -1,10 +1,15 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 # Copyright (c) wxmall.janedao.cn
-# Author：hyj
-# Start  Date:  2019
+# Author：QQ173782910
+#QQ group:528289471
 ##############################################################################
 """api/BASE_TPL.py"""
+"""
+检查token，注册，登录，参数设置接口,Banner,商品分类,地址相关接口，收藏相关接口
+
+
+"""
 
 from imp import reload
 from config import DEBUG,CLIENT_NAME
@@ -129,7 +134,7 @@ class cBASE_TPL(cVI_BASE):
             return self.jsons({'code': 10000, 'msg': self.error_code[10000]})
         wid = lT[0][0]
         self.oUSER.update(self.subusr_id, wid)
-        sql="select new_score from score_conf where usr_id=%s"
+        sql="select new_score from shop_set where usr_id=%s"
         l,t=self.db.select(sql,self.subusr_id)
         if t>0:#注册送积分
             new_score=l[0][0]
@@ -149,11 +154,6 @@ class cBASE_TPL(cVI_BASE):
         if code == '' or code == 'None' or code=='undefined':
             return self.jsons({'code': 300, 'data': {'msg': self.error_code[300].format('code')}})
 
-        # sql="select appid,secret  from mall where usr_id=%s"
-        # l,t=self.db.select(sql,self.subusr_id)
-        #
-        # if t==0:
-        #     return self.jsons({'code': 404, 'msg': '请到后台填写‘微信设置’'})
         mall=self.oMALL.get(self.subusr_id)
         if mall=={}:
             return self.jsons({'code': 404, 'msg': '请到店铺设置填写小程序设置'})
@@ -191,17 +191,29 @@ class cBASE_TPL(cVI_BASE):
         self.oUSER.update(self.subusr_id, wechat_user_id)
         return self.jsons({'code':0,'data':{'token': token,'uid':wechat_user_id}})
 
+    def goPartadvertis_banner(self):#分类后的图片广告接口
+        ctype = self.RQ('type', '')
+
+        l=self.oSHOP.get(self.subusr_id,'advertis_banner')
+        print(l)
+        if len(l)==0:
+            return self.jsons({'code': 404, 'msg': self.error_code[404]})
+        L = []
+        if ctype != '' and ctype != 'None' and ctype!='undefined':
+
+            for i in l:
+                itype=i.get('ctype')
+                if str(itype)==str(ctype):
+                    L.append(i)
+            if len(L)==0:
+                return self.jsons({'code': 404, 'msg': self.error_code[404]})
+            l=L
+        return self.jsons({'code': 0, 'data': l,'msg':self.error_code['ok']})
+
+
     def goPartbanner_list(self):#图片广告接口
         ctype = self.RQ('type', '')
 
-        # sql="select id,business_id,link_url,pic_url,remark,status_str,title,type from banner where COALESCE(del_flag,0)=0 and usr_id = %s"
-        # parm=[self.subusr_id]
-        # if type != '' or type != 'None' or type!='undefined':
-        #     sql+="and type=%s"
-        #     parm.append(type)
-        # l,t=self.db.fetchall(sql,parm)
-        # if t==0:
-        #     return self.jsons({'code': 404, 'msg': self.error_code[404]})
         l=self.oSHOP.get(self.subusr_id,'banner_list')
 
         if len(l)==0:
@@ -210,7 +222,7 @@ class cBASE_TPL(cVI_BASE):
         if ctype != '' and ctype != 'None' and ctype!='undefined':
 
             for i in l:
-                itype=i.get('type')
+                itype=i.get('ctype')
                 if str(itype)==str(ctype):
                     L.append(i)
             if len(L)==0:

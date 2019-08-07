@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-
 ##############################################################################
 # Copyright (c) wxmall.janedao.cn
-# Author：hyj
-# Start  Date:  2019
+# Author：QQ173782910
+#QQ group:528289471
 ##############################################################################
+""" admin/dl/F004_dl.py"""
 
 from imp import reload
 from basic.publicw import DEBUG
@@ -15,16 +15,10 @@ if DEBUG == '1':
 from admin.dl.BASE_DL  import cBASE_DL
 
 
-import hashlib , os , time , random
-
 class cF004_dl(cBASE_DL):
     def init_data(self):
         self.GNL = ['时间','金额','方式','用户ID','用户名']
 
-
-    #在子类中重新定义         
-    def myInit(self):
-        self.src = 'F004'
 
 
     def mRight(self):

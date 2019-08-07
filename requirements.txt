@@ -3,8 +3,6 @@ simplejson
 six
 lxml
 xmltodict
-psycopg2
-phpserialize
 flask
 Jinja2
 MarkupSafe
@@ -25,8 +23,5 @@ oss2
 qcloudsms_py
 xlsxwriter
 xlrd
-sanic
-sanic_cors
-gunicorn
 
 

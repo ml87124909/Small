@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-
 ##############################################################################
 # Copyright (c) wxmall.janedao.cn
-# Author：hyj
-# Start  Date:  2019
+# Author：QQ173782910
+#QQ group:528289471
 ##############################################################################
+""" admin/dl/A006_dl.py"""
 
 from imp import reload
 from basic.publicw import DEBUG
@@ -13,9 +13,6 @@ if DEBUG == '1':
     import admin.dl.BASE_DL
     reload(admin.dl.BASE_DL)
 from admin.dl.BASE_DL  import cBASE_DL
-
-
-import hashlib , os , time , random
 
 class cA006_dl(cBASE_DL):
     def init_data(self):
@@ -42,12 +39,6 @@ class cA006_dl(cBASE_DL):
         # self.GNL=[] #列表上出现的
         self.GNL = self.parse_GNL([1,  3, 4, 5, 6, 7,  9,  11, 12, 13, 14, 15])
 
-
-
-    #在子类中重新定义         
-    def myInit(self):
-        self.src = 'A006'
-        pass
 
     def mRight(self):
             

@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 # Copyright (c) wxmall.janedao.cn
-# Author：hyj
-# Start  Date:  2019
+# Author：QQ173782910
+#QQ group:528289471
 ##############################################################################
-
+"""api/BASE_LOC.py"""
 
 from imp import reload
 from config import DEBUG
@@ -262,7 +262,7 @@ class cBASE_LOC(cBASE_TPL):
         except:
             self.print_log('goPartgoods_detail:%s' % id, '%s' % str(traceback.format_exc()))
 
-        self.db.query("update goods_info set views=COALESCE(views,0)+1 where id=%s", id)
+        self.db.query("update goods_info set see=COALESCE(see,0)+1 where id=%s", id)
         self.oGOODS_D.updatev(self.subusr_id, id)
         self.oGOODS.updatev(self.subusr_id, id)
 
@@ -2796,24 +2796,9 @@ class cBASE_LOC(cBASE_TPL):
         return self.jsons({'code': 0, 'data': data, 'msg': self.error_code['ok']})
 
     def goPartPingtuan_goods_recommend(self):  # 获取推荐的拼团商品列表
-        # token = self.REQUEST.get('token', '')
-        # ctype = self.RQ('ctype', '')
-        # ktype = self.RQ('ktype', '')
-        #
-        # if token == '' or token == 'None' or token == 'undefined':
-        #     return self.jsons({'code': 300, 'msg': self.error_code[300].format('token')})
-        #
-        # if ctype == '' or ctype == 'None' or ctype == 'undefined':
-        #     ctype = ''
-        # if ktype == '' or ktype == 'None' or ktype == 'undefined':
-        #     ktype = ''
 
-        # dR = self.check_token(token)
-        # if dR['code'] != 0:
-        #     return self.jsons({'code': 901, 'msg': dR['MSG']})
-        # wechat_user_id = dR['wechat_user_id']
         sql = """select g.id 
-                    ,g.name	--商品名称
+                    ,g.cname	--商品名称
                     ,g.introduce	--商品简介
                     ,g.pic	--商品第一张图片
                     ,g.minprice as mini_price	--商品现价

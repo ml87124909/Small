@@ -337,18 +337,7 @@ function formcheck_2(form){
 	
 }
 </script>
-<script type="text/javascript">
-if({{save_alert}}==1){
-    var pk=$('input[name=pk]').val()
-	layer.alert('保存成功!',{yes:function(){
-         window.location = 'admin?viewid=D003&part=localfrm&pk='+pk;
-   }});
-}else if ({{save_alert}}==2){
-    layer.alert('保存失败!',{yes:function(){
-         window.location = 'admin?viewid=D003&part=localfrm&pk={{pk}}';
-   }});
-}
-</script>
+
 <script>
 
 	var ids = new Array("pickfiles","pickfilesa");
@@ -362,7 +351,7 @@ if({{save_alert}}==1){
         formatSize = Q.formatSize,
         boxView = document.getElementById(""+divs[i]+"")
         var uploader = new Uploader({
-            url: '/admin?viewid=D003&part=QiniuUpload',
+            url: '/upload?viewid={{viewid}}&part=Img',
             target: document.getElementById(""+self+""),
             view: boxView,//如果去掉这个，会导致压缩效果不好
             //将auto配置为false以手动上传

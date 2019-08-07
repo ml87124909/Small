@@ -1,4 +1,10 @@
 # -*- coding: utf-8 -*-
+##############################################################################
+# Copyright (c) wxmall.janedao.cn
+# Author：QQ173782910
+#QQ group:528289471
+##############################################################################
+"""basic/wxbase.py"""
 import hashlib
 import random
 import string

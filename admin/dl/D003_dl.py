@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-
 ##############################################################################
 # Copyright (c) wxmall.janedao.cn
-# Author：hyj
-# Start  Date:  2019
+# Author：QQ173782910
+#QQ group:528289471
 ##############################################################################
+""" admin/dl/D003_dl.py"""
 
 from imp import reload
 from basic.publicw import DEBUG
@@ -15,7 +15,7 @@ if DEBUG == '1':
 from admin.dl.BASE_DL  import cBASE_DL
 
 
-import hashlib , os , time , random,datetime,traceback
+import  time , random,datetime,traceback
 
 class cD003_dl(cBASE_DL):
     def init_data(self):
@@ -25,7 +25,7 @@ class cD003_dl(cBASE_DL):
 
     #在子类中重新定义         
     def myInit(self):
-        self.src = 'D003'
+
         self.part = self.GP('part', 'Localfrm')
         self.tab = self.GP("tab", "1")
 

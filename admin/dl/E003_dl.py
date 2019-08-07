@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
-
 ##############################################################################
 # Copyright (c) wxmall.janedao.cn
-# Author：hyj
-# Start  Date:  2019
+# Author：QQ173782910
+#QQ group:528289471
 ##############################################################################
+""" admin/dl/E003_dl.py"""
+
 from imp import reload
 from basic.publicw import DEBUG
 
@@ -13,8 +14,8 @@ if DEBUG == '1':
     reload(admin.dl.BASE_DL)
 from admin.dl.BASE_DL  import cBASE_DL
 
-from basic.wxbase import wx_minapp_login,WXBizDataCrypt,WxPay
-import hashlib , os , time , random
+from basic.wxbase import WxPay
+import  os
 
 class cE003_dl(cBASE_DL):
     def init_data(self):
@@ -28,23 +29,13 @@ class cE003_dl(cBASE_DL):
             ['申请退款金额', '10rem', ''],  # 5
             ['订单合订金额', '6rem', ''],  # 6
             ['状态', '10rem', ''],  # 7
-            # ['注册IP', '10rem', ''],  # 8
-            # ['最后登录时间', '10rem', ''],  # 9
-            # ['最后登录IP', '10rem', ''],  # 10
-            # ['状态', '5rem', ''],  # 11
-            # ['会员级别', '5rem', ''],  # 12
-            # ['会员开始时间', '10rem', ''],  # 13
-            # ['会员到期时间', '10rem', ''],  # 14
-            # ['会员到期时间', "u.last_ip", '', ''],  # 15
+
 
         ]
         # self.GNL=[] #列表上出现的
         self.GNL = self.parse_GNL([0,1, 2, 3, 4, 5, 6, 7])
 
-    #在子类中重新定义         
-    def myInit(self):
-        self.src = 'E003'
-        pass
+
 
     def mRight(self):
             
@@ -62,14 +53,7 @@ class cE003_dl(cBASE_DL):
         if self.pageNo == '':
             self.pageNo = '1'
         self.pageNo = int(self.pageNo)
-        # if self.qqid != '' and len(self.QNL) > 0:
-        #     sql += self.QNL + "AND LIKE '%%%s%%' " % (self.qqid)
-        # ORDER BY
-        # if self.orderby != '':
-        #     sql += ' ORDER BY %s %s' % (self.orderby, self.orderbydir)
-        # else:
 
-        # print(sql)
 
         L, iTotal_length, iTotal_Page, pageNo, select_size = self.db.select_for_grid(sql, self.pageNo)
         #L, iTotal_length, iTotal_Page, pageNo, select_size = self.list_for_grid(lT, iN, self.pageNo)
@@ -99,13 +83,7 @@ class cE003_dl(cBASE_DL):
         """
         if pk != '':
             L = self.db.fetch( sql,[pk,self.usr_id_p] )
-        # else:
-        #     timeStamp = time.time()
-        #     timeArray = time.localtime(timeStamp)
-        #     danhao = time.strftime("%Y%m%d%H%M%S", timeArray)
-        #
-        #     #L['danhao']='cgdd'+danhao
-        #     L['danhao'] = ''
+
         return L
     
     def local_add_save(self):

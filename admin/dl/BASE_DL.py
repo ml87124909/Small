@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
-
 ##############################################################################
 # Copyright (c) wxmall.janedao.cn
-# Author：hyj
-# Start  Date:  2019
+# Author：QQ173782910
+#QQ group:528289471
 ##############################################################################
 """admin/dl/BASE_DL.py"""
 
@@ -16,8 +15,8 @@ if DEBUG=='1':
     reload(admin.dl.MODEL_DL)
 from admin.dl.MODEL_DL             import cMODEL_DL
 from werkzeug import secure_filename
-from qiniu import Auth, put_stream, put_data,BucketManager
-from basic.wxbase import wx_minapp_login, WXBizDataCrypt, WxPay
+from qiniu import Auth, put_data,BucketManager
+from basic.wxbase import WxPay
 
 
 class cBASE_DL(cMODEL_DL):
@@ -37,10 +36,17 @@ class cBASE_DL(cMODEL_DL):
             filename = md5name.hexdigest() + '.' + file_ext
             file_content = file.read()
             file_size = float(len(file_content)) / 1024
-            if self.qiniu_ctype_all==0:
-                url = self.qiniu_upload_file(file_content, filename)
-            else:
-                url = self.ali_upload_file(file_content, filename)
+            if self.oss_ctype==2:#使用平台公共
+                if self.oss_ctype_all == 0:
+                    url = self.qiniu_upload_file(file_content, filename)
+                else:
+                    url = self.ali_upload_file(file_content, filename)
+            else:#使用自己的
+                if self.oss_ctype == 0:
+                    url = self.qiniu_upload_file(file_content, filename)
+                else:#1阿里
+                    url = self.ali_upload_file(file_content, filename)
+
             self.Save_pic_table(file_ext, file_size, filename, url)
 
         return url
@@ -350,12 +356,12 @@ class cBASE_DL(cMODEL_DL):
     def local_ajax_goods(self):
         kw = self.GP('keyword', '')
         sql = u"""
-                select id,name from goods_info 
+                select id,cname from goods_info 
                 where COALESCE(del_flag,0)=0 and status=0 and usr_id=%s
                     """
         L=[self.usr_id_p]
         if kw != '':
-            sql += "and name LIKE %s"
+            sql += "and cname LIKE %s"
             L.append('%%%s%%'%kw)
         sql += " ORDER BY id"
         lT, iN = self.db.select(sql,L)
@@ -365,7 +371,7 @@ class cBASE_DL(cMODEL_DL):
     def local_ajax_pt_goods(self):
         kw = self.GP('keyword', '')
         sql = u"""
-                select id,name from goods_info 
+                select id,cname from goods_info 
                 where COALESCE(del_flag,0)=0 and status=0 and usr_id=%s and COALESCE(pt_status,0)=1
                 and id not in (select goods_id from pt_conf where usr_id=%s and COALESCE(del_flag,0)=0)
                     """
@@ -383,10 +389,10 @@ class cBASE_DL(cMODEL_DL):
         L=[]
         sql = """
             select 
-                id,pid,name,level 
+                id,pid,cname,ilevel 
                 from category 
                 where usr_id=%s and  COALESCE(del_flag,0)=0 or id=1
-                order by level,paixu,id
+                order by ilevel,paixu,id
         """
         lT, iN = self.db.select(sql,self.usr_id_p)
         if iN>0:
@@ -399,13 +405,13 @@ class cBASE_DL(cMODEL_DL):
         tree_pk = self.GP('tree_pk', '')
         rL = []
         sql = """
-        select id,name,originalprice,minprice,stores,limited 
+        select id,cname,originalprice,minprice,stores,limited 
             from goods_info 
             where usr_id=%s and  COALESCE(del_flag,0)=0  and status=0
         """
         parm=[self.usr_id_p]
         if keywords!='':#name
-            sql+="and  name like %s "
+            sql+="and  cname like %s "
             parm.append('%%%s%%'%keywords)
         if tree_pk != '' and tree_pk != '1':#category_ids
             sql += "and  category_ids like %s "

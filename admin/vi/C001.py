@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 # Copyright (c) wxmall.janedao.cn
-# Author：hyj
-# Start  Date:  2019
+# Author：QQ173782910
+#QQ group:528289471
 ##############################################################################
+"""admin/vi/C001.py"""
 
 from imp import reload
 from basic.publicw import DEBUG
@@ -14,15 +15,10 @@ if DEBUG=='1':
 from admin.vi.BASE_TPL             import cBASE_TPL
 
 
-
 class cC001(cBASE_TPL):
     
     def setClassName(self):
-
         self.dl_name = 'C001_dl'
-        self.inframe = 1
-    def specialinit(self):
-        pass
 
     def goPartList(self):
         
@@ -36,9 +32,7 @@ class cC001(cBASE_TPL):
         fl = self.dl.setfllist()
         fllist = self.Html.select(fl, 'pid', self.dl.GP('pid', ''), {'class': 'form-control','onchange':"this.form.pageNo.value=1;this.form.submit();"})
         self.assign('fllist', fllist)
-
-        s = self.runApp('C001_list.html')
-        return s
+        return self.runApp('C001_list.html')
     
     def initPagiUrl(self):
         lb_code = self.REQUEST.get('lb_code','')
@@ -68,31 +62,13 @@ class cC001(cBASE_TPL):
 
         self.item = self.dl.get_local_data()
         self.assign('item', self.item)
-        self.assign('save_alert', self.dl.GP('save_alert', '0'))
-
-
         # 上级分类select
         fl=self.dl.getfllist()
         fllist=self.Html.select(fl,'pid',self.item.get('pid',''),{'class': 'form-control'})
         self.assign('fllist', fllist)
-        
-        s = self.runApp('C001_local.html')
-        return s
 
-    def goPartInsert(self):
-        dR = self.dl.local_add_save()
-        res = dR.get('code','')
-        pk = dR.get('pk', '')
-        if res==0:
-            save_alert = 1
-        else:
-            save_alert = 2
+        return self.runApp('C001_local.html')
 
-        url = "admin?viewid=%s&part=localfrm&save_alert=%s" % (self.viewid,save_alert)
-        if pk!='':
-            url = "admin?viewid=%s&part=localfrm&pk=%s&save_alert=%s" % (self.viewid, pk,save_alert)
-
-        return self.redirect(url)
     
     
         

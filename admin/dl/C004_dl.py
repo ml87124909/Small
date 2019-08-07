@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-
 ##############################################################################
 # Copyright (c) wxmall.janedao.cn
-# Author：hyj
-# Start  Date:  2019
+# Author：QQ173782910
+#QQ group:528289471
 ##############################################################################
+""" admin/dl/C004_dl.py"""
 
 from imp import reload
 from basic.publicw import DEBUG
@@ -53,7 +53,7 @@ class cC004_dl(cBASE_DL):
         """
         parm=[self.usr_id_p]
         if self.qqid != '':
-            sql += " AND D.name  LIKE %s "
+            sql += " AND D.cname  LIKE %s "
             parm.append('%%%s%%'% (self.qqid))
 
         sort_ = 'asc'
@@ -124,7 +124,7 @@ class cC004_dl(cBASE_DL):
     def local_add_save(self):
 
         # 这些是表单值
-        dR = {'R':'', 'MSG':'提交成功'}
+        dR = {'code':'0', 'MSG':'保存成功'}
 
         pk=self.pk
         cname=self.GP('cname','')#商品标题
@@ -133,7 +133,7 @@ class cC004_dl(cBASE_DL):
         status = self.GP('status', '')#上架状态
         paixu = self.GP('paixu', '')  # 排序
         category_ids=self.GP('category_ids','')#商品分类
-        category_ids_str =self.GP('category_ids_str','')#商品分类
+        #category_ids_str =self.GP('category_ids_str','')#商品分类
         video = self.GP('video', '')#视频链接
         content = self.GPRQ('text_contents','')#详情介绍
         originalprice = self.GP('originalprice', '')#商品原价
@@ -145,8 +145,8 @@ class cC004_dl(cBASE_DL):
         limited = self.GP('limited', '')  # 限购数量
         discount=self.GP('discount','')#是否单独会员折扣
         share_type=self.GP('share_type','')#分享返现方式
-        share_type_str=self.GP('share_type_str','')#分享返现方式
-        share_time_str=self.GP('share_time_str','')#分享返现时效
+        #share_type_str=self.GP('share_type_str','')#分享返现方式
+        #share_time_str=self.GP('share_time_str','')#分享返现时效
         share_time=self.GP('share_time','')#分享返现时效
         share_title=self.GP('share_title','')#分享标题
         share_imgs=self.GP('share_imgs','')#分享海报
@@ -155,7 +155,7 @@ class cC004_dl(cBASE_DL):
         return_ticket = self.GP('return_ticket', '')  # 分享返的优惠券id
         return_ticket_str= self.GP('return_ticket_str', '')  # 分享返的优惠券名称
         pt_status = self.GP('pt_status', '')  # 拼团状态
-        pt_statusstr = self.GP('pt_statusstr', '')  # 拼团状态
+        #pt_statusstr = self.GP('pt_statusstr', '')  # 拼团状态
         pt_price = self.GP('pt_price', '')  # 拼团价
         orders = self.GP('orders', '')  # 销量
         hy_price = self.GP('hy_price', '')  # 会员价
@@ -172,7 +172,7 @@ class cC004_dl(cBASE_DL):
             'recomm': recomm or None,
             'status': status or None,
             'category_ids': category_ids,
-            'category_ids_str':category_ids_str,
+            #'category_ids_str':category_ids_str,
             'video': video,
             'contents': content,
             'originalprice': originalprice or None,
@@ -182,7 +182,7 @@ class cC004_dl(cBASE_DL):
             'limited': limited or None,
             'discount': discount or None,
             'share_type': share_type or None,
-            'share_type_str': share_type_str,
+            #'share_type_str': share_type_str,
             'share_title': share_title,
             'share_imgs': share_imgs,
             'random_no':cur_random_no,
@@ -190,7 +190,7 @@ class cC004_dl(cBASE_DL):
             'weight':weight or None,
             'barcodes': barcodes,
             'pt_status': pt_status or None,
-            'pt_statusstr': pt_statusstr,
+            #'pt_statusstr': pt_statusstr,
             'pt_price': pt_price or None,
             'orders':orders or None,
             'hy_price':hy_price or None,
@@ -201,7 +201,7 @@ class cC004_dl(cBASE_DL):
         }
 
         if str(share_type)!='0':
-            data['share_time_str']=share_time_str
+            #data['share_time_str']=share_time_str
             data['share_time']=share_time
             if str(share_type)=='3':
                 data['share_return'] = None
@@ -212,38 +212,40 @@ class cC004_dl(cBASE_DL):
                 data['return_ticket'] = None
                 data['return_ticket_str'] = return_ticket_str
         else:
-            data['share_time_str'] = ''
+            #data['share_time_str'] = ''
             data['share_time'] = None
             data['share_return'] = None
             data['return_ticket'] = None
+        try:
+            if pk != '':#update
+                data['uid']=self.usr_id
+                data['utime'] = self.getToday(9)
+                self.db.update('goods_info' , data , " id = %s " %pk)
+                self.use_log('修改商品档案%s' % pk)
+            else:#insert
+                data['usr_id']= self.usr_id_p
+                data['cid'] = self.usr_id
+                data['ctime'] = self.getToday(9)
+                self.db.insert('goods_info' , data)
+                pk = self.db.fetchcolumn('select id from goods_info where random_no=%s' ,cur_random_no)  # 这个的格式是表名_自增字段
+                self.oGOODS_G.update(self.usr_id_p)
+                self.use_log('增加商品档案%s' % pk)
+            dR['pk'] = pk
+            self.save_pics(pk)
+            self.save_Spec(pk)
 
-        if pk != '':#update
-            data['uid']=self.usr_id
-            data['utime'] = self.getToday(9)
-            self.db.update('goods_info' , data , " id = %s " %pk)
-            self.use_log('修改商品档案%s' % pk)
-        else:#insert
-            data['usr_id']= self.usr_id_p
-            data['cid'] = self.usr_id
-            data['ctime'] = self.getToday(9)
-            self.db.insert('goods_info' , data)
-            pk = self.db.fetchcolumn('select id from goods_info where random_no=%s' ,cur_random_no)  # 这个的格式是表名_自增字段
-            self.oGOODS_G.update(self.usr_id_p)
-            self.use_log('增加商品档案%s' % pk)
-        dR['pk'] = pk
-        self.save_pics(pk)
-        self.save_Spec(pk)
-        #self.save_Discount(pk)
-        self.oGOODS_D.update(self.usr_id_p,pk)
-        self.oGOODS.update(self.usr_id_p,pk)
-        self.oGOODS_N.update(self.usr_id_p,pk)
-        self.oGOODS_SELL.update(self.usr_id_p)
-        self.oGOODS_PT.update(self.usr_id_p,pk)
-        sqlp = "select id from pt_conf where usr_id=%s and goods_id=%s"
-        lT, iN = self.db.select(sqlp, [self.usr_id_p, pk])
-        if iN > 0:
-            ptid = lT[0][0]
-            self.oPT_GOODS.update(self.usr_id_p, ptid)
+            self.oGOODS_D.update(self.usr_id_p,pk)
+            self.oGOODS.update(self.usr_id_p,pk)
+            self.oGOODS_N.update(self.usr_id_p,pk)
+            self.oGOODS_SELL.update(self.usr_id_p)
+            self.oGOODS_PT.update(self.usr_id_p,pk)
+            sqlp = "select id from pt_conf where usr_id=%s and goods_id=%s"
+            lT, iN = self.db.select(sqlp, [self.usr_id_p, pk])
+            if iN > 0:
+                ptid = lT[0][0]
+                self.oPT_GOODS.update(self.usr_id_p, ptid)
+        except Exception as e:
+            dR = {'code':'1', 'MSG':'保存失败%s'%e}
         return dR
 
     def category_list(self):
@@ -385,7 +387,8 @@ class cC004_dl(cBASE_DL):
             M=[]
             List=L[0]
             id=','.join(List)
-            sql = "select id,cname_c,spec_id,cicon_c from spec_child where usr_id =%s and COALESCE(del_flag,0)=0 and id in (%s)" %(self.usr_id_p,id)
+            sql = """select id,cname_c,spec_id,cicon_c from spec_child 
+                    where usr_id =%s and COALESCE(del_flag,0)=0 and id in (%s)""" %(self.usr_id_p,id)
             l, t = self.db.select(sql)
             if t>0:
                 for i in l:
@@ -398,7 +401,8 @@ class cC004_dl(cBASE_DL):
                     h=i[3]
                     k=''
                     if pid!='':
-                        sql = """select id,old_price,new_price,ptprice,store_c,barcode
+                        sql = """select id,oldprice,newprice,pfprice,hyprice,bigprice,
+                        pfprice,lsprice,dlprice,store_c,barcode 
                         from spec_child_price where goods_id=%s AND sc_id=%s and usr_id=%s"""
                         l,t=self.db.select(sql,[pid,a,self.usr_id_p])
                         if t>0:
@@ -442,8 +446,9 @@ class cC004_dl(cBASE_DL):
                     else:
                         h = l[1][3]
                     if pid != '':
-                        sql = """select id,old_price,new_price,ptprice,store_c,barcode
-                                from spec_child_price where goods_id=%s AND sc_id=%s and usr_id=%s
+                        sql = """ select id,oldprice,newprice,pfprice,hyprice,bigprice,
+                                    pfprice,lsprice,dlprice,store_c,barcode 
+                                    from spec_child_price where goods_id=%s AND sc_id=%s and usr_id=%s
                                 """
                         l, t = self.db.select(sql, [pid, a, self.usr_id_p])
                         if t > 0:
@@ -496,7 +501,8 @@ class cC004_dl(cBASE_DL):
                         h = l[2][3]
 
                     if pid != '':
-                        sql = """select id,old_price,new_price,ptprice,store_c,barcode
+                        sql = """ select id,oldprice,newprice,pfprice,hyprice,bigprice,
+                                pfprice,lsprice,dlprice,store_c,barcode 
                                 from spec_child_price where goods_id=%s AND sc_id=%s and usr_id=%s"""
                         l, t = self.db.select(sql, [pid, a, self.usr_id_p])
                         if t > 0:
@@ -552,7 +558,8 @@ class cC004_dl(cBASE_DL):
                         h = l[3][3]
 
                     if pid != '':
-                        sql = """select id,old_price,new_price,ptprice,store_c,barcode
+                        sql = """select id,oldprice,newprice,pfprice,hyprice,bigprice,
+                                pfprice,lsprice,dlprice,store_c,barcode 
                                 from spec_child_price where goods_id=%s AND sc_id=%s and usr_id=%s"""
                         l, t = self.db.select(sql, [pid, a, self.usr_id_p])
                         if t > 0:
@@ -612,7 +619,8 @@ class cC004_dl(cBASE_DL):
                         h = l[4][3]
 
                     if pid != '':
-                        sql = """select id,old_price,new_price,ptprice,store_c,barcode
+                        sql = """ select id,oldprice,newprice,pfprice,hyprice,bigprice,
+                                pfprice,lsprice,dlprice,store_c,barcode 
                                 from spec_child_price where goods_id=%s AND sc_id=%s and usr_id=%s
                                 """
                         l, t = self.db.select(sql, [pid, a, self.usr_id_p])
@@ -622,394 +630,7 @@ class cC004_dl(cBASE_DL):
             dR['code'] = '0'
             dR['data'] = M
             return dR
-        elif l_t==6:
-            M=[]
-            for x in itertools.product(L[0], L[1],L[2],L[3],L[4],L[5]):
-                List.append(x)
-            for i in List:
-                sql = """select sc.id,sc.cname_c,sc.spec_id,sc.cicon_c 
-                            from spec_child sc
-                            left join spec s on s.id=sc.spec_id
-                            where sc.usr_id =%s and COALESCE(sc.del_flag,0)=0 and sc.id in %s
-                            order by s.sort
 
-                    """ % (self.usr_id_p, i)
-                l, t = self.db.select(sql)
-                if t==6:
-                    a = str(l[0][2]) + ':' + str(l[0][0]) + ',' + str(l[1][2]) + ':' + str(l[1][0]) + ',' + str(
-                        l[2][2]) + ':' + str(l[2][0]) + ',' + str(
-                        l[3][2]) + ':' + str(l[3][0]) + ',' + str(
-                        l[4][2]) + ':' + str(l[4][0])+ ',' + str(
-                        l[5][2]) + ':' + str(l[5][0])
-                    b=l[0][1]+'--'+l[1][1]+'--'+l[2][1]+'--'+l[3][1]+'--'+l[4][1]+'--'+l[5][1]
-                    c = ''
-                    d = 0
-                    e = 0
-                    f = ''
-                    g = ''
-                    h = ''
-                    k=''
-                    if l[0][3] != '':
-                        h = l[0][3]
-
-                    if h != '':
-                        if l[1][3] != '':
-                            h += ',' + l[1][3]
-                    else:
-                        h = l[1][3]
-                    if h != '':
-                        if l[2][3] != '':
-                            h += ',' + l[2][3]
-                    else:
-                        h = l[2][3]
-                    if h != '':
-                        if l[3][3] != '':
-                            h += ',' + l[3][3]
-                    else:
-                        h = l[3][3]
-                    if h != '':
-                        if l[4][3] != '':
-                            h += ',' + l[4][3]
-                    else:
-                        h = l[4][3]
-                    if h != '':
-                        if l[5][3] != '':
-                            h += ',' + l[5][3]
-                    else:
-                        h = l[5][3]
-
-                    if pid != '':
-                        sql = """select id,old_price,new_price,ptprice,store_c,barcode
-                            from spec_child_price where goods_id=%s AND sc_id=%s and usr_id=%s
-                            """
-                        l, t = self.db.select(sql, [pid, a, self.usr_id_p])
-                        if t > 0:
-                            c, d, e,k, f, g = l[0]
-                    M.append([c, a, b, d, e,k, f, g,h])
-            dR['code'] = '0'
-            dR['data'] = M
-            return dR
-        elif l_t==7:
-            M=[]
-            for x in itertools.product(L[0], L[1],L[2],L[3],L[4],L[5],L[6]):
-                List.append(x)
-            for i in List:
-                sql = """select sc.id,sc.cname_c,sc.spec_id,sc.cicon_c 
-                            from spec_child sc
-                            left join spec s on s.id=sc.spec_id
-                            where sc.usr_id =%s and COALESCE(sc.del_flag,0)=0 and sc.id in %s
-                            order by s.sort
-
-                    """ % (self.usr_id_p, i)
-                l, t = self.db.select(sql)
-                if t==7:
-                    a = str(l[0][2]) + ':' + str(l[0][0]) + ',' + str(l[1][2]) + ':' + str(l[1][0]) + ',' + str(
-                        l[2][2]) + ':' + str(l[2][0]) + ',' + str(
-                        l[3][2]) + ':' + str(l[3][0]) + ',' + str(
-                        l[4][2]) + ':' + str(l[4][0]) + ',' + str(
-                        l[5][2]) + ':' + str(l[5][0])+ ',' + str(
-                        l[6][2]) + ':' + str(l[6][0])
-                    b=l[0][1]+'--'+l[1][1]+'--'+l[2][1]+'--'+l[3][1]+'--'+l[4][1]+'--'+l[5][1]+'--'+l[6][1]
-                    c = ''
-                    d = 0
-                    e = 0
-                    f = ''
-                    g = ''
-                    h = ''
-                    k=''
-                    if l[0][3] != '':
-                        h = l[0][3]
-
-                    if h != '':
-                        if l[1][3] != '':
-                            h += ',' + l[1][3]
-                    else:
-                        h = l[1][3]
-                    if h != '':
-                        if l[2][3] != '':
-                            h += ',' + l[2][3]
-                    else:
-                        h = l[2][3]
-                    if h != '':
-                        if l[3][3] != '':
-                            h += ',' + l[3][3]
-                    else:
-                        h = l[3][3]
-                    if h != '':
-                        if l[4][3] != '':
-                            h += ',' + l[4][3]
-                    else:
-                        h = l[4][3]
-                    if h != '':
-                        if l[5][3] != '':
-                            h += ',' + l[5][3]
-                    else:
-                        h = l[5][3]
-                    if h != '':
-                        if l[6][3] != '':
-                            h += ',' + l[6][3]
-                    else:
-                        h = l[6][3]
-
-                    if pid != '':
-                        sql = """select id,old_price,new_price,ptprice,store_c,barcode
-                            from spec_child_price where goods_id=%s AND sc_id=%s and usr_id=%s"""
-                        l, t = self.db.select(sql, [pid, a, self.usr_id_p])
-                        if t > 0:
-                            c, d, e,k, f, g = l[0]
-                    M.append([c, a, b, d, e,k, f, g,h])
-            dR['code'] = '0'
-            dR['data'] = M
-            return dR
-        elif l_t==8:
-            M=[]
-            for x in itertools.product(L[0], L[1],L[2],L[3],L[4],L[5],L[6],L[7]):
-                List.append(x)
-            for i in List:
-                sql = """select sc.id,sc.cname_c,sc.spec_id,sc.cicon_c 
-                            from spec_child sc
-                            left join spec s on s.id=sc.spec_id
-                            where sc.usr_id =%s and COALESCE(sc.del_flag,0)=0 and sc.id in %s
-                            order by s.sort
-
-                    """ % (self.usr_id_p, i)
-                l, t = self.db.select(sql)
-                if t==8:
-                    a = str(l[0][2]) + ':' + str(l[0][0]) + ',' + str(l[1][2]) + ':' + str(l[1][0]) + ',' + str(
-                        l[2][2]) + ':' + str(l[2][0]) + ',' + str(
-                        l[3][2]) + ':' + str(l[3][0]) + ',' + str(
-                        l[4][2]) + ':' + str(l[4][0]) + ',' + str(
-                        l[5][2]) + ':' + str(l[5][0]) + ',' + str(
-                        l[6][2]) + ':' + str(l[6][0])+ ',' + str(
-                        l[7][2]) + ':' + str(l[7][0])
-                    b=l[0][1]+'--'+l[1][1]+'--'+l[2][1]+'--'+l[3][1]+'--'+l[4][1]+'--'+l[5][1]+'--'+l[6][1]+'--'+l[7][1]
-                    c = ''
-                    d = 0
-                    e = 0
-                    f = ''
-                    g = ''
-                    h = ''
-                    k=''
-                    if l[0][3] != '':
-                        h = l[0][3]
-
-                    if h != '':
-                        if l[1][3] != '':
-                            h += ',' + l[1][3]
-                    else:
-                        h = l[1][3]
-                    if h != '':
-                        if l[2][3] != '':
-                            h += ',' + l[2][3]
-                    else:
-                        h = l[2][3]
-                    if h != '':
-                        if l[3][3] != '':
-                            h += ',' + l[3][3]
-                    else:
-                        h = l[3][3]
-                    if h != '':
-                        if l[4][3] != '':
-                            h += ',' + l[4][3]
-                    else:
-                        h = l[4][3]
-                    if h != '':
-                        if l[5][3] != '':
-                            h += ',' + l[5][3]
-                    else:
-                        h = l[5][3]
-                    if h != '':
-                        if l[6][3] != '':
-                            h += ',' + l[6][3]
-                    else:
-                        h = l[6][3]
-                    if h != '':
-                        if l[7][3] != '':
-                            h += ',' + l[7][3]
-                    else:
-                        h = l[7][3]
-                    if pid != '':
-                        sql = """select id,old_price,new_price,ptprice,store_c,barcode
-                                from spec_child_price where goods_id=%s AND sc_id=%s and usr_id=%s"""
-                        l, t = self.db.select(sql, [pid, a, self.usr_id_p])
-                        if t > 0:
-                            c, d, e,k, f, g = l[0]
-                    M.append([c, a, b, d, e,k, f, g,h])
-            dR['code'] = '0'
-            dR['data'] = M
-            return dR
-        elif l_t==9:
-            M=[]
-            for x in itertools.product(L[0], L[1],L[2],L[3],L[4],L[5],L[6],L[7],L[8]):
-                List.append(x)
-            for i in List:
-                sql = """select sc.id,sc.cname_c,sc.spec_id,sc.cicon_c 
-                        from spec_child sc
-                        left join spec s on s.id=sc.spec_id
-                        where sc.usr_id =%s and COALESCE(sc.del_flag,0)=0 and sc.id in %s
-                        order by s.sort
-
-                """ % (self.usr_id_p, i)
-                l, t = self.db.select(sql)
-                if t==9:
-                    a = str(l[0][2]) + ':' + str(l[0][0]) + ',' + str(l[1][2]) + ':' + str(l[1][0]) + ',' + str(
-                        l[2][2]) + ':' + str(l[2][0]) + ',' + str(
-                        l[3][2]) + ':' + str(l[3][0]) + ',' + str(
-                        l[4][2]) + ':' + str(l[4][0]) + ',' + str(
-                        l[5][2]) + ':' + str(l[5][0]) + ',' + str(
-                        l[6][2]) + ':' + str(l[6][0]) + ',' + str(
-                        l[7][2]) + ':' + str(l[7][0])+ ',' + str(
-                        l[8][2]) + ':' + str(l[8][0])
-                    b=l[0][1]+'--'+l[1][1]+'--'+l[2][1]+'--'+l[3][1]+'--'+l[4][1]+'--'+l[5][1]+'--'+l[6][1]+'--'+l[7][1]+'--'+l[8][1]
-                    c = ''
-                    d = 0
-                    e = 0
-                    f = ''
-                    g = ''
-                    h = ''
-                    k=''
-                    if l[0][3] != '':
-                        h = l[0][3]
-
-                    if h != '':
-                        if l[1][3] != '':
-                            h += ',' + l[1][3]
-                    else:
-                        h = l[1][3]
-                    if h != '':
-                        if l[2][3] != '':
-                            h += ',' + l[2][3]
-                    else:
-                        h = l[2][3]
-                    if h != '':
-                        if l[3][3] != '':
-                            h += ',' + l[3][3]
-                    else:
-                        h = l[3][3]
-                    if h != '':
-                        if l[4][3] != '':
-                            h += ',' + l[4][3]
-                    else:
-                        h = l[4][3]
-                    if h != '':
-                        if l[5][3] != '':
-                            h += ',' + l[5][3]
-                    else:
-                        h = l[5][3]
-                    if h != '':
-                        if l[6][3] != '':
-                            h += ',' + l[6][3]
-                    else:
-                        h = l[6][3]
-                    if h != '':
-                        if l[7][3] != '':
-                            h += ',' + l[7][3]
-                    else:
-                        h = l[7][3]
-                    if h != '':
-                        if l[8][3] != '':
-                            h += ',' + l[8][3]
-                    else:
-                        h = l[8][3]
-                    if pid != '':
-                        sql = """select id,old_price,new_price,ptprice,store_c,barcode
-                                from spec_child_price where goods_id=%s AND sc_id=%s and usr_id=%s"""
-                        l, t = self.db.select(sql, [pid, a, self.usr_id_p])
-                        if t > 0:
-                            c, d, e, k,f, g = l[0]
-                    M.append([c, a, b, d, e,k, f, g,h])
-            dR['code'] = '0'
-            dR['data'] = M
-            return dR
-        elif l_t==10:
-            M=[]
-            for x in itertools.product(L[0], L[1],L[2],L[3],L[4],L[5],L[6],L[7],L[8],L[9]):
-                List.append(x)
-            for i in List:
-                sql = """select sc.id,sc.cname_c,sc.spec_id,sc.cicon_c 
-                        from spec_child sc
-                        left join spec s on s.id=sc.spec_id
-                        where sc.usr_id =%s and COALESCE(sc.del_flag,0)=0 and sc.id in %s
-                        order by s.sort
-
-                """ % (self.usr_id_p, i)
-                l, t = self.db.select(sql)
-                if t==10:
-                    a = str(l[0][2]) + ':' + str(l[0][0]) + ',' + str(l[1][2]) + ':' + str(l[1][0]) + ',' + str(
-                        l[2][2]) + ':' + str(l[2][0]) + ',' + str(
-                        l[3][2]) + ':' + str(l[3][0]) + ',' + str(
-                        l[4][2]) + ':' + str(l[4][0]) + ',' + str(
-                        l[5][2]) + ':' + str(l[5][0]) + ',' + str(
-                        l[6][2]) + ':' + str(l[6][0]) + ',' + str(
-                        l[7][2]) + ':' + str(l[7][0]) + ',' + str(
-                        l[8][2]) + ':' + str(l[8][0])+ ',' + str(
-                        l[9][2]) + ':' + str(l[9][0])
-                    b=l[0][1]+'--'+l[1][1]+'--'+l[2][1]+'--'+l[3][1]+'--'+l[4][1]+'--'+l[5][1]+'--'+l[6][1]+'--'+l[7][1]+'--'+l[8][1]+'--'+l[9][1]
-                    c = ''
-                    d = 0
-                    e = 0
-                    f = ''
-                    g = ''
-                    h = ''
-                    k=''
-                    if l[0][3] != '':
-                        h = l[0][3]
-
-                    if h != '':
-                        if l[1][3] != '':
-                            h += ',' + l[1][3]
-                    else:
-                        h = l[1][3]
-                    if h != '':
-                        if l[2][3] != '':
-                            h += ',' + l[2][3]
-                    else:
-                        h = l[2][3]
-                    if h != '':
-                        if l[3][3] != '':
-                            h += ',' + l[3][3]
-                    else:
-                        h = l[3][3]
-                    if h != '':
-                        if l[4][3] != '':
-                            h += ',' + l[4][3]
-                    else:
-                        h = l[4][3]
-                    if h != '':
-                        if l[5][3] != '':
-                            h += ',' + l[5][3]
-                    else:
-                        h = l[5][3]
-                    if h != '':
-                        if l[6][3] != '':
-                            h += ',' + l[6][3]
-                    else:
-                        h = l[6][3]
-                    if h != '':
-                        if l[7][3] != '':
-                            h += ',' + l[7][3]
-                    else:
-                        h = l[7][3]
-                    if h != '':
-                        if l[8][3] != '':
-                            h += ',' + l[8][3]
-                    else:
-                        h = l[8][3]
-                    if h != '':
-                        if l[9][3] != '':
-                            h += ',' + l[9][3]
-                    else:
-                        h = l[9][3]
-                    if pid != '':
-                        sql = """select id,old_price,new_price,ptprice,store_c,barcode
-                            from spec_child_price where goods_id=%s AND sc_id=%s and usr_id=%s"""
-                        l, t = self.db.select(sql, [pid, a, self.usr_id_p])
-                        if t > 0:
-                            c, d, e,k, f, g = l[0]
-                    M.append([c, a, b, d, e,k, f, g,h])
-            dR['code'] = '0'
-            dR['data'] = M
-            return dR
 
         return dR
 
@@ -1092,25 +713,7 @@ class cC004_dl(cBASE_DL):
             self.db.query("delete from  spec_child_price where usr_id=%s and goods_id=%s;", [self.usr_id_p,pk])
 
 
-    def save_Discount(self,pk):
-        dis_id = self.REQUEST.getlist('dis_id')  # id
-        dis_name = self.REQUEST.getlist('dis_name')  # 名称
-        dis_level_discount = self.REQUEST.getlist('dis_level_discount')  # 折扣
 
-        sqldel = "delete from alone_discount where goods_id=%s and usr_id=%s"
-        self.db.query(sqldel,[pk,self.usr_id_p])
-        sql = ''
-        for i in range(len(dis_name)):
-            if dis_name[i] != '':
-                if sql == '':
-                    sql = """ insert into alone_discount(usr_id,goods_id,dis_id,dis_name,dis_level_discount,cid,ctime)
-                                                       values (%s,%s,%s,'%s',%s,%s,now())
-                     """ % (self.usr_id_p, pk, dis_id[i], dis_name[i], dis_level_discount[i],self.usr_id)
-                else:
-                    sql += ",(%s,%s,%s,'%s',%s,%s,now())" % (
-                    self.usr_id_p, pk, dis_id[i], dis_name[i], dis_level_discount[i],self.usr_id)
-        if sql != '':
-            self.db.query(sql)
 
     def delete_data(self):
         pk = self.pk

@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-
 ##############################################################################
 # Copyright (c) wxmall.janedao.cn
-# Author：hyj
-# Start  Date:  2019
+# Author：QQ173782910
+#QQ group:528289471
 ##############################################################################
+""" admin/dl/E001_dl.py"""
 
 from imp import reload
 from basic.publicw import DEBUG
@@ -36,11 +36,7 @@ class cE001_dl(cBASE_DL):
             ['单价(元)/数量', '2', ''],  # 10
             ['退款状态', '1', ''],  # 11
             ['优惠(元)', '1', ''],  # 12
-            # ['状态', '5rem', ''],  # 11
-            # ['会员级别', '5rem', ''],  # 12
-            # ['会员开始时间', '10rem', ''],  # 13
-            # ['会员到期时间', '10rem', ''],  # 14
-            # ['会员到期时间', "u.last_ip", '', ''],  # 15
+
 
         ]
         # self.GNL=[] #列表上出现的
@@ -49,7 +45,7 @@ class cE001_dl(cBASE_DL):
 
 
         
-        self.src = 'E001'
+
         self.multab = self.GP("multab", "1")
         self.tab = self.GP("tab", self.multab)
 

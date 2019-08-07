@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-
 ##############################################################################
 # Copyright (c) wxmall.janedao.cn
-# Author：hyj
-# Start  Date:  2019
+# Author：QQ173782910
+#QQ group:528289471
 ##############################################################################
 """admin/vi/VIEWS.py"""
+
 from flask import redirect, jsonify
 from jinja2 import Environment, PackageLoader
 import requests
@@ -37,7 +37,6 @@ class cVIEWS(cVIEWS_ad):
         self.viewid = self.dl.viewid
         self.name = self.dl.part
         self.part = self.name
-        self.mode = self.dl.mode
         self.backUrl = self.dl.backUrl  # 登陆后跳转
         self.mnuid = self.dl.mnuid
         self.sub1id = self.dl.sub1id
@@ -57,18 +56,6 @@ class cVIEWS(cVIEWS_ad):
         self.total_pages = 0
         self.cur_page = 1
         self.qqid = self.dl.qqid
-        self.account = self.dl.account
-
-        self.uid = self.dl.uid
-        self.weid = self.dl.weid
-        self.access_token_d = self.dl.access_token_d
-        self.access_token = ''
-        self.wx_appKey = self.dl.wx_appKey  # self.account.get('key', '')
-        self.wx_secret = self.dl.wx_secret  # self.account.get('secret', '')
-        self.domain = self.dl.domain  # self.account.get('domain', '')#'http://huangjn.com/hjnwx/menu'
-
-        # self.orderby = self.dl.orderby
-        # self.orderbydir = self.dl.orderbydir
 
         self.backurl = '%s?viewid=%s&pageNo=%s' % (self.classpath, self.viewid, self.pageNo)
         self.lR = ['', '', '', '']  # 增，改，删，查
@@ -85,7 +72,6 @@ class cVIEWS(cVIEWS_ad):
             'mnuid': self.mnuid,
             'sub1id': self.sub1id,
             'sub2id': self.sub2id,
-            'mode': self.mode,
             'pageNo': self.pageNo,
 
         }  # 用来存储公共参数以外的个性参数，比如合同管理功能的合同类型gw_type及财务登记模块的付款、取款状态等
@@ -109,14 +95,14 @@ class cVIEWS(cVIEWS_ad):
             'sTitle': self.sTitle, 'site_name': self.site_name, 'navTitle': self.navTitle
             , 'localurl': self.dl.localurl, 'session_user': user, 'backUrl': self.backUrl
             , 'cookieprefix': self.dl.cookie.keyname, 'sUrl': self.sUrl, 'pageNo': self.pageNo
-            , 'hidden': self.hidden, 'qqid': self.qqid,  # 'orderby': self.orderby, 'orderbydir': self.orderbydir,
+            , 'hidden': self.hidden, 'qqid': self.qqid,
             'lR': self.lR, 'viewid': self.viewid
             , 'need_editor': self.need_editor
             , 'html_hidden': html_hidden
             , 'system_menu': self.system_menu
             , 'requiredIcon': self.requiredIcon
             , 'routepath': self.classpath, 'usr_id': self.dl.usr_id
-            , 'pic_list': self.dl.pic_list(), 'pic_dict': self.dl.pic_dict(), 'toll_config': self.dl.toll_config()
+            , 'pic_list': self.dl.pic_list(), 'pic_dict': self.dl.pic_dict()
 
         }
 

@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-
 ##############################################################################
 # Copyright (c) wxmall.janedao.cn
-# Author：hyj
-# Start  Date:  2019
+# Author：QQ173782910
+#QQ group:528289471
 ##############################################################################
+""" admin/dl/C007_dl.py"""
 
 from imp import reload
 from basic.publicw import DEBUG
@@ -15,17 +15,13 @@ if DEBUG == '1':
 from admin.dl.BASE_DL  import cBASE_DL
 
 
-import hashlib , os , time , random
+import time , random
 
 class cC007_dl(cBASE_DL):
     def init_data(self):
 
         self.GNL = ['','用户名称','手机号码','商品名称','关键字/条码','反馈内容','反馈时间']
 
-    #在子类中重新定义         
-    def myInit(self):
-        self.src = 'C007'
-        pass
 
     def mRight(self):
             
@@ -34,18 +30,7 @@ class cC007_dl(cBASE_DL):
             from goods_feedback 
             where coalesce(del_flag,0)=0
         """
-        # self.qqid = self.GP('qqid','')
-        # self.orderby = self.GP('orderby','')
-        # self.orderbydir = self.GP('orderbydir','')
-        # self.pageNo=self.GP('pageNo','')
-        # if self.pageNo=='':self.pageNo='1'
-        # self.pageNo=int(self.pageNo)
-        # if self.qqid!='' and len(self.QNL) > 0:
-        #     sql+= self.QNL + " LIKE '%%%s%%' "%(self.qqid)
-        # #ORDER BY
-        # if self.orderby!='':
-        #     sql+=' ORDER BY %s %s' % (self.orderby,self.orderbydir)
-        # else:
+
         sql+=" ORDER BY id DESC"
         
         L,iTotal_length,iTotal_Page,pageNo,select_size=self.db.select_for_grid(sql,self.pageNo)

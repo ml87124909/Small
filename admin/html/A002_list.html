@@ -1,13 +1,8 @@
 {% extends "list.html" %}
 
-
-
 {% block topSearch %}
 <button class="btn btn-info btn-sm" type="button" onclick="layer_add()"><i class="fa fa-plus"></i> 增加类型</button>
-
-
 {% endblock %}
-
 
 {% block mGrid %}
 <link href="static/web-uploader/css/uploader-image.css" rel="stylesheet" type="text/css" />
@@ -298,7 +293,7 @@ var Uploader = Q.Uploader,
     formatSize = Q.formatSize,
     boxView = document.getElementById("nox");
     var uploader = new Uploader({
-    url: '/admin?viewid=C001&part=QiniuUpload',
+    url: '/upload?viewid={{viewid}}&part=Img',
     target:document.getElementById("upload-s"),
     view: boxView,//如果去掉这个，会导致压缩效果不好
     //将auto配置为false以手动上传

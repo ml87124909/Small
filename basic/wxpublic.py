@@ -1,9 +1,15 @@
 # -*- coding: utf-8 -*-
+##############################################################################
+# Copyright (c) wxmall.janedao.cn
+# Author：QQ173782910
+#QQ group:528289471
+##############################################################################
+"""wxpay/WxPay.py"""
 from jinja2 import Environment, PackageLoader
 from flask import request
 from .base import set_cookie
 from .publicw import CLIENT_NAME
-#import source.func_cookie as cookie
+
 
 
 
@@ -59,10 +65,8 @@ class wxpublic():
         if len(self.pf) > 0:
             temp = ''
             for p in self.pf:
-                if type(p) == unicode:
-                    temp += p
-                else:
-                    temp += unicode(p)
+                temp += p
+
             html = temp + html
         return  html
 
@@ -70,10 +74,8 @@ class wxpublic():
         if len(self.pf) > 0:
             temp = ''
             for p in self.pf:
-                if type(p) == unicode:
-                    temp += p
-                else:
-                    temp += unicode(p)
+                temp += p
+
             html = temp + html
         return  html
 

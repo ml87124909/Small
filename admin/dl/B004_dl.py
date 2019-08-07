@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-
 ##############################################################################
 # Copyright (c) wxmall.janedao.cn
-# Author：hyj
-# Start  Date:  2019
+# Author：QQ173782910
+#QQ group:528289471
 ##############################################################################
+""" admin/dl/B004_dl.py"""
 
 from imp import reload
 from basic.publicw import DEBUG
@@ -14,19 +14,11 @@ if DEBUG == '1':
     reload(admin.dl.BASE_DL)
 from admin.dl.BASE_DL  import cBASE_DL
 
-
-import hashlib , os , time , random
-
 class cB004_dl(cBASE_DL):
     def init_data(self):
         self.GNL = ['','编号','昵称','是否默认','地址详情',
                     '联系人姓名','手机号码','添加时间','更新时间']
 
-
-    #在子类中重新定义         
-    def myInit(self):
-        self.src = 'B004'
-        pass
 
     def mRight(self):
             

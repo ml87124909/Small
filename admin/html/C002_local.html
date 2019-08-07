@@ -253,7 +253,7 @@
     formatSize = Q.formatSize,
     boxView = document.getElementById("nox");
     var uploader = new Uploader({
-    url: '/admin?viewid=C002&part=QiniuUpload',
+    url: '/upload?viewid={{viewid}}&part=Img',
     target:document.getElementById("upload-s"),
     view: boxView,//如果去掉这个，会导致压缩效果不好
     //将auto配置为false以手动上传

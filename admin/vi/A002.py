@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 # Copyright (c) wxmall.janedao.cn
-# Author：hyj
-# Start  Date:  2019
+# Author：QQ173782910
+#QQ group:528289471
 ##############################################################################
+"""admin/vi/A002.py"""
+
 from imp import reload
 from basic.publicw import DEBUG
 

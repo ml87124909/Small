@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-
 ##############################################################################
 # Copyright (c) wxmall.janedao.cn
-# Author：hyj
-# Start  Date:  2019
+# Author：QQ173782910
+#QQ group:528289471
 ##############################################################################
+""" admin/dl/B003_dl.py"""
 
 from imp import reload
 from basic.publicw import DEBUG
@@ -14,18 +14,11 @@ if DEBUG == '1':
     reload(admin.dl.BASE_DL)
 from admin.dl.BASE_DL  import cBASE_DL
 
-
-import hashlib , os , time , random
-
 class cB003_dl(cBASE_DL):
     def init_data(self):
 
         self.GNL = ['','模板名称','模板ID','最近推送人']
 
-
-    #在子类中重新定义         
-    def myInit(self):
-        self.src = 'B003'
 
     def mRight(self):
         wxa=self.get_wecthpy()
@@ -84,8 +77,7 @@ class cB003_dl(cBASE_DL):
 
         #dR={'R':'','MSG':'','isadd':''}
         dR={'R':'','MSG':''}
-        save_flag = self.REQUEST.get("save_flag").strip()
-        save_flag2 = self.cookie.getcookie("__flag")
+
         
         
         #获取表单参数
@@ -157,8 +149,5 @@ class cB003_dl(cBASE_DL):
                 return dR
             wxa.del_template(self.pk)
             dR['MSG'] = '删除成功！'
-            #print(A)
-
-        #self.db.query("update templates set del_flag=1 where id= %s" % pk)
 
         return dR

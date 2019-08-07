@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
-
 ##############################################################################
 # Copyright (c) wxmall.janedao.cn
-# Author：hyj
-# Start  Date:  2019
+# Author：QQ173782910
+#QQ group:528289471
 ##############################################################################
-"""BASE_TPL Module"""
+"""admin/vi/BASE_TPL.py"""
 
 from imp import reload
 from basic.publicw import DEBUG
@@ -154,7 +153,7 @@ class cBASE_TPL(cVI_BASE):
         dnl = [0, 1, 2, 3, 4, 5, 6, 15, 14, 13]
         TmSelect = mselect_forMList_spec('spec_mul', viewid=self.viewid, nl=nL, wh=[900, 400], title='选择规格型号', dnl=dnl,
                                          canjp='')
-        TmSelect.sUrl = 'admin?viewid=D003&part=ajax&action=getSpecChild'
+        TmSelect.sUrl = 'admin?viewid=C004&part=ajax&action=getSpecChild'
         TmSelect.confirmjs = '''
         if(sData != ''){
             
@@ -162,7 +161,7 @@ class cBASE_TPL(cVI_BASE):
             spec_child_vs=$('input[name="spec_child'+spec_types+'"]').val()
             //$('input[name="spec_child'+spec_type+'"]').val(sData);
             $.ajax({
-                url:"admin?viewid=D003&part=set_spec_child&sid="+spec_types+"&spec_cids="+sData,
+                url:"admin?viewid=C004&part=set_spec_child&sid="+spec_types+"&spec_cids="+sData,
                 type:"post",
                 async:false,
                 success:function(data){

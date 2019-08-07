@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-
 ##############################################################################
 # Copyright (c) wxmall.janedao.cn
-# Author：hyj
-# Start  Date:  2019
+# Author：QQ173782910
+#QQ group:528289471
 ##############################################################################
+""" admin/dl/home_dl.py"""
 
 from imp import reload
 # import basic
@@ -69,10 +69,7 @@ class chome_dl(cBASE_DL):
             select to_char(u.ctime,'YYYY-MM-DD')ctime,
                 to_char(u.expire_time,'YYYY-MM-DD')expire_time,
                 m.appid,m.secret ,coalesce(u.with_flag,0)with_flag,
-                case when coalesce(u.vip_flag,0)=1 then (select combo_one_name from toll_config) 
-                when coalesce(u.vip_flag,0)=2 then (select combo_two_name from toll_config) 
-                when coalesce(u.vip_flag,0)=3 then (select combo_thr_name from toll_config)
-                when coalesce(u.vip_flag,0)=7 then '永久会员' else '' end vip_name,
+                '永久会员' as vip_name,
                  coalesce(u.vip_flag,0)vip_flag,
                  coalesce(u.oss_all,100) as oss_all,
                  coalesce(u.oss_flag,0)oss_flag,

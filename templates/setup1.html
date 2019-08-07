@@ -79,7 +79,6 @@ body{background-color: #fff;
 				<div style="width:73px;height: 73px;float:left;">
 				   <img src="static/assets/images/admin_Logo.png" style="width:73px;height:73px;margin-left: 190px"/>
 				</div>
-
 	        </div>
 				<!--login-->
 				  <div style="margin-left:0px;text-align: center;margin-top:-20px;">
@@ -90,6 +89,7 @@ body{background-color: #fff;
 							<div class="start-content" style="font-size:14px;">
 
 								<p>请正确填写如下的数据库信息!</p>
+								<p style="color:red;">注意:提交后会有一段时间的等待，<br>将表写入数据库，时间根据您的网络配置而定!</p>
 								<form onsubmit="return formcheck(this)"  method="post"  action="{{url_for('setup', step=2)}}" >
 									<div class="form-group">
 										<div class="col-sm-12">
@@ -102,7 +102,6 @@ body{background-color: #fff;
 											端口:<input name="port" class="sinput" type="text" value="5432">
 										</div>
 									</div>
-
 									<div class="form-group">
 										<div class="col-sm-12">
 											用户名:<input name="username" placeholder="请输入用户名" class="binput" type="text" value="">
@@ -110,8 +109,6 @@ body{background-color: #fff;
 										</div>
 
 									</div>
-
-
 									<div class="form-group">
 										<div class="col-sm-offset-2 col-sm-8">
 											<button type="submit" class="btn btn-info">提交</button>
@@ -120,26 +117,19 @@ body{background-color: #fff;
 								</form>
 							</div>
 						</div>
-
-
-
-
-
 				  </div>
 				<!--login end-->
 			</div>							
 		</div>
-		<div style="width:99%;height:20px;position:absolute;bottom:50px;text-align:center;font-size:13px;color:#999999;">
-			简道 粤ICP备15060984号-2
+		<div style="width:99%;height:20px;position:absolute;bottom:180px;text-align:center;font-size:23px;color:red;">
+			wxmall.janedao.cn
 		</div>
 	</div>	
 </body>
 
-
 <script type="text/javascript" src="static/assets/js/jquery.min.js"></script>
 <script type="text/javascript" src="static/assets/js/layer/layer.js"></script>
 <script>
-
 	function formcheck(){
 
 		var host = $('input[name=host]').val();
@@ -170,7 +160,6 @@ body{background-color: #fff;
 		}
 		return true;
 	}  
-	
 
 </script>
 </html>

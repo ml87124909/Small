@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-
 ##############################################################################
 # Copyright (c) wxmall.janedao.cn
-# Author：hyj
-# Start  Date:  2019
+# Author：QQ173782910
+#QQ group:528289471
 ##############################################################################
+""" admin/dl/C002_dl.py"""
 
 from imp import reload
 from basic.publicw import DEBUG
@@ -13,8 +13,6 @@ if DEBUG == '1':
     reload(admin.dl.BASE_DL)
 from admin.dl.BASE_DL  import cBASE_DL
 
-
-import hashlib , os , time , random,json
 
 class cC002_dl(cBASE_DL):
     def init_data(self):

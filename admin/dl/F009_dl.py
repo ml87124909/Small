@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-
 ##############################################################################
 # Copyright (c) wxmall.janedao.cn
-# Author：hyj
-# Start  Date:  2019
+# Author：QQ173782910
+#QQ group:528289471
 ##############################################################################
+""" admin/dl/F009_dl.py"""
 
 from imp import reload
 from basic.publicw import DEBUG
@@ -15,15 +15,13 @@ if DEBUG == '1':
     import admin.dl.BASE_DL
     reload(admin.dl.BASE_DL)
 from admin.dl.BASE_DL  import cBASE_DL
-import hashlib , os , time , random
-import time,hashlib,os
-from qiniu import Auth, put_stream, put_data,BucketManager
+
+from qiniu import Auth,BucketManager
 
 class cF009_dl(cBASE_DL):
     
     def init_data(self):
         self.GNL = ['', '编号','图片名', '图片预览', '大小(KB)','上传时间']
-        self.src = 'F009'
 
     def mRight(self):
 

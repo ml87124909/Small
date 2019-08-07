@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-
 ##############################################################################
 # Copyright (c) wxmall.janedao.cn
-# Author：hyj
-# Start  Date:  2019
+# Author：QQ173782910
+#QQ group:528289471
 ##############################################################################
+""" admin/dl/F005_dl.py"""
 
 from imp import reload
 from basic.publicw import DEBUG
@@ -15,19 +15,12 @@ if DEBUG == '1':
 from admin.dl.BASE_DL  import cBASE_DL
 
 
-import hashlib , os , time , random
-
 class cF005_dl(cBASE_DL):
     def init_data(self):
 
         self.GNL = ['','用户ID','用户名字','之前级别','目前级别','升级方式',
                     '升级时间','到期时间','操作方式']
 
-
-    #在子类中重新定义         
-    def myInit(self):
-        self.src = 'F005'
-        pass
 
     def mRight(self):
             

@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 # Copyright (c) wxmall.janedao.cn
-# Author：hyj
-# Start  Date:  2019
+# Author：QQ173782910
+#QQ group:528289471
 ##############################################################################
+"""admin/vi/C004.py"""
 
 from imp import reload
 from basic.publicw import DEBUG
@@ -65,7 +66,7 @@ class cC004(cBASE_TPL):
                         kstr += ',' + str(k[1])
             spec_childx[str(j)] = kstr
         self.assign({'item':item,
-                     'save_alert':self.dl.GP('save_alert', '0'),
+
                      'spec_child_price':self.dl.spec_child_price(self.pk),  #商品规格价格对应数据
                      'category_list':category_list,  #商品分类
                      'pics_list':self.dl.pics_list(self.pk),  #图片列表
@@ -250,7 +251,7 @@ class cC004(cBASE_TPL):
         return self.jsons(dR)
 
     def goPartGet_spec_class(self):
-        dR = {'code': '', }
+        dR = {'code': '', 'msg':''}
         l, spa = self.dl.get_spec_class_data()
         d = '''
             <div class="panel panel-default" id="ppd%(spa)s">

@@ -44,11 +44,11 @@
 <script>
     function layer_add(){
             var url = "/admin?viewid=B002&&part=tag_add";
-            content_html='<div class="row"><div class="form-group">';
+            content_html='<div class="col-sm-10"><div class="form-group">';
             content_html+='<label class="col-sm-5 control-label"><b style="color:#333333;">标签名称:</b></label>';
             content_html+='<div class="col-sm-5">';
             content_html+=' <input type="text" class="form-control"  name="ctitle" value=""/>';
-            content_html+=' </div></div></div><div class="row"><div class="form-group">';
+            content_html+=' </div></div></div><div class="col-sm-10"><div class="form-group">';
             content_html+='<label class="col-sm-5 control-label"><b style="color:#333333;">是否默认添加标签:</b></label>';
             content_html+=' <div class="col-sm-4"><select name="status"  class="form-control">';
             content_html+=' <option value="0">否</option>';
@@ -57,7 +57,7 @@
             layer.open({
                 type: 1,
                 skin: 'layui-layer-rim', //加上边框
-                area: ['30rem;', '30rem;'], //宽高
+                area: ['35rem;', '20rem;'], //宽高
                 content: content_html,
                 title: "增加标签",
                 btn: ['提交']

@@ -1,9 +1,11 @@
 ## -*- coding: utf-8 -*-
 ##############################################################################
 # Copyright (c) wxmall.janedao.cn
-# Author：hyj
-# Start  Date:  2019
+# Author：QQ173782910
+#QQ group:528289471
 ##############################################################################
+"""celery_app/celeryconfig.py"""
+
 from datetime import timedelta
 from celery.schedules import crontab
 

@@ -161,7 +161,7 @@ $(document).ready(function () {
                     formatSize = Q.formatSize,
                     boxView = document.getElementById("nox");
                     var uploader = new Uploader({
-                        url: '/admin?viewid=K001&part=QiniuUpload',
+                        url: '/upload?viewid={{viewid}}&part=Img',
                         target:document.getElementById("upload-s"),
                         view: boxView,//如果去掉这个，会导致压缩效果不好
                         //将auto配置为false以手动上传
@@ -246,7 +246,7 @@ var ids = new Array("pickfiles");
         formatSize = Q.formatSize,
         boxView = document.getElementById(""+divs[i]+"")
         var uploader = new Uploader({
-            url: '/admin?viewid=K001&part=QiniuUpload',
+            url: '/upload?viewid={{viewid}}&part=Img',
             target: document.getElementById(""+self+""),
             view: boxView,//如果去掉这个，会导致压缩效果不好
             //将auto配置为false以手动上传

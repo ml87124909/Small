@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-
 ##############################################################################
 # Copyright (c) wxmall.janedao.cn
-# Author：hyj
-# Start  Date:  2019
+# Author：QQ173782910
+#QQ group:528289471
 ##############################################################################
+""" admin/dl/C006_dl.py"""
 
 from imp import reload
 from basic.publicw import DEBUG
@@ -14,18 +14,11 @@ if DEBUG == '1':
     reload(admin.dl.BASE_DL)
 from admin.dl.BASE_DL  import cBASE_DL
 
-
-import hashlib , os , time , random,datetime,traceback
-
 class cC006_dl(cBASE_DL):
     def init_data(self):
         self.GNL = ['', '排序ID', '商品ID','商品名称','添加时间']  # 列表表头
 
 
-
-    #在子类中重新定义         
-    def myInit(self):
-        self.src = 'C006'
 
     def mRight(self):
 
@@ -33,13 +26,7 @@ class cC006_dl(cBASE_DL):
             select id,sort,gid,gname,to_char(ctime,'YYYY-MM-DD HH24:MI') 
                 from hot_sell where coalesce(del_flag,0)=0  and usr_id=%s order by sort
         """ % self.usr_id_p
-        # self.qqid = self.GP('qqid','')
 
-        # if self.qqid!='':
-        #     sql+= " LIKE '%%%s%%' "%(self.qqid)
-        # #ORDER BY
-
-        #     sql+=" ORDER BY r.role_id DESC"
 
         L, iTotal_length, iTotal_Page, pageNo, select_size = self.db.select_for_grid(sql, self.pageNo)
         PL = [pageNo, iTotal_Page, iTotal_length, select_size]

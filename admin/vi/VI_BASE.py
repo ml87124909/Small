@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
-
 ##############################################################################
 # Copyright (c) wxmall.janedao.cn
-# Author：hyj
-# Start  Date:  2019
+# Author：QQ173782910
+#QQ group:528289471
 ##############################################################################
-"""VI_BASE.py"""
+"""admin/vi/VI_BASE.py"""
 
 
 import os
@@ -32,15 +31,7 @@ class cVI_BASE(cVIEWS):
 
     def goPartDelete(self):
         dR = self.dl.delete_data()
-        R = dR['R']
-        if str(R) == '1':  # 错误
-            s = self.mScriptMsg(dR['MSG'])
-        else:
-            url = '%s?viewid=%s&pageNo=%s' % (self.classpath,self.viewid, self.pageNo)
-
-            url += self.getAddUrlStrA()
-            s = self.mScriptMsg('数据删除成功', [[url, '返回列表']], 'success')
-        return s
+        return self.jsons(dR)
 
     def goPartUpload(self):
 
@@ -49,19 +40,9 @@ class cVI_BASE(cVIEWS):
 
     def goPartInsert(self):
         dR = self.dl.local_add_save()
-        # # print dR
-        # R = dR['R']
-        # if self.pk == '':
-        #     self.pk = dR.get('pk', '')
-        # # 处理附件保存，不再限制是否先保存表单。允许先上传附件
-        #
-        # self.dl.save_upload_file(self.pk, self.dl.src)
-        # s = self.showMsgLink(dR)
-        #return s
         return self.jsons(dR)
 
     def goPartAjax(self):
-
         actions='local_ajax_%s'% self.dl.GP('action', '')
         dR = getattr(self.dl, actions)()
         return self.jsons(dR)#self.dl.json_encode(dR)
@@ -209,8 +190,6 @@ class cVI_BASE(cVIEWS):
             if v and v != '':
                 txtUrlData += '&%s=%s' % (k, v)
         self.hidden['qqid'] = self.qqid
-        # self.hidden['orderby'] = self.orderby
-        # self.hidden['orderbydir'] = self.orderbydir
         self.hidden['UrlData'] = txtUrlData
 
     def getBackBtn(self):

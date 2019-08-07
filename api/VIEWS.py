@@ -1,28 +1,27 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 # Copyright (c) wxmall.janedao.cn
-# Author：hyj
-# Start  Date:  2019
+# Author：QQ173782910
+#QQ group:528289471
 ##############################################################################
 """api/VIEWS.py"""
 import os
 import time
 from flask import jsonify
 from basic.publicw import cAPI,ATTACH_ROOTR,md5code,db,oSHOP,oUSER,oMALL,oQINIU,oGOODS,oGOODS_D,oORDER_SET\
-    ,oGOODS_N,oGOODS_G,oOPENID,oSHOP_T,oCATEGORY,oGOODS_SELL,oTOLL,oGOODS_PT,oGOODS_DPT,oPT_GOODS
+    ,oGOODS_N,oGOODS_G,oOPENID,oSHOP_T,oCATEGORY,oGOODS_SELL,oGOODS_PT,oGOODS_DPT,oPT_GOODS
 
 
 class cVIEWS(cAPI):
 
-    def __init__(self, request,sub_id):
+    def __init__(self, request):
 
         self.objHandle = request
         self.REQUEST = self.objHandle.values
         self.ATTACH_ROOT=ATTACH_ROOTR
-        self.subusr_id = sub_id
+        self.subusr_id = 1
         self.md5code=md5code
         self.db = db
-        self.checksubusr_id =self.checksubusr_id()
         self.jsons=jsonify
         #self.text=text
         self.classpath = 'api'
@@ -69,7 +68,6 @@ class cVIEWS(cAPI):
         self.oSHOP_T=oSHOP_T
         self.oCATEGORY=oCATEGORY
         self.oGOODS_SELL=oGOODS_SELL
-        self.oTOLL=oTOLL.get()
         self.oGOODS_PT = oGOODS_PT
         self.oGOODS_DPT = oGOODS_DPT
         self.oPT_GOODS = oPT_GOODS
@@ -88,32 +86,13 @@ class cVIEWS(cAPI):
         self.endpoint = self.oQINIU.get(1).get('endpoint', '')
 
 
-
-
-
     def make_sub_path(self, sPATH):
         """检查os的最后一级子目录，如果不存在，生成之"""
         if os.path.exists(sPATH) == 0:
             os.makedirs(sPATH)
         return 0
 
-    def checksubusr_id(self):
-        try:
-            aid=int(self.subusr_id)
-            if aid==1:
-                return 0
-            sql = """select COALESCE(expire_flag,0) from users where usr_id=%s
-                    """
-            l,t = self.db.select(sql,aid)
-            if t>0:
-                expire_flag=str(l[0][0])
-                if expire_flag=='1':
-                    return 2
-                # self.statistical()
-                return 0
-            return 1
-        except:
-            return 1
+
 
     def getToday(self,format=3):
         t = time.time()

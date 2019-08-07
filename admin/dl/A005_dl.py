@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-
 ##############################################################################
 # Copyright (c) wxmall.janedao.cn
-# Author：hyj
-# Start  Date:  2019
+# Author：QQ173782910
+#QQ group:528289471
 ##############################################################################
+""" admin/dl/A005_dl.py"""
 
 from imp import reload
 from basic.publicw import DEBUG
@@ -27,24 +27,12 @@ class cA005_dl(cBASE_DL):
             ['文章类型',      "u.login_id",      '',''],#3
             ['文章海报',      "r.role_name",'',''],#4
             ['创建时间',        "d.cname",     '',''],#5
-            #['添加时间',      "u1.usr_name",'',''],#6
-            #['更新时间',    "u.ctime",               '',''],#7
-            #['添加时间',  "u2.usr_name",'',''],#8
-            #['修改时间',"u.utime",               '',''],#9
-            #['进货时间',      "u.last_login",'',''],#10
-            #['备注',    "u.last_ip",               '','']#11
+
             
         ]
-        #self.GNL=[] #列表上出现的
-        #self.SNL=[]     #排序
-        #self.QNL=''  #where查询
+
         self.GNL = self.parse_GNL([0,1,2,3,4,5])
 
-
-    #在子类中重新定义         
-    def myInit(self):
-        self.src = 'A005'
-        pass
 
     def mRight(self):
             
@@ -60,19 +48,7 @@ class cA005_dl(cBASE_DL):
             left join cms_fl cf on cf.id=cd.class_id and cf.usr_id=cd.usr_id
             where COALESCE(cd.del_flag,0)=0 and cd.usr_id=%s
         """%self.usr_id_p
-        # self.qqid = self.GP('qqid','')
-        # self.orderby = self.GP('orderby','')
-        # self.orderbydir = self.GP('orderbydir','')
-        # self.pageNo=self.GP('pageNo','')
-        # if self.pageNo=='':self.pageNo='1'
-        # self.pageNo=int(self.pageNo)
-        # if self.qqid!='' and len(self.QNL) > 0:
-        #     sql+= self.QNL + " LIKE '%%%s%%' "%(self.qqid)
-        # #ORDER BY
-        # if self.orderby!='':
-        #     sql+=' ORDER BY %s %s' % (self.orderby,self.orderbydir)
-        # else:
-        #     sql+=" ORDER BY r.role_id DESC"
+
         
         L,iTotal_length,iTotal_Page,pageNo,select_size=self.db.select_for_grid(sql,self.pageNo)
         PL=[pageNo,iTotal_Page,iTotal_length,select_size]
@@ -106,7 +82,7 @@ class cA005_dl(cBASE_DL):
     
     def local_add_save(self):
         pk = self.pk
-        dR={'R':'','MSG':''}
+        dR={'code':'1','MSG':'处理失败'}
 
         #获取表单参数
         class_id=self.GP('class_id','')#分类
@@ -142,6 +118,8 @@ class cA005_dl(cBASE_DL):
             data['utime']=self.getToday(9)
             self.db.update('cms_doc' , data , " id = %s and usr_id=%s" % (pk,self.usr_id_p))
             self.use_log('修改文章')
+            dR['code']='0'
+            dR['MSG'] = '修改成功'
 
         else:  #insert
             #如果是插入 就去掉 uid，utime 的处理
@@ -150,7 +128,8 @@ class cA005_dl(cBASE_DL):
             data['ctime'] = self.getToday(9)
             self.db.insert('cms_doc' , data)
             self.use_log('增加文章')
-
+            dR['code'] = '0'
+            dR['MSG'] = '增加成功'
         dR['pk'] = pk
         
         return dR

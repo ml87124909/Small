@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-
 ##############################################################################
 # Copyright (c) wxmall.janedao.cn
-# Author：hyj
-# Start  Date:  2019
+# Author：QQ173782910
+#QQ group:528289471
 ##############################################################################
+""" admin/dl/D001_dl.py"""
 
 from imp import reload
 from basic.publicw import DEBUG
@@ -16,7 +16,7 @@ if DEBUG == '1':
 from admin.dl.BASE_DL  import cBASE_DL
 
 
-import hashlib , os , time , random
+import time , random
 
 class cD001_dl(cBASE_DL):
     def init_data(self):
@@ -25,11 +25,6 @@ class cD001_dl(cBASE_DL):
         self.GNL = ['编号','名称','类型','适用形式','适用商品','时间',
                     '总数量','剩余数量','状态']
 
-
-    #在子类中重新定义         
-    def myInit(self):
-        self.src = 'D001'
-        pass
 
     def mRight(self):
             

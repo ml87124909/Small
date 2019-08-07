@@ -71,7 +71,7 @@
       <section id="content">
         <!--section class="vbox"-->
         {% block form_block %}
-	    <form method="POST" action="admin" class="form-inline" name="frmMain">
+	    <form method="POST" action="admin" class="form-inline" name="frmMain" id="frmMain">
         {% endblock %}
           <header class="dk header navbar navbar-fixed-top-xs">
             <ul class="breadcrumb no-border no-radius b-b b-light scrollable">
@@ -89,11 +89,9 @@
 
 		</form>
         <!--/section-->
-        <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen" data-target="#nav"></a>
+
       </section>
-      <aside class="bg-light lter b-l aside-md hide" id="notes">
-        <div class="wrapper">Notification</div>
-      </aside>
+
     </section>
   </section>
 </section>
@@ -102,10 +100,6 @@
 {% block javascript %} 
 <script src="static/assets/js/charts/easypiechart/jquery.easy-pie-chart.js" cache="false"></script>
 <script src="static/assets/js/charts/sparkline/jquery.sparkline.min.js" cache="false"></script>
-<script src="static/assets/js/charts/flot/jquery.flot.min.js" cache="false"></script>
-<script src="static/assets/js/charts/flot/jquery.flot.tooltip.min.js" cache="false"></script>
-<script src="static/assets/js/charts/flot/jquery.flot.resize.js" cache="false"></script>
-<script src="static/assets/js/charts/flot/jquery.flot.grow.js" cache="false"></script>
 <script src="static/assets/js/calendar/bootstrap_calendar.js" cache="false"></script>
 <script src="static/assets/js/sortable/jquery.sortable.js" cache="false"></script>
 <link rel="stylesheet" href="static/assets/js/calendar/bootstrap_calendar.css" type="text/css" cache="false" />

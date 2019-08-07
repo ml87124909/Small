@@ -1191,9 +1191,12 @@ function main_delete(del_pk){
   //主GRID的删除操作 	
 	layer.confirm('你确信要删除记录吗？', {
 		btn: ['是','否'] //按钮
-	}, function(){
+	}, function(index,layero){
+	    layer.close(index);
+	    layer.load()
 	    $("input[name=pk]").val(del_pk);
 		$("input[name=part]").val('delete');
+		var viewid=$("input[name=viewid]").val();
 	    var form = new FormData(document.getElementById("frmMain"));
         $.ajax({
             url:"admin?viewid="+viewid+"&part=delete",
@@ -1202,11 +1205,10 @@ function main_delete(del_pk){
             processData:false,
             contentType:false,
             success:function(data){
+                layer.closeAll();
                 if (data.code=='0'){
-
-                    layer.close(index);
                     layer.msg(data.MSG);
-                    setTimeout(location.reload(), 3000);
+                    setTimeout("location.reload()", 2000);
                 }else{
                     layer.msg(data.MSG);
                 }
@@ -1249,7 +1251,7 @@ function main_excel(){
 function main_search(){
 	$("input[name=pk]").val('');
 	$("input[name=pageNo]").val('1');
-	$("input[name=part]").val('main');  
+	$("input[name=part]").val('list');
 	$("form[name=frmMain]")[0].submit(); 
 }
 

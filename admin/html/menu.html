@@ -1,24 +1,12 @@
-{% extends "index.html" %}
-{% block cssjs %}
-<link href='static/assets/css/common.css' rel='stylesheet'>
-{% endblock %}
+{% extends "list.html" %}
 
-{% block form_block %}
-<form method="POST" action="admin" class="form-inline" name="frmMain" id="form">
-<input id="do" name="do" type="hidden" />
-<input name="viewid" type="hidden" value="menu" />
+{% block topSearch %}
+{% endblock %}
+{% block mGrid %}
+	<link href='static/assets/css/common.css' rel='stylesheet'>
+	<input name="viewid" type="hidden" value="menu" />
 <input name="part" type="hidden" value="saveMenu" />
-{% endblock %}
 
-{% block breadcrumb %}
-<ol class="breadcrumb">
-	<li><a href="admin?viewid=home">主页</a></li>
-	<li><a href="admin?viewid=menu&mnuid=9&sub1id=904">自定义菜单</a></li>
-</ol>
-{% endblock %}
-
-{% block contentpanel %}
-<div class="main">
 	<div class="form form-horizontal">
 		<h4>菜单设计器 <small>编辑和设置微信公众号码, 必须是服务号才能编辑自定义菜单。</small></h4>
 		<table class="tb table-striped">
@@ -80,7 +68,7 @@
 			</tbody>
 		</table>
 	</div>
-</div>
+
 
 {% endblock %}
 {% block javascript %}

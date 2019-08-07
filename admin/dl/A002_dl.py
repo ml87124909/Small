@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
-
 ##############################################################################
 # Copyright (c) wxmall.janedao.cn
-# Author：hyj
-# Start  Date:  2019
+# Author：QQ173782910
+#QQ group:528289471
 ##############################################################################
+""" admin/dl/A002_dl.py"""
+
 from imp import reload
 from basic.publicw import DEBUG
 
@@ -14,16 +15,11 @@ if DEBUG == '1':
 from admin.dl.BASE_DL  import cBASE_DL
 
 
- 
 class cA002_dl(cBASE_DL):
     
     def init_data(self):
-
-
         self.GNL = ['ID','编号', '类型标记', '业务编号','名称',
                     'Banner图片','链接地址','状态','添加时间','修改时间	']
-
-
 
     def mRight(self):
             
@@ -34,17 +30,15 @@ class cA002_dl(cBASE_DL):
                 ,cname
             FROM advertis 
            where COALESCE(del_flag,0)=0 and ctype=1 and usr_id=%s
-        """%self.usr_id_p
+        """
+        parm=[self.usr_id_p]
         #
-        # if self.qqid != '' and len(self.QNL) > 0:
-        #     sql += self.QNL + "AND LIKE '%%%s%%' " % (self.qqid)
-        # ORDER BY 
-        # if self.orderby != '':
-        #     sql += ' ORDER BY %s %s' % (self.orderby, self.orderbydir)
-        # else:
+        # if self.qqid != '':
+        #     sql += "AND cname LIKE '%%%s%%' " % (self.qqid)
+        # ORDER BY
         sql += " ORDER BY sort "
 
-        L, iTotal_length, iTotal_Page, pageNo, select_size = self.db.select_for_grid(sql, self.pageNo)
+        L, iTotal_length, iTotal_Page, pageNo, select_size = self.db.select_for_grid(sql, self.pageNo,L=parm)
         PL = [pageNo, iTotal_Page, iTotal_length, select_size]
         return PL, L
     
@@ -127,20 +121,22 @@ class cA002_dl(cBASE_DL):
         
     def delete_data(self):
         pk = self.pk
-        dR = {'R':'', 'MSG':''}
+        dR = {'code':'', 'MSG':''}
         self.db.query("update banner set del_flag=1 where id= %s" ,[pk])
         self.oSHOP.update(self.usr_id_p)
         self.use_log('删除图片广告%s'%pk)
+        dR['code'] = '1'
+        dR['MSG'] = '删除成功'
         return dR
 
     def local_ajax_jftype(self):
         kw = self.GP('keyword', '')
         sql = u"""
-                select id,name from goods_info where COALESCE(del_flag,0)=0
+                select id,cname from goods_info where COALESCE(del_flag,0)=0
                     """
         L=[]
         if kw != '':
-            sql += " and name LIKE %s"
+            sql += " and cname LIKE %s"
             L.append('%%%s%%'%kw)
         sql += " ORDER BY id"
         lT, iN = self.db.select(sql,L)
@@ -168,7 +164,7 @@ class cA002_dl(cBASE_DL):
         data=self.db.fetch("select picurl,linkurl,buseid,field,cname,sort,status from  advertis where ctype=1 and id= %s" ,pk)
         if data:
             dR['data'] = data
-            dR['code'] = 0
+            dR['code'] = '0'
         return dR
 
 
@@ -179,6 +175,7 @@ class cA002_dl(cBASE_DL):
         self.db.query("update banner set del_flag=1 where type= %s ", [pk])
         self.oSHOP.update(self.usr_id_p)
         self.use_log('删除图片广告分类%s' % pk)
+        dR['code'] = '0'
         dR['MSG']='删除成功！'
         return dR
 
@@ -188,6 +185,7 @@ class cA002_dl(cBASE_DL):
         self.db.query("update banner set del_flag=1 where id= %s" ,[pk])
         self.oSHOP.update(self.usr_id_p)
         self.use_log('删除图片广告%s' % pk)
+        dR['code'] = '0'
         dR['MSG'] = '删除成功！'
         return dR
 

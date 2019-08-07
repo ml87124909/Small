@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-
 ##############################################################################
 # Copyright (c) wxmall.janedao.cn
-# Author：hyj
-# Start  Date:  2019
+# Author：QQ173782910
+#QQ group:528289471
 ##############################################################################
+""" admin/dl/A004_dl.py"""
 
 from imp import reload
 from basic.publicw import DEBUG
@@ -17,6 +17,9 @@ from admin.dl.BASE_DL  import cBASE_DL
 class cA004_dl(cBASE_DL):
     def init_data(self):
 
+        #以字典形式创建列表上要显示的字段 
+        #以下字典为列表逻辑所用 , 所有数组元素的位置必须对应好
+        #[列表名,查询用别名,表格宽度,对齐]
         self.FDT=[
             ['',      "u.usr_id",             '',''],#0
             ['分类ID',      "u.usr_name",           '',''],#1
@@ -33,7 +36,6 @@ class cA004_dl(cBASE_DL):
         ]
 
         self.GNL = self.parse_GNL([0,1,2,3,4,6])
-
 
 
     def mRight(self):

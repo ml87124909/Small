@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 # Copyright (c) wxmall.janedao.cn
-# Author：hyj
-# Start  Date:  2019
+# Author：QQ173782910
+#QQ group:528289471
 ##############################################################################
+"""admin/vi/A001.py"""
 
 from imp import reload
 from basic.publicw import DEBUG
@@ -19,7 +20,7 @@ class cA001(cBASE_TPL):
     def setClassName(self):
 
         self.dl_name = 'A001_dl'
-        self.inframe = 1
+
     def specialinit(self):
         self.tab_data = ['OSS存储设置','店铺信息', '商铺设置','订单设置', '小程序设置',
                          '会员设置','全局设置','积分规则设置','充值设置','快递鸟设置']
@@ -56,8 +57,7 @@ class cA001(cBASE_TPL):
         PL,L = self.dl.mRight()
         self.assign('dataList',L)
         self.getPagination(PL)
-        s = self.runApp('A001_list.html')
-        return s
+        return self.runApp('A001_list.html')
     
 
     
@@ -72,23 +72,22 @@ class cA001(cBASE_TPL):
 
         self.item = self.dl.get_local_data()
         self.assign('item', self.item)
-        if self.dl.tab=='3':
+        if self.dl.tab=='4':
             self.assign('detail',self.dl.get_logistics_way())
-        elif self.dl.tab=='5':
-            self.assign('detail',self.dl.get_hy_up_level())
         elif self.dl.tab=='6':
-            self.assign('detail',self.dl.get_global_memo())
-        elif self.dl.tab=='7':
-            self.assign('detail',self.dl.get_score_set())
+            self.assign('detail',self.dl.get_hy_up_level())
+        # elif self.dl.tab=='7':
+        #     self.assign('detail',self.dl.get_global_memo())
         elif self.dl.tab=='8':
+            self.assign('detail',self.dl.get_score_set())
+        elif self.dl.tab=='9':
             self.assign('detail',self.dl.get_gifts())
 
         self.assign('show_ticket', self.show_ticket())
         self.assign('show_Goods', self.Goods_mselect_mul())
         self.assign('show_Goods_id', self.Goods_mselect_mul_id())
         self.assign('order_Goods_id', self.Goods_mselect_mul_id_s())
-        s = self.runApp('A001_local.html')
-        return s
+        return self.runApp('A001_local.html')
 
 
 

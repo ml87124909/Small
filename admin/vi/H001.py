@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 # Copyright (c) wxmall.janedao.cn
-# Author：hyj
-# Start  Date:  2019
+# Author：QQ173782910
+#QQ group:528289471
 ##############################################################################
+"""admin/vi/H001.py"""
 
 from imp import reload
 from basic.publicw import DEBUG
@@ -26,9 +27,7 @@ class cH001(cBASE_TPL):
         self.navTitle = '个人账号管理'
         self.getBreadcrumb() #获取面包屑
         info = self.dl.getInfo()
-        PL, L = self.dl.get_local_data()
-        self.assign({'info':info,'dataList':L})
-        self.getPagination(PL)
+        self.assign('info',info)
         return self.runApp('H001_list.html')
 
     def goPartSearch(self):

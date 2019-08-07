@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 # Copyright (c) wxmall.janedao.cn
-# Author：hyj
-# Start  Date:  2019
+# Author：QQ173782910
+#QQ group:528289471
 ##############################################################################
+"""admin/vi/A003.py"""
 
 from imp import reload
 from basic.publicw import DEBUG
@@ -20,20 +21,15 @@ class cA003(cBASE_TPL):
     def setClassName(self):
         self.dl_name = 'A003_dl'
 
-    def specialinit(self):
-        pass
 
     def goPartList(self):
         
         self.assign('NL',self.dl.GNL)
-
         self.getBreadcrumb() #获取面包屑
         PL,L = self.dl.mRight()
         self.assign('dataList',L)
-
         self.getPagination(PL)
-        s = self.runApp('A003_list.html')
-        return s
+        return self.runApp('A003_list.html')
     
     def initPagiUrl(self):
         lb_code = self.REQUEST.get('lb_code','')
@@ -60,12 +56,9 @@ class cA003(cBASE_TPL):
         self.getBreadcrumb() #获取面包屑
         self.initHiddenLocal()#初始隐藏域
         self.getBackBtn()
-        self.item = self.dl.get_local_data(self.pk)
+        self.item = self.dl.get_local_data()
         self.assign('item', self.item)
-
-       
-        s = self.runApp('A003_local.html')
-        return s
+        return self.runApp('A003_local.html')
 
 
     

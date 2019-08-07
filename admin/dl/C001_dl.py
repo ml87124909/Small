@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-
 ##############################################################################
 # Copyright (c) wxmall.janedao.cn
-# Author：hyj
-# Start  Date:  2019
+# Author：QQ173782910
+#QQ group:528289471
 ##############################################################################
+""" admin/dl/C001_dl.py"""
 
 from imp import reload
 from basic.publicw import DEBUG
@@ -14,17 +14,10 @@ if DEBUG == '1':
 from admin.dl.BASE_DL  import cBASE_DL
 
 
-import hashlib , os , time , random
-
 class cC001_dl(cBASE_DL):
     def init_data(self):
         self.GNL = ['','分类排序','分类名称','分类类型','分类图标','分类海报']
 
-
-    #在子类中重新定义         
-    def myInit(self):
-        self.src = 'C001'
-        pass
 
     def mRight(self):
             
@@ -175,7 +168,7 @@ class cC001_dl(cBASE_DL):
 
     def delete_data(self):
         pk = self.pk
-        dR = {'R':'', 'MSG':''}
+        dR = {'code':'', 'MSG':''}
         l,t=self.db.select("select ilevel from category  where id= %s and usr_id=%s" ,[pk,self.usr_id_p])
         if t==0:
             dR['MSG']='数据不存在'
@@ -190,6 +183,8 @@ class cC001_dl(cBASE_DL):
         self.oSHOP.update(self.usr_id_p)
         self.oCATEGORY.update(self.usr_id_p)
         self.use_log('删除商品分类%s' % pk)
+        dR['MSG'] = '删除成功'
+        dR['code'] = '0'
         return dR
 
     def setfllist(self):

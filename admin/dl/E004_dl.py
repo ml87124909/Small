@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
-
 ##############################################################################
 # Copyright (c) wxmall.janedao.cn
-# Author：hyj
-# Start  Date:  2019
+# Author：QQ173782910
+#QQ group:528289471
 ##############################################################################
-
+""" admin/dl/E004_dl.py"""
 
 from imp import reload
 from basic.publicw import DEBUG
@@ -15,8 +14,8 @@ if DEBUG == '1':
     reload(admin.dl.BASE_DL)
 from admin.dl.BASE_DL  import cBASE_DL
 
-from basic.wxbase import wx_minapp_login,WXBizDataCrypt,WxPay
-import hashlib , os , time , random
+from basic.wxbase import WxPay
+import  os
 
 class cE004_dl(cBASE_DL):
     def init_data(self):
@@ -32,37 +31,17 @@ class cE004_dl(cBASE_DL):
             ['申请退款金额', '10rem', ''],  # 7
             ['订单合订金额', '10rem', ''],  # 8
             ['状态', '10rem', ''],  # 9
-            # ['最后登录IP', '10rem', ''],  # 10
-            # ['状态', '5rem', ''],  # 11
-            # ['会员级别', '5rem', ''],  # 12
-            # ['会员开始时间', '10rem', ''],  # 13
-            # ['会员到期时间', '10rem', ''],  # 14
-            # ['会员到期时间', "u.last_ip", '', ''],  # 15
+
 
         ]
         # self.GNL=[] #列表上出现的
         self.GNL = self.parse_GNL([0, 1, 2, 3, 4, 5, 6, 7,8,9])
 
-    #在子类中重新定义         
-    def myInit(self):
-        self.src = 'E004'
-        pass
+
 
     def mRight(self):
             
-        # sql = u"""
-        #     select id,order_num,r_num,w_name,reason,'',r_money,order_money,status_str,order_id from refund_money
-        #     where COALESCE(del_flag,0)=0 and  usr_id=%s
-        # """
-        #
-        # lT, iN = self.db.fetchall(sql,self.usr_id)
-        # for j in lT:
-        #     order_id = j.get('order_id', '')
-        #     sqld = """select pic from images_api where other_id=%s and usr_id=%s and ctype=0 limit 4;
-        #                                 """
-        #     l, t = self.db.fetchall(sqld, [order_id,self.usr_id])
-        #     if t > 0:
-        #         j['detail'] = l
+
         sql="""
             select id,e_num,ctype_str,w_name,reason,
                 (select array_agg(pic) from images_api 
@@ -78,14 +57,7 @@ class cE004_dl(cBASE_DL):
         if self.pageNo == '':
             self.pageNo = '1'
         self.pageNo = int(self.pageNo)
-        # if self.qqid != '' and len(self.QNL) > 0:
-        #     sql += self.QNL + "AND LIKE '%%%s%%' " % (self.qqid)
-        # ORDER BY
-        # if self.orderby != '':
-        #     sql += ' ORDER BY %s %s' % (self.orderby, self.orderbydir)
-        # else:
 
-        # print(sql)
 
         L, iTotal_length, iTotal_Page, pageNo, select_size = self.db.select_for_grid(sql, self.pageNo)
         #L, iTotal_length, iTotal_Page, pageNo, select_size = self.list_for_grid(lT, iN, self.pageNo)
@@ -115,13 +87,7 @@ class cE004_dl(cBASE_DL):
         """
         if pk != '':
             L = self.db.fetch( sql,[ pk,self.usr_id_p] )
-        # else:
-        #     timeStamp = time.time()
-        #     timeArray = time.localtime(timeStamp)
-        #     danhao = time.strftime("%Y%m%d%H%M%S", timeArray)
-        #
-        #     #L['danhao']='cgdd'+danhao
-        #     L['danhao'] = ''
+
         return L
     
     def local_add_save(self):
