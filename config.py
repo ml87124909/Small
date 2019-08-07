@@ -14,7 +14,7 @@ md5code = 'janedao'#这是加密的密钥，在安装前可以随便修改，否
 
 
 #这下边是项目路径，预设好的，请不要修改。
-CLIENT_NAME = 'base'
+CLIENT_NAME = 'Small'
 WEBSITE_PATHR = os.path.join('/var/games/', CLIENT_NAME)
 fnamer = r'/var/games/%s/%s.log' %(CLIENT_NAME,CLIENT_NAME)
 ROOTR = r'/var/games'
