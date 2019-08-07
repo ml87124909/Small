@@ -23,5 +23,6 @@ oss2
 qcloudsms_py
 xlsxwriter
 xlrd
+sqlalchemy
 
 
