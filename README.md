@@ -5,8 +5,11 @@
 
 ## 最后更新日期  2019-08-07
 docker镜像基于ubuntu 18.04 的python3.6.8
-<br>mn3711698/small:002/003,这两个都可以试。本人未测试在这里边部署，晚上回去确认一下。
-
+<br>mn3711698/small:004,我测试过OK。
+<br>您完全可以直接在里边的/var/games/Small下，安装(python3 install.py)及运行(python3 start.py)。
+<br>以后这里的代码我就不更新了，有需要的直接git pull就好了。
+<br>我是将整个环境都弄好打包成一个，直接在docker里边运行，我也不懂别的方法，这样有个问题就是，那个安装生成的dbconfig.py文件没有，每次都要重新搞。
+<br>python3 start.py启动项目通常是用来调试的，如果要生产运行，您可以用nginx+apache或者别的方法，我是可以用nginx+apache。
 
 本系统采用python3,基于flask搭建的脚手架开发。数据库是postgresql.
 
@@ -16,8 +19,7 @@ docker镜像基于ubuntu 18.04 的python3.6.8
 # 目前系统还在完善中，如果有bug请加下边的QQ群反馈，感谢！
 
 models里的模型已处理好。
-
-docker准备中。
+docker已处理好。
 
 
 vue前端也在准备中。
