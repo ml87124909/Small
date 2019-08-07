@@ -11,7 +11,7 @@ import time
 import traceback
 import random
 from lxml import etree
-from basic.publicw import db,oUSER,oGOODS_D,oGOODS_N,oPT_GOODS
+from basic.public import db,oUSER,oGOODS_D,oGOODS_N,oPT_GOODS
 #db,subid,xml_data,
 class cWxPay:
 

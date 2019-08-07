@@ -18,9 +18,8 @@ app=Flask(__name__)
 import requests,json,os,random,traceback,oss2
 from imp import reload
 import datetime
-import basic
-reload(basic)
-from basic import public
+from basic  import public
+
 db,ATTACH_ROOT,getToday=public.db,public.ATTACH_ROOT,public.getToday
 oUSER,oPT_GOODS,oMALL=public.oUSER,public.oPT_GOODS,public.oMALL
 from qiniu import Auth, put_stream, put_data,put_file,BucketManager

@@ -9,7 +9,7 @@
 from flask import redirect, jsonify
 from jinja2 import Environment, PackageLoader
 import requests
-from basic.publicw import cVIEWS_ad,CHtml
+from basic.public import cVIEWS_ad,CHtml
 
 class cVIEWS(cVIEWS_ad):
 

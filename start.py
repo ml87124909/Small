@@ -18,11 +18,11 @@ path = os.path.dirname(os.path.realpath(__file__))
 sys.path.append(path)
 sys.stdout = sys.stderr
 
-from  basic import publicw
-reload(publicw)
+from  basic import public
+reload(public)
 
-ROOT = publicw.ROOT
-showupload, showapi,showadmin,showWxPay = publicw.showupload,publicw.showapi,publicw.showadmin,publicw.showWxPay
+ROOT = public.ROOT
+showupload, showapi,showadmin,showWxPay = public.showupload,public.showapi,public.showadmin,public.showWxPay
 
 sys.path.append(ROOT)
 
