@@ -4,7 +4,8 @@
 
 
 ## 最后更新日期  2019-08-07
-将准备docker镜像，提供直接运行。基于ubuntu 18.04 的python3.6.8
+docker镜像基于ubuntu 18.04 的python3.6.8
+<br>mn3711698/small:002/003,这两个都可以试。本人未测试在这里边部署，晚上回去确认一下。
 
 
 本系统采用python3,基于flask搭建的脚手架开发。数据库是postgresql.
