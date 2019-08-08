@@ -9,10 +9,12 @@
 import os
 
 DEBUG='1'
-user_link=0
+ulink=0
 md5code = 'janedao'#这是加密的密钥，在安装前可以随便修改，否则导致无法解密，影响使用。
+auth_name='ALL'#所有
+auth_pass='PASS'#
 
-
+#################
 #这下边是项目路径，预设好的，请不要修改。
 CLIENT_NAME = 'Small'
 WEBSITE_PATHR = os.path.join('/var/games/', CLIENT_NAME)
@@ -23,5 +25,3 @@ PDF_OUT_PATHR = r'/var/games/%s/static/data/pdf'%CLIENT_NAME
 ATTACH_ROOTR = r'/var/games/%s/static/data'%CLIENT_NAME
 PEM_ROOTR = r'/var/data_h/%s'%CLIENT_NAME
 #################
-auth_name=''
-################
