@@ -9,8 +9,8 @@
 
 import time,hashlib,os,oss2
 from imp import reload
-from basic.publicw import DEBUG, CLIENT_NAME, ATTACH_ROOT, PEM_ROOTR
-if DEBUG=='1':
+from basic import public
+if public.DEBUG == '1':
     import admin.dl.MODEL_DL
     reload(admin.dl.MODEL_DL)
 from admin.dl.MODEL_DL             import cMODEL_DL
@@ -63,10 +63,10 @@ class cBASE_DL(cMODEL_DL):
             md5name = hashlib.md5()
             md5name.update(str(timeStamp).encode('utf-8'))
             filename = md5name.hexdigest() + '.' + file_ext
-            paths = os.path.join(PEM_ROOTR, '%s' % self.usr_id_p)
+            paths = os.path.join(public.PEM_ROOTR, '%s' % self.usr_id_p)
             self.make_sub_path(paths)
             file.save(os.path.join(paths, filename))
-            url = '/var/data_h/%s/%s/' % (CLIENT_NAME,self.usr_id_p) + filename
+            url = '/var/data_h/%s/%s/' % (public.CLIENT_NAME,self.usr_id_p) + filename
 
         return url
 
@@ -118,7 +118,7 @@ class cBASE_DL(cMODEL_DL):
             filename = md5name.hexdigest() + '.' + file_ext
             file_content = file.read()
             file_size = float(len(file_content)) / 1024
-            paths = os.path.join(ATTACH_ROOT,'%s'%self.usr_id_p)
+            paths = os.path.join(public.ATTACH_ROOT,'%s'%self.usr_id_p)
             self.make_sub_path(paths)
             PATH = os.path.join(paths, filename)
             f = open(PATH, 'wb')
@@ -231,36 +231,36 @@ class cBASE_DL(cMODEL_DL):
             res['value'] = tmp  # 选择用的结果集
         return res
 
-    def sendLayerData(self, ListData, hid_cols=0):
-        # 发送mselect列表数据
-        # 这里重写是因为要处理那个显示和实际的列不一样
-        # hid_cols 隐藏后面多少列
-        exec('from %s.source.json                  import write,read ' % CLIENT_NAME)
-        result = ''
-        res = {'list': [], 'value': []}
-        if len(ListData) > 0:
-
-            if hid_cols != 0:  # 不为零说明需要隐藏后面的N 列
-                tmp_list = []
-                for r in ListData:
-                    row_tmp = eval('r[:-%s]' % hid_cols)  # 例子 row_tmp = r[:-2]
-                    tmp_list.append(row_tmp)
-                res['list'] = tmp_list
-            else:
-                res['list'] = ListData  # 显示用的结果集
-            tmp = []
-            for row in ListData:
-                try:
-                    t = '###'.join(row)  # 要保证row 里面全部都是字符串类型的，要不然会报错，当然下面我处理了
-                except TypeError:
-                    row_tmp = []
-                    for r in row:
-                        row_tmp.append(str(r))
-                    t = '###'.join(row_tmp)
-                tmp.append(t)
-            res['value'] = tmp  # 选择用的结果集
-        # result = write(res)
-        return res
+    # def sendLayerData(self, ListData, hid_cols=0):
+    #     # 发送mselect列表数据
+    #     # 这里重写是因为要处理那个显示和实际的列不一样
+    #     # hid_cols 隐藏后面多少列
+    #     #exec('from %s.source.json                  import write,read ' % CLIENT_NAME)
+    #     result = ''
+    #     res = {'list': [], 'value': []}
+    #     if len(ListData) > 0:
+    #
+    #         if hid_cols != 0:  # 不为零说明需要隐藏后面的N 列
+    #             tmp_list = []
+    #             for r in ListData:
+    #                 row_tmp = eval('r[:-%s]' % hid_cols)  # 例子 row_tmp = r[:-2]
+    #                 tmp_list.append(row_tmp)
+    #             res['list'] = tmp_list
+    #         else:
+    #             res['list'] = ListData  # 显示用的结果集
+    #         tmp = []
+    #         for row in ListData:
+    #             try:
+    #                 t = '###'.join(row)  # 要保证row 里面全部都是字符串类型的，要不然会报错，当然下面我处理了
+    #             except TypeError:
+    #                 row_tmp = []
+    #                 for r in row:
+    #                     row_tmp.append(str(r))
+    #                 t = '###'.join(row_tmp)
+    #             tmp.append(t)
+    #         res['value'] = tmp  # 选择用的结果集
+    #     # result = write(res)
+    #     return res
 
 
     def delete_local_pic_data(self):
@@ -273,7 +273,7 @@ class cBASE_DL(cMODEL_DL):
             dR['MSG'] = '删除图片失败！'
             return dR
         filename=l[0][0]
-        paths = os.path.join(ATTACH_ROOT, '%s' % self.usr_id_p)
+        paths = os.path.join(public.ATTACH_ROOT, '%s' % self.usr_id_p)
 
         img_path = os.path.join(paths, filename)
 
@@ -297,7 +297,7 @@ class cBASE_DL(cMODEL_DL):
             dR['MSG'] = '删除图片失败！'
             return dR
         filename=l[0][0]
-        paths = os.path.join(ATTACH_ROOT, '%s' % self.usr_id_p)
+        paths = os.path.join(public.ATTACH_ROOT, '%s' % self.usr_id_p)
 
         img_path = os.path.join(paths, filename)
 

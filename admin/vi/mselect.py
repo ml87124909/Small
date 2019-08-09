@@ -5,8 +5,9 @@
 #QQ group:528289471
 ##############################################################################
 """admin/vi/mselect.py"""
+from basic import public
 
-from basic.publicw import DEBUG, CLIENT_NAME, dMemberUser, cTag, CHtml
+DEBUG, CLIENT_NAME, dMemberUser, cTag, CHtml=public.DEBUG,public.CLIENT_NAME,public.dMemberUser,public.cTag,public.CHtml
 
 
 

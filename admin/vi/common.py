@@ -7,13 +7,12 @@
 """admin/vi/common.py"""
 
 from imp import reload
-from basic.publicw import DEBUG,user_menu
-if DEBUG=='1':
+from basic import public
+if public.DEBUG == '1':
     import admin.vi.BASE_TPL
     reload(admin.vi.BASE_TPL)
 from admin.vi.BASE_TPL             import cBASE_TPL
 
-from flask import make_response
 
 class ccommon(cBASE_TPL):
     
@@ -27,12 +26,12 @@ class ccommon(cBASE_TPL):
             referer = 'admin?viewid=home'
         menu1,menu2,menu3 = self.dl.getSysMenu(self.dl.usr_id)
 
-        if self.dl.usr_id in user_menu:
-            user_menu[self.dl.usr_id] = {
+        if self.dl.usr_id in public.user_menu:
+            public.user_menu[self.dl.usr_id] = {
                 'menu1':menu1,'menu2':menu2,'menu3':menu3
             }
         else:
-            user_menu.update( {self.dl.usr_id:{
+            public.user_menu.update( {self.dl.usr_id:{
                 'menu1':menu1,'menu2':menu2,'menu3':menu3
             }} )
 

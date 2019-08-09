@@ -9,9 +9,9 @@
 from flask import redirect, jsonify
 from jinja2 import Environment, PackageLoader
 import requests
-from basic.public import cVIEWS_ad,CHtml
+from basic import public
 
-class cVIEWS(cVIEWS_ad):
+class cVIEWS(public.cVIEWS_ad):
 
     def __init__(self, request):
 
@@ -19,7 +19,7 @@ class cVIEWS(cVIEWS_ad):
 
         self.REQUEST = self.objHandle.values
         self.RQ = self.REQUEST
-        self.Html=CHtml()
+        self.Html=public.CHtml()
         self._http = requests.Session()
         self.dl = None
         self.classpath = 'admin'

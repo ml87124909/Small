@@ -19,9 +19,8 @@ from qiniu import Auth, put_stream, put_data
 #bucket_name = app.config['QINIU_BUCKET_NAME']
 #domain_prefix = app.config['QINIU_DOMAIN']
 from imp import reload
-from basic.publicw import DEBUG
-
-if DEBUG=='1':
+from basic import public
+if public.DEBUG == '1':
     import admin.vi.VIEWS
     reload(admin.vi.VIEWS)
 from admin.vi.VIEWS             import cVIEWS

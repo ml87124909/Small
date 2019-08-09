@@ -1,0 +1,141 @@
+{% extends "list.html" %}
+
+
+{% block topSearch %}
+<table >
+	<tbody>
+		<tr>
+			
+			<td style="width:300px">
+				<div class="input-group">
+					
+					<input type="text" class="form-control" name="qqid" value="{{qqid}}"  placeholder="请输入关键字"/>
+					<span class="input-group-btn">
+					<button class="btn btn-default " style="background-color:#36648B;" type="button" onclick="main_search()"><font color="#FFFFFF"><i class="fa fa-search"></i> 搜索</font></button>
+					</span> 
+				</div>
+			</td>
+			<td>
+			</td>
+			
+		</tr>
+	
+	</tbody>
+</table>
+{% endblock %}
+
+{% block mGrid %}
+						<table class="table table-bordered" >
+							<thead>
+								<tr style="background-color:#e5e5e5" bgcolor="#ffffff">
+
+									{%for n in NL[1:]%}
+									<th style="width:{{n[2]}};">{{n}}</th>
+									{%endfor%}
+									<th style="width:100px;">操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for row in dataList %}
+								<tr bgcolor="#ffffff">
+
+
+									{% for e in row[1:] %}
+									<td style="">
+
+                                        {{e}}
+
+                                    </td>
+
+									{% endfor %}
+									<td style="text-align:center;">
+										{% if lR[1] == '' %}
+										<a class="btn btn-xs btn-info" onclick="main_update({{row[0]}})" title="编辑"><i class="fa fa-edit"></i></a>
+										{% endif %}
+
+									</td>
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+
+<script type="text/javascript" src="asset/js/jquery.min.js"></script>
+<script>
+$(function(){
+
+		//FixTable("mGridTable", 3, '100.5%', 450);
+	});
+
+function change_sort(obj){
+	var pk = obj.name.split('_')[1];
+	var v = obj.value;
+	var sUrl = "admin?fid=" + $('input[name=fid]').val() + "&part=changeSort&pk=" + pk + "&sort=" + v;
+	var R = sendXMLHTTP(sUrl);
+	if(R!='1'){
+		alert(R);
+	}
+}
+function change_status(obj){
+	var pk = obj.name.split('_')[1];
+	var v = obj.value;
+	var sUrl = "admin?fid=" + $('input[name=fid]').val() + "&part=changeStatus&pk=" + pk + "&status=" + v;
+	var R = sendXMLHTTP(sUrl);
+	if(R!='1'){
+		alert(R);
+	}
+}
+</script>
+{% endblock %}
+	
+{% block page_script %}
+<script>
+$(function(){
+	$("input[name=pk]").val('');
+	$("input[name=part]").val('main');
+});
+</script>
+
+<script>
+function main_post(action){
+	if($("input[name=item_id]:checked").length == 0){
+		layer.alert("请选择商品");
+		return false;
+	}
+	$("input[name=action]").val(action);
+	$("input[name=part]").val('post');                
+	$("form[name=frmMain]")[0].submit();      
+}
+$(function(){
+	$("select[name=set_ctype]").change(function(){
+		var v = $(this).val();
+		if(v != ''){
+			if($("input[name=item_id]:checked").length == 0){
+				layer.alert("请选择商品");
+				$(this).val('');
+				return false;
+			}
+			$("input[name=action]").val('setCtype');
+			$("input[name=part]").val('post');                
+			$("form[name=frmMain]")[0].submit();    
+		}
+	});
+	
+	$("select[name=set_lb]").change(function(){
+		var v = $(this).val();
+		if(v != ''){
+			if($("input[name=item_id]:checked").length == 0){
+				layer.alert("请选择商品");
+				$(this).val('');
+				return false;
+			}
+			$("input[name=action]").val('setLb');
+			$("input[name=part]").val('post');                
+			$("form[name=frmMain]")[0].submit();    
+		}
+	});
+});
+</script>
+{% endblock %}
+        
+            
+	

@@ -9,12 +9,13 @@
 import time
 import random
 from basic.base import set_cookie
-from basic.publicw import PEM_ROOTR,db,CLIENT_NAME,md5code,localurl,dActiveUser,user_menu,access_allow,\
-    oSHOP,oUSER,oMALL,oQINIU,oGOODS,oGOODS_D,oORDER_SET,oGOODS_N,oGOODS_G,oOPENID,oSHOP_T,oCATEGORY,\
-    oGOODS_SELL,oGOODS_PT,oGOODS_DPT,oPT_GOODS,oUSERS_OSS,oGOODS_H,cDL
-from qcloudsms_py import QcloudSms
+from basic import public
+# import PEM_ROOTR,db,CLIENT_NAME,md5code,localurl,dActiveUser,user_menu,access_allow,\
+#     oSHOP,oUSER,oMALL,oQINIU,oGOODS,oGOODS_D,oORDER_SET,oGOODS_N,oGOODS_G,oOPENID,oSHOP_T,oCATEGORY,\
+#     oGOODS_SELL,oGOODS_PT,oGOODS_DPT,oPT_GOODS,oUSERS_OSS,oGOODS_H,cDL
+#from qcloudsms_py import QcloudSms
 
-class cDL_BASE(cDL):
+class cDL_BASE(public.cDL):
 
     def __init__(self, objHandle):
 
@@ -23,24 +24,24 @@ class cDL_BASE(cDL):
         # else:
         #     self.RQ = objHandle.args
         self.REQUEST = objHandle.values
-        self.PEM_ROOTR = PEM_ROOTR
+        self.PEM_ROOTR = public.PEM_ROOTR
         self.objHandle = objHandle
-        self.db = db
-        self.cookie = set_cookie(self.objHandle, CLIENT_NAME)
+        self.db = public.db
+        self.cookie = set_cookie(self.objHandle, public.CLIENT_NAME)
         self.dActiveUser = {}
         self.account = {}
         session_user = self.cookie.igetcookie("__session")
         self.usr_id = 0
         self.dept_id = 0
         self.usr_id_p = 0
-        self.md5code=md5code
+        self.md5code=public.md5code
         self.debug = []  # 输出str信息
 
         self.usr_name = ''
         self.usrPic = ''
         self.LANG = {}
         self.lang = ''
-        self.localurl = localurl
+        self.localurl = public.localurl
         self.usr_name = ''
 
         # 获取网址请求过来的常用参数
@@ -69,9 +70,9 @@ class cDL_BASE(cDL):
         if session_user and self.viewid not in ['login']:
 
             self.usr_id = int(session_user['value'])
-            if not dActiveUser or not dActiveUser.get(self.usr_id):
+            if not public.dActiveUser or not public.dActiveUser.get(self.usr_id):
                 f = self.checkuser(self.usr_id)
-            self.dActiveUser = dActiveUser.get(self.usr_id, {})
+            self.dActiveUser = public.dActiveUser.get(self.usr_id, {})
             self.usr_name = self.dActiveUser.get('usr_name', '')
             self.usr_id_p = 1#self.dActiveUser.get('usr_id_p', '')
             self.dept_id = self.dActiveUser.get('dept_id', '')
@@ -92,19 +93,19 @@ class cDL_BASE(cDL):
             # 查 lR[3] == '' 时有权限，能控制是否显示列表信息，以及查询框
 
 
-            if user_menu.get(self.usr_id, {}):
-                self.system_menu = user_menu.get(self.usr_id, {})
+            if public.user_menu.get(self.usr_id, {}):
+                self.system_menu = public.user_menu.get(self.usr_id, {})
             else:
                 menu1, menu2, menu3 = self.getSysMenu(self.usr_id)
-                if self.usr_id in user_menu:
-                    user_menu[self.usr_id] = {
+                if self.usr_id in public.user_menu:
+                    public.user_menu[self.usr_id] = {
                         'menu1': menu1, 'menu2': menu2, 'menu3': menu3
                     }
                 else:
-                    user_menu.update({self.usr_id: {
+                    public.user_menu.update({self.usr_id: {
                         'menu1': menu1, 'menu2': menu2, 'menu3': menu3
                     }})
-                self.system_menu = user_menu.get(self.usr_id, {})
+                self.system_menu = public.user_menu.get(self.usr_id, {})
 
             roleData = None
             if self.bIsAdmin == 0:
@@ -119,7 +120,7 @@ class cDL_BASE(cDL):
                         if r == 0:
                             self.lR[n] = '1'
                         n = n + 1
-                elif self.viewid not in access_allow:
+                elif self.viewid not in public.access_allow:
                     self.lR = ['1', '1', '1', '1']
                     self.access = False
 
@@ -133,24 +134,24 @@ class cDL_BASE(cDL):
         self.init_data()
         self.myInit()
 
-        self.oSHOP = oSHOP
-        self.oUSER = oUSER
-        self.oMALL = oMALL
-        self.oQINIU=oQINIU
-        self.oGOODS=oGOODS
-        self.oGOODS_D=oGOODS_D
-        self.oORDER_SET=oORDER_SET
-        self.oGOODS_N=oGOODS_N
-        self.oGOODS_G=oGOODS_G
-        self.oOPENID=oOPENID
-        self.oSHOP_T=oSHOP_T
-        self.oCATEGORY=oCATEGORY
-        self.oGOODS_SELL = oGOODS_SELL
-        self.oGOODS_PT = oGOODS_PT
-        self.oGOODS_DPT = oGOODS_DPT
-        self.oPT_GOODS = oPT_GOODS
-        self.oUSERS_OSS = oUSERS_OSS
-        self.oGOODS_H=oGOODS_H
+        self.oSHOP = public.oSHOP
+        self.oUSER = public.oUSER
+        self.oMALL = public.oMALL
+        self.oQINIU=public.oQINIU
+        self.oGOODS=public.oGOODS
+        self.oGOODS_D=public.oGOODS_D
+        self.oORDER_SET=public.oORDER_SET
+        self.oGOODS_N=public.oGOODS_N
+        self.oGOODS_G=public.oGOODS_G
+        self.oOPENID=public.oOPENID
+        self.oSHOP_T=public.oSHOP_T
+        self.oCATEGORY=public.oCATEGORY
+        self.oGOODS_SELL = public.oGOODS_SELL
+        self.oGOODS_PT = public.oGOODS_PT
+        self.oGOODS_DPT = public.oGOODS_DPT
+        self.oPT_GOODS = public.oPT_GOODS
+        self.oUSERS_OSS = public.oUSERS_OSS
+        self.oGOODS_H=public.oGOODS_H
         # #####################################################################
 
         ########OSS用户自有调用
@@ -269,25 +270,25 @@ class cDL_BASE(cDL):
            WHERE U.usr_id=%s AND  U.status=1
         """
 
-        lT, iN = self.db.select(sql,[md5code,usr_id])
+        lT, iN = self.db.select(sql,[self.md5code,usr_id])
         if not iN:
             return 0
 
         usr_name = lT[0][1]
 
         # 求得用户的权限
-        dActiveUser[usr_id] = {}
-        dActiveUser[usr_id]['roles'] = {}  # 用户角色
+        public.dActiveUser[usr_id] = {}
+        public.dActiveUser[usr_id]['roles'] = {}  # 用户角色
 
-        dActiveUser[usr_id]['login_time'] = time.time()  # 登入时间
-        dActiveUser[usr_id]['usr_name'] = usr_name
-        dActiveUser[usr_id]['usr_id'] = usr_id  # 用户名
-        dActiveUser[usr_id]['login_id'] = usr_name  # 登陆ID
-        dActiveUser[usr_id]['usr_id_p'] = lT[0][3]  # 登陆ID
-        dActiveUser[usr_id]['dept_id'] = lT[0][3]  #部门ID
+        public.dActiveUser[usr_id]['login_time'] = time.time()  # 登入时间
+        public.dActiveUser[usr_id]['usr_name'] = usr_name
+        public.dActiveUser[usr_id]['usr_id'] = usr_id  # 用户名
+        public.dActiveUser[usr_id]['login_id'] = usr_name  # 登陆ID
+        public.dActiveUser[usr_id]['usr_id_p'] = lT[0][3]  # 登陆ID
+        public.dActiveUser[usr_id]['dept_id'] = lT[0][3]  #部门ID
 
-        dActiveUser[usr_id]['menu_role'] = self.get_usr_menu_role()
-        return dActiveUser
+        public.dActiveUser[usr_id]['menu_role'] = self.get_usr_menu_role()
+        return public.dActiveUser
 
     def get_usr_menu_role(self):
 
