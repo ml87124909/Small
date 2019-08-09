@@ -9,8 +9,8 @@
 
 import time,hashlib,os,oss2
 from imp import reload
-from basic import public
-if public.DEBUG == '1':
+from basic.publicw import DEBUG
+if DEBUG == '1':
     import admin.dl.MODEL_DL
     reload(admin.dl.MODEL_DL)
 from admin.dl.MODEL_DL             import cMODEL_DL

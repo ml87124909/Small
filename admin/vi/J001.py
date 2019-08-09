@@ -7,8 +7,8 @@
 """ admin/vi/J001.py"""
 
 from imp import reload
-from basic import public
-if public.DEBUG=='1':
+from basic.publicw import DEBUG
+if DEBUG == '1':
     import admin.vi.BASE_TPL
     reload(admin.vi.BASE_TPL)
 from admin.vi.BASE_TPL             import cBASE_TPL

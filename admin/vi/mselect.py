@@ -5,11 +5,9 @@
 #QQ group:528289471
 ##############################################################################
 """admin/vi/mselect.py"""
-from basic import public
-
-DEBUG, CLIENT_NAME, dMemberUser, cTag, CHtml=public.DEBUG,public.CLIENT_NAME,public.dMemberUser,public.cTag,public.CHtml
 
 
+from basic.publicw import cTag, CHtml
 
 class mselect:
     def __init__(self , name = 'm' , nl = [],title = '选择人员' , wh = [800,300] , can = [1,1]):

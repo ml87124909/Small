@@ -19,8 +19,8 @@ from qiniu import Auth, put_stream, put_data
 #bucket_name = app.config['QINIU_BUCKET_NAME']
 #domain_prefix = app.config['QINIU_DOMAIN']
 from imp import reload
-from basic import public
-if public.DEBUG == '1':
+from basic.publicw import DEBUG
+if DEBUG == '1':
     import admin.vi.VIEWS
     reload(admin.vi.VIEWS)
 from admin.vi.VIEWS             import cVIEWS
@@ -372,16 +372,6 @@ class cVI_BASE(cVIEWS):
         #     return domain_prefix + save_file_name
         return None
 
-    def serialize(self,obj):
-
-        return phpserialize.dumps(obj)
-
-    def unserialize(self,string):
-
-        if not string or string == '':
-            return None
-        string = string.replace(" ", "")
-        return phpserialize.loads(string)
 
 
 

@@ -7,9 +7,8 @@
 """admin/vi/home.py"""
 
 from imp import reload
-from basic import public
-
-if public.DEBUG == '1':
+from basic.publicw import DEBUG
+if DEBUG == '1':
     import admin.vi.VI_BASE
     reload(admin.vi.VI_BASE)
 

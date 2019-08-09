@@ -7,8 +7,8 @@
 """admin/vi/login.py"""
 
 from imp import reload
-from basic import public
-if public.DEBUG=='1':
+from basic.publicw import DEBUG,user_menu
+if DEBUG == '1':
     import admin.vi.VI_BASE
     reload(admin.vi.VI_BASE)
 from admin.vi.VI_BASE             import cVI_BASE
@@ -50,12 +50,12 @@ class clogin(cVI_BASE):
             
             self.dl.checkuser(usr_id)
             menu1,menu2,menu3 = self.dl.getSysMenu(usr_id)
-            if usr_id in public.user_menu:
-                public.user_menu[usr_id] = {
+            if usr_id in user_menu:
+                user_menu[usr_id] = {
                     'menu1':menu1,'menu2':menu2,'menu3':menu3
                 }
             else:
-                public.user_menu.update( {usr_id:{
+                user_menu.update( {usr_id:{
                     'menu1':menu1,'menu2':menu2,'menu3':menu3
                 }} )
 
@@ -238,12 +238,12 @@ class clogin(cVI_BASE):
         self.dl.checkuser(usr_id)
         self.dl.oUSERS_OSS.update(usr_id)
         menu1, menu2, menu3 = self.dl.getSysMenu(usr_id)
-        if usr_id in public.user_menu:
-            public.user_menu[usr_id] = {
+        if usr_id in user_menu:
+            user_menu[usr_id] = {
                 'menu1': menu1, 'menu2': menu2, 'menu3': menu3
             }
         else:
-            public.user_menu.update({usr_id: {
+            user_menu.update({usr_id: {
                 'menu1': menu1, 'menu2': menu2, 'menu3': menu3
             }})
 

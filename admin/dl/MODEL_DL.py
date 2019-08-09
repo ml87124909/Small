@@ -7,8 +7,8 @@
 """admin/dl/MODEL_DL.py"""
 
 from imp import reload
-from basic import public
-if public.DEBUG == '1':
+from basic.publicw import DEBUG
+if DEBUG == '1':
     import admin.dl.DL_BASE
     reload(admin.dl.DL_BASE)
 from admin.dl.DL_BASE  import cDL_BASE
