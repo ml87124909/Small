@@ -87,18 +87,18 @@ class cupload(cUP):
         self.oss_domain = self.oQINIU.get(self.usr_id_p).get('domain_url', '')
         self.oss_endpoint = self.oQINIU.get(self.usr_id_p).get('endpoint', '')
         ########OSS公共调用
-        self.oss_ctype_all = self.oQINIU.get(1).get('ctype', '')
-        self.oss_access_key_all = self.oQINIU.get(1).get('access_key', '')
-        self.oss_secret_key_all = self.oQINIU.get(1).get('secret_key', '')
-        self.oss_bucket_name_all = self.oQINIU.get(1).get('cname', '')
-        self.oss_domain_all = self.oQINIU.get(1).get('domain_url', '')
-        self.oss_endpoint_all = self.oQINIU.get(1).get('endpoint', '')
-        ########计算处理
-        self.oss_all = self.oUSERS_OSS.get(self.usr_id_p).get('oss_all', 0)
-        self.oss_now = self.oUSERS_OSS.get(self.usr_id_p).get('oss_now', 0)
-        self.qiniu_flag = self.oUSERS_OSS.get(self.usr_id_p).get('qiniu_flag', 0)
-        self.oss_flag = self.oUSERS_OSS.get(self.usr_id_p).get('oss_flag', 0)
-        #########
+        # self.oss_ctype_all = self.oQINIU.get(1).get('ctype', '')
+        # self.oss_access_key_all = self.oQINIU.get(1).get('access_key', '')
+        # self.oss_secret_key_all = self.oQINIU.get(1).get('secret_key', '')
+        # self.oss_bucket_name_all = self.oQINIU.get(1).get('cname', '')
+        # self.oss_domain_all = self.oQINIU.get(1).get('domain_url', '')
+        # self.oss_endpoint_all = self.oQINIU.get(1).get('endpoint', '')
+        # ########计算处理
+        # self.oss_all = self.oUSERS_OSS.get(self.usr_id_p).get('oss_all', 0)
+        # self.oss_now = self.oUSERS_OSS.get(self.usr_id_p).get('oss_now', 0)
+        # self.qiniu_flag = self.oUSERS_OSS.get(self.usr_id_p).get('qiniu_flag', 0)
+        # self.oss_flag = self.oUSERS_OSS.get(self.usr_id_p).get('oss_flag', 0)
+        # #########
 
 
 
@@ -236,9 +236,9 @@ class cupload(cUP):
 
 
     def goPartImg(self):#保存到七牛
-        if self.oss_now > self.oss_all and self.oss_flag != 7 and (self.oss_ctype==2 or self.qiniu_flag==0):
-            dR = {'code': '1', 'msg': '您的容量已超！'}
-            return self.jsons(dR)
+        # if self.oss_now > self.oss_all and self.oss_flag != 7 and (self.oss_ctype==2 or self.qiniu_flag==0):
+        #     dR = {'code': '1', 'msg': '您的容量已超！'}
+        #     return self.jsons(dR)
         file = self.objHandle.files['file']  # request的files属性为请求中文件的数据<input 里的name="file">
         url = ''
         if file and self.allowed_file(file.filename):
@@ -253,34 +253,34 @@ class cupload(cUP):
             file_size = float(len(file_content)) / 1024
             
             
-            if self.oss_ctype==2 or self.qiniu_flag==0:#使用平台公共
-                if self.oss_ctype_all == 0:
-                    access_key=self.oss_access_key_all
-                    secret_key=self.oss_secret_key_all
-                    bucket_name= self.oss_bucket_name_all
-                    domain=self.oss_domain_all
-                    url = self.qiniu_upload_file(access_key,secret_key,bucket_name,domain,file_content, filename)
-                else:
-                    access_key = self.oss_access_key_all
-                    secret_key = self.oss_secret_key_all
-                    bucket_name = self.oss_bucket_name_all
-                    domain = self.oss_domain_all
-                    endpoint=self.oss_endpoint_all
-                    url = self.ali_upload_file(access_key,secret_key,bucket_name,domain,endpoint,file_content, filename)
-            else:#使用自己的
-                if self.oss_ctype == 0:
-                    access_key = self.oss_access_key
-                    secret_key = self.oss_secret_key
-                    bucket_name = self.oss_bucket_name
-                    domain = self.oss_domain
-                    url = self.qiniu_upload_file(access_key,secret_key,bucket_name,domain,file_content, filename)
-                else:#1阿里
-                    access_key = self.oss_access_key
-                    secret_key = self.oss_secret_key
-                    bucket_name = self.oss_bucket_name
-                    domain = self.oss_domain
-                    endpoint = self.oss_endpoint
-                    url = self.ali_upload_file(access_key,secret_key,bucket_name,domain,endpoint,file_content, filename)
+            # if self.oss_ctype==2 or self.qiniu_flag==0:#使用平台公共
+            #     if self.oss_ctype_all == 0:
+            #         access_key=self.oss_access_key_all
+            #         secret_key=self.oss_secret_key_all
+            #         bucket_name= self.oss_bucket_name_all
+            #         domain=self.oss_domain_all
+            #         url = self.qiniu_upload_file(access_key,secret_key,bucket_name,domain,file_content, filename)
+            #     else:
+            #         access_key = self.oss_access_key_all
+            #         secret_key = self.oss_secret_key_all
+            #         bucket_name = self.oss_bucket_name_all
+            #         domain = self.oss_domain_all
+            #         endpoint=self.oss_endpoint_all
+            #         url = self.ali_upload_file(access_key,secret_key,bucket_name,domain,endpoint,file_content, filename)
+            # else:#使用自己的
+            if self.oss_ctype == 0:
+                access_key = self.oss_access_key
+                secret_key = self.oss_secret_key
+                bucket_name = self.oss_bucket_name
+                domain = self.oss_domain
+                url = self.qiniu_upload_file(access_key,secret_key,bucket_name,domain,file_content, filename)
+            else:#1阿里
+                access_key = self.oss_access_key
+                secret_key = self.oss_secret_key
+                bucket_name = self.oss_bucket_name
+                domain = self.oss_domain
+                endpoint = self.oss_endpoint
+                url = self.ali_upload_file(access_key,secret_key,bucket_name,domain,endpoint,file_content, filename)
             if url:
                 self.Save_pic_table(file_ext, file_size, filename, url)
             dR = {'code': '0', 'msg': '上传成功', 'url': url}
@@ -343,15 +343,7 @@ class cupload(cUP):
                         values(%s,%s,%s,%s,%s,%s,%s,now())"""
         L = [self.usr_id_p, f_year, f_ext, f_size, filename, url, self.usr_id]
         self.db.query(sql, L)
-        print(url)
-        if ('http://' in url or 'https://' in url) and self.oss_ctype==2 and self.oss_flag!=7:
-            nums=(float(f_size) / 1024)
-            self.oUSERS_OSS.updates(self.usr_id_p,nums)
-            try:
-                sqlu = "update users set oss_now=coalesce(oss_now,0)+(%s/1024),utime=now(),uid=%s where usr_id=%s"
-                self.db.query(sqlu, [f_size, self.usr_id, self.usr_id_p])
-            except Exception as e:
-                self.print_log('处理oss_now出错', '%s' % e)
+
         return
     
     def getToday(self, format=3):
