@@ -98,7 +98,7 @@ class brand(Base):
     usr_id = Column(Integer,  nullable=True,index=True)
     cname = Column(Text,  nullable=True,index=True)
     pic_icon = Column(Text, nullable=True, index=True)
-    sort = Column(Integer, nullable=True)
+    sort = Column(Text, nullable=True, index=True)
     hot = Column(SMALLINT, nullable=True)
     status = Column(SMALLINT, nullable=True)
     del_flag = Column(SMALLINT, nullable=True)
