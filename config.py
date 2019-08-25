@@ -13,7 +13,7 @@ ulink=0
 md5code = 'janedao'#这是加密的密钥，在安装前可以随便修改，否则导致无法解密，影响使用。
 auth_name='ALL'#所有
 auth_pass='PASS'#
-
+logconfig=1#这里是调试开关 1是开启，其他值都是关闭
 #################
 #这下边是项目路径，预设好的，请不要修改。
 CLIENT_NAME = 'Small'

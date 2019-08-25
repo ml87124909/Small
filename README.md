@@ -4,7 +4,7 @@
 
 
 ## 最后更新日期  2019-08-07
-docker镜像基于ubuntu 18.04 的python3.6.8
+docker镜像基于ubuntu 18.04 的python3.6.8+postgresql-10,数据库要开下pgcrypto。命令是：create extension pgcrypto;
 <br>mn3711698/small:004,我测试过OK。
 <br>您完全可以直接在里边的/var/games/Small下，安装(python3 install.py)及运行(python3 start.py)。
 <br>以后docker里的代码我就不更新了，有需要的直接git pull就好了。
