@@ -8,13 +8,13 @@
 import os
 import time
 from flask import jsonify
-from basic.public import cAPI,ATTACH_ROOTR,md5code,db,oSHOP,oUSER,oMALL,oQINIU,oGOODS,oGOODS_D,oORDER_SET\
+from basic.publicw import cAPI,ATTACH_ROOTR,md5code,db,oSHOP,oUSER,oMALL,oQINIU,oGOODS,oGOODS_D,oORDER_SET\
     ,oGOODS_N,oGOODS_G,oOPENID,oSHOP_T,oCATEGORY,oGOODS_SELL,oGOODS_PT,oGOODS_DPT,oPT_GOODS
 
 
 class cVIEWS(cAPI):
 
-    def __init__(self, request):
+    def __init__(self, request,subid):
 
         self.objHandle = request
         self.REQUEST = self.objHandle.values
