@@ -19,7 +19,7 @@ class cVIEWS(cAPI):
         self.objHandle = request
         self.REQUEST = self.objHandle.values
         self.ATTACH_ROOT=ATTACH_ROOTR
-        self.subusr_id = 1
+        self.subusr_id = subid
         self.md5code=md5code
         self.db = db
         self.jsons=jsonify

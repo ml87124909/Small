@@ -4,7 +4,7 @@
 # Author：QQ173782910
 #QQ group:528289471
 ##############################################################################
-"""wxpay/WxPay.py"""
+"""basic/wxpublic.py"""
 from jinja2 import Environment, PackageLoader
 from flask import request
 from .base import set_cookie

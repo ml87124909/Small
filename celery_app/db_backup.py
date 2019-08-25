@@ -18,8 +18,8 @@ app = Flask(__name__)
 import requests, json, os, random, traceback, oss2
 from imp import reload
 import datetime
-from basic import public
-reload(public)
+from basic import publicw as public
+
 
 
 db, ATTACH_ROOT, getToday = public.db, public.ATTACH_ROOT, public.getToday
