@@ -5,17 +5,11 @@
 {% block mMul_Page_1 %}
 <div class="panel-body">
     <div class="row">
-        <div class="form-group">
-            <label class="col-sm-5 control-label">
-                <font style="color:red;">说明：默认使用平台存储。平台存储要付费，另外两种不需要。</font>
-            </label>
 
-        </div>
         <div class="form-group">
             <label class="col-sm-3 control-label">OSS开启:</label>
             <div class="col-sm-3">
                 <select name="ctype" class="form-control" onchange='showctype(this)'>
-                    <option value="2" {{'selected="selected"' if '2' == item.ctype|string}}>平台存储</option>
                     <option value="0" {{'selected="selected"' if '0' == item.ctype|string}}>七牛云OSS</option>
                     <option value="1" {{'selected="selected"' if '1' == item.ctype|string}}>阿里云OSS</option>
                 </select>
