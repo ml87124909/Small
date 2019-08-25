@@ -134,7 +134,7 @@ class cC004_dl(cBASE_DL):
         category_ids=self.GP('category_ids','')#商品分类
         #category_ids_str =self.GP('category_ids_str','')#商品分类
         video = self.GP('video', '')#视频链接
-        content = self.GPRQ('text_contents','')#详情介绍
+        content = self.REQUEST.get('text_contents','')#详情介绍
         originalprice = self.GP('originalprice', '')#商品原价
         minprice = self.GP('minprice', '')  # 现价
         stores = self.GP('stores', '')#库存

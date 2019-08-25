@@ -74,7 +74,7 @@ class cC004(cBASE_TPL):
                     'hy_level':self.dl.get_hy_up_level(),  #会员级别
                      'L_p': L_p, 'L_c': L_c, 'spec_all': spec_all, 'spec_amount': spec_amount,
                      'spec_childx': spec_childx,
-                     'Discount_list':self.dl.Discount_list(self.pk),  #单独会员折扣
+                     #'Discount_list':self.dl.Discount_list(self.pk),  #单独会员折扣
                      'show_ticket': self.show_ticket(),
                      'show_spec': self.Spec_mselect_child()
                      })
