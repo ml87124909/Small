@@ -62,21 +62,14 @@ class chome_dl(cBASE_DL):
     def get_base_me(self):#基本信息(小程序信息等)
         sql="""
             
-            select to_char(u.ctime,'YYYY-MM-DD')ctime,
-                to_char(u.expire_time,'YYYY-MM-DD')expire_time,
-                m.appid,m.secret ,coalesce(u.with_flag,0)with_flag,
-                '永久会员' as vip_name,
-                 coalesce(u.vip_flag,0)vip_flag,
-                 coalesce(u.oss_all,100) as oss_all,
-                 coalesce(u.oss_flag,0)oss_flag,
-                coalesce(coalesce(u.oss_all,100)-coalesce(u.oss_now,0),0) as oss_now,coalesce(qiniu_flag,0)qiniu_flag
-            
-            from users u
-            left join mall m on m.usr_id=u.usr_id 
-            where u.usr_id=%s
+            select 
+                convert_from(decrypt(appid::bytea, %s, 'aes'),'SQL_ASCII')appid,
+                convert_from(decrypt(secret::bytea, %s, 'aes'),'SQL_ASCII')secret
+            from mall
+            where usr_id=%s
         """
-        t=self.db.fetch(sql,self.usr_id_p)
-        t['oss_now'] = round(float(t['oss_now']), 2)
+        t=self.db.fetch(sql,[self.md5code,self.md5code,self.usr_id_p])
+
         return t
 
     def get_goods_sell(self):#出售中

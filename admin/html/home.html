@@ -86,94 +86,15 @@
 										<div class="item-tit">小程序SubUrl</div>
 									</td>
 									<td>
-										https://{{您的域名}}/api/{{usr_id}}?viewid=home
+										https://{您的域名}/api/{{usr_id}}?viewid=home
 									</td>
 								</tr>
-								<tr>
-									<td>
-										<div class="item-tit">系统注册日期</div>
-									</td>
-									<td>
-										{{base_me.ctime}}
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<div class="item-tit">系统版本状态</div>
-									</td>
-									<td>
-										<text style="color:#de6360;">
-											{%if base_me.vip_flag==''%}
-											体验版
-											{%else%}
-											{{base_me.vip_name}}
-											{%endif%}
-										</text>
-									</td>
-								</tr>
+
 							</tbody>
 						</table>
 
 					</div>
-					<div class="col-sm-3">
-						<div class="ibox float-e-margins">
-							<div class="ibox-content ibox-sale-box">
-								<div class="sale-box">
-									<div class="sale-box-header">
-										<div class="sale-name">系统版本</div>
-										<div class="sale-number">
-											{%if base_me.vip_name==''%}
-											体验版
-											{%else%}
-											{{base_me.vip_name}}
-											{%endif%}
-										</div>
-										<div class="sale-text">
-											{%if base_me.vip_flag!=7%}
-											{{base_me.expire_time}}到期
-											{%endif%}
-										</div>
-									</div>
-									<div class="sale-box-header sale-box-right">
-										<div class="sale-name">储存容量</div>
-										<div class="sale-number">
-											{%if base_me.oss_flag==7%}
-											无限容量
-											{%else%}
-											{{base_me.oss_all}}M
-											{%endif%}
-										</div>
-										<div class="sale-text">
-											{%if base_me.oss_flag!=7%}
-											剩余{{base_me.oss_now}}M可用
-											{%endif%}
-										</div>
-									</div>
-								</div>
-								<marquee behavior="scroll" direction="left">{{'测试混动'}}</marquee>
-								<div class="sale-center">
-									<div class="sale-center-flex">
-										{%if base_me.vip_flag!=7%}
-										{%if base_me.vip_flag==''%}
-										<button type="button" class="sale-center-vip" onclick="upgrade_vip()">升级版本
-										</button>
-										{%else%}
-										<button type="button" class="sale-center-vip" onclick="upgrade_vip()">续费版本
-										</button>
-										{%endif%}
-										{%endif%}
-									</div>
 
-									<div class="sale-center-flex">
-										{%if base_me.oss_flag!=7%}
-										<button type="button" class="oss_vip" onclick="upgrade_oss()">购买存储包</button>
-										{%endif%}
-									</div>
-
-								</div>
-							</div>
-						</div>
-					</div>
 				</div>
 			</div>
 			<div class="col-sm-2">
