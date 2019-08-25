@@ -112,8 +112,8 @@
                    var cname = $('input[name=cname]').val();
                    var ctype = $('input[name=ctype]').val();
                    var sort = $('input[name=sort]').val();
-				   if(ctype=='' || cname=='' || sort==''){
-				   		layer.msg('必须全部填写！')
+				   if(cname==''){
+				   		layer.msg('规格名称不能为空！')
 				   		return false;
 				   }
 
@@ -185,8 +185,8 @@
                    var cname = $('input[name=cname]').val();
                    var ctype = $('input[name=ctype]').val();
                    var sort = $('input[name=sort]').val();
-				   if(ctype=='' || cname=='' || sort==''){
-				   		layer.msg('必须全部填写！')
+				   if(cname==''){
+				   		layer.msg('规格名称不能为空！')
 				   		return false;
 				   }
 

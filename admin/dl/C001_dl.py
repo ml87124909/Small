@@ -92,7 +92,7 @@ class cC001_dl(cBASE_DL):
         #这些是操作权限
 
         pk = self.pk
-        dR={'code':'','MSG':''}
+        dR={'code':'','MSG':'处理失败'}
 
         
         #获取表单参数
@@ -147,7 +147,8 @@ class cC001_dl(cBASE_DL):
         self.oGOODS_N.update(self.usr_id_p)
         self.oCATEGORY.update(self.usr_id_p)
         dR['pk'] = pk
-        dR['code'] = 0
+        dR['code'] = '0'
+        dR['MSG'] = '处理成功'
         return dR
 
     def getfllist(self):
