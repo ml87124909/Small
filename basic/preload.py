@@ -41,7 +41,7 @@ class cSHOP:
             shopInfo= self.db.fetch(sql,[self.md5code,self.md5code,k])
             vipInfo = []
             if shopInfo:
-
+                id = shopInfo.get('id', '')
                 vname=shopInfo.get('ctype','')
                 vip_price = shopInfo.get('vip_price','')
                 vip_sale =shopInfo.get('discount','')
@@ -213,6 +213,7 @@ class cSHOP:
         shopInfo = self.db.fetch(sql, [self.md5code,self.md5code,sType])
         vipInfo = []
         if shopInfo:
+            id = shopInfo.get('id', '')
             vname = shopInfo.get('ctype', '')
             vip_price = shopInfo.get('vip_price', '')
             vip_sale = shopInfo.get('discount', '')
