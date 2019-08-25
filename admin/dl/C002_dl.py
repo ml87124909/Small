@@ -120,7 +120,7 @@ class cC002_dl(cBASE_DL):
             sql = "insert into spec(usr_id,ctype,cicon,cname,sort,cid,ctime)values(%s,%s,%s,%s,%s,%s,now())"
             try:
                 dR['MSG'] = '增加规格成功'
-                self.db.query(sql, [self.usr_id_p, ctype, url, cname, sort, self.usr_id])
+                self.db.query(sql, [self.usr_id_p, ctype, url, cname, sort or None, self.usr_id])
                 self.oGOODS_D.update(self.usr_id_p)
                 self.oGOODS.update(self.usr_id_p)
                 self.oGOODS_N.update(self.usr_id_p)
@@ -145,10 +145,10 @@ class cC002_dl(cBASE_DL):
             try:
                 if url == '':
                     sql = "update spec set ctype=%s,cname=%s,sort=%s,uid=%s,utime=now() where id=%s "
-                    self.db.query(sql, [ctype, cname, sort, self.usr_id, id])
+                    self.db.query(sql, [ctype, cname, sort or None, self.usr_id, id])
                 else:
                     sql = "update spec set ctype=%s,cicon=%s,cname=%s,sort=%s,uid=%s,utime=now() where id=%s "
-                    self.db.query(sql, [ctype, url, cname, sort, self.usr_id, id])
+                    self.db.query(sql, [ctype, url, cname, sort or None, self.usr_id, id])
                 dR['MSG'] = '修改规格成功'
                 self.oGOODS_D.update(self.usr_id_p)
                 self.oGOODS.update(self.usr_id_p)
@@ -171,19 +171,19 @@ class cC002_dl(cBASE_DL):
         dR = {'code': '', 'MSG': ''}
 
         if id=='0':
-            sql = """
-                select id from spec_child 
-                where usr_id=%s and COALESCE(del_flag,0)=0 and  cname_c=%s and spec_id=%s
-                    """
-            l, t = self.db.select(sql, [self.usr_id_p, cname, pk])
-            if t > 0:
-                dR['code'] = '1'
-                dR['MSG'] = '子规格名称有重复'
-                return dR
+            # sql = """
+            #     select id from spec_child
+            #     where usr_id=%s and COALESCE(del_flag,0)=0 and  cname_c=%s and spec_id=%s
+            #         """
+            # l, t = self.db.select(sql, [self.usr_id_p, cname, pk])
+            # if t > 0:
+            #     dR['code'] = '1'
+            #     dR['MSG'] = '子规格名称有重复'
+            #     return dR
             sql = "insert into spec_child(usr_id,spec_id,ctype_c,cicon_c,cname_c,sort_c,cid,ctime)values(%s,%s,%s,%s,%s,%s,%s,now())"
             try:
                 dR['MSG'] = '增加规格子属性成功'
-                self.db.query(sql, [self.usr_id_p,pk, ctype, url, cname, sort, self.usr_id])
+                self.db.query(sql, [self.usr_id_p,pk, ctype, url, cname, sort or None, self.usr_id])
                 self.oGOODS_D.update(self.usr_id_p)
                 self.oGOODS.update(self.usr_id_p)
                 self.oGOODS_N.update(self.usr_id_p)
@@ -203,7 +203,7 @@ class cC002_dl(cBASE_DL):
                 else:
                     sql = """update spec_child set ctype_c=%s,cicon_c=%s,
                         cname_c=%s,sort_c=%s,uid=%s,utime=now() where id=%s """
-                    self.db.query(sql, [ctype, url, cname, sort, self.usr_id, id])
+                    self.db.query(sql, [ctype, url, cname, sort or None, self.usr_id, id])
                 self.oGOODS_D.update(self.usr_id_p)
                 self.oGOODS.update(self.usr_id_p)
                 self.oGOODS_N.update(self.usr_id_p)
