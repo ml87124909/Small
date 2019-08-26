@@ -791,6 +791,10 @@ class cGOODS:
         self.update(str(sType))
         return
 
+    def updatev(self, sType,id):
+        self.update(str(sType))
+        return
+
     def get(self, sType):
         return self.__d.get(str(sType),{})
 
