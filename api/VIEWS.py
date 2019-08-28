@@ -27,9 +27,9 @@ class cVIEWS(cAPI):
         self.classpath = 'api'
         self.SECRET_KEY='5bf030dbb13422031ea802a9ab75900a'
         # 获取网址请求过来的常用参数
-        self.viewid = self.REQUEST.get('viewid', 'home')  # viewid值
-        self.part = self.REQUEST.get('part', 'begin')
-        self.appid = self.REQUEST.get('appid', '')
+        self.viewid = self.RQ('viewid', 'home')  # viewid值
+        self.part = self.RQ('part', 'begin')
+        self.appid = self.RQ('appid', '')
         self.error_code = {
                             -1: u'服务器内部错误',
                             0: u'接口调用成功',
@@ -77,14 +77,23 @@ class cVIEWS(cAPI):
         self.qiniu_secret_key = self.oQINIU.get(self.subusr_id).get('secret_key', '')
         self.qiniu_bucket_name = self.oQINIU.get(self.subusr_id).get('name', '')
         self.qiniu_domain = self.oQINIU.get(self.subusr_id).get('domain', '')
+        self.endpoint = self.oQINIU.get(self.subusr_id).get('endpoint', '')
     #     ########七牛公共调用
         self.qiniu_ctype_all = self.oQINIU.get(1).get('ctype', '')
         self.qiniu_access_key_all = self.oQINIU.get(1).get('access_key', '')
         self.qiniu_secret_key_all = self.oQINIU.get(1).get('secret_key', '')
         self.qiniu_bucket_name_all = self.oQINIU.get(1).get('name', '')
         self.qiniu_domain_all = self.oQINIU.get(1).get('domain', '')
-        self.endpoint = self.oQINIU.get(1).get('endpoint', '')
+        self.endpoint_all = self.oQINIU.get(1).get('endpoint', '')
 
+    def RQ(self, key, default=None, ctype=1):
+        value = self.REQUEST.get(key, default)
+        L_error = ['"', "'", '%', '#', '&', '*', '(', ')', '@', '`', '\\', ']', '=', '<', '>','?','/']
+        if ctype==1 and value and isinstance(value, str):
+            for c in L_error:
+                if c in value:
+                    value=value.replace(c,'')
+        return value
 
     def make_sub_path(self, sPATH):
         """检查os的最后一级子目录，如果不存在，生成之"""
