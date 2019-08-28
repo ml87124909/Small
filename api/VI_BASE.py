@@ -117,14 +117,14 @@ class cVI_BASE(cVIEWS):
 
         # bucket_name 是存储空间列表名,domain_prefix是外链默认域名链接
         # 构建鉴权对象
-        if self.qiniu_access_key=='':
-            q = Auth(self.qiniu_access_key_all, self.qiniu_secret_key_all)
-            token = q.upload_token(self.qiniu_bucket_name_all, filename)
-            domain_prefix=self.qiniu_domain_all
-        else:
-            q = Auth(self.qiniu_access_key, self.qiniu_secret_key)
-            token = q.upload_token(self.qiniu_bucket_name, filename)
-            domain_prefix = self.qiniu_domain
+        # if self.qiniu_access_key=='':
+        #     q = Auth(self.qiniu_access_key_all, self.qiniu_secret_key_all)
+        #     token = q.upload_token(self.qiniu_bucket_name_all, filename)
+        #     domain_prefix=self.qiniu_domain_all
+        # else:
+        q = Auth(self.qiniu_access_key, self.qiniu_secret_key)
+        token = q.upload_token(self.qiniu_bucket_name, filename)
+        domain_prefix = self.qiniu_domain
 
         ret, info = put_data(token, filename, source_file)
         if info.status_code == 200:
@@ -134,10 +134,10 @@ class cVI_BASE(cVIEWS):
 
     def ali_upload_file(self, source_file, filename):
 
-        domain_prefix = self.qiniu_domain_all
+        domain_prefix = self.qiniu_domain
         # endpoint = 'http://oss-cn-shenzhen.aliyuncs.com'  # 你的Bucket处于的区域
-        auth = oss2.Auth(self.qiniu_access_key_all, self.qiniu_secret_key_all)
-        bucket = oss2.Bucket(auth, self.endpoint, self.qiniu_bucket_name_all)
+        auth = oss2.Auth(self.qiniu_access_key, self.qiniu_secret_key)
+        bucket = oss2.Bucket(auth, self.endpoint, self.qiniu_bucket_name)
         # result = bucket.put_object(filename, source_file)  # 上传
         # if result.status == 200:
         #     return domain_prefix + filename
