@@ -507,7 +507,7 @@ class cBASE_TPL(cVI_BASE):
             return self.jsons({'code': 0, 'data': l, 'msg': self.error_code['ok']})
 
 
-        sql = """select c.id,c.name,c.type,c.pid,ca.name as pid_name,
+        sql = """select c.id,c.cname,c.ctype,c.pid,ca.cname as pid_name,
                     c.pic_icon,c.pic_imgs,c.remark,
                     c.paixu,to_char(c.ctime,'YYYY-MM-DD HH24:MI')time_add 
                 from category c 
@@ -516,7 +516,7 @@ class cBASE_TPL(cVI_BASE):
         l, t = self.db.fetchall(sql, [self.subusr_id, id, tid])
 
         L = l
-        sql = """select c.id,c.name,c.type,c.pid,ca.name as pid_name,
+        sql = """select c.id,c.cname,c.ctype,c.pid,ca.cname as pid_name,
                         c.pic_icon,c.pic_imgs,c.remark,
                         c.paixu,to_char(c.ctime,'YYYY-MM-DD HH24:MI')time_add 
                 from category c 
