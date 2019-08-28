@@ -50,14 +50,7 @@ from api.VIEWS import cVIEWS
 # }
 class cVI_BASE(cVIEWS):
 
-    def RQ(self, key, default=None, ctype=1):
-        value = self.REQUEST.get(key, default)
-        L_error = ['"', "'", '%', '#', '&', '*', '(', ')', '@', '`', '\\', ']', '=', '<', '>','?','/']
-        if ctype==1 and value and isinstance(value, str):
-            for c in L_error:
-                if c in value:
-                    value=value.replace(c,'')
-        return value
+
 
     def create_token(self,usr_id,open_id,wechat_user_id):
 
