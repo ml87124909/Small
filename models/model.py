@@ -1523,6 +1523,16 @@ class wechat_mall_user(Base):
     uid = Column(Integer, nullable=True)
     utime = Column(DateTime, nullable=True)
 
+
+class webapge_log(Base):
+    """ 小程序用户记录"""
+    __tablename__ = "webapge_log"
+    id = Column(Integer, primary_key=True, nullable=False, autoincrement=True, index=True)
+    errors = Column(Text, nullable=True)
+    cname = Column(Text, nullable=True)
+    ctime = Column(DateTime, nullable=True)
+
+
 class wechat_user_change_log(Base):
     """ 小程序用户记录"""
     __tablename__ = "wechat_user_change_log"
