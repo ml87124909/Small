@@ -1809,7 +1809,7 @@ class cBASE_LOC(cBASE_TPL):
         romcode = str(time.time()).split('.')[-1]  # [3:]
         order_num = 'H' + danhao[2:] + romcode  # 会员H
 
-        sql = "select vip_price,up_type  from member where usr_id=%s"
+        sql = "select vip_price,up_type  from shop_set where usr_id=%s"
         k, t = self.db.select(sql, self.subusr_id)
         if t == 0:
             return self.jsons({'code': 701, 'msg': self.error_code[701]})
