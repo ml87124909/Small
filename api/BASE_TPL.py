@@ -195,7 +195,7 @@ class cBASE_TPL(cVI_BASE):
         ctype = self.RQ('type', '')
 
         l=self.oSHOP.get(self.subusr_id,'advertis_banner')
-        print(l)
+        #print(l)
         if len(l)==0:
             return self.jsons({'code': 404, 'msg': self.error_code[404]})
         L = []
@@ -446,56 +446,38 @@ class cBASE_TPL(cVI_BASE):
 
 
     def goPartshop_category(self):#商品分类接口
-        level = self.RQ('level', '')
-        type = self.RQ('type', '')
+        ilevel = self.RQ('level', '')
+        ctype = self.RQ('type', '')
 
-        # sql="""select c.id,c.name,c.type,
-        #         c.level,c.pid,ca.name as pid_name,
-        #         c.pic_icon,c.pic_imgs,c.paixu,c.remark,
-        #         to_char(c.ctime,'YYYY-MM-DD HH24:MI')time_add
-        #         from category c
-        #         left join category ca on ca.id=c.pid
-        #         where COALESCE(c.del_flag,0)=0 and c.usr_id=%s  """
-        # parm=[self.subusr_id]
-        # if level != '' and  level != 'None' and  level!='undefined':
-        #     sql+=" and c.level=%s"
-        #     parm.append(level)
-        # if type == '' and  type == 'None' and  type=='undefined':
-        #     sql+=" and c.type=%s"
-        #     parm.append(type)
-        # sql+=" order by c.paixu"
-        # l,t=self.db.fetchall(sql,parm)
-        # if t==0:
-        #     return self.jsons({'code': 404, 'msg': self.error_code[404]})
-        if level == '' or  level == 'None' or level == 'undefined' or  level == 'null':
-            level= ''
-        if  type == '' and type == 'None' and type == 'undefined' and type == 'null':
-            type=''
+        if ilevel == '' or  ilevel == 'None' or ilevel == 'undefined' or  ilevel == 'null':
+            ilevel= ''
+        if  ctype == '' and ctype == 'None' and ctype == 'undefined' and ctype == 'null':
+            ctype=''
 
         l = self.oSHOP.get(self.subusr_id, 'shop_category')
         if len(l) == 0:
             return self.jsons({'code': 700, 'msg': self.error_code[700]})
 
-        if level == '' and type == '':
+        if ilevel == '' and ctype == '':
             return self.jsons({'code':0,'data':l,'msg':self.error_code['ok']})
 
-        if level != ''  and type != '':
+        if ilevel != ''  and ctype != '':
             L = []
             for i in l:
-                if str(level)==str(i.get('level','')) and str(type)==str(i.get('type','')):
+                if str(ilevel)==str(i.get('ilevel','')) and str(ctype)==str(i.get('ctype','')):
                     L.append(i)
             l = L
 
-        elif level != '' and type == '':
+        elif ilevel != '' and ctype == '':
             L = []
             for i in l:
-                if str(level) == str(i.get('level', '')):
+                if str(ilevel) == str(i.get('ilevel', '')):
                     L.append(i)
             l = L
-        elif level == '' and type != '':
+        elif ilevel == '' and ctype != '':
             L = []
             for i in l:
-                if str(type) == str(i.get('type', '')):
+                if str(type) == str(i.get('ctype', '')):
                     L.append(i)
             l=L
 
@@ -511,15 +493,7 @@ class cBASE_TPL(cVI_BASE):
         #########
         if tid == '':
 
-            # sql = """select c.id,c.name,c.type,c.pid,ca.name as pid_name,
-            #                     c.pic_icon,c.pic_imgs,c.remark,
-            #                     c.paixu,to_char(c.ctime,'YYYY-MM-DD HH24:MI')time_add
-            #                     from category c
-            #                     left join category ca on ca.id=c.pid
-            #                     where COALESCE(c.del_flag,0)=0 and c.usr_id=%s and c.pid=%s order by c.paixu"""
-            # l, t = self.db.fetchall(sql, [self.subusr_id, id])
-            # if t == 0:
-            #     return self.jsons({'code': 404, 'msg': self.error_code[404]})
+
             oCATEGORY=self.oCATEGORY.get(self.subusr_id)
             if len(oCATEGORY)==0:
                 return self.jsons({'code': 404, 'msg': self.error_code[404]})
@@ -553,40 +527,7 @@ class cBASE_TPL(cVI_BASE):
             L += ll
         return self.jsons({'code': 0, 'data': L, 'msg': self.error_code['ok']})
 
-        ########
-        # try:
-        #     tid=int(tid)
-        #     sql = """select c.id,c.name,c.type,c.pid,ca.name as pid_name,
-        #                         c.pic_icon,c.pic_imgs,c.remark,
-        #                         c.paixu,to_char(c.ctime,'YYYY-MM-DD HH24:MI')time_add
-        #                         from category c
-        #                         left join category ca on ca.id=c.pid
-        #                         where COALESCE(c.del_flag,0)=0 and c.usr_id=%s and c.pid=%s and c.id=%s"""
-        #     l, t = self.db.fetchall(sql, [self.subusr_id, id,tid])
-        #
-        #     L = l
-        #     sql = """select c.id,c.name,c.type,c.pid,ca.name as pid_name,
-        #                             c.pic_icon,c.pic_imgs,c.remark,
-        #                             c.paixu,to_char(c.ctime,'YYYY-MM-DD HH24:MI')time_add
-        #                             from category c
-        #                             left join category ca on ca.id=c.pid
-        #                             where COALESCE(c.del_flag,0)=0 and c.usr_id=%s and c.pid=%s and c.id!=%s order by c.paixu"""
-        #     ll, tt = self.db.fetchall(sql, [self.subusr_id, id,tid])
-        #     if tt > 0:
-        #         L += ll
-        #     return self.jsons({'code': 0, 'data': L, 'msg': self.error_code['ok']})
-        #
-        # except:
-        #     sql = """select c.id,c.name,c.type,c.pid,ca.name as pid_name,
-        #             c.pic_icon,c.pic_imgs,c.remark,
-        #             c.paixu,to_char(c.ctime,'YYYY-MM-DD HH24:MI')time_add
-        #             from category c
-        #             left join category ca on ca.id=c.pid
-        #             where COALESCE(c.del_flag,0)=0 and c.usr_id=%s and c.pid=%s order by c.paixu"""
-        #     l, t = self.db.fetchall(sql, [self.subusr_id,id])
-        #     if t == 0:
-        #         return self.jsons({'code': 404, 'msg': self.error_code[404]})
-        #     return self.jsons({'code': 0, 'data': l, 'msg': self.error_code['ok']})
+
 
 
     def goPartcategory_detail_a(self):  # 商品分类详情接口(不会根据id改变排序)
@@ -604,9 +545,7 @@ class cBASE_TPL(cVI_BASE):
         if t == 0:
             return self.jsons({'code': 404, 'msg': self.error_code[404]})
 
-        # for i in l:
-        #     icon=i[5]
-        #     L.append({'id':i[0],'name':i[2],'dateAdd':[10],'icon':icon,'isUse':i[6],'key':i[7],'level':i[8],'paixu':i[3],'pid':i[4],'type':i[9],'userId':i[1]})
+
         return self.jsons({'code': 0, 'data': l, 'msg': self.error_code['ok']})
 
 
@@ -634,23 +573,20 @@ class cBASE_TPL(cVI_BASE):
         filename = md5name.hexdigest() + '.jpg'
 
         file_content = qrcode.content
-        if self.qiniu_ctype_all == 0:
+        if self.qiniu_ctype == 0:
             url = self.qiniu_upload_file(file_content, filename)
         else:
             url = self.ali_upload_file(file_content, filename)
         # url = self.qiniu_upload_file(file_content, filename)
         if url==None:
             return self.jsons({'code': 404, 'msg':self.error_code[404]})
-        # url = url.replace('http://', 'https://')
+        url = url.replace('http://', 'https://')
         sql = "insert into qrcode(usr_id,img_name,url,scene,page,ctime)values(%s,%s,%s,%s,%s,now())"
         self.db.query(sql, [self.subusr_id, filename, url, scene, page])
         return self.jsons({'code': 0, 'data': {'qrimg':url},'msg':self.error_code['ok']})
 
     def goPartshopinfo_shops(self):#商铺列表接口
-        # sql=" select id,cname,address,contact,jd as longitude,wd as latitude  from shopconfig where usr_id =%s"
-        # l,t=self.db.fetchall(sql,self.subusr_id)
-        # if t==0:
-        #     return self.jsons({'code': 404, 'msg': self.error_code[404]})
+
         l = self.oSHOP.get(self.subusr_id, 'shopinfo_shops')
 
         if len(l) == 0:
@@ -952,7 +888,7 @@ class cBASE_TPL(cVI_BASE):
             file_content = file.read()
             file_size = float(len(file_content)) / 1024
             # url = self.qiniu_upload_file(file_content, filename)
-            if self.qiniu_ctype_all == 0:
+            if self.qiniu_ctype == 0:
                 url = self.qiniu_upload_file(file_content, filename)
             else:
                 url = self.ali_upload_file(file_content, filename)
