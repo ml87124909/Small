@@ -279,7 +279,7 @@ class coupons(Base):
     apply_ext_money = Column(Integer, nullable=True)
     apply_goods = Column(Integer, nullable=True)
     apply_goods_str = Column(Text, nullable=True)
-    apply_goods_id = Column(Integer, nullable=True)
+    apply_goods_id = Column(Text, nullable=True,index=True)
     apply_goods_name = Column(Text, nullable=True)
     use_time = Column(Integer, nullable=True)
     use_time_str = Column(Text, nullable=True)
