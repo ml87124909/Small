@@ -73,6 +73,7 @@ class cVIEWS(cAPI):
         self.oPT_GOODS = oPT_GOODS
     # ###########################################
     #     ########七牛用户自有调用
+        self.qiniu_ctype = self.oQINIU.get(self.subusr_id).get('ctype', '')
         self.qiniu_access_key = self.oQINIU.get(self.subusr_id).get('access_key', '')
         self.qiniu_secret_key = self.oQINIU.get(self.subusr_id).get('secret_key', '')
         self.qiniu_bucket_name = self.oQINIU.get(self.subusr_id).get('name', '')
