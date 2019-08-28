@@ -66,7 +66,7 @@ class cA006(cBASE_TPL):
         self.item = self.dl.get_local_data()
         self.assign({
                     'item': self.item,
-                    'usr_tags':self.dl.get_usr_tag(),
+                   # 'usr_tags':self.dl.get_usr_tag(),
                      'hy_up_level':self.dl.get_hy_up_level(),
                     'uptype':self.dl.get_up_type()
                      })
