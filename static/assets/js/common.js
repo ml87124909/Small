@@ -1223,6 +1223,50 @@ function main_delete(del_pk){
  
 }
 
+
+
+function ajax_delete(del_pk){
+  //主GRID的删除操作
+	layer.confirm('你确信要删除记录吗？', {
+		btn: ['是','否'] //按钮
+	}, function(index,layero){
+	    layer.close(index);
+	    $.ajax({
+            url:sUrl+"&part=ajax_delete&pk="+del_pk,
+            async:false,
+            success: function(data){
+                layer.msg(data.MSG);
+                location.reload();
+            }
+        });
+
+	}, function(){
+		layer.closeAll();
+	});
+
+}
+
+function ajax_del(del_pk){
+  //主GRID的删除操作
+	layer.confirm('你确信要删除记录吗？', {
+		btn: ['是','否'] //按钮
+	}, function(index,layero){
+	    layer.close(index);
+	    $.ajax({
+            url:sUrl+"&part=ajax_del&pk="+del_pk,
+            async:false,
+            success: function(data){
+                layer.msg(data.MSG);
+                location.reload();
+            }
+        });
+
+	}, function(){
+		layer.closeAll();
+	});
+
+}
+
 function searchtblData(){
 	var ctrl = $(".searchtbl input[type=text],.searchtbl select");
 	var data = {};
