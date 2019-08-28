@@ -699,7 +699,7 @@ class open_pt_detail(Base):
     name = Column(Text, nullable=True, index=True)
     avatar = Column(Text, nullable=True)
     phone = Column(Text, nullable=True)
-    title = Column(Text, nullable=True)
+    title = Column(Integer, nullable=True)
     status = Column(SMALLINT, nullable=True)
     date_end = Column(DateTime, nullable=True)
     ct_type = Column(SMALLINT, nullable=True)
