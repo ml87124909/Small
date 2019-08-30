@@ -2,8 +2,13 @@
 
 ![](https://github.com/mn3711698/Small/blob/master/923.png)
 
+##What makes Small special?
+Small is a rapidly-growing open source e-commerce platform. Based on Python3 and Flask and postgresql.
 
-## 最后更新日期  2019-08-07
+Small is free and always will be.
+Help us out… If you love free stuff and great software, give us a star! 🌟
+
+## 说明  2019-08-07
 docker镜像基于ubuntu 18.04 的python3.6.8+postgresql-10,数据库要开下pgcrypto。命令是：create extension pgcrypto;
 <br>mn3711698/small:004,我测试过OK。
 <br>您完全可以直接在里边的/var/games/Small下，安装(python3 install.py)及运行(python3 start.py)。
