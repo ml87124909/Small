@@ -837,7 +837,7 @@ class chome(cBASE_LOC):
         """
         k_price,dR=0.0,0
         if str(kuaid)!='' and kuaid!='null':
-            sql = 'select use_money from order_set where usr_id=%s'
+            sql = 'select use_money from shop_set where usr_id=%s'
             by=self.db.fetchcolumn(sql,self.subusr_id)
             if by!=0 and by!='':
                 if goods_price>by:
@@ -883,7 +883,7 @@ class chome(cBASE_LOC):
 
     def get_vip_type(self,wechat_user_id):
 
-        l,t=self.db.select("select up_type,discount from member where usr_id=%s",self.subusr_id)
+        l,t=self.db.select("select up_type,discount from shop_set where usr_id=%s",self.subusr_id)
         if t==0:
             return 0,'0','无',1
 
