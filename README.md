@@ -5,7 +5,8 @@
 
 ## 说明  2019-08-07
 docker镜像基于ubuntu 18.04 的python3.6.8+postgresql-10,数据库要开下pgcrypto。命令是：create extension pgcrypto;
-<br>mn3711698/small:004,我测试过OK。  <span style='color:red;'>注意：用docker镜像的一定要git pull，这个镜像我不会再更新代码，需要自己git pull!</span>
+<br>mn3711698/small:004,我测试过OK。
+####注意：用docker镜像的一定要git pull，这个镜像我不会再更新代码，需要自己git pull!
 <br>您完全可以直接在里边的/var/games/Small下，安装(python3 install.py)及运行(python3 start.py)。
 <br>以后docker里的代码我就不更新了，有需要的直接git pull就好了。
 <br>我是将整个环境都弄好打包成一个，直接在docker里边运行，我也不懂别的方法，这样有个问题就是，那个安装生成的dbconfig.py文件没有，每次都要重新搞。
@@ -16,7 +17,7 @@ docker镜像基于ubuntu 18.04 的python3.6.8+postgresql-10,数据库要开下pg
 
 配合SmallStore开源小程序使用：https://github.com/mn3711698/SmallStore
 
-# 目前系统还在完善中，如果有bug请加下边的QQ群反馈，感谢！
+## 目前系统还在完善中，如果有bug请加下边的QQ群反馈，感谢！
 
 models里的模型已处理好。
 docker已处理好。
