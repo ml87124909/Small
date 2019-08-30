@@ -2,8 +2,9 @@
 
 ![](https://github.com/mn3711698/Small/blob/master/923.png)
 
+#### 注意：用docker镜像mn3711698/small:004的一定要git pull，这个镜像我不会再更新代码，需要自己git pull,不然代码会很旧，没法用!
 
-## 最后更新日期  2019-08-07
+## 说明  2019-08-07
 docker镜像基于ubuntu 18.04 的python3.6.8+postgresql-10,数据库要开下pgcrypto。命令是：create extension pgcrypto;
 <br>mn3711698/small:004,我测试过OK。
 <br>您完全可以直接在里边的/var/games/Small下，安装(python3 install.py)及运行(python3 start.py)。
@@ -14,9 +15,9 @@ docker镜像基于ubuntu 18.04 的python3.6.8+postgresql-10,数据库要开下pg
 本系统采用python3,基于flask搭建的脚手架开发。数据库是postgresql.
 <br>请注意config.py这个配置文件，默认开启调试日志。
 
-采用与码力（store.maliapi.com）平台同核心,功能增加了一些，接口增加了一些，九成接口兼容开源的码力小店小程序
+配合SmallStore开源小程序使用：https://github.com/mn3711698/SmallStore
 
-# 目前系统还在完善中，如果有bug请加下边的QQ群反馈，感谢！
+## 目前系统还在完善中，如果有bug请加下边的QQ群反馈，感谢！
 
 models里的模型已处理好。
 docker已处理好。

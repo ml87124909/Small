@@ -134,7 +134,7 @@ class cBASE_TPL(cVI_BASE):
             return self.jsons({'code': 10000, 'msg': self.error_code[10000]})
         wid = lT[0][0]
         self.oUSER.update(self.subusr_id, wid)
-        sql="select new_score from shop_set where usr_id=%s"
+        sql="select coalesce(new_score,0) from shop_set where usr_id=%s"
         l,t=self.db.select(sql,self.subusr_id)
         if t>0:#注册送积分
             new_score=l[0][0]
@@ -618,7 +618,7 @@ class cBASE_TPL(cVI_BASE):
         for i in lT:
             sqls = """
             select v.g_id as id 
-                ,g.name	--商品名称
+                ,g.cname	--商品名称
                 ,g.introduce	--商品简介
                 ,g.recomm as status 	--是否推荐
                 ,g.pic	--商品第一张图片
@@ -629,7 +629,7 @@ class cBASE_TPL(cVI_BASE):
                 ,g.barcodes	--商品编码
                 ,g.weight
                 ,COALESCE(g.orders,0) as orders	--商品销量
-                ,COALESCE(g.views,0) as views	--商品浏览量
+                ,COALESCE(g.see,0) as views	--商品浏览量
                 ,COALESCE(g.favorite,0) as favorite	--商品收藏量
                 ,to_char(g.ctime,'YYYY-MM-DD HH24:MI')date_add	--商品添加时间
                 ,to_char(v.ctime,'YYYY-MM-DD')date	--浏览日期      
@@ -796,7 +796,7 @@ class cBASE_TPL(cVI_BASE):
                 return self.jsons({'code': 700, 'msg': '订单中存在已下架的商品，请重新下单。'})
 
             good_dict = self.db.fetch(
-                "select name,pic,minprice,COALESCE(stores,0)stores,COALESCE(weight,0)weight,pt_price from goods_info where id=%s",
+                "select cname,pic,minprice,COALESCE(stores,0)stores,COALESCE(weight,0)weight,pt_price from goods_info where id=%s",
                 good_id)
             amount = int(each_goods['buy_number'])  # 购买数量
             limited=int(l[0][1])
@@ -842,7 +842,7 @@ class cBASE_TPL(cVI_BASE):
         if property_child_ids != '' and property_child_ids != 'null':
 
             sql = """
-            select sc_name,new_price,store_c,ptprice from spec_child_price 
+            select sc_name,newprice,store_c,ptprice from spec_child_price 
             where usr_id=%s and goods_id=%s and sc_id=%s
             """
             l, t = self.db.select(sql, [self.subusr_id, good_id, property_child_ids[:-1]])

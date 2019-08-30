@@ -345,7 +345,7 @@ class cBASE_LOC(cBASE_TPL):
         if goods_childs == '' or goods_childs == 'None' or goods_childs == 'undefined':
             return self.jsons({'code': 300, 'msg': self.error_code[300].format('goods_childs')})
         goods_childs = goods_childs[:-1]
-        sql = """select  goods_id,old_price as goods_original,new_price as goods_mini,
+        sql = """select  goods_id,oldprice as goods_original,newprice as goods_mini,
                 ptprice as goods_pingtuan,
                         store_c as goods_stores,barcode as goods_barcode,sc_id as goods_childs 
                 from spec_child_price where goods_id=%s and usr_id=%s and sc_id=%s
@@ -762,12 +762,13 @@ class cBASE_LOC(cBASE_TPL):
         l, t = self.db.select('select id from wechat_address where random_no=%s', cur_random_no)
         if t == 0:
             return self.jsons({'code': 405, 'msg': self.error_code[405]})
+        wid=l[0][0]
         sql = """update wechat_address  set phone=encrypt(%s,%s,'aes'),
                                 address=encrypt(%s,%s,'aes') where  id =%s"""
-        self.db.query(sql, [phone, self.md5code, address, self.md5code, l[0][0]])
+        self.db.query(sql, [phone, self.md5code, address, self.md5code, wid])
         if str(default) == '1':
             sql = "update wechat_address  set is_default=0 where wechat_user_id =%s and id !=%s"
-            self.db.query(sql, [wechat_user_id, l[0][0]])
+            self.db.query(sql, [wechat_user_id, wid])
         return self.jsons({'code': 0, 'msg': '地址增加成功'})
 
     def goPartuser_address_del(self):  # 删除用户地址接口
@@ -858,7 +859,7 @@ class cBASE_LOC(cBASE_TPL):
 
         sql = """
             select id
-                ,name
+                ,cname
                 ,introduce
                 ,pic
                 ,minprice
@@ -2748,7 +2749,7 @@ class cBASE_LOC(cBASE_TPL):
             return self.jsons({'code': 901, 'msg': dR['MSG']})
         wechat_user_id = dR['wechat_user_id']
         sql = """select g.id 
-                    ,g.name	--商品名称
+                    ,g.cname	--商品名称
                     ,g.introduce	--商品简介
                     ,g.pic	--商品第一张图片
                     ,g.minprice as mini_price	--商品现价

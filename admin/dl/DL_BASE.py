@@ -176,7 +176,8 @@ class cDL_BASE(cDL):
 
     def GP(self, key, default=None, ctype=1):
         value = self.REQUEST.get(key, default)
-        L_error = ['"', "'", '%', '#', '&', '*', '(', ')', '@', '`', '\\', ']', '=', '<', '>','?']
+        #L_error = ['"', "'", '%', '#', '&', '*', '(', ')', '@', '`', '\\', ']', '=', '<', '>','?',':','//','/']
+        L_error = ['"', "'", '%', '#', '&', '*', '(', ')', '@', '`', '\\', ']', '=', '<', '>', '?']
         if ctype==1 and value and isinstance(value, str):
             for c in L_error:
                 if c in value:

@@ -204,7 +204,7 @@ class cA006_dl(cBASE_DL):
         return L
 
     def get_up_type(self):
-        t = self.db.fetchcolumn("select up_type from member where usr_id=%s", self.usr_id_p)
+        t = self.db.fetchcolumn("select up_type from shop_set where usr_id=%s", self.usr_id_p)
         return t
 
     def get_t_send_data(self):

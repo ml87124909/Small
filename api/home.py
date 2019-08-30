@@ -147,7 +147,7 @@ class chome(cBASE_LOC):
 
             else:#参团
                 sqlo = """select COALESCE(status,0) from wechat_mall_order 
-                    where usr_id=%s and wechat_user_id=%s and ptkid=%s"""
+                    where usr_id=%s and wechat_user_id=%s and ptkid=%s and COALESCE(status,0) in (10,1) """
                 llT,iiN=self.db.select(sqlo,[self.subusr_id,wechat_user_id,ptkid])
                 if iiN>0:
                     return self.jsons({'code': 307, 'msg': '已有未完成的拼团1'})
@@ -318,7 +318,7 @@ class chome(cBASE_LOC):
             now = datetime.datetime.now()
             ctime=now.strftime('%Y-%m-%d %H:%M:%S')
             order_dict['ctime'] = ctime
-            sql="select COALESCE(close_time,0),COALESCE(close_time_pk,0) from order_set where usr_id=%s"
+            sql="select COALESCE(close_time,0),COALESCE(close_time_pk,0) from shop_set where usr_id=%s"
             l,t=self.db.select(sql,self.subusr_id)
             if t>0:
                 close_time,close_time_pk=l[0]
@@ -337,8 +337,10 @@ class chome(cBASE_LOC):
             # 'cname':name,
             # 'phone':phone,
             # 'address':address,
-            sql = """update feedback  set cname=encrypt(%s,%s,'aes'),phone=encrypt(%s,%s,'aes'),
-                    address=encrypt(%s,%s,'aes')  where  and id =%s"""
+            # sql = """update feedback  set cname=encrypt(%s,%s,'aes'),phone=encrypt(%s,%s,'aes'),
+            #         address=encrypt(%s,%s,'aes')  where  and id =%s"""
+            sql = """update wechat_mall_order  set cname=encrypt(%s,%s,'aes'),phone=encrypt(%s,%s,'aes'),
+                                address=encrypt(%s,%s,'aes')  where id =%s"""
             parm=[name, self.md5code,phone, self.md5code,address, self.md5code, order_id]
             self.db.query(sql,parm )
 
@@ -630,7 +632,7 @@ class chome(cBASE_LOC):
                 coupon_price=0.0
                 coupon_name=''
                 coupon = [coupon_name, coupon_price]
-                sql = "select up_type,vip_price from member where usr_id=%s"
+                sql = "select up_type,vip_price from shop_set where usr_id=%s"
                 up, vp = self.db.select(sql, self.subusr_id)
                 if vp == 0:
                     dR=2
@@ -658,7 +660,7 @@ class chome(cBASE_LOC):
             if str(l[0][0])=='1':
                 dR = 2
                 return 0,0,0, 0, 0, 0, dR
-            sqlg = "select name,pic,minprice,originalprice,COALESCE(stores,0)stores,COALESCE(weight,0)weight,pt_price from goods_info where id=%s"
+            sqlg = "select cname,pic,minprice,originalprice,COALESCE(stores,0)stores,COALESCE(weight,0)weight,pt_price from goods_info where id=%s"
             good_dict=self.db.fetch(sqlg,good_id)
             amount = int(each_goods['buy_number'])  # 购买数量
             limited=int(l[0][1])
@@ -687,7 +689,7 @@ class chome(cBASE_LOC):
 
             goods_list.append({
                 'goods_id': good_id,
-                'name': good_dict['name'],
+                'name': good_dict['cname'],
                 'pic': good_dict['pic'],
                 'property_str': property_str,
                 'price': each_goods_price,
@@ -789,7 +791,7 @@ class chome(cBASE_LOC):
         if property_child_ids!='' and property_child_ids!='null':
 
             sql="""
-            select sc_name,new_price,store_c,ptprice from spec_child_price 
+            select sc_name,newprice,store_c,ptprice from spec_child_price 
             where usr_id=%s and goods_id=%s and sc_id=%s
             """
             l,t=self.db.select(sql,[self.subusr_id,good_id,property_child_ids[:-1]])
@@ -837,7 +839,7 @@ class chome(cBASE_LOC):
         """
         k_price,dR=0.0,0
         if str(kuaid)!='' and kuaid!='null':
-            sql = 'select use_money from order_set where usr_id=%s'
+            sql = 'select use_money from shop_set where usr_id=%s'
             by=self.db.fetchcolumn(sql,self.subusr_id)
             if by!=0 and by!='':
                 if goods_price>by:
@@ -883,7 +885,7 @@ class chome(cBASE_LOC):
 
     def get_vip_type(self,wechat_user_id):
 
-        l,t=self.db.select("select up_type,discount from member where usr_id=%s",self.subusr_id)
+        l,t=self.db.select("select up_type,discount from shop_set where usr_id=%s",self.subusr_id)
         if t==0:
             return 0,'0','无',1
 
@@ -2095,7 +2097,7 @@ class chome(cBASE_LOC):
         now = datetime.datetime.now()
         ctime = now.strftime('%Y-%m-%d %H:%M:%S')
         order_dict['ctime'] = ctime
-        sql = "select COALESCE(close_time,0),COALESCE(close_time_pk,0) from order_set where usr_id=%s"
+        sql = "select COALESCE(close_time,0),COALESCE(close_time_pk,0) from shp_set where usr_id=%s"
         l, t = self.db.select(sql, self.subusr_id)
         if t > 0:
             close_time, close_time_pk = l[0]

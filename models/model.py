@@ -954,6 +954,19 @@ class search_key(Base):
     ctime = Column(DateTime, nullable=True)
     utime = Column(DateTime, nullable=True)
 
+
+class self_paykey(Base):
+    """ 图片广告分类"""
+    __tablename__ = "self_paykey"
+
+    id = Column(Integer, primary_key=True, nullable=False, autoincrement=True, index=True)
+    usr_id = Column(Integer, nullable=True, index=True)
+    wechat_user_id = Column(Integer, nullable=True, index=True)
+    paykey = Column(Text, nullable=True)
+    ctime = Column(DateTime, nullable=True)
+
+
+
 class shop_set(Base):
     """ 店铺设置"""
     __tablename__ = "shop_set"
@@ -1037,7 +1050,7 @@ class signin(Base):
     id = Column(Integer, primary_key=True, nullable=False, autoincrement=True, index=True)
     usr_id = Column(Integer, nullable=True, index=True)
     wechat_user_id = Column(Integer, nullable=True, index=True)
-    con_amountcon_amount = Column(Integer, nullable=True)
+    con_amount = Column(Integer, nullable=True)
     memo = Column(Text, nullable=True)
     cid = Column(Integer, nullable=True)
     ctime = Column(DateTime, nullable=True)
@@ -1113,6 +1126,28 @@ class spec_child_price(Base):
     ctime = Column(DateTime, nullable=True)
     uid = Column(Integer, nullable=True)
     utime = Column(DateTime, nullable=True)
+
+
+
+
+class top_up(Base):
+    """ 充值记录"""
+    __tablename__ = "top_up"
+
+    id = Column(Integer, primary_key=True, nullable=False, autoincrement=True, index=True)
+    usr_id = Column(Integer, nullable=True, index=True)
+    wechat_user_id = Column(Integer, nullable=True, index=True)
+    order_no = Column(Text, nullable=True, index=True)
+    add_money = Column(Float, nullable=True)
+    real_money = Column(Float, nullable=True)
+    status = Column(SMALLINT, nullable=True, index=True)
+    status_str = Column(Text, nullable=True)
+    give = Column(Float, nullable=True)
+    cid = Column(Integer, nullable=True)
+    ctime = Column(DateTime, nullable=True)
+    uid = Column(Integer, nullable=True)
+    utime = Column(DateTime, nullable=True)
+
 
 class update_order(Base):
     """ 定时更新订单"""
