@@ -2,6 +2,7 @@
 
 ![](https://github.com/mn3711698/Small/blob/master/923.png)
 
+#### 注意：用docker镜像mn3711698/small:004的一定要git pull，这个镜像我不会再更新代码，需要自己git pull,不然代码会很旧，没法用!
 
 ## 说明  2019-08-07
 docker镜像基于ubuntu 18.04 的python3.6.8+postgresql-10,数据库要开下pgcrypto。命令是：create extension pgcrypto;
@@ -16,7 +17,7 @@ docker镜像基于ubuntu 18.04 的python3.6.8+postgresql-10,数据库要开下pg
 
 配合SmallStore开源小程序使用：https://github.com/mn3711698/SmallStore
 
-# 目前系统还在完善中，如果有bug请加下边的QQ群反馈，感谢！
+## 目前系统还在完善中，如果有bug请加下边的QQ群反馈，感谢！
 
 models里的模型已处理好。
 docker已处理好。
