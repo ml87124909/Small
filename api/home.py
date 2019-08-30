@@ -630,7 +630,7 @@ class chome(cBASE_LOC):
                 coupon_price=0.0
                 coupon_name=''
                 coupon = [coupon_name, coupon_price]
-                sql = "select up_type,vip_price from member where usr_id=%s"
+                sql = "select up_type,vip_price from shop_set where usr_id=%s"
                 up, vp = self.db.select(sql, self.subusr_id)
                 if vp == 0:
                     dR=2
@@ -658,7 +658,7 @@ class chome(cBASE_LOC):
             if str(l[0][0])=='1':
                 dR = 2
                 return 0,0,0, 0, 0, 0, dR
-            sqlg = "select name,pic,minprice,originalprice,COALESCE(stores,0)stores,COALESCE(weight,0)weight,pt_price from goods_info where id=%s"
+            sqlg = "select cname,pic,minprice,originalprice,COALESCE(stores,0)stores,COALESCE(weight,0)weight,pt_price from goods_info where id=%s"
             good_dict=self.db.fetch(sqlg,good_id)
             amount = int(each_goods['buy_number'])  # 购买数量
             limited=int(l[0][1])

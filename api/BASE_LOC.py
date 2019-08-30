@@ -345,7 +345,7 @@ class cBASE_LOC(cBASE_TPL):
         if goods_childs == '' or goods_childs == 'None' or goods_childs == 'undefined':
             return self.jsons({'code': 300, 'msg': self.error_code[300].format('goods_childs')})
         goods_childs = goods_childs[:-1]
-        sql = """select  goods_id,old_price as goods_original,new_price as goods_mini,
+        sql = """select  goods_id,oldprice as goods_original,newprice as goods_mini,
                 ptprice as goods_pingtuan,
                         store_c as goods_stores,barcode as goods_barcode,sc_id as goods_childs 
                 from spec_child_price where goods_id=%s and usr_id=%s and sc_id=%s
