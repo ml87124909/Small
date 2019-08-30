@@ -337,8 +337,10 @@ class chome(cBASE_LOC):
             # 'cname':name,
             # 'phone':phone,
             # 'address':address,
-            sql = """update feedback  set cname=encrypt(%s,%s,'aes'),phone=encrypt(%s,%s,'aes'),
-                    address=encrypt(%s,%s,'aes')  where  and id =%s"""
+            # sql = """update feedback  set cname=encrypt(%s,%s,'aes'),phone=encrypt(%s,%s,'aes'),
+            #         address=encrypt(%s,%s,'aes')  where  and id =%s"""
+            sql = """update wechat_mall_order  set cname=encrypt(%s,%s,'aes'),phone=encrypt(%s,%s,'aes'),
+                                address=encrypt(%s,%s,'aes')  where id =%s"""
             parm=[name, self.md5code,phone, self.md5code,address, self.md5code, order_id]
             self.db.query(sql,parm )
 
