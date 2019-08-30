@@ -40,7 +40,7 @@ class cC001_dl(cBASE_DL):
         parm=[self.usr_id_p]
         self.qqid = self.GP('qqid','')
         if self.qqid!='':
-            sql+= "and name LIKE %s "
+            sql+= "and cname LIKE %s "
             parm.append('%%%s%%'%self.qqid)
 
         pageNo=self.GP('pageNo','')
