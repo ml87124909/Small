@@ -796,7 +796,7 @@ class cBASE_TPL(cVI_BASE):
                 return self.jsons({'code': 700, 'msg': '订单中存在已下架的商品，请重新下单。'})
 
             good_dict = self.db.fetch(
-                "select name,pic,minprice,COALESCE(stores,0)stores,COALESCE(weight,0)weight,pt_price from goods_info where id=%s",
+                "select cname,pic,minprice,COALESCE(stores,0)stores,COALESCE(weight,0)weight,pt_price from goods_info where id=%s",
                 good_id)
             amount = int(each_goods['buy_number'])  # 购买数量
             limited=int(l[0][1])
