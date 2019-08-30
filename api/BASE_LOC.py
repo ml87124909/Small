@@ -762,12 +762,13 @@ class cBASE_LOC(cBASE_TPL):
         l, t = self.db.select('select id from wechat_address where random_no=%s', cur_random_no)
         if t == 0:
             return self.jsons({'code': 405, 'msg': self.error_code[405]})
+        wid=l[0][0]
         sql = """update wechat_address  set phone=encrypt(%s,%s,'aes'),
                                 address=encrypt(%s,%s,'aes') where  id =%s"""
-        self.db.query(sql, [phone, self.md5code, address, self.md5code, l[0][0]])
+        self.db.query(sql, [phone, self.md5code, address, self.md5code, wid])
         if str(default) == '1':
             sql = "update wechat_address  set is_default=0 where wechat_user_id =%s and id !=%s"
-            self.db.query(sql, [wechat_user_id, l[0][0]])
+            self.db.query(sql, [wechat_user_id, wid])
         return self.jsons({'code': 0, 'msg': '地址增加成功'})
 
     def goPartuser_address_del(self):  # 删除用户地址接口
