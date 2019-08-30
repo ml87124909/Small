@@ -1050,7 +1050,7 @@ class signin(Base):
     id = Column(Integer, primary_key=True, nullable=False, autoincrement=True, index=True)
     usr_id = Column(Integer, nullable=True, index=True)
     wechat_user_id = Column(Integer, nullable=True, index=True)
-    con_amountcon_amount = Column(Integer, nullable=True)
+    con_amount = Column(Integer, nullable=True)
     memo = Column(Text, nullable=True)
     cid = Column(Integer, nullable=True)
     ctime = Column(DateTime, nullable=True)

@@ -859,7 +859,7 @@ class cBASE_LOC(cBASE_TPL):
 
         sql = """
             select id
-                ,name
+                ,cname
                 ,introduce
                 ,pic
                 ,minprice
