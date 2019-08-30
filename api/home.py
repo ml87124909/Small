@@ -687,7 +687,7 @@ class chome(cBASE_LOC):
 
             goods_list.append({
                 'goods_id': good_id,
-                'name': good_dict['name'],
+                'name': good_dict['cname'],
                 'pic': good_dict['pic'],
                 'property_str': property_str,
                 'price': each_goods_price,
