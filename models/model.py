@@ -1127,6 +1127,28 @@ class spec_child_price(Base):
     uid = Column(Integer, nullable=True)
     utime = Column(DateTime, nullable=True)
 
+
+
+
+class top_up(Base):
+    """ 充值记录"""
+    __tablename__ = "top_up"
+
+    id = Column(Integer, primary_key=True, nullable=False, autoincrement=True, index=True)
+    usr_id = Column(Integer, nullable=True, index=True)
+    wechat_user_id = Column(Integer, nullable=True, index=True)
+    order_no = Column(Text, nullable=True, index=True)
+    add_money = Column(Float, nullable=True)
+    real_money = Column(Float, nullable=True)
+    status = Column(SMALLINT, nullable=True, index=True)
+    status_str = Column(Text, nullable=True)
+    give = Column(Float, nullable=True)
+    cid = Column(Integer, nullable=True)
+    ctime = Column(DateTime, nullable=True)
+    uid = Column(Integer, nullable=True)
+    utime = Column(DateTime, nullable=True)
+
+
 class update_order(Base):
     """ 定时更新订单"""
     __tablename__ = "update_order"
