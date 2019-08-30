@@ -410,7 +410,6 @@ class cC004_dl(cBASE_DL):
                         from spec_child_price where goods_id=%s AND sc_id=%s and usr_id=%s"""
                         l,t=self.db.select(sql,[pid,a,self.usr_id_p])
                         if t>0:
-                            print(l[0],'0000000')
                             c,d,e,k,f,g,c1,c2,c3,c4,c5=l[0]
                     b=i[1]
                     M.append([c,a,b,d,e,k,f,g,h,c1,c2,c3,c4,c5])
