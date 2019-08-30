@@ -147,7 +147,7 @@ class chome(cBASE_LOC):
 
             else:#参团
                 sqlo = """select COALESCE(status,0) from wechat_mall_order 
-                    where usr_id=%s and wechat_user_id=%s and ptkid=%s"""
+                    where usr_id=%s and wechat_user_id=%s and ptkid=%s and COALESCE(status,0) in (10,1) """
                 llT,iiN=self.db.select(sqlo,[self.subusr_id,wechat_user_id,ptkid])
                 if iiN>0:
                     return self.jsons({'code': 307, 'msg': '已有未完成的拼团1'})
