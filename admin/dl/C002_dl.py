@@ -109,12 +109,12 @@ class cC002_dl(cBASE_DL):
             sql = """
                         select id
                         from spec
-                        where COALESCE(del_flag,0)=0 and usr_id=%s and (ctype=%s or  cname=%s)
+                        where COALESCE(del_flag,0)=0 and usr_id=%s and cname=%s
                     """
-            l, t = self.db.select(sql, [self.usr_id_p, ctype, cname])
+            l, t = self.db.select(sql, [self.usr_id_p, cname])
             if t > 0:
                 dR['code'] = '1'
-                dR['MSG'] = '规格名称或规格类型有重复'
+                dR['MSG'] = '规格名称有重复'
                 return dR
 
             sql = "insert into spec(usr_id,ctype,cicon,cname,sort,cid,ctime)values(%s,%s,%s,%s,%s,%s,now())"
@@ -135,12 +135,12 @@ class cC002_dl(cBASE_DL):
             sql = """
                 select id
                 from spec
-                where id!=%s and COALESCE(del_flag,0)=0 and usr_id=%s and (ctype=%s or  cname=%s)
+                where id!=%s and COALESCE(del_flag,0)=0 and usr_id=%s and cname=%s
                                 """
-            l, t = self.db.select(sql, [id,self.usr_id_p, ctype, cname])
+            l, t = self.db.select(sql, [id,self.usr_id_p, cname])
             if t > 0:
                 dR['code'] = '1'
-                dR['MSG'] = '规格名称或规格类型有重复'
+                dR['MSG'] = '规格名称有重复'
                 return dR
             try:
                 if url == '':

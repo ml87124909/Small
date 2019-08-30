@@ -372,7 +372,7 @@ class cC004_dl(cBASE_DL):
         dR={'code':'','MSG':'数据为空'}
 
         id_dict=json.loads(id)
-        # print(id_dict)
+        print(id_dict)
         L=[]
         for k in id_dict:
             L.append(id_dict[k])
@@ -393,21 +393,27 @@ class cC004_dl(cBASE_DL):
                 for i in l:
                     a=str(i[2]) + ':' + str(i[0])
                     c=''
-                    d=0
-                    e=0
+                    d=''
+                    e=''
                     f=''
                     g=''
                     h=i[3]
                     k=''
+                    c1=''
+                    c2 = ''
+                    c3 = ''
+                    c4 = ''
+                    c5 = ''
                     if pid!='':
-                        sql = """select id,oldprice,newprice,pfprice,hyprice,bigprice,
+                        sql = """select id,oldprice,newprice,ptprice,hyprice,bigprice,
                         pfprice,lsprice,dlprice,store_c,barcode 
                         from spec_child_price where goods_id=%s AND sc_id=%s and usr_id=%s"""
                         l,t=self.db.select(sql,[pid,a,self.usr_id_p])
                         if t>0:
-                            c,d,e,k,f,g=l[0]
+                            print(l[0],'0000000')
+                            c,d,e,k,f,g,c1,c2,c3,c4,c5=l[0]
                     b=i[1]
-                    M.append([c,a,b,d,e,k,f,g,h])
+                    M.append([c,a,b,d,e,k,f,g,h,c1,c2,c3,c4,c5])
             dR['code']='0'
             dR['data'] = M
             return dR
@@ -430,12 +436,17 @@ class cC004_dl(cBASE_DL):
                     a=str(l[0][2])+':'+str(l[0][0])+','+str(l[1][2])+':'+str(l[1][0])
                     b=l[0][1]+'--'+l[1][1]
                     c = ''
-                    d = 0
-                    e = 0
+                    d = ''
+                    e = ''
                     f = ''
                     g = ''
                     h = ''
                     k=''
+                    c1 = ''
+                    c2 = ''
+                    c3 = ''
+                    c4 = ''
+                    c5 = ''
                     if l[0][3]!='':
                         h = l[0][3]
 
@@ -445,15 +456,15 @@ class cC004_dl(cBASE_DL):
                     else:
                         h = l[1][3]
                     if pid != '':
-                        sql = """ select id,oldprice,newprice,pfprice,hyprice,bigprice,
+                        sql = """ select id,oldprice,newprice,ptprice,hyprice,bigprice,
                                     pfprice,lsprice,dlprice,store_c,barcode 
                                     from spec_child_price where goods_id=%s AND sc_id=%s and usr_id=%s
                                 """
                         l, t = self.db.select(sql, [pid, a, self.usr_id_p])
                         if t > 0:
-                            c, d, e,k, f, g = l[0]
+                            c, d, e,k, f, g,c1,c2,c3,c4,c5 = l[0]
 
-                    M.append([c, a, b, d, e,k, f, g,h])
+                    M.append([c, a, b, d, e,k, f, g,h,c1,c2,c3,c4,c5])
 
             dR['code'] = '0'
             dR['data'] = M
@@ -485,6 +496,11 @@ class cC004_dl(cBASE_DL):
                     g = ''
                     h=''
                     k=''
+                    c1 = ''
+                    c2 = ''
+                    c3 = ''
+                    c4 = ''
+                    c5 = ''
                     if l[0][3] != '':
                         h = l[0][3]
 
@@ -500,13 +516,13 @@ class cC004_dl(cBASE_DL):
                         h = l[2][3]
 
                     if pid != '':
-                        sql = """ select id,oldprice,newprice,pfprice,hyprice,bigprice,
+                        sql = """ select id,oldprice,newprice,ptprice,hyprice,bigprice,
                                 pfprice,lsprice,dlprice,store_c,barcode 
                                 from spec_child_price where goods_id=%s AND sc_id=%s and usr_id=%s"""
                         l, t = self.db.select(sql, [pid, a, self.usr_id_p])
                         if t > 0:
-                            c, d, e,k, f, g = l[0]
-                    M.append([c, a, b, d, e,k, f, g,h])
+                            c, d, e,k, f, g,c1,c2,c3,c4,c5 = l[0]
+                    M.append([c, a, b, d, e,k, f, g,h,c1,c2,c3,c4,c5])
 
             dR['code'] = '0'
             dR['data'] = M
@@ -537,6 +553,11 @@ class cC004_dl(cBASE_DL):
                     g = ''
                     h = ''
                     k=''
+                    c1 = ''
+                    c2 = ''
+                    c3 = ''
+                    c4 = ''
+                    c5 = ''
                     if l[0][3] != '':
                         h = l[0][3]
 
@@ -557,13 +578,13 @@ class cC004_dl(cBASE_DL):
                         h = l[3][3]
 
                     if pid != '':
-                        sql = """select id,oldprice,newprice,pfprice,hyprice,bigprice,
+                        sql = """select id,oldprice,newprice,ptprice,hyprice,bigprice,
                                 pfprice,lsprice,dlprice,store_c,barcode 
                                 from spec_child_price where goods_id=%s AND sc_id=%s and usr_id=%s"""
                         l, t = self.db.select(sql, [pid, a, self.usr_id_p])
                         if t > 0:
-                            c, d, e,k, f, g = l[0]
-                    M.append([c, a, b, d, e,k, f, g,h])
+                            c, d, e,k, f, g,c1,c2,c3,c4,c5 = l[0]
+                    M.append([c, a, b, d, e,k, f, g,h,c1,c2,c3,c4,c5])
             dR['code'] = '0'
             dR['data'] = M
             return dR
@@ -593,6 +614,11 @@ class cC004_dl(cBASE_DL):
                     g = ''
                     h=''
                     k=''
+                    c1 = ''
+                    c2 = ''
+                    c3 = ''
+                    c4 = ''
+                    c5 = ''
                     if l[0][3] != '':
                         h = l[0][3]
 
@@ -618,14 +644,14 @@ class cC004_dl(cBASE_DL):
                         h = l[4][3]
 
                     if pid != '':
-                        sql = """ select id,oldprice,newprice,pfprice,hyprice,bigprice,
+                        sql = """ select id,oldprice,newprice,ptprice,hyprice,bigprice,
                                 pfprice,lsprice,dlprice,store_c,barcode 
                                 from spec_child_price where goods_id=%s AND sc_id=%s and usr_id=%s
                                 """
                         l, t = self.db.select(sql, [pid, a, self.usr_id_p])
                         if t > 0:
-                            c, d, e,k , f, g= l[0]
-                    M.append([c, a, b, d,e,k,  f, g,h])
+                            c, d, e,k , f, g,c1,c2,c3,c4,c5= l[0]
+                    M.append([c, a, b, d,e,k,  f, g,h,c1,c2,c3,c4,c5])
             dR['code'] = '0'
             dR['data'] = M
             return dR

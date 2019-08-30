@@ -1163,7 +1163,7 @@
                 success:function(res){
                     if (res.code=='0'){
                         var data=res.data
-
+                        console.log(data)
                         if (Object.keys(spec_all).length==1){
                             for(i = 0;i < data.length;i++){
 
@@ -1177,13 +1177,13 @@
                                 html+="<td ><input type='text' style='width:100%;' name='oldprice' value='"+data[i][3]+"' /></td>";
                                 html+="<td ><input type='text' style='width:100%;' name='newprice' value='"+data[i][4]+"' /></td>";
                                 html+="<td ><input type='text' style='width:100%;' name='ptprice' value='"+data[i][5]+"' /></td>";
-                                html+="<td><input type='text' style='width:100%;' name='hyprice' value='"+data[i][5]+"' /></td>";
-                                html+="<td><input type='text' style='width:100%;' name='bigprice' value='"+data[i][5]+"' /></td>";
-                                html+="<td><input type='text' style='width:100%;' name='pfprice' value='"+data[i][5]+"' /></td>";
-                                html+="<td><input type='text' style='width:100%;' name='lsprice' value='"+data[i][5]+"' /></td>";
-                                html+="<td><input type='text' style='width:100%;' name='dlprice' value='"+data[i][5]+"' /></td>";
-                                html+="<td><input type='text' style='width:100%;' name='store_c' value='"+data[i][6]+"' /></td>";
-                                html+="<td><input type='text' style='width:100%;' name='barcode' value='"+data[i][7]+"' /></td>";
+                                html+="<td><input type='text' style='width:100%;' name='hyprice' value='"+data[i][6]+"' /></td>";
+                                html+="<td><input type='text' style='width:100%;' name='bigprice' value='"+data[i][7]+"' /></td>";
+                                html+="<td><input type='text' style='width:100%;' name='pfprice' value='"+data[i][9]+"' /></td>";
+                                html+="<td><input type='text' style='width:100%;' name='lsprice' value='"+data[i][10]+"' /></td>";
+                                html+="<td><input type='text' style='width:100%;' name='dlprice' value='"+data[i][11]+"' /></td>";
+                                html+="<td><input type='text' style='width:100%;' name='store_c' value='"+data[i][12]+"' /></td>";
+                                html+="<td><input type='text' style='width:100%;' name='barcode' value='"+data[i][13]+"' /></td>";
                                 html+="<td><a class='btn btn-xs btn-info' onclick='fill_update(this)' ><i class='fa fa-edit'>填充</i></a>";
                                 html+="&emsp;<a class='btn btn-xs btn-warning' onclick='tr_delete(this);' ><i class='fa fa-trash-o'></i>删除</a></td>";
                                 html+="</tr>";
@@ -1201,13 +1201,13 @@
                                 html+="<td width='50'><input type='text' style='width:100%;' name='oldprice' value='"+data[i][3]+"' /></td>";
                                 html+="<td width='50'><input type='text' style='width:100%;' name='newprice' value='"+data[i][4]+"' /></td>";
                                 html+="<td><input type='text' style='width:100%;' name='ptprice' value='"+data[i][5]+"' /></td>";
-                                html+="<td><input type='text' style='width:100%;' name='hyprice' value='"+data[i][5]+"' /></td>";
-                                html+="<td><input type='text' style='width:100%;' name='bigprice' value='"+data[i][5]+"' /></td>";
-                                html+="<td><input type='text' style='width:100%;' name='pfprice' value='"+data[i][5]+"' /></td>";
-                                html+="<td><input type='text' style='width:100%;' name='lsprice' value='"+data[i][5]+"' /></td>";
-                                html+="<td><input type='text' style='width:100%;' name='dlprice' value='"+data[i][5]+"' /></td>";
-                                html+="<td><input type='text' style='width:100%;' name='store_c' value='"+data[i][6]+"' /></td>";
-                                html+="<td><input type='text' style='width:100%;' name='barcode' value='"+data[i][7]+"' /></td>";
+                                html+="<td><input type='text' style='width:100%;' name='hyprice' value='"+data[i][6]+"' /></td>";
+                                html+="<td><input type='text' style='width:100%;' name='bigprice' value='"+data[i][7]+"' /></td>";
+                                html+="<td><input type='text' style='width:100%;' name='pfprice' value='"+data[i][9]+"' /></td>";
+                                html+="<td><input type='text' style='width:100%;' name='lsprice' value='"+data[i][10]+"' /></td>";
+                                html+="<td><input type='text' style='width:100%;' name='dlprice' value='"+data[i][11]+"' /></td>";
+                                html+="<td><input type='text' style='width:100%;' name='store_c' value='"+data[i][12]+"' /></td>";
+                                html+="<td><input type='text' style='width:100%;' name='barcode' value='"+data[i][13]+"' /></td>";
                                 html+="<td width='50'><a class='btn btn-xs btn-info' onclick='fill_update(this)' ><i class='fa fa-edit'>填充</i></a>";
                                 html+="&emsp;<a class='btn btn-xs btn-warning' onclick='tr_delete(this);' ><i class='fa fa-trash-o'></i>删除</a></td>";
                                 html+="</tr>";
