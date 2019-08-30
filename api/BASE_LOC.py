@@ -2748,7 +2748,7 @@ class cBASE_LOC(cBASE_TPL):
             return self.jsons({'code': 901, 'msg': dR['MSG']})
         wechat_user_id = dR['wechat_user_id']
         sql = """select g.id 
-                    ,g.name	--商品名称
+                    ,g.cname	--商品名称
                     ,g.introduce	--商品简介
                     ,g.pic	--商品第一张图片
                     ,g.minprice as mini_price	--商品现价
