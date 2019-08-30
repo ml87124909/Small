@@ -134,7 +134,7 @@ class cBASE_TPL(cVI_BASE):
             return self.jsons({'code': 10000, 'msg': self.error_code[10000]})
         wid = lT[0][0]
         self.oUSER.update(self.subusr_id, wid)
-        sql="select new_score from shop_set where usr_id=%s"
+        sql="select coalesce(new_score,0) from shop_set where usr_id=%s"
         l,t=self.db.select(sql,self.subusr_id)
         if t>0:#注册送积分
             new_score=l[0][0]
