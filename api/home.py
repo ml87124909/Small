@@ -791,7 +791,7 @@ class chome(cBASE_LOC):
         if property_child_ids!='' and property_child_ids!='null':
 
             sql="""
-            select sc_name,new_price,store_c,ptprice from spec_child_price 
+            select sc_name,newprice,store_c,ptprice from spec_child_price 
             where usr_id=%s and goods_id=%s and sc_id=%s
             """
             l,t=self.db.select(sql,[self.subusr_id,good_id,property_child_ids[:-1]])
