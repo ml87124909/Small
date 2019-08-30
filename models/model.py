@@ -954,6 +954,19 @@ class search_key(Base):
     ctime = Column(DateTime, nullable=True)
     utime = Column(DateTime, nullable=True)
 
+
+class self_paykey(Base):
+    """ 图片广告分类"""
+    __tablename__ = "self_paykey"
+
+    id = Column(Integer, primary_key=True, nullable=False, autoincrement=True, index=True)
+    usr_id = Column(Integer, nullable=True, index=True)
+    wechat_user_id = Column(Integer, nullable=True, index=True)
+    paykey = Column(Text, nullable=True)
+    ctime = Column(DateTime, nullable=True)
+
+
+
 class shop_set(Base):
     """ 店铺设置"""
     __tablename__ = "shop_set"
