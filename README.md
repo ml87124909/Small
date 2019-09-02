@@ -5,6 +5,7 @@
 #### 注意：用docker镜像mn3711698/small:004的一定要git pull，这个镜像我不会再更新代码，需要自己git pull,不然代码会很旧，没法用!
 
 
+
 ## 说明  2019-08-07
 docker镜像基于ubuntu 18.04 的python3.6.8+postgresql-10,数据库要开下pgcrypto。命令是：create extension pgcrypto;
 <br>mn3711698/small:004,我测试过OK。
@@ -125,4 +126,4 @@ docker已处理好。
 
 > 在贡献代码、功能、小程序模板的前提,并得到我确认下的情况下，您可以为所欲为。
 
-
+* 本项目能发展得起来最终会完全开源，不会有任何代码用cython处理。初期为了可控，不进行完全开源。
