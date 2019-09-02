@@ -2097,7 +2097,7 @@ class chome(cBASE_LOC):
         now = datetime.datetime.now()
         ctime = now.strftime('%Y-%m-%d %H:%M:%S')
         order_dict['ctime'] = ctime
-        sql = "select COALESCE(close_time,0),COALESCE(close_time_pk,0) from shp_set where usr_id=%s"
+        sql = "select COALESCE(close_time,0),COALESCE(close_time_pk,0) from shop_set where usr_id=%s"
         l, t = self.db.select(sql, self.subusr_id)
         if t > 0:
             close_time, close_time_pk = l[0]
