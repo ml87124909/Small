@@ -222,7 +222,7 @@ class cBASE_TPL(cVI_BASE):
         if ctype != '' and ctype != 'None' and ctype!='undefined':
 
             for i in l:
-                itype=i.get('ctype')
+                itype=i.get('field')
                 if str(itype)==str(ctype):
                     L.append(i)
             if len(L)==0:
