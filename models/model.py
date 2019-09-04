@@ -651,6 +651,36 @@ class my_coupons(Base):
     uid = Column(Integer, nullable=True)
     utime = Column(DateTime, nullable=True)
 
+
+class offline_pay(Base):
+    """ 线下支付"""
+    __tablename__ = "offline_pay"
+
+    id = Column(Integer, primary_key=True, nullable=False, autoincrement=True, index=True)
+    usr_id = Column(Integer, nullable=True, index=True)
+    wechat_user_id = Column(Integer, nullable=True, index=True)
+    wname = Column(Text, nullable=True)
+    avatar = Column(Text, nullable=True)
+    order_num = Column(Text, nullable=True, index=True)
+    status = Column(SMALLINT, nullable=True)
+    total = Column(Float, nullable=True)
+    counpon = Column(Float, nullable=True)
+    vipsale = Column(Float, nullable=True)
+    truemoney = Column(Float, nullable=True)
+    score = Column(Float, nullable=True)
+    couponid = Column(Integer, nullable=True)
+    couponname = Column(Text, nullable=True)
+    ctype = Column(SMALLINT, nullable=True)
+    paykey = Column(Text, nullable=True, index=True)
+    data_close = Column(DateTime, nullable=True)
+    paytime = Column(DateTime, nullable=True)
+    del_flag = Column(SMALLINT, nullable=True)
+    cid = Column(Integer, nullable=True)
+    ctime = Column(DateTime, nullable=True)
+    uid = Column(Integer, nullable=True)
+    utime = Column(DateTime, nullable=True)
+
+
 class open_pt(Base):
     """ 开启的拼团"""
     __tablename__ = "open_pt"
