@@ -11,7 +11,7 @@ import time
 import traceback
 import random
 from lxml import etree
-from basic.publicw import db,oUSER,oGOODS_D,oGOODS_N,oPT_GOODS
+from basic.publicw import db,oUSER,oGOODS_D,oGOODS_N,oPT_GOODS,oMALL
 #db,subid,xml_data,
 class cWxPay:
 
@@ -24,6 +24,7 @@ class cWxPay:
         self.oGOODS_D=oGOODS_D
         self.oGOODS_N=oGOODS_N
         self.oPT_GOODS=oPT_GOODS
+        self.oMALL=oMALL
 
 
     def Webpage(self):
@@ -542,7 +543,7 @@ class cWxPay:
         return s.encode("utf-8")
 
     def sign(self, raw):
-        wechat_pay_secret = self.oTOLL['mckey']
+        wechat_pay_secret = self.oMALL.get('mckey')
         raw = [(k, str(raw[k]) if isinstance(raw[k], int) else raw[k])
                for k in sorted(raw.keys())]
         s = "&".join("=".join(kv) for kv in raw if kv[1])
