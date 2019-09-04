@@ -88,7 +88,7 @@ class cWxPay:
 
                     score = 0
                     # 赠送积分
-                    sql = "select COALESCE(integral,0),COALESCE(vip_integral,0) from score_conf where usr_id=%s"
+                    sql = "select COALESCE(integral,0),COALESCE(vip_integral,0) from shop_set where usr_id=%s"
                     l, t = self.db.select(sql, [self.subid])
                     if t > 0:
                         integral, vip_integral = l[0]
