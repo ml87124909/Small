@@ -799,6 +799,19 @@ class order_exchange_detail(Base):
     uid = Column(Integer, nullable=True)
     utime = Column(DateTime, nullable=True)
 
+
+
+class print_log(Base):
+    """ 打印记录"""
+    __tablename__ = "print_log"
+
+    id = Column(Integer, primary_key=True, nullable=False, autoincrement=True, index=True)
+    errors = Column(Text, nullable=True)
+    cname = Column(Text, nullable=True, index=True)
+    ctime = Column(DateTime, nullable=True)
+
+
+
 class profit_record(Base):
     """ 分享返收益记录"""
     __tablename__ = "profit_record"
