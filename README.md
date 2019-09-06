@@ -113,44 +113,58 @@ docker已处理好。
      
                                                                                         
 
-## 目录模块功能(从别的项目搬过来先占坑，晚上修改为本项目的)
-
-根据首页的各模块的功能不同，划分出了共20多个可复用的组件。具体请看下方
+## 目录模块功能
 
 ```shell
-├── banner  //轮播组件
-│   ├── Banner.vue
-│   └── BannerItem.vue
-├── common  // 公共组件
-│   ├── BHeader.vue
-│   ├── BMenu.vue
-│   ├── BMenuItem.vue
-│   ├── PostMaterial.vue
-│   ├── Search.vue
-│   └── TopContainer.vue
-├── content  // 主内容组件
-│   └── BContent.vue
-├── contentRow  // 单个分类的组件
-│   ├── BContentRow.vue
-│   ├── BRowBody.vue
-│   ├── BRowHead.vue
-│   ├── BRowItem.vue
-│   ├── BRowRank.vue
-│   └── BRowRankBody.vue
-├── contentTop  // 页面顶部组件
-│   ├── BContentTop.vue
-│   └── BContentTopItem.vue
-├── live  //直播所在的组件
-│   ├── BLive.vue
-│   ├── BLiveItem.vue
-│   ├── BLiveRank.vue
-│   └── BLiveRankItem.vue
-├── nav  //右侧导航条组件
-│   ├── BNavSide.vue
-│   └── smooth-scroll.js
-└── promote  // 推广组件
-    ├── BPromote.vue
-    └── BPromoteItem.vue
+├── admin  //后台目录（比较多，还未整理）
+│   ├── dl  //路由映射的数据处理
+│   │
+│   ├── html  //html文件
+│   │
+│   └── vi  //对应路由文件
+│
+│
+│
+├── api  // 小程序目录
+│   ├── BASE_LOC.py
+│   ├── BASE_TPL.py
+│   ├── helper.py
+│   ├── home.py
+│   ├── pay.py
+│   ├── VI_BASE.py
+│   ├── VIEWS.py
+│   └── wxpay.py
+│
+├── basic  //共用文件目录
+│   ├── base.py
+│   ├── pay.py
+│   ├── preload.py
+│   ├── publicw.so
+│   ├── RE_TOOL.py
+│   ├── wxbase.py
+│   └── wxpublic.py
+│ 
+├── celery_app  // 定时任务目录
+│   ├── celeryconfig.py
+│   ├── db_backup.py
+│   └── pfc.py
+│
+├── models  // 数据库表
+│   └── model.py
+│   
+├── static  //css,js,img等静态文件
+│     
+│   
+├── templates  //安装过程的html
+│   
+│   
+└── wxpay  // 微信支付回调
+│     └── WxPay.py   
+│   
+├── config.py //基本配置
+├── install.py //安装启动
+├── start.py //项目运行启动
+└── zone.py //七牛上传修改
 ```
 
 ## 目前系统还在完善中，如果有bug请加下边的QQ群反馈，感谢！
