@@ -89,6 +89,9 @@ def setup():
             sql_menu="""
             INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (8,'系统管理',1,1,10,NULL,NULL,1,'fa-cogs');
             INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (801,'个人帐号',0,2,1,8,'H001',1,NULL);
+            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (801,'角色授权',0,2,2,8,'H002',1,NULL);
+            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (801,'人员管理',0,2,3,8,'H003',1,NULL);
+            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (801,'人员授权',0,2,4,8,'H004',1,NULL);
             INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (805,'登录日志',0,2,5,8,'H005',1,NULL);
             INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (806,'帐号解锁',0,2,6,8,'H006',1,NULL);
             INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (1,'小程序管理',1,1,1,NULL,NULL,1,'fa-link');
@@ -390,6 +393,217 @@ def setup():
         
             """
             session.execute(sql_mtc_t)
+            session.commit()
+
+            fu1="""
+                CREATE OR REPLACE FUNCTION public.p_getmenurightlist(id integer)
+                 RETURNS TABLE(t_menu_id integer, t_menu_name character varying, t_menu integer, t_type integer, t_sort integer, t_parent_id integer, t_can_see integer, t_can_add integer, t_can_upd integer, t_can_del integer, status integer)
+                 LANGUAGE plpgsql
+                AS $function$
+                    
+                DECLARE
+                    tmp_lev1Id int;     
+                        lev1Count int;    
+                           
+                        tmp_lev2Id int;     
+                        lev2Count int;    
+                             
+                        tmp_lev3Id int;     
+                        lev3Count int; 
+                
+                    lev1sql text;
+                    
+                BEGIN
+                    CREATE TEMP TABLE if not exists tb(t_menu_id int,t_menu_name varchar(100),t_menu int,t_type int,t_sort int,t_parent_id int,t_can_see int,t_can_add int,t_can_upd int,t_can_del int,status int) on commit drop;
+                    
+                    TRUNCATE table tb;
+                    
+                    tmp_lev1Id := 0;
+                    lev1Count := 0;
+                   
+                    select COUNT(1) INTO lev1Count from menu_func m left join role_menu r on m.menu_id = r.menu_id and r.role_id=$1 where m.menu=1 and m.menu_id not in (select c.menu_id from menu_func c where c.menu in (2,3) and  COALESCE(c.parent_id,0)=0 );
+                    
+                    WHILE lev1Count > 0 LOOP
+                        begin		--COALESCE(c.parent_id,0)=0
+                            
+                         
+                            select m.menu_id INTO tmp_lev1Id from menu_func m left join role_menu r on m.menu_id = r.menu_id and r.role_id=$1 where m.menu = 1 and m.menu_id not in (select c.menu_id from menu_func c where c.menu in (2,3) and COALESCE(c.parent_id,0)=0 ) and m.menu_id not in (select t.t_menu_id from tb t) order by COALESCE(m.sort,null),COALESCE(m.menu_id,null) LIMIT 1;
+                
+                          
+                            insert into tb     
+                                 select m.menu_id,m.menu_name,m.menu,m.type,COALESCE(m.sort,null)sort,COALESCE(m.parent_id,null)parent_id,COALESCE(r.can_see,null)can_see,COALESCE(r.can_add,null)can_add,COALESCE(r.can_upd,null)can_upd,COALESCE(r.can_del,null)can_del,m.status
+                                from menu_func m left join role_menu r on m.menu_id = r.menu_id and r.role_id=$1 where m.menu = 1 and m.menu_id = tmp_lev1Id and m.menu_id not in (select c.menu_id from menu_func c where c.menu in (2,3) and COALESCE(c.parent_id,0)=0 ); 
+                            
+                            --一级菜单正常-----
+                            
+                            begin
+                                tmp_lev2Id := 0;    
+                                lev2Count := 0;
+                
+                                select COUNT(1) INTO lev2Count from menu_func m left join role_menu r on m.menu_id = r.menu_id and r.role_id=$1 
+                                    where m.menu=2 and m.parent_id = tmp_lev1Id and m.menu_id not in (select c.menu_id from menu_func c     
+                                    where c.menu in (2,3) and COALESCE(c.parent_id,0)=0 );
+                                    
+                                while lev2Count > 0 loop
+                                    
+                                    begin
+                                       
+                                        select (select m.menu_id INTO tmp_lev2Id from menu_func m left join role_menu r on m.menu_id = r.menu_id and r.role_id=$1    
+                                            where m.menu = 2 and m.parent_id = tmp_lev1Id and m.menu_id not in (select c.menu_id from menu_func c     
+                                            where c.menu in (2,3) and COALESCE(c.parent_id,0)=0 ) and m.menu_id not in (select t.t_menu_id from tb t)     
+                                            order by COALESCE(m.sort,null),COALESCE(m.menu_id,null) LIMIT 1);
+                                       
+                                        ---------
+                                       
+                                        insert into tb
+                                            select m.menu_id,m.menu_name,m.menu,m.type,COALESCE(m.sort,null) sort,COALESCE(m.parent_id,null) parent_id,COALESCE(r.can_see,null) can_see,COALESCE(r.can_add,null) can_add,COALESCE(r.can_upd,null) can_upd,COALESCE(r.can_del,null) can_del,m.status 
+                                            from menu_func m left join role_menu r on m.menu_id = r.menu_id and r.role_id=$1 where m.menu =2 and m.menu_id = tmp_lev2Id and m.menu_id not in (select c.menu_id from menu_func c where c.menu in (2,3) and COALESCE(c.parent_id,0)=0 ); 
+                                        ---二级菜单正常
+                                        begin
+                                            tmp_lev3Id := 0;    
+                                            lev3Count := 0;    
+                                           
+                                            select COUNT(1) INTO lev3Count from menu_func m left join role_menu r on m.menu_id = r.menu_id and r.role_id=$1    
+                                                where m.menu=3 and m.parent_id = tmp_lev2Id and m.menu_id not in (select c.menu_id from menu_func c     
+                                                where c.menu in (2,3) and COALESCE(c.parent_id,0)=0 );
+                
+                                            while lev3Count > 0 loop
+                                                begin
+                                                   
+                                                    /**/
+                                                    select m.menu_id INTO tmp_lev3Id from menu_func m left join role_menu r on m.menu_id = r.menu_id and r.role_id=$1    
+                                                        where m.menu = 3 and m.parent_id = tmp_lev2Id and m.menu_id not in (select c.menu_id from menu_func c     
+                                                        where c.menu in (2,3) and COALESCE(c.parent_id,0)=0 ) and m.menu_id not in (select t.t_menu_id from tb t)    
+                                                        order by COALESCE(m.sort,null),COALESCE(m.menu_id,null) LIMIT 1 ;
+                                                    
+                
+                
+                                                    
+                                                    insert into tb    
+                                                        select m.menu_id,m.menu_name,m.menu,m.type,COALESCE(m.sort,null) sort,COALESCE(m.parent_id,null) parent_id,COALESCE(r.can_see,null) can_see,COALESCE(r.can_add,null) can_add,COALESCE(r.can_upd,null) can_upd,COALESCE(r.can_del,null) can_del,m.status  
+                                                        from menu_func m left join role_menu r on m.menu_id = r.menu_id and r.role_id=$1   
+                                                        where m.menu =3 and m.menu_id = tmp_lev3Id and m.menu_id not in (select c.menu_id from menu_func c     
+                                                        where c.menu in (2,3) and COALESCE(c.parent_id,0)=0 );
+                
+                                                    lev3Count := lev3Count-1;
+                                                end;
+                                                
+                                            end loop;
+                                        
+                                        end;
+                                        
+                                        --二级菜单
+                                        lev2Count := lev2Count-1;
+                                    end;
+                                    
+                                    
+                                end loop;
+                
+                                
+                            end;
+                                
+                            ----一级菜单正常--
+                        end;
+                        lev1Count := lev1Count-1;
+                        
+                    END LOOP;
+                    return query 
+                    select * from tb;
+                    
+                END
+                $function$
+                ;
+            
+            
+            """
+            session.execute(fu1)
+            session.commit()
+            fu2="""
+                CREATE OR REPLACE FUNCTION public.p_save_rolemenu(role_id integer, see_str character varying, add_str character varying, del_str character varying, upd_str character varying, optuserid integer)
+                 RETURNS void
+                 LANGUAGE plpgsql
+                AS $function$
+                    
+                DECLARE
+                    new_cid int;  
+                        new_uid int;  
+                        new_ctime timestamp;
+                        new_utime timestamp;
+                    t_count_roleMenu int;  
+                    id int;
+                    test int;
+              
+                BEGIN
+                    id :=role_id;
+                    t_count_roleMenu := 0;  
+                    new_cid := 0;  
+                    new_uid := 0;  
+                    new_ctime := now();  
+                    new_utime := now();
+                    
+                    CREATE TEMP TABLE if not exists tb(t_menu_id int,t_can_see int default 0,t_can_add int default 0,t_can_del int default 0,t_can_upd int default 0  ) ON COMMIT DROP;
+                    TRUNCATE table tb;
+                    
+                    BEGIN
+                        --将需要操作的menu都放入临时表变量  
+                          
+                           insert into tb(t_menu_id)(select regexp_split_to_table(see_str,',')::integer  
+                            union  
+                            select regexp_split_to_table(add_str,',')::integer  
+                            union  
+                            select regexp_split_to_table(del_str,',')::integer  
+                            union  
+                            select regexp_split_to_table(upd_str,',')::integer);
+                            
+                              -- 这些menu的上级和上上级都应该加入权限里面去  
+                        
+                            insert into tb(select COALESCE(parent_id,null) ,0 ,0 ,0 ,0 from menu_func where menu_id in (select t.t_menu_id from tb t)  
+                            union  
+                            select COALESCE(parent_id,null) ,0 ,0 ,0 ,0 from menu_func where menu_id in (select parent_id from menu_func where menu_id in (select t.t_menu_id from tb t) ));  
+                        --先将多余的空数据删除  
+                        delete from tb where t_menu_id = 0;
+                     
+                        --然后update 查询权限情况到临时表变量  
+                        update tb set t_can_see = 1 where t_menu_id in ( select  regexp_split_to_table(see_str,',')::integer );
+                     
+                           --然后update 查询权限情况到临时表变量  
+                        update tb set t_can_add = 1 where t_menu_id in ( select regexp_split_to_table(add_str,',')::integer ); 
+                             
+                           --然后update 查询权限情况到临时表变量  
+                        update tb set t_can_del = 1 where t_menu_id in ( select regexp_split_to_table(del_str,',')::integer ); 
+                             
+                           --然后update 查询权限情况到临时表变量  
+                        update tb set t_can_upd = 1 where t_menu_id in ( select regexp_split_to_table(upd_str,',')::integer );
+                        
+                        select COUNT(1) INTO t_count_roleMenu from role_menu r where r.role_id = $1 ;
+                
+                        if t_count_roleMenu > 0 then -- 如果是update 模式  
+                            begin  
+                             -- update模式的话，原有的cid，ctime需要保留下来，uid ，是operUserId，utime是当前时间 
+                            select   COALESCE(MAX(r.cid),null)  ,COALESCE(MAX(r.ctime),null) ,$6 ,now() INTO new_cid,new_ctime,new_uid,new_utime from role_menu r where r.role_id = $1 LIMIT 1;
+                            end;  
+                        else                      -- 否则是create 模式  
+                               begin  
+                                --create 模式的话，cid 是 oprUserId，ctime 是 当前时间，uid ，是 Null，utime是null  
+                                 new_cid := optUserId;  
+                                 new_ctime := now();  
+                                 new_uid := optUserId;  
+                                 new_utime := now();  
+                               end; 
+                        end if;
+                    
+                        
+                        --然后动手吧，把role_menu 的数据处理掉，然后将新的放进去  
+                        delete from role_menu r where r.role_id = $1;
+        
+                        insert into role_menu(role_id, menu_id, can_see, can_add, can_del, can_upd, cid, ctime, uid, utime)  
+                           (select $1, COALESCE(t_menu_id,0), t_can_see, t_can_add, t_can_del, t_can_upd, new_cid, new_ctime,new_uid,new_utime from tb);
+                    END;
+                END;
+                $function$
+                ;
+            """
+            session.execute(fu2)
             session.commit()
             if row is not None:
                 sql="""update users set login_id=encrypt('%s','%s','aes'),status=1,
