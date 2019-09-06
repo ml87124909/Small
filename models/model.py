@@ -651,7 +651,6 @@ class my_coupons(Base):
     uid = Column(Integer, nullable=True)
     utime = Column(DateTime, nullable=True)
 
-
 class offline_pay(Base):
     """ 线下支付"""
     __tablename__ = "offline_pay"
@@ -679,7 +678,6 @@ class offline_pay(Base):
     ctime = Column(DateTime, nullable=True)
     uid = Column(Integer, nullable=True)
     utime = Column(DateTime, nullable=True)
-
 
 class open_pt(Base):
     """ 开启的拼团"""
@@ -799,8 +797,6 @@ class order_exchange_detail(Base):
     uid = Column(Integer, nullable=True)
     utime = Column(DateTime, nullable=True)
 
-
-
 class print_log(Base):
     """ 打印记录"""
     __tablename__ = "print_log"
@@ -809,8 +805,6 @@ class print_log(Base):
     errors = Column(Text, nullable=True)
     cname = Column(Text, nullable=True, index=True)
     ctime = Column(DateTime, nullable=True)
-
-
 
 class profit_record(Base):
     """ 分享返收益记录"""
@@ -873,7 +867,7 @@ class pt_conf(Base):
     utime = Column(DateTime, nullable=True)
 
 class pt_log(Base):
-    """ 图片广告分类"""
+    """ 拼团记录"""
     __tablename__ = "pt_log"
 
     id = Column(Integer, primary_key=True, nullable=False, autoincrement=True, index=True)
@@ -897,7 +891,6 @@ class qiniu(Base):
     access_key = Column(Text, nullable=True, index=True)
     secret_key = Column(Text, nullable=True)
     domain_url = Column(Text, nullable=True)
-    ctype = Column(SMALLINT, nullable=True)
     endpoint = Column(Text, nullable=True, index=True)
     del_flag = Column(SMALLINT, nullable=True)
     cid = Column(Integer, nullable=True)
@@ -971,6 +964,39 @@ class reputation_list(Base):
     uid = Column(Integer, nullable=True)
     utime = Column(DateTime, nullable=True)
 
+class role_menu(Base):
+    """ 角色菜单"""
+    __tablename__ = "role_menu"
+
+    id = Column(Integer, primary_key=True, nullable=False, autoincrement=True, index=True)
+    role_id = Column(Integer, nullable=True, index=True)
+    menu_id = Column(Integer, nullable=True, index=True)
+    can_add = Column(Integer, nullable=True)
+    can_upd = Column(Integer, nullable=True)
+    can_del = Column(Integer, nullable=True)
+    can_see = Column(Integer, nullable=True)
+    random_no = Column(Text, nullable=True, index=True)
+    cid = Column(Integer, nullable=True)
+    ctime = Column(DateTime, nullable=True)
+    uid = Column(Integer, nullable=True)
+    utime = Column(DateTime, nullable=True)
+
+class roles(Base):
+    """ 角色表"""
+    __tablename__ = "roles"
+
+    id = Column(Integer, primary_key=True, nullable=False, autoincrement=True, index=True)
+    role_id = Column(Integer, nullable=True, index=True)
+    role_name = Column(Text, nullable=True, index=True)
+    sort = Column(Integer, nullable=True)
+    dept_id = Column(Integer, nullable=True)
+    random = Column(Text, nullable=True, index=True)
+    memo = Column(Text, nullable=True, index=True)
+    cid = Column(Integer, nullable=True)
+    ctime = Column(DateTime, nullable=True)
+    uid = Column(Integer, nullable=True)
+    utime = Column(DateTime, nullable=True)
+
 class score_set(Base):
     """ 签到积分"""
     __tablename__ = "score_set"
@@ -997,7 +1023,6 @@ class search_key(Base):
     ctime = Column(DateTime, nullable=True)
     utime = Column(DateTime, nullable=True)
 
-
 class self_paykey(Base):
     """ 图片广告分类"""
     __tablename__ = "self_paykey"
@@ -1007,8 +1032,6 @@ class self_paykey(Base):
     wechat_user_id = Column(Integer, nullable=True, index=True)
     paykey = Column(Text, nullable=True)
     ctime = Column(DateTime, nullable=True)
-
-
 
 class shop_set(Base):
     """ 店铺设置"""
@@ -1146,7 +1169,7 @@ class spec_child(Base):
     utime = Column(DateTime, nullable=True)
 
 class spec_child_price(Base):
-    """ 商品规格价格"""
+    """ 商品规格组合价格"""
     __tablename__ = "spec_child_price"
 
     id = Column(Integer, primary_key=True, nullable=False, autoincrement=True, index=True)
@@ -1170,9 +1193,6 @@ class spec_child_price(Base):
     uid = Column(Integer, nullable=True)
     utime = Column(DateTime, nullable=True)
 
-
-
-
 class top_up(Base):
     """ 充值记录"""
     __tablename__ = "top_up"
@@ -1190,7 +1210,6 @@ class top_up(Base):
     ctime = Column(DateTime, nullable=True)
     uid = Column(Integer, nullable=True)
     utime = Column(DateTime, nullable=True)
-
 
 class update_order(Base):
     """ 定时更新订单"""
@@ -1282,6 +1301,21 @@ class users(Base):
     ctime = Column(DateTime, nullable=True)
     uid = Column(Integer, nullable=True)
     utime = Column(DateTime, nullable=True)
+
+class usr_role(Base):
+    """ 用户角色表"""
+    __tablename__ = "usr_role"
+
+    id = Column(Integer, primary_key=True, nullable=False, autoincrement=True, index=True)
+    usr_id = Column(Integer, nullable=True, index=True)
+    role_id = Column(Integer, nullable=True, index=True)
+    usr_name = Column(Text, nullable=True)
+    access_son = Column(Integer, nullable=True)
+    cid = Column(Integer, nullable=True)
+    ctime = Column(DateTime, nullable=True)
+    uid = Column(Integer, nullable=True)
+    utime = Column(DateTime, nullable=True)
+
 
 class view_history(Base):
     """ 浏览记录"""
@@ -1601,7 +1635,6 @@ class wechat_mall_user(Base):
     uid = Column(Integer, nullable=True)
     utime = Column(DateTime, nullable=True)
 
-
 class webapge_log(Base):
     """ 小程序用户记录"""
     __tablename__ = "webapge_log"
@@ -1609,7 +1642,6 @@ class webapge_log(Base):
     errors = Column(Text, nullable=True)
     cname = Column(Text, nullable=True)
     ctime = Column(DateTime, nullable=True)
-
 
 class wechat_user_change_log(Base):
     """ 小程序用户记录"""
