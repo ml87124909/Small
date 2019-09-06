@@ -113,6 +113,45 @@ docker已处理好。
      
                                                                                         
 
+## 目录模块功能(从别的项目搬过来先占坑，晚上修改为本项目的)
+
+根据首页的各模块的功能不同，划分出了共20多个可复用的组件。具体请看下方
+
+```shell
+├── banner  //轮播组件
+│   ├── Banner.vue
+│   └── BannerItem.vue
+├── common  // 公共组件
+│   ├── BHeader.vue
+│   ├── BMenu.vue
+│   ├── BMenuItem.vue
+│   ├── PostMaterial.vue
+│   ├── Search.vue
+│   └── TopContainer.vue
+├── content  // 主内容组件
+│   └── BContent.vue
+├── contentRow  // 单个分类的组件
+│   ├── BContentRow.vue
+│   ├── BRowBody.vue
+│   ├── BRowHead.vue
+│   ├── BRowItem.vue
+│   ├── BRowRank.vue
+│   └── BRowRankBody.vue
+├── contentTop  // 页面顶部组件
+│   ├── BContentTop.vue
+│   └── BContentTopItem.vue
+├── live  //直播所在的组件
+│   ├── BLive.vue
+│   ├── BLiveItem.vue
+│   ├── BLiveRank.vue
+│   └── BLiveRankItem.vue
+├── nav  //右侧导航条组件
+│   ├── BNavSide.vue
+│   └── smooth-scroll.js
+└── promote  // 推广组件
+    ├── BPromote.vue
+    └── BPromoteItem.vue
+```
 
 ## 目前系统还在完善中，如果有bug请加下边的QQ群反馈，感谢！
 
