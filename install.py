@@ -89,9 +89,9 @@ def setup():
             sql_menu="""
             INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (8,'系统管理',1,1,10,NULL,NULL,1,'fa-cogs');
             INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (801,'个人帐号',0,2,1,8,'H001',1,NULL);
-            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (801,'角色授权',0,2,2,8,'H002',1,NULL);
-            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (801,'人员管理',0,2,3,8,'H003',1,NULL);
-            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (801,'人员授权',0,2,4,8,'H004',1,NULL);
+            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (802,'角色授权',0,2,2,8,'H002',1,NULL);
+            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (803,'人员管理',0,2,3,8,'H003',1,NULL);
+            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (804,'人员授权',0,2,4,8,'H004',1,NULL);
             INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (805,'登录日志',0,2,5,8,'H005',1,NULL);
             INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (806,'帐号解锁',0,2,6,8,'H006',1,NULL);
             INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (1,'小程序管理',1,1,1,NULL,NULL,1,'fa-link');
@@ -101,10 +101,14 @@ def setup():
             INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (104,'文章分类',0,2,4,1,'A004',1,NULL);
             INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (105,'文章列表',0,2,5,1,'A005',1,NULL);
             INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (106,'用户列表',0,2,6,1,'A006',1,NULL);
+            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (107,'用户反馈',0,2,7,1,'A007',1,NULL);
+            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (108,'收货地址',0,2,8,1,'A008',1,NULL);
+            /*
+            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (204,'收货地址',0,2,4,2,'B004',1,NULL);
             INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (2,'用户画像',1,1,3,NULL,NULL,1,'fa-address-card-o');
             INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (202,'用户标签',0,2,2,2,'B002',1,NULL);
             INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (203,'模板推送',0,2,3,2,'B003',1,NULL);
-            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (204,'收货地址',0,2,4,2,'B004',1,NULL);
+            */
             INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (3,'商品管理',1,1,4,NULL,NULL,1,'fa-shopping-bag');
             INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (301,'商品分类',0,2,1,3,'C001',1,NULL);
             INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (302,'商品规格',0,2,2,3,'C002',1,NULL);
