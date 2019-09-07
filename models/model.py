@@ -985,12 +985,12 @@ class roles(Base):
     """ 角色表"""
     __tablename__ = "roles"
 
-    id = Column(Integer, primary_key=True, nullable=False, autoincrement=True, index=True)
-    role_id = Column(Integer, nullable=True, index=True)
+    role_id = Column(Integer, primary_key=True, nullable=False, autoincrement=True, index=True)
     role_name = Column(Text, nullable=True, index=True)
     sort = Column(Integer, nullable=True)
     dept_id = Column(Integer, nullable=True)
-    random = Column(Text, nullable=True, index=True)
+    del_flag = Column(SMALLINT, nullable=True, index=True)
+    random_no = Column(Text, nullable=True, index=True)
     memo = Column(Text, nullable=True, index=True)
     cid = Column(Integer, nullable=True)
     ctime = Column(DateTime, nullable=True)
@@ -1682,8 +1682,8 @@ class withdraw_cash(Base):
 
 
 def createall(engine_):
-    # try:
-    #     Base.metadata.drop_all(engine_)
-    # except:
-    #     pass
+    try:
+        Base.metadata.drop_all(engine_)
+    except:
+        pass
     Base.metadata.create_all(engine_)
