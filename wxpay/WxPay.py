@@ -543,7 +543,8 @@ class cWxPay:
         return s.encode("utf-8")
 
     def sign(self, raw):
-        wechat_pay_secret = self.oMALL.get('mckey')
+        mall=self.oMALL.get(self.subid)
+        wechat_pay_secret = mall.get('mckey')
         raw = [(k, str(raw[k]) if isinstance(raw[k], int) else raw[k])
                for k in sorted(raw.keys())]
         s = "&".join("=".join(kv) for kv in raw if kv[1])
