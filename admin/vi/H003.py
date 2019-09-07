@@ -23,7 +23,7 @@ class cH003(cBASE_TPL):
             self.dl_name = 'xxx_dl'
         '''
         self.dl_name = 'H003_dl'
-        self.inframe = 1
+
     def specialinit(self):
         pass
 
@@ -35,9 +35,8 @@ class cH003(cBASE_TPL):
         PL,L = self.dl.mRight()
         self.assign('dataList',L)
         self.getPagination(PL)
-        
-        s = self.runApp('H003_list.html')
-        return s
+
+        return self.runApp('H003_list.html')
     
     def initPagiUrl(self):
         lb_code = self.REQUEST.get('lb_code','')
@@ -83,11 +82,10 @@ class cH003(cBASE_TPL):
         self.assign('mode', mode)
         statuslist=self.dl.get_status()
         self.assign('statuslist',statuslist)
-        L1, L2 = self.dl.get_toll()
-        self.assign('oss_list', L2)
-        self.assign('vip_list', L1)
-        s = self.runApp('H003_local.html')
-        return s
+        # L1, L2 = self.dl.get_toll()
+        # self.assign('oss_list', L2)
+        # self.assign('vip_list', L1)
+        return self.runApp('H003_local.html')
 		
 
     

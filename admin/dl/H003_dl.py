@@ -83,10 +83,11 @@ class cH003_dl(cBASE_DL):
                 """
                 self.db.query(sql, [self.usr_id, pk])
             sql = """
-                update users set expire_time=%s,status=%s,uid=%s,
-                utime=now(),qiniu_flag=%s,vip_flag=%s,oss_flag=%s where usr_id = %s
+                update users set expire_time=%s,status=%s,uid=%s,utime=now()
+                --,qiniu_flag=%s,vip_flag=%s,oss_flag=%s 
+                where usr_id = %s
             """
-            self.db.query(sql, [expire_time, status, self.usr_id, qiniu_flag, vip_flag, oss_flag, pk])
+            self.db.query(sql, [expire_time or None, status, self.usr_id, qiniu_flag or None, vip_flag or None, oss_flag or None, pk])
             sql="""select coalesce(expire_flag,0) from users 
                     where to_char(expire_time,'YYYY-MM-DD')>to_char(now(),'YYYY-MM-DD') and usr_id = %s  and status=1
                     """
