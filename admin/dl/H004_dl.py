@@ -23,38 +23,37 @@ class cH004_dl(cBASE_DL):
             
         sql = u"""
         select a.usr_id       
-            , convert_from(decrypt(a.login_id::bytea, 'janedaocode', 'aes'),'SQL_ASCII')
+            , convert_from(decrypt(a.login_id::bytea, %s, 'aes'),'SQL_ASCII')
            
             ,COALESCE((select array_to_string(ARRAY(SELECT unnest(array_agg(role_name))),',') from roles where role_id in( select role_id from usr_role where usr_id=a.usr_id)),null ) as usr_role
           from users a 
          
          where COALESCE(a.del_flag,0) = 0  
         """
-        # if self.unit_id != 1:
-        #     sql+=u" and a.h_id = %s "%self.unit_id
+        parm=[self.md5code]
             
         self.qqid = self.GP('qqid','')
-        self.orderby = self.GP('orderby','')
-        self.orderbydir = self.GP('orderbydir','')
+
         self.pageNo=self.GP('pageNo','')
         if self.pageNo=='':self.pageNo='1'
         self.pageNo=int(self.pageNo)
         if self.qqid!='':
-            sql+= " and a.login_id LIKE '%%%s%%' "%(self.qqid)
+            sql+= " and a.login_id LIKE %s "
+            parm.append('%%%s%%'%(self.qqid))
 
 
         #ORDER BY 
 
         sql+=" ORDER BY  a.usr_id desc"
         
-        L,iTotal_length,iTotal_Page,pageNo,select_size=self.db.select_for_grid(sql,self.pageNo)
+        L,iTotal_length,iTotal_Page,pageNo,select_size=self.db.select_for_grid(sql,self.pageNo,L=parm)
         PL=[pageNo,iTotal_Page,iTotal_length,select_size]
         return PL,L
 
     def get_local_data(self , pk):
         if pk != '':   
-            L = self.db.fetch("""select a.usr_id ,  convert_from(decrypt(a.login_id::bytea, 'janedaocode', 'aes'),'SQL_ASCII') as login_id 
-            from users a where a.usr_id = '%s'""" % pk)
+            L = self.db.fetch("""select a.usr_id ,  convert_from(decrypt(a.login_id::bytea,%s, 'aes'),'SQL_ASCII') as login_id 
+            from users a where a.usr_id = %s""", [self.md5code,pk])
             L['rolelist'],t = self.db.fetchall("""
             select role_id , role_name from roles order by sort asc
             """)
