@@ -1372,6 +1372,7 @@ function formcheck(form){
 
                 }else{
                     layer.msg(data.MSG);
+                    $("#div_mul_btns").show();
                 }
             }
         });
