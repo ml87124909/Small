@@ -258,54 +258,54 @@ class cDL_BASE(cDL):
                 menu3[row.get('parent_id')].append([row['menu_id'], row['menu_name'], row['func_id'], row['parent_id'], row['img']])
 
         return menu1, menu2, menu3
-
-    def checkuser(self, usr_id):
-
-        sql = """
-        SELECT U.usr_id                   -- 0
-              , convert_from(decrypt(U.login_id::bytea,%s, 'aes'),'SQL_ASCII')                -- 1
-              ,U.dept_id                  -- 2
-              ,case when COALESCE(u.usr_id_p,0)=0 then U.usr_id else u.usr_id_p end     -- 3
-           FROM users U 
-           WHERE U.usr_id=%s AND  U.status=1
-        """
-
-        lT, iN = self.db.select(sql,[self.md5code,usr_id])
-        if not iN:
-            return 0
-
-        usr_name = lT[0][1]
-
-        # 求得用户的权限
-        dActiveUser[usr_id] = {}
-        dActiveUser[usr_id]['roles'] = {}  # 用户角色
-
-        dActiveUser[usr_id]['login_time'] = time.time()  # 登入时间
-        dActiveUser[usr_id]['usr_name'] = usr_name
-        dActiveUser[usr_id]['usr_id'] = usr_id  # 用户名
-        dActiveUser[usr_id]['login_id'] = usr_name  # 登陆ID
-        dActiveUser[usr_id]['usr_id_p'] = lT[0][3]  # 登陆ID
-        dActiveUser[usr_id]['dept_id'] = lT[0][3]  #部门ID
-
-        dActiveUser[usr_id]['menu_role'] = self.get_usr_menu_role()
-        return dActiveUser
-
-    def get_usr_menu_role(self):
-
-        menu_role = {}
-
-        sql = ''' select menu_id,1 as can_add,1 as can_del,1 as can_upd ,1 as can_see from menu_func m where m.status =1 order by menu_id '''
-        L, t = self.db.fetchall(sql)
-        for row in L:
-            if row['menu_id'] in menu_role:
-                menu_role[row['menu_id']][0] = 1
-                menu_role[row['menu_id']][1] = 1
-                menu_role[row['menu_id']][2] = 1
-                menu_role[row['menu_id']][3] = 1
-            else:
-                menu_role[row['menu_id']] = [1, 1, 1, 1]
-
-        return menu_role
+    #  checkuser,get_usr_menu_role注释掉，采用新的权限处理
+    # def checkuser(self, usr_id):
+    #
+    #     sql = """
+    #     SELECT U.usr_id                   -- 0
+    #           , convert_from(decrypt(U.login_id::bytea,%s, 'aes'),'SQL_ASCII')                -- 1
+    #           ,U.dept_id                  -- 2
+    #           ,case when COALESCE(u.usr_id_p,0)=0 then U.usr_id else u.usr_id_p end     -- 3
+    #        FROM users U
+    #        WHERE U.usr_id=%s AND  U.status=1
+    #     """
+    #
+    #     lT, iN = self.db.select(sql,[self.md5code,usr_id])
+    #     if not iN:
+    #         return 0
+    #
+    #     usr_name = lT[0][1]
+    #
+    #     # 求得用户的权限
+    #     dActiveUser[usr_id] = {}
+    #     dActiveUser[usr_id]['roles'] = {}  # 用户角色
+    #
+    #     dActiveUser[usr_id]['login_time'] = time.time()  # 登入时间
+    #     dActiveUser[usr_id]['usr_name'] = usr_name
+    #     dActiveUser[usr_id]['usr_id'] = usr_id  # 用户名
+    #     dActiveUser[usr_id]['login_id'] = usr_name  # 登陆ID
+    #     dActiveUser[usr_id]['usr_id_p'] = lT[0][3]  # 登陆ID
+    #     dActiveUser[usr_id]['dept_id'] = lT[0][3]  #部门ID
+    #
+    #     dActiveUser[usr_id]['menu_role'] = self.get_usr_menu_role()
+    #     return dActiveUser
+    #
+    # def get_usr_menu_role(self):
+    #
+    #     menu_role = {}
+    #
+    #     sql = ''' select menu_id,1 as can_add,1 as can_del,1 as can_upd ,1 as can_see from menu_func m where m.status =1 order by menu_id '''
+    #     L, t = self.db.fetchall(sql)
+    #     for row in L:
+    #         if row['menu_id'] in menu_role:
+    #             menu_role[row['menu_id']][0] = 1
+    #             menu_role[row['menu_id']][1] = 1
+    #             menu_role[row['menu_id']][2] = 1
+    #             menu_role[row['menu_id']][3] = 1
+    #         else:
+    #             menu_role[row['menu_id']] = [1, 1, 1, 1]
+    #
+    #     return menu_role
 
     def specialinit(self):
         pass
