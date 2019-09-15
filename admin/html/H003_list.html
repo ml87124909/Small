@@ -31,7 +31,9 @@
                 </select>
             </td-->
 			<td style="text-align:right;">
-
+				 {% if lR[0] != '1' %}
+                <button type="button" class="btn btn-success btn-sm" onclick="main_add()"><i class="fa fa-plus"></i> 增加</button>
+                {% endif %}
 
 			</td>
 			
