@@ -25,15 +25,16 @@ class cA008_dl(cBASE_DL):
             select w.id
                 ,wu.cname
                  ,case when w.is_default=1 then '是' else '否' end
-                ,w.address
+                ,convert_from(decrypt(w.address::bytea, %s, 'aes'),'SQL_ASCII')
                 ,w.cname
-                ,w.phone
+                ,convert_from(decrypt(w.phone::bytea, %s, 'aes'),'SQL_ASCII')
                 ,w.ctime 
                 ,w.utime
             from wechat_address w
             left join wechat_mall_user  wu on wu.id=w.wechat_user_id
             where  COALESCE(w.del_flag,0)=0 and w.usr_id =%s
-        """%self.usr_id_p
+        """
+        parm=[self.md5code,self.md5code,self.usr_id_p]
         # self.qqid = self.GP('qqid','')
         # self.orderby = self.GP('orderby','')
         # self.orderbydir = self.GP('orderbydir','')
@@ -46,9 +47,9 @@ class cA008_dl(cBASE_DL):
         # if self.orderby!='':
         #     sql+=' ORDER BY %s %s' % (self.orderby,self.orderbydir)
         # else:
-        #     sql+=" ORDER BY r.role_id DESC"
+        sql+=" ORDER BY w.id DESC"
         
-        L,iTotal_length,iTotal_Page,pageNo,select_size=self.db.select_for_grid(sql,self.pageNo)
+        L,iTotal_length,iTotal_Page,pageNo,select_size=self.db.select_for_grid(sql,self.pageNo,L=parm)
         PL=[pageNo,iTotal_Page,iTotal_length,select_size]
         return PL,L
 
