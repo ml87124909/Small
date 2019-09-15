@@ -642,12 +642,13 @@ class cBASE_LOC(cBASE_TPL):
             return self.jsons({'code': 901, 'msg': dR['MSG']})
         wechat_user_id = dR['wechat_user_id']
 
-        sql = """select id,cname as name,phone,province,city,district,address,code,
+        sql = """select id,cname as name,convert_from(decrypt(phone::bytea, %s, 'aes'),'SQL_ASCII')phone,
+                    province,city,district,convert_from(decrypt(address::bytea, %s, 'aes'),'SQL_ASCII')address,code,
                         is_default as default,to_char(ctime,'YYYY-MM-DD HH24:MI')
                 from wechat_address
                 where COALESCE(del_flag,0)=0 and wechat_user_id=%s and usr_id=%s 
                 """
-        parm = [wechat_user_id, self.subusr_id]
+        parm = [self.md5code,self.md5code,wechat_user_id, self.subusr_id]
         if default != '' and default != 'None' and default != 'undefined':
             sql += "and  is_default=%s"
             parm.append(default)
@@ -673,13 +674,14 @@ class cBASE_LOC(cBASE_TPL):
             return self.jsons({'code': 901, 'msg': dR['MSG']})
         wechat_user_id = dR['wechat_user_id']
 
-        sql = """select id,cname as name,phone,province,city,district,address,code,
+        sql = """select id,cname as name,convert_from(decrypt(phone::bytea, %s, 'aes'),'SQL_ASCII')phone,
+                    province,city,district,convert_from(decrypt(address::bytea, %s, 'aes'),'SQL_ASCII')address,code,
                                 is_default as default,to_char(ctime,'YYYY-MM-DD HH24:MI')
                         from wechat_address
                         where COALESCE(del_flag,0)=0 and wechat_user_id=%s and usr_id=%s and id=%s
                         order by is_default desc ,id asc
                         """
-        parm = [wechat_user_id, self.subusr_id, id]
+        parm = [self.md5code,self.md5code,wechat_user_id, self.subusr_id, id]
 
         l, t = self.db.fetchall(sql, parm)
         if t == 0:
