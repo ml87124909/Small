@@ -78,9 +78,17 @@ def setup():
             session = DBSession()
             result =session.execute("SELECT usr_id FROM users WHERE usr_id=1;")
             row=result.fetchone()
+            try:#增加开启加解密扩展
+                sql_pgcrypto="""
+                    create extension pgcrypto;
+                """
+                session.execute(sql_pgcrypto)
+                session.commit()
+            except:
+                pass
             try:
                 sql_del="""
-                    delete from menu_func
+                    delete from menu_func;
                 """
                 session.execute(sql_del)
                 session.commit()
@@ -616,7 +624,7 @@ def setup():
                 session.commit()
                 session.close()
                 return render_template('setup.html',code=0)
-            sql = """insert into users(usr_id,login_id,passwd,status)values(1,encrypt('%s','%s','aes'),crypt('%s', gen_salt('md5')),1)
+            sql = """insert into users(usr_id,login_id,passwd,status)values(1,encrypt('%s','%s','aes'),crypt('%s', gen_salt('md5')),1);
                     """ % (login_id, md5code,passwd)
 
             session.execute(sql)
@@ -640,8 +648,8 @@ def start():
 
 
 if __name__ == '__main__':
-    #app.run(port=5001)
-    app.run(host='0.0.0.0', port=5000,debug=True)
+    app.run(port=5001)
+    #app.run(host='0.0.0.0', port=5000,debug=True)
 
 
 
