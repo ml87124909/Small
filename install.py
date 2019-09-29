@@ -76,15 +76,15 @@ def setup():
         try:
             from models.model import DBSession,users as  User
             session = DBSession()
-            result =session.execute("SELECT usr_id FROM users WHERE usr_id=1;")
-            row=result.fetchone()
+
             try:#增加开启加解密扩展
                 sql_pgcrypto="""
                     create extension pgcrypto;
                 """
                 session.execute(sql_pgcrypto)
                 session.commit()
-            except:
+            except Exception as e:
+                print(e,'开启pgcrypto扩展失败！')
                 pass
             try:
                 sql_del="""
@@ -617,6 +617,8 @@ def setup():
             """
             session.execute(fu2)
             session.commit()
+            result = session.execute("SELECT usr_id FROM users WHERE usr_id=1;")
+            row = result.fetchone()
             if row is not None:
                 sql="""update users set login_id=encrypt('%s','%s','aes'),status=1,
                     passwd= crypt('%s', gen_salt('md5')) where usr_id=1;"""%(login_id,md5code,passwd)
