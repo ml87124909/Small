@@ -85,9 +85,16 @@ class cVI_BASE(cVIEWS):
             dR['code'] = 1
             dR['MSG'] = 'token无法解密c'
             return dR
+        wid = payload['wechat_user_id']
+        sql = "select id from wechat_mall_user  where COALESCE(del_flag,0)=0 and id=%s"
+        l, t = self.db.select(sql, [wid])
+        if t == 0:
+            dR['code'] = 1
+            dR['MSG'] = '用户不存在'
+            return dR
 
         dR['open_id']=payload['open_id']
-        dR['wechat_user_id']=payload['wechat_user_id']
+        dR['wechat_user_id']=wid
 
         dR['code'] = 0
         return dR
