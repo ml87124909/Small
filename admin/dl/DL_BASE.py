@@ -224,40 +224,40 @@ class cDL_BASE(cDL):
                 self.mnuid = int(data.get("menu_id", -1))
                 self.menu_name = data.get("menu_name", '')
 
-    def getSysMenu(self, usr_id):
-        sql = """
-            select mf.menu
-                  ,mf.menu_id
-                  ,mf.func_id
-                  ,mf.menu_name
-                  ,mf.type
-                  ,mf.sort
-                  ,mf.parent_id
-                  ,mf.img
-              from menu_func mf
-             where mf.status=1
-             order by mf.sort asc
-        """
-
-        L, iN = self.db.fetchall(sql)
-
-        menu1 = []
-        menu2 = {}
-        menu3 = {}
-        # print sql
-        for row in L:
-            if row.get('menu') == 1:
-                menu1.append([row['menu_id'], row['menu_name'], row['func_id'], row['img']])
-            elif row.get('menu') == 2:
-                if not row.get('parent_id') in menu2:
-                    menu2[row.get('parent_id')] = []
-                menu2[row.get('parent_id')].append([row['menu_id'], row['menu_name'], row['func_id'], row['parent_id'], row['img']])
-            elif row.get('menu') == 3:
-                if not row.get('parent_id') in menu3:
-                    menu3[row.get('parent_id')] = []
-                menu3[row.get('parent_id')].append([row['menu_id'], row['menu_name'], row['func_id'], row['parent_id'], row['img']])
-
-        return menu1, menu2, menu3
+    # def getSysMenu(self, usr_id):
+    #     sql = """
+    #         select mf.menu
+    #               ,mf.menu_id
+    #               ,mf.func_id
+    #               ,mf.menu_name
+    #               ,mf.type
+    #               ,mf.sort
+    #               ,mf.parent_id
+    #               ,mf.img
+    #           from menu_func mf
+    #          where mf.status=1
+    #          order by mf.sort asc
+    #     """
+    #
+    #     L, iN = self.db.fetchall(sql)
+    #
+    #     menu1 = []
+    #     menu2 = {}
+    #     menu3 = {}
+    #     # print sql
+    #     for row in L:
+    #         if row.get('menu') == 1:
+    #             menu1.append([row['menu_id'], row['menu_name'], row['func_id'], row['img']])
+    #         elif row.get('menu') == 2:
+    #             if not row.get('parent_id') in menu2:
+    #                 menu2[row.get('parent_id')] = []
+    #             menu2[row.get('parent_id')].append([row['menu_id'], row['menu_name'], row['func_id'], row['parent_id'], row['img']])
+    #         elif row.get('menu') == 3:
+    #             if not row.get('parent_id') in menu3:
+    #                 menu3[row.get('parent_id')] = []
+    #             menu3[row.get('parent_id')].append([row['menu_id'], row['menu_name'], row['func_id'], row['parent_id'], row['img']])
+    #
+    #     return menu1, menu2, menu3
     #  checkuser,get_usr_menu_role注释掉，采用新的权限处理
     # def checkuser(self, usr_id):
     #
