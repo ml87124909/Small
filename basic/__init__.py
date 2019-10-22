@@ -1,5 +1,5 @@
 ## -*- coding: utf-8 -*-
-import platform,sys
+#import platform,sys
 
 # if platform.system() == "FreeBSD":
 #     from . import publicf  as public
