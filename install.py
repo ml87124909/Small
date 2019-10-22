@@ -17,7 +17,7 @@ sys.stdout = sys.stderr
 
 from flask import Flask, request,redirect,render_template
 from sqlalchemy import *
-
+from sqlalchemy.orm import sessionmaker
 
 app=Flask(__name__)
 app.config.from_object(__name__)
@@ -66,6 +66,13 @@ def setup():
         if os.path.exists(filename):
             from models.model import createall
             createall(engine_)
+
+            try:  # 增加开启加解密扩展
+                connection.execute('create extension pgcrypto;')
+            except Exception as e:
+                print(e, '开启pgcrypto扩展失败！')
+                pass
+
             return render_template("setup2.html")
         return render_template("setup-error.html", code=3)
 
@@ -75,12 +82,6 @@ def setup():
         passwd = RES.get('passwd', '')
         try:
             from basic.publicw import db
-
-            try:#增加开启加解密扩展
-                db.query("create extension pgcrypto;")
-            except Exception as e:
-                print(e,'开启pgcrypto扩展失败！')
-                pass
 
             sql_menu="""
             INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (8,'系统管理',1,1,10,NULL,NULL,1,'fa-cogs');
