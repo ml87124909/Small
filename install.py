@@ -74,26 +74,14 @@ def setup():
         login_id = RES.get('login_id', '')
         passwd = RES.get('passwd', '')
         try:
-            from models.model import DBSession,users as  User
-            session = DBSession()
+            from basic.publicw import db
 
             try:#增加开启加解密扩展
-                sql_pgcrypto="""
-                    create extension pgcrypto;
-                """
-                session.execute(sql_pgcrypto)
-                session.commit()
+                db.query("create extension pgcrypto;")
             except Exception as e:
                 print(e,'开启pgcrypto扩展失败！')
                 pass
-            try:
-                sql_del="""
-                    delete from menu_func;
-                """
-                session.execute(sql_del)
-                session.commit()
-            except:
-                pass
+
             sql_menu="""
             INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (8,'系统管理',1,1,10,NULL,NULL,1,'fa-cogs');
             INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (801,'个人帐号',0,2,1,8,'H001',1,NULL);
@@ -111,12 +99,7 @@ def setup():
             INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (106,'用户列表',0,2,6,1,'A006',1,NULL);
             INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (107,'用户反馈',0,2,7,1,'A007',1,NULL);
             INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (108,'收货地址',0,2,8,1,'A008',1,NULL);
-            /*
-            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (204,'收货地址',0,2,4,2,'B004',1,NULL);
-            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (2,'用户画像',1,1,3,NULL,NULL,1,'fa-address-card-o');
-            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (202,'用户标签',0,2,2,2,'B002',1,NULL);
-            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (203,'模板推送',0,2,3,2,'B003',1,NULL);
-            */
+           
             INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (3,'商品管理',1,1,4,NULL,NULL,1,'fa-shopping-bag');
             INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (301,'商品分类',0,2,1,3,'C001',1,NULL);
             INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (302,'商品规格',0,2,2,3,'C002',1,NULL);
@@ -141,8 +124,7 @@ def setup():
             INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (609,'图片查询',0,2,9,6,'F009',1,NULL);
             
             """
-            session.execute(sql_menu)
-            session.commit()
+            db.query(sql_menu)
 
             sql_mtc_t="""
                 INSERT INTO public.mtc_t (id,"type",txt1,txt2,status,del_flag,sort,cid,ctime,uid,utime) VALUES 
@@ -404,8 +386,7 @@ def setup():
                 ;
         
             """
-            session.execute(sql_mtc_t)
-            session.commit()
+            db.query(sql_mtc_t)
 
             fu1="""
                 CREATE OR REPLACE FUNCTION public.p_getmenurightlist(id integer)
@@ -528,8 +509,7 @@ def setup():
             
             
             """
-            session.execute(fu1)
-            session.commit()
+            db.query(fu1)
             fu2="""
                 CREATE OR REPLACE FUNCTION public.p_save_rolemenu(role_id integer, see_str character varying, add_str character varying, del_str character varying, upd_str character varying, optuserid integer)
                  RETURNS void
@@ -615,24 +595,18 @@ def setup():
                 $function$
                 ;
             """
-            session.execute(fu2)
-            session.commit()
-            result = session.execute("SELECT usr_id FROM users WHERE usr_id=1;")
-            row = result.fetchone()
-            if row is not None:
-                sql="""update users set login_id=encrypt('%s','%s','aes'),status=1,
-                    passwd= crypt('%s', gen_salt('md5')) where usr_id=1;"""%(login_id,md5code,passwd)
-                session.execute(sql)
-                session.commit()
-                session.close()
+            db.query(fu2)
+
+            l,t = db.select("SELECT usr_id FROM users WHERE usr_id=1;")
+            if t>0:
+                sql="""update users set login_id=encrypt(%s,%s,'aes'),status=1,
+                    passwd= crypt(%s, gen_salt('md5')) where usr_id=1;"""
+                db.query(sql,[login_id,md5code,passwd])
+
                 return render_template('setup.html',code=0)
-            sql = """insert into users(usr_id,login_id,passwd,status)values(1,encrypt('%s','%s','aes'),crypt('%s', gen_salt('md5')),1);
-                    """ % (login_id, md5code,passwd)
-
-            session.execute(sql)
-            session.commit()
-            session.close()
-
+            sql = """insert into users(login_id,passwd,status)values(encrypt(%s,%s,'aes'),crypt(%s, gen_salt('md5')),1);
+                    """
+            db.query(sql,[login_id, md5code,passwd])
             return render_template('setup.html',code=0)
         except Exception as e:
             print(e,'eeee')
