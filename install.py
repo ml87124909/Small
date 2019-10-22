@@ -17,15 +17,11 @@ sys.stdout = sys.stderr
 
 from flask import Flask, request,redirect,render_template
 from sqlalchemy import *
-from sqlalchemy.orm import sessionmaker
 
 app=Flask(__name__)
 app.config.from_object(__name__)
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RTYj'
-
 filename = "{}/dbconfig.py".format(app.root_path)
-#
-
 
 def create_config(username, password, host,port, dbname):
     data = render_template("config.html",username=username,password=password,host=host,port=port,dbname=dbname)
@@ -72,7 +68,6 @@ def setup():
             except Exception as e:
                 print(e, '开启pgcrypto扩展失败！')
                 pass
-
             return render_template("setup2.html")
         return render_template("setup-error.html", code=3)
 
