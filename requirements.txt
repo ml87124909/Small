@@ -24,6 +24,6 @@ qcloudsms_py
 xlsxwriter
 xlrd
 sqlalchemy
-supervisor
+
 
 
