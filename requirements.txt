@@ -24,6 +24,8 @@ qcloudsms_py
 xlsxwriter
 xlrd
 sqlalchemy
+gevent
+gunicorn
 
 
 
