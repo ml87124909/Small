@@ -26,7 +26,7 @@
     </ul>
   </header>
   
-  <section style="width:1440px;margin:0 auto;left:0;right:0;bottom:0;top:45px;background-color:#ffffff;">
+  <section style="margin:0 auto;left:0;right:0;bottom:0;top:45px;background-color:#ffffff;">
     <section class="hbox stretch"> <!-- .aside -->
       <aside class="bg-dark lter aside-md hidden-print" id="nav" >
         <section class="vbox">
@@ -35,7 +35,7 @@
               <!-- nav -->			
               <nav class="nav-primary hidden-xs">
                 <ul class="nav">
-                  <li{{' class="active"' if not hidden.mnuid or hidden.mnuid < 0 else ''}}> <a href="admin?viewid=home" class="active"> <i class="fa fa-home icon" style="line-height: 46px;"> <b class="bg-danger"></b> </i> <span style="font-size: 15px;">主页</span> </a>
+                  <li{{' class="active"' if not hidden.mnuid or hidden.mnuid < 0 else ''}}> <a href="admin?viewid=home" class="active"> <i class="fa fa-home icon" style="line-height: 46px;"> <b class="bg-success"></b> </i> <span style="font-size: 15px;">主页</span> </a>
                   </li>
                   {% for m1 in system_menu.menu1 %} <li{{' class="active"' if hidden.mnuid|string == m1[0]|string else ''}}> <a 
 						{% if system_menu.menu2.get(m1[0]) %}

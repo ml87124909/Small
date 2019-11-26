@@ -8104,14 +8104,14 @@ transition:color .3s ease-in-out 0s;
 }
 .nav-primary ul.nav>li:hover>a, .nav-primary ul.nav>li:focus>a, .nav-primary ul.nav>li>a:hover, .nav-primary ul.nav>li>a:focus, .nav-primary ul.nav>li>a:active, .nav-primary ul.nav>li.active>a {
 	/*color:#fff;*/
-	color:#FFFAFA;
-	background-color:inherit;
+	color:rgba(13, 100, 180, 1);
+	/*background-color:inherit;
 	background-color:#333333;
-	/*background-color:rgba(13, 100, 180, 1) !important;*/
+	background-color:rgba(13, 100, 180, 1) !important;*/
 	text-shadow:none;
 }
 .nav-primary ul.nav>li:hover>a>i.icon, .nav-primary ul.nav>li:focus>a>i.icon, .nav-primary ul.nav>li>a:hover>i.icon, .nav-primary ul.nav>li>a:focus>i.icon, .nav-primary ul.nav>li>a:active>i.icon, .nav-primary ul.nav>li.active>a>i.icon {
-	color:#fff;
+	/*color:#fff;*/
 }
 .nav-primary ul.nav>li:hover>a>i>b, .nav-primary ul.nav>li:focus>a>i>b, .nav-primary ul.nav>li>a:hover>i>b, .nav-primary ul.nav>li>a:focus>i>b, .nav-primary ul.nav>li>a:active>i>b, .nav-primary ul.nav>li.active>a>i>b {
 	left:0 !important;
@@ -8120,8 +8120,8 @@ transition:color .3s ease-in-out 0s;
 	font-weight:normal;
 	text-transform:none;
 	font-size:13px;
-	/*background:rgb(170, 205, 235);*/
-	background:#6E6E6E;
+	/*background:rgb(170, 205, 235);
+	background:#6E6E6E;*/
 }
 .nav-primary ul.nav>li.active>ul {
 	display:block;
@@ -9204,16 +9204,16 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#0028323c', end
 	background-color:#f1f1f1;
 }
 .bg-dark {
-	background-color:rgb(246, 246, 246);
-	color:#9db1c5;
+	/*background-color:rgb(246, 246, 246);
+	color:#9db1c5;*/
 }
 .bg-dark.lt, .bg-dark .lt {
-	/*background-color:#fff#25313F*/;
-	background-color:rgb(170, 205, 235);
+	/*background-color:#fff#25313F;
+	background-color:rgb(170, 205, 235);*/
 }
 .bg-dark.lter, .bg-dark .lter {
 	/*background-color:rgb(246, 246, 246);*/
-	background:#6E6E6E;
+	/*background:#6E6E6E;*/
 }
 .bg-dark.dk, .bg-dark .dk {
 	background-color:#25313F;
@@ -9239,9 +9239,9 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#0028323c', end
 }
 .bg-dark .nav>li>a {
 	/*color:rgb(13, 100, 180);*/
-	color:#FFFAFA;
-	/*background:rgb(128, 181, 225);*/
-	background:#6E6E6E;
+	color:#333333;
+	/*background:rgb(128, 181, 225);
+	background:#6E6E6E;*/
 }
 .bg-dark .nav>li>a:hover {
 	color:#fff;
