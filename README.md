@@ -4,6 +4,9 @@
 
 ![](https://github.com/mn3711698/Small/blob/master/923.png)
 
+
+![](https://github.com/mn3711698/Small/blob/master/1574772580.jpg)
+
 #### 注意：用docker镜像mn3711698/small:004的一定要git pull，这个镜像我不会再更新代码，需要自己git pull,不然代码会很旧，没法用!
 
 
