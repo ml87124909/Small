@@ -1754,7 +1754,7 @@ class chome(cBASE_LOC):
 
         sql = """
             select id,title,ctype as type,to_char(ctime,'YYYY-MM-DD HH24:MI')date,pic,sketch,coalesce(recom,0)recom
-            ,coalesce(views,0) as views,coalesce(likes,0)likes,coalesce(favorite,0)favorite 
+            ,coalesce(see,0) as views,coalesce(likes,0)likes,coalesce(favorite,0)favorite 
             from cms_doc where usr_id=%s   and coalesce(del_flag,0)=0  
                 """
         parm = [self.subusr_id]
@@ -1766,11 +1766,11 @@ class chome(cBASE_LOC):
         sql+=" order by sort,id desc"
         if type != '':
             sql = """
-                select cd.id,cd.title,cd.ctype as type,to_char(ctime,'YYYY-MM-DD HH24:MI')date,pic,sketch,coalesce(recom,0)recom
-            ,coalesce(views,0) as views,coalesce(likes,0)likes,coalesce(favorite,0)favorite  
+                select cd.id,cd.title,cd.ctype as type,to_char(cd.ctime,'YYYY-MM-DD HH24:MI')date,cd.pic,sketch,coalesce(recom,0)recom
+            ,coalesce(see,0) as views,coalesce(likes,0)likes,coalesce(favorite,0)favorite  
                 from cms_doc cd
                 left join cms_fl cm on cm.id=cd.class_id and cd.usr_id=cm.usr_id
-                where cd.usr_id=%s   and coalesce(cd.del_flag,0)=0 and cm.ctype=%s  order by sort,id desc
+                where cd.usr_id=%s   and coalesce(cd.del_flag,0)=0 and cm.ctype=%s  order by cd.sort,cd.id desc
                             """
             parm = [self.subusr_id, type]
 
