@@ -1,0 +1,173 @@
+{% extends "index.html" %}
+{% block cssjs %}
+<link href='static/assets/css/common.css' rel='stylesheet'>
+{% endblock %}
+{% block breadcrumb %}
+<ol class="breadcrumb">
+	<li><a href="admin?viewid=home">主页</a></li>
+	<li><a href="admin?viewid=common">微信公众号</a></li>
+</ol>
+{% endblock %}
+
+{% block contentpanel %}
+<ul class="nav nav-tabs">
+	<li><a href="admin?viewid=basic">管理规则</a></li>
+	{% if rule.id %}
+	<li class="active"><a href="admin?viewid=basic&part=localform&id={{rule.id}}"><i class="glyphicon glyphicon-edit"></i> 编辑规则</a></li>
+	<li><a href="admin?viewid=basic&part=localform">添加规则</a></li>
+	{% else %}
+	<li class="active"><a href="admin?viewid=basic&part=localform"><i class="glyphicon glyphicon-plus"></i> 添加规则</a></li>
+	{% endif %}
+</ul>
+<div class="main">
+	<form class="form-horizontal form" action="admin" method="post" enctype="multipart/form-data" onsubmit="return formcheck(this)">
+		<input type="hidden" name="pk" value="{{rule.id}}" />
+
+		<h4>添加规则 <small>删除，修改规则、关键字以及回复后，请提交规则以保存操作。</small></h4>
+		<table class="tb">
+			<tr>
+				<th><label for="">规则名称</label></th>
+				<td>
+					<input type="text" id="rule-name" class="form-control" placeholder="" name="name" value="{{rule.cname}}" /> &nbsp;
+					
+					<span class="help-block">您可以给这条规则起一个名字, 方便下次修改和查看
+				</td>
+			</tr>
+			<tr>
+				<th><label for="">状态</label></th>
+				<td>
+					<label for="status_1" class="radio inline">
+						<input type="radio" name="status" id="status_1" value="1"{{' checked="checked"' if not rule.status or rule.status|string == '1' else ''}}/> 启用
+					</label>
+					<label for="status_0" class="radio inline">
+						<input type="radio" name="status" id="status_0" value="0"{{' checked="checked"' if rule.status|string == '0' else ''}}/> 禁用
+					</label>
+				</td>
+			</tr>
+			<tr>
+				<th><label for="">回复类型</label></th>
+				<td>
+					基本文字回复
+					<input type="hidden" name="module" value="basic" />
+					<!--select name="module" id="module" class="form-control" onchange="changeReply()">
+						<option value="1" selected="selected" description="">基本文字回复</option>
+						<option value="2" description="">基本混合图文回复</option>
+						<option value="3" description="">基本语音回复</option>
+						
+					</select-->
+				</td>
+			</tr>
+			<tr>
+				<th><label for="">触发关键字</label></th>
+				<td>
+					<input type="text" class="form-control" size="100" placeholder="" name="keywords" value="{{keyword}}" /> &nbsp;
+					<span class="help-block">当用户的对话内容符合以上的关键字定义时，会触发这个回复定义。多个关键字请使用逗号隔开。</span>
+				</td>
+			</tr>
+			<tr>
+				<th><label for="">添加关键字</label></th>
+				<td>
+					<span class="help-block">根据此处设置的关键字进行对应回复，关键词单次添一个，可多次添加</span>
+					<span class="help-block">【包含关键字】用户进行交谈时，对话中包含上述关键字就执行这条规则。</span>
+					<span class="help-block">【正则表达式匹配】如果你不明白正则表达式的工作方式，请不要使用正则匹配</span>
+					<div class="keywordDiv">
+						<!--div class="keyword-cell">
+							<input type="text" name="keywordname" class="form-control" size="50" autocomplete="off" value=""/>
+							<input type="hidden" name="keywordvalue" value="" />
+							<div class="btn-group" data-toggle="buttons-radio">
+								<span class="btn btn-default active" value="2">包含关键字</span>
+								<span class="btn btn-default " value="3">正则表达式匹配</span>
+							</div>
+						</div-->
+						{% for kw in specialkeyword %}
+							{% if kw.ctype != 1 %}
+							<div class="keyword-cell">
+								<input type="text" name="keywordname" class="form-control" size="50" autocomplete="off" value="{{kw.contents}}"/>
+								<input type="hidden" name="keywordvalue" value="{{kw.ctype}}" />
+								<div class="btn-group" data-toggle="buttons-radio">
+									<span class="btn btn-default{{' active' if kw.type == 2 else ''}}" onclick="$(this).parent().parent().find('input[name=keywordvalue]').val(2)" value="2">包含关键字</span>
+									<span class="btn btn-default{{' active' if kw.type == 3 else ''}}" onclick="$(this).parent().parent().find('input[name=keywordvalue]').val(3)" value="3">正则表达式匹配</span>
+								</div>
+								<span class="btn btn-danger" onclick="$(this).parent().remove()">删除</span>
+							</div>
+							{% endif %}
+						{% endfor %}
+					</div>
+					<a href="javascript:;" onclick="addKeyword()" class="add-kw-button"><i class="glyphicon glyphicon-plus"></i> 添加关键字</a>
+				</td>
+			</tr>
+			
+			<tr>
+				<th><label for="">回复</label></th>
+				<td>
+					<div id="module-form" style="width:600px;">
+						<textarea style="height:200px;" class="form-control basic-content-new" cols="70" id="basic-content-basic-item-1" name="basic_content" autocomplete="off">{{reply}}</textarea>
+						<span class="help-block">用户进行微信交谈时，对话内容完全等于上述关键字才会执行这条规则。<a class="iconEmotion" href="javascript:;" inputid="basic-content-basic-item-1"><i class="glyphicon glyphicon-picture"></i> 表情</a></span>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th></th>
+				<td>
+					<button type="submit" class="btn btn-primary span3" name="submit" value="提交">提交</button>
+					<input type="hidden" name="viewid" value="basic" />
+					<input type="hidden" name="part" value="Post" />
+
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<div class="add-keyword-cell hide">
+	<input type="text" name="keywordname" class="form-control" size="50" autocomplete="off" value=""/>
+	<input type="hidden" name="keywordvalue" value="2" />
+	<div class="btn-group" data-toggle="buttons-radio">
+		<span class="btn btn-default active" onclick="$(this).parent().parent().find('input[name=keywordvalue]').val(2)" value="2">包含关键字</span>
+		<span class="btn btn-default" onclick="$(this).parent().parent().find('input[name=keywordvalue]').val(3)" value="3">正则表达式匹配</span>
+	</div>
+	<span class="btn btn-danger" onclick="$(this).parent().remove()">删除</span>
+</div>
+{% endblock %}
+
+{% block javascript %}
+<style>
+.keyword-cell{padding-bottom:12px;}
+
+</style>
+<script type="text/javascript">
+function addKeyword(){
+	var content = $(".keywordDiv");
+	html = $(".add-keyword-cell").html();
+	content.append("<div class='keyword-cell'>" + html + "</div>");
+}
+function formcheck(form){
+	var name = $("#rule-name").val();
+	var keywords = $("input[name=keywords]").val();
+	var content = $("textarea[name=basic_content]").val();
+	if(name == ""){
+		layer.alert("请填写规则名称");
+		return  false;
+	}
+	if(keywords == "" && $(".keyword-cell").length == 0){
+		layer.alert("请填写触发关键字");
+		return  false;
+	}
+
+	if($(".keyword-cell").length > 0){
+		for(var i=0;i<$(".keyword-cell").length;i++){
+			var kn = $(".keyword-cell").eq(i).find("input[name=keywordname]").val();
+			if(kn == ''){
+				layer.alert("第"+(i+1)+"项添加关键字请填写内容！");
+				return  false;
+			}
+		}
+	}
+	if(content == ""){
+		layer.alert("请填写回复内容");
+		return  false;
+	}
+	return true;
+}
+</script>
+{% endblock %}
+		

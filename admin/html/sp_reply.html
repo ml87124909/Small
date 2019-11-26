@@ -1,0 +1,110 @@
+{% extends "index.html" %}
+{% block cssjs %}
+<link href='static/assets/css/common.css' rel='stylesheet'>
+{% endblock %}
+{% block breadcrumb %}
+<ol class="breadcrumb">
+	<li><a href="admin?viewid=home">主页</a></li>
+	<li><a>特殊回复</a></li>
+</ol>
+{% endblock %}
+
+{% block contentpanel %}
+<div class="main" style="overflow-y: scroll;">
+	<form class="form-horizontal form" action="admin" method="post" enctype="multipart/form-data" onsubmit="return formcheck(this)">
+		<input type="hidden" name="pk" value="{{weid}}" />
+		<h4>系统回复</h4>
+		<table class="tb">
+			<tr>
+				<th><label for="">欢迎信息</label></th>
+				<td>
+					<div id="module-form" style="width:600px;">
+						<span class="help-block">你可以直接添加欢迎的文字信息，或者在规则列表中找到已存在的规则，然后点击“设置为欢迎信息”，将已有的规则设置为欢迎信息。（这种方式可以设置其他类型的消息，例如：图文和音乐）
+						</span>
+					</div>
+					<div id="module-form" style="width:600px;">
+						<textarea style="height:200px;"  cols="70"  name="welcome_reply" id="basic-content-basic-item-1" autocomplete="off">{{wechat.welcome}}</textarea>
+						<span class="help-block">设置用户添加公众号好友时，发送的欢迎信息。</span>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th><label for="">默认回复</label></th>
+				<td>
+					<div id="module-form" style="width:600px;">
+						<span class="help-block">你可以直接添加默认的文字信息，或者在规则列表中找到已存在的规则，然后点击“设置为默认信息”，将已有的规则设置为默认信息。（这种方式可以设置其他类型的消息，例如：图文和音乐）
+						</span>
+					</div>
+					<div id="module-form" style="width:600px;">
+						<textarea style="height:200px;" cols="70" name="default_reply" id="basic-content-basic-item-2" autocomplete="off">{{wechat.defaults}}</textarea>
+						<span class="help-block">设置用户添加公众号好友时，发送的默认信息。</span>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th></th>
+				<td>
+					<button type="submit" class="btn btn-primary span3" name="submit" value="提交">提交</button>
+					<input type="hidden" name="viewid" value="{{viewid}}" />
+					<input type="hidden" name="part" value="Post" />
+
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<div class="emotions" style="display:none;"><div class="emotionsGif" style=""></div></div>
+<div style="height:60px;clear:both;"></div>
+{% endblock %}
+
+{% block javascript %}
+<style>
+.keyword-cell{padding-bottom:12px;}
+
+/*emotions*/
+.emotions{position:absolute;top:30px;left:20px;border:1px solid #AAA;padding:5px;background-color:#FFF;z-index:9999999;display:none}
+.emotions table td{padding:1px;}
+.emotions table td div{background: url("https://res.mail.qq.com/zh_CN//images/mo/DEFAULT2/default.gif") no-repeat 0 0 scroll transparent;width:24px;height:24px;cursor:pointer; border:1px solid #dfe6f6;}
+.emotions table div:hover{border:1px solid blue;}
+.emotions .emotionsGif{position:absolute;top:-1px;left:430px;border:1px solid #AAA;padding:20px;background-color:#FFF;text-align:center;width:24px;height:24px}
+.iconEmotion{font-size:14px;}
+#uploadButton{background:url('../image/uploadButton.png') no-repeat transparent;padding-left:18px;display:inline-block; height:18px;}
+div.colorpicker{ padding:3px;}
+</style>
+
+<script type="text/javascript">
+function addKeyword(){
+	var content = $(".keywordDiv");
+	html = $(".add-keyword-cell").html();
+	content.append("<div class='keyword-cell'>" + html + "</div>");
+}
+function formcheck(form){
+	var name = $("#rule-name").val();
+	var keywords = $("input[name=keywords]").val();
+	var content = $("textarea[name=basic_content]").val();
+	if(name == ""){
+		layer.alert("请填写规则名称");
+		return  false;
+	}
+	if(keywords == "" && $(".keyword-cell").length == 0){
+		layer.alert("请填写触发关键字");
+		return  false;
+	}
+
+	if($(".keyword-cell").length > 0){
+		for(var i=0;i<$(".keyword-cell").length;i++){
+			var kn = $(".keyword-cell").eq(i).find("input[name=keywordname]").val();
+			if(kn == ''){
+				layer.alert("第"+(i+1)+"项添加关键字请填写内容！");
+				return  false;
+			}
+		}
+	}
+	if(content == ""){
+		layer.alert("请填写回复内容");
+		return  false;
+	}
+	return true;
+}
+</script>
+{% endblock %}

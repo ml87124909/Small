@@ -1,0 +1,110 @@
+{% extends "index.html" %}
+{% block cssjs %}
+<link href='static/assets/css/common.css' rel='stylesheet'>
+{% endblock %}
+{% block breadcrumb %}
+<ol class="breadcrumb">
+	<li><a href="admin?viewid=home">主页</a></li>
+	<li><a href="admin?viewid=common">微信公众号</a></li>
+</ol>
+{% endblock %}
+
+{% block contentpanel %}
+<ul class="nav nav-tabs">
+	<li class="active"><a href="admin?viewid=basic">管理规则</a></li>
+	<li><a href="admin?viewid=basic&part=localform"><i class="icon-plus"></i> 添加规则</a></li>
+</ul>
+<div class="main">
+	<div class="search">
+		<form action="admin" method="get">
+		<input type="hidden" name="viewid" value="basic">
+		<input type="hidden" name="mnuid" value="9">
+		<input type="hidden" name="sub1id" value="901">
+		<table class="table table-bordered tb">
+			<tbody>
+				<tr>
+					<th>状态</th>
+					<td>
+						<select name="status" class="form-control">
+							<option value="1">启用</option>
+							<option value="0">禁用</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<th>关键字</th>
+					<td>
+						<input class="form-control" name="keyword" id="" type="text" value="">
+					</td>
+				</tr>
+				 <tr class="search-submit">
+					<td colspan="2"><button class="btn pull-right btn-default"><i class="glyphicon glyphicon-search"></i> 搜索</button></td>
+				 </tr>
+			</tbody>
+		</table>
+		</form>
+	</div>
+	<div class="rule">
+		{% for rule in list %}
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<h3 class="panel-title">
+					<span class="pull-right">
+						<a href="javascript:toDel({{rule.id}});">删除</a>
+						<a href="admin?viewid=basic&part=localform&id={{rule.id}}">编辑</a>
+					</span>
+					{{rule.cname}} <small>（基本文字回复）</small>
+				</h3>
+			</div>
+			<div class="panel-body">
+				{% for kw in rule.keywords %}
+				<span class="label label-default">{{kw.contents}}</span>
+				{% endfor %}
+			</div>
+			<div class="panel-footer">
+				<a href="javascript:setWelcome({{rule.id}});">设为欢迎信息</a>
+				<a href="javascript:setDefault({{rule.id}});">设为默认回复</a>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+</div>
+{{html_pager}}
+{% endblock %}
+
+{% block javascript %}
+<script>
+function toDel(id){
+	layer.confirm('是否要删除这个规则？', {
+	  btn: ['是','否'] //按钮
+	}, function(){
+	  window.location = 'admin?viewid=basic&part=delete&pk=' + id;
+	}, function(){
+	  layer.closeAll();
+	});
+}
+function setWelcome(id){
+	$.ajax({
+		url:'admin?viewid=basic&part=welcome&id=' + id,
+		dataType:'json',
+		success:function(res){
+			if(res.error == 0){
+				layer.msg('设置成功！',{icon:1});
+			}
+		}
+	});
+}
+function setDefault(id){
+	$.ajax({
+		url:'admin?viewid=basic&part=default&id=' + id,
+		dataType:'json',
+		success:function(res){
+			if(res.error == 0){
+				layer.msg('设置成功！',{icon:1});
+			}
+		}
+	});
+}
+</script>
+{% endblock %}
+		

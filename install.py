@@ -96,7 +96,12 @@ def setup():
             INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (106,'用户列表',0,2,6,1,'A006',1,NULL);
             INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (107,'用户反馈',0,2,7,1,'A007',1,NULL);
             INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (108,'收货地址',0,2,8,1,'A008',1,NULL);
-           
+            insert into menu_func(menu_id,menu_name,"type",menu,sort,status,img)values(2,'公众号管理',1,1,2,1,'fa-wechat');
+            insert into menu_func(menu_id,menu_name,"type",menu,sort,status,parent_id,func_id)values(201,'基本设置',0,2,1,1,2,'seetting');
+            insert into menu_func(menu_id,menu_name,"type",menu,sort,status,parent_id,func_id)values(202,'自定义菜单',0,2,2,1,2,'menu');
+            insert into menu_func(menu_id,menu_name,"type",menu,sort,status,parent_id,func_id)values(203,'文字回复',0,2,3,1,2,'basic');
+            insert into menu_func(menu_id,menu_name,"type",menu,sort,status,parent_id,func_id)values(204,'特殊回复',0,2,4,1,2,'sp_reply');
+            insert into menu_func(menu_id,menu_name,"type",menu,sort,status,parent_id,func_id)values(205,'粉丝列表',0,2,5,1,2,'fans');
             INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (3,'商品管理',1,1,4,NULL,NULL,1,'fa-shopping-bag');
             INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (301,'商品分类',0,2,1,3,'C001',1,NULL);
             INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (302,'商品规格',0,2,2,3,'C002',1,NULL);

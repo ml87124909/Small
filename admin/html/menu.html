@@ -1,11 +1,11 @@
 {% extends "list.html" %}
 
+
 {% block topSearch %}
 {% endblock %}
 {% block mGrid %}
 	<link href='static/assets/css/common.css' rel='stylesheet'>
-	<input name="viewid" type="hidden" value="menu" />
-<input name="part" type="hidden" value="saveMenu" />
+	<input name="do" id="do" type="hidden" value="" />
 
 	<div class="form form-horizontal">
 		<h4>菜单设计器 <small>编辑和设置微信公众号码, 必须是服务号才能编辑自定义菜单。</small></h4>
@@ -20,12 +20,12 @@
 							<a href="javascript:;" class="glyphicon glyphicon-move" title="拖动调整此菜单位置"></a> &nbsp;
 							<a href="javascript:;" onclick="setMenuAction($(this).parent().parent().parent());" class="glyphicon glyphicon-edit" title="设置此菜单动作"></a> &nbsp;
 							<a href="javascript:;" onclick="deleteMenu(this)" class="glyphicon glyphicon-remove-sign" title="删除此菜单"></a> &nbsp;
-							<a href="javascript:;" onclick="addSubMenu($(this).parent().next());" title="添加子菜单" class="glyphicon glyphicon-plus-sign" title="添加菜单"></a>
+							<a href="javascript:;" onclick="addSubMenu($(this).parent().next());"  class="glyphicon glyphicon-plus-sign" title="添加菜单"></a>
 						</div>
 						<div class="smlist">
 							{% if row.get('sub_button') %}
 							{% for btn in row.get('sub_button') %}
-							<div style="margin-top:20px;padding-left:80px;background:url('asset/images/bg_repno.gif') no-repeat -245px -545px;" data-do="{{'forward' if btn.type|string == 'click' else 'view'}}" data-url="{{btn.url}}" data-forward="{{btn.key}}">
+							<div style="margin-top:20px;padding-left:80px;" data-do="{{'forward' if btn.type|string == 'click' else 'view'}}" data-url="{{btn.url}}" data-forward="{{btn.key}}">
 								<input type="text" class="span3 form-control" value="{{btn.name}}"  style="width:220px;" /> &nbsp; &nbsp;
 								<a href="javascript:;" class="glyphicon glyphicon-move" title="拖动调整此菜单位置"></a> &nbsp;
 								<a href="javascript:;" onclick="setMenuAction($(this).parent());" class="glyphicon glyphicon-edit" title="设置此菜单动作"></a> &nbsp;
@@ -55,13 +55,13 @@
 				</tr>
 				<tr>
 					<td>
-						<input type="button" value="删除" class="btn btn-primary span3" style="width:300px;" onclick="$('input[name=action]').val('delete');$('#form')[0].submit();" />
+						<input type="button" value="删除" class="btn btn-primary span3" style="width:300px;" onclick="$('input[name=part]').val('delete');$('#frmMain')[0].submit();" />
 						<div class="help-block">清除自定义菜单</div>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<input type="button" value="刷新" class="btn btn-primary span3" style="width:300px;" onclick="$('input[name=action]').val('refresh');$('#form')[0].submit();" />
+						<input type="button" value="刷新" class="btn btn-primary span3" style="width:300px;" onclick="$('input[name=part]').val('refresh');$('#frmMain')[0].submit();" />
 						<div class="help-block">重新从公众平台获取菜单信息</div>
 					</td>
 				</tr>
@@ -72,7 +72,7 @@
 
 {% endblock %}
 {% block javascript %}
-<script type="text/javascript" src="asset/js/jquery-ui-1.10.3.min.js"></script>
+<script type="text/javascript" src="static/assets/js/jquery-ui-1.10.4.min.js"></script>
 <script type="text/javascript">
 	var pIndex = 1;
 	var currentEntity = null;
@@ -290,11 +290,27 @@
 			url:"admin",
 			data:{'viewid':"menu","action":"saveMenu","do":dat},
 			success:function(res){
-
+				layer.msg(res.MSG);
 			}
 		});*/
 		//alert(dat)
-		$('#form')[0].submit();
+		//$('#frmMain')[0].submit();
+		$("input[name=part]").val('saveMenu');
+		var form = new FormData(document.getElementById("frmMain"));
+
+	   $.ajax({
+			url:"admin?viewid=menu&part=SaveMenu",
+			type:"post",
+			data:form,
+			processData:false,
+			contentType:false,
+			success:function(data){
+
+				layer.msg(data.MSG);
+				//setTimeout(location.reload(), 3000);
+
+			}
+		});
 	}
 </script>
 <style type="text/css">

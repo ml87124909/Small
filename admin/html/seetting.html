@@ -1,0 +1,135 @@
+{% extends "local.html" %}
+
+
+{% block form_block %}
+<form onsubmit="return formcheck(this)" enctype="multipart/form-data" method="post" action="admin"
+      class="vbox form-horizontal form" name="frmMain" id="frmMain">
+{% endblock %}
+{% block html_local %}
+<link href="static/web-uploader/css/uploader-image.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="static/web-uploader/js/Q.js"></script>
+<script type="text/javascript" src="static/web-uploader/js/Q.Uploader.js"></script>
+<script type="text/javascript" src="static/web-uploader/js/Q.Uploader.UI.Image.js"></script>
+<div class="panel-body">
+    <div class="row">
+        <div class="form-group">
+            <label class="col-sm-3 control-label">token:</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" name="token" value="{{item.token}}" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label">name:</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" name="name" value="{{item.name}}"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label">appid:</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" name="key" value="{{item.key}}"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label">secret:</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" name="secret" value="{{item.secret}}" style="width:45%"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label">hashkey:</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" name="hashkey" value="{{item.hashkey}}" style="width:45%"/>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+	var ids = new Array("pickfiles","pickfilesa");
+	var divs = new Array("logo","share");
+    var hinames = new Array("app_private_key","ali_public_key");
+
+    $.each(ids,function(i,n){
+        var self = this.toString();
+        //实例化一个plupload上传对象
+        var Uploader = Q.Uploader,
+        formatSize = Q.formatSize,
+        boxView = document.getElementById(""+divs[i]+"")
+        var uploader = new Uploader({
+            url: '/upload?viewid={{viewid}}&part=Pem',
+            target: document.getElementById(""+self+""),
+            //view: boxView,//如果去掉这个，会导致压缩效果不好
+            //将auto配置为false以手动上传
+            auto: true,
+            dataType: "json",
+            allows: ".pem",
+            upName: "file",
+
+            on: {
+                //添加之前触发
+                add: function (task) {
+                	layer.load()
+                    if (task.disabled) return layer.alert("允许上传的文件格式为：" + this.ops.allows);
+                },
+                upload: function (task) {
+                	layer.load()
+                },
+                complete: function(task){
+                    var jsons=task.json;
+                    if(jsons){
+                        //$("#"+divs[i]+"").html('');
+                       // var innerDivHtml = '<img src="'+ task.json.url  +'" class="col-sm-12">';
+                        //$("#"+divs[i]+"").append(innerDivHtml);
+                        $('input[name='+hinames[i]+']').val(task.json.url);
+                        layer.closeAll()
+                    }else{
+                        //layer.alert('上传图片故障！')
+                        layer.closeAll()
+                    }
+                }
+            }
+        });
+        uploader.start();
+    });
+
+</script>
+ {% endblock %}
+
+
+
+
+    {% block page_script %}
+
+    <script>
+    function formcheck_2(form){
+
+        return true;
+
+    }
+    function go_addsave(){
+        var form = new FormData(document.getElementById("frmMain"));
+
+       $.ajax({
+            url:"admin?viewid=H009&part=Insert",
+            type:"post",
+            data:form,
+            processData:false,
+            contentType:false,
+            success:function(data){
+                if (data.code=='0'){
+                    layer.msg(data.MSG);
+                    setTimeout(location.reload(), 6000);
+                }else{
+                    layer.msg(data.MSG);
+                }
+            }
+        });
+    }
+
+</script>
+{% endblock %}
