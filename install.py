@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-# Copyright (c) wxmall.janedao.cn
+# Copyright (c) small.janedao.cn
 # Author：QQ173782910
 #QQ group:528289471
 ##############################################################################
 """install.py"""
 
 from config import md5code
+from basic.indb import db
 import os, sys
 from imp import reload
 reload(sys)
@@ -76,7 +77,7 @@ def setup():
         login_id = RES.get('login_id', '')
         passwd = RES.get('passwd', '')
         try:
-            from basic.publicw import db
+
 
             sql_menu="""
             INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (8,'系统管理',1,1,10,NULL,NULL,1,'fa-cogs');
