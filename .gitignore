@@ -4,6 +4,7 @@ __pycache__/
 *$py.class
 dbconfig.py
 indb.py
+publicw.py
 # C extensions
 #*.so
 
