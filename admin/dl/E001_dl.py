@@ -53,7 +53,7 @@ class cE001_dl(cBASE_DL):
         sql = """
             SELECT
                 D.id,
-                D.cname,
+                convert_from(decrypt(D.cname::bytea, %s, 'aes'),'SQL_ASCII')cname,
                 D.order_num ,
                 D.number_goods ,
                 D.status,
@@ -66,7 +66,7 @@ class cE001_dl(cBASE_DL):
                 COALESCE(D.check_id,0)check_id,
                 D.kuaid,
                 D.kuaid_str,
-                D.phone,
+                convert_from(decrypt(D.phone::bytea, %s, 'aes'),'SQL_ASCII')phone,
                 D.shipper_id,
                 D.tracking_number,
                 D.pay_status_str,
@@ -80,7 +80,7 @@ class cE001_dl(cBASE_DL):
              left join wechat_mall_user w on w.id=D.wechat_user_id and w.usr_id=D.usr_id
            where COALESCE(D.del_flag,0)=0 and  COALESCE(D.ctype,0)!=6 and  D.usr_id=%s
         """
-        parm=[self.usr_id_p]
+        parm=[self.md5code,self.md5code,self.usr_id_p]
         ctype=self.GP('ctype','')
 
         ctype_d = {'0': 'order_num', '1': 'cname', '2': 'phone', '3': '', '4': 'cname'}
@@ -188,8 +188,8 @@ class cE001_dl(cBASE_DL):
         sql="""
              SELECT
                 D.id
-                ,D.cname
-                ,D.phone
+                ,convert_from(decrypt(D.cname::bytea, %s, 'aes'),'SQL_ASCII')cname
+                ,convert_from(decrypt(D.phone::bytea, %s, 'aes'),'SQL_ASCII')phone
                 ,D.order_num
                 ,D.status_str
                 ,D.ctype_str
@@ -206,7 +206,7 @@ class cE001_dl(cBASE_DL):
                 ,D.province
                 ,D.city
                 ,D.district
-                ,D.address
+                ,convert_from(decrypt(D.address::bytea, %s, 'aes'),'SQL_ASCII')address
                 ,D.remark
                 ,D.memo
                 ,D.pay_status
