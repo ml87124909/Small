@@ -4,16 +4,16 @@
 # Author：QQ173782910
 #QQ group:528289471
 ##############################################################################
-"""admin/dl/BASE_DL.py"""
+"""manage/dl/BASE_DL.py"""
 
 
 import time,hashlib,os,oss2
 from imp import reload
 from basic.publicw import DEBUG
 if DEBUG == '1':
-    import admin.dl.MODEL_DL
-    reload(admin.dl.MODEL_DL)
-from admin.dl.MODEL_DL             import cMODEL_DL
+    import manage.dl.MODEL_DL
+    reload(manage.dl.MODEL_DL)
+from manage.dl.MODEL_DL             import cMODEL_DL
 from werkzeug import secure_filename
 from qiniu import Auth, put_data,BucketManager
 from basic.wxbase import WxPay

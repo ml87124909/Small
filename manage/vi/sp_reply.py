@@ -8,12 +8,12 @@
 from imp import reload
 from basic.publicw import DEBUG
 if DEBUG=='1':
-    import admin.vi.BASE_TPL
-    reload(admin.vi.BASE_TPL)
+    import manage.vi.BASE_TPL
+    reload(manage.vi.BASE_TPL)
 
     import basic.WxApi
     reload(basic.WxApi)
-from admin.vi.BASE_TPL             import cBASE_TPL
+from manage.vi.BASE_TPL             import cBASE_TPL
 from basic.WxApi import cWxApi
 
 class csp_reply(cBASE_TPL):
@@ -38,9 +38,9 @@ class csp_reply(cBASE_TPL):
         if weid:
             wechat = self.dl.db.fetch("SELECT welcome , defaults FROM ims_wechats WHERE weid = %s"%weid)
             if not wechat :
-                return self.mScriptMsg('抱歉，您操作的公众号不在存，请切换管理的公众号！',[['admin?viewid=menu','返回公众号管理']])
+                return self.mScriptMsg('抱歉，您操作的公众号不在存，请切换管理的公众号！',[['manage?viewid=menu','返回公众号管理']])
         else:
-            return self.mScriptMsg('抱歉，您操作的公众号不在存，请切换管理的公众号！',[['admin?viewid=menu','返回公众号管理']])
+            return self.mScriptMsg('抱歉，您操作的公众号不在存，请切换管理的公众号！',[['manage?viewid=menu','返回公众号管理']])
         self.assign('weid',weid)
         self.assign('wechat',wechat)
         return self.runApp('sp_reply.html')
@@ -53,6 +53,6 @@ class csp_reply(cBASE_TPL):
         }
         if pk :
             self.dl.db.update("ims_wechats",data," weid=%s" % pk)
-        url = "admin?viewid=%s" % (self.dl.GP("viewid"))
+        url = "manage?viewid=%s" % (self.dl.GP("viewid"))
         s=self.mScriptMsg('数据修改成功',[[url,'返回编辑']],'success')
         return s

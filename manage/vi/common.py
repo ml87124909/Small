@@ -4,14 +4,14 @@
 # Author：QQ173782910
 #QQ group:528289471
 ##############################################################################
-"""admin/vi/common.py"""
+"""manage/vi/common.py"""
 
 from imp import reload
 from basic.publicw import DEBUG,user_menu
 if DEBUG == '1':
-    import admin.vi.BASE_TPL
-    reload(admin.vi.BASE_TPL)
-from admin.vi.BASE_TPL             import cBASE_TPL
+    import manage.vi.BASE_TPL
+    reload(manage.vi.BASE_TPL)
+from manage.vi.BASE_TPL             import cBASE_TPL
 
 
 class ccommon(cBASE_TPL):
@@ -23,7 +23,7 @@ class ccommon(cBASE_TPL):
         referer = self.objHandle.headers.get('referer')
 
         if not referer: 
-            referer = 'admin?viewid=home'
+            referer = 'manage?viewid=home'
         menu1,menu2,menu3 = self.dl.getSysMenu(self.dl.usr_id)
 
         if self.dl.usr_id in user_menu:

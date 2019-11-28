@@ -4,15 +4,15 @@
 # Author：QQ173782910
 #QQ group:528289471
 ##############################################################################
-"""admin/vi/A002.py"""
+"""manage/vi/A002.py"""
 
 from imp import reload
 from basic.publicw import DEBUG
 if DEBUG == '1':
-    import admin.vi.BASE_TPL
-    reload(admin.vi.BASE_TPL)
-from admin.vi.BASE_TPL             import cBASE_TPL
-from admin.vi.mselect  import mselect_forJF_type,mselect_forHT,mselect_forYK
+    import manage.vi.BASE_TPL
+    reload(manage.vi.BASE_TPL)
+from manage.vi.BASE_TPL             import cBASE_TPL
+from manage.vi.mselect  import mselect_forJF_type,mselect_forHT,mselect_forYK
 
 class cA002(cBASE_TPL):
     
@@ -54,7 +54,7 @@ class cA002(cBASE_TPL):
     def JF_mselect(self):
         mSelect = mselect_forYK('jf', ['ID', '商品名称'], '商品列表',
                                 wh=[500, 300], dnl=[0, 1, 2, 3], search_holder='请输入商品名称')
-        mSelect.sUrl = 'admin?viewid=A002&part=ajax&action=jftype'
+        mSelect.sUrl = 'manage?viewid=A002&part=ajax&action=jftype'
         # mSelect.setUrlArg({'jf_type': "$('[name=jf_type]:checked').val()"})
         mSelect.confirmjs = '''
                 datas = sData.split("###");
@@ -82,9 +82,9 @@ class cA002(cBASE_TPL):
     #     else:
     #         save_alert = 2
     #
-    #     url = "admin?viewid=%s&part=localfrm&save_alert=%s" % (self.viewid,save_alert)
+    #     url = "manage?viewid=%s&part=localfrm&save_alert=%s" % (self.viewid,save_alert)
     #     if pk!='':
-    #         url = "admin?viewid=%s&part=localfrm&pk=%s&save_alert=%s" % (self.viewid, pk,save_alert)
+    #         url = "manage?viewid=%s&part=localfrm&pk=%s&save_alert=%s" % (self.viewid, pk,save_alert)
     #
     #     return self.redirect(url)
 

@@ -4,7 +4,7 @@
 # Author：QQ173782910
 #QQ group:528289471
 ##############################################################################
-"""admin/vi/mselect.py"""
+"""manage/vi/mselect.py"""
 
 
 from basic.publicw import cTag, CHtml
@@ -1183,7 +1183,7 @@ class mselect_forHT:
                             for(j=0;j<listlen;j++){
                                 tr += '<td>'+data.list[i][dnl[j]]+'</td>';      /*ID*/
                             }
-                            tr += '<td >'+'<a  href="admin?fid=F012&pageNo=1&part=localfrm&pk='+data.list[i][dnl[0]]+'" target="_blank">查看</a>'+'</td>';
+                            tr += '<td >'+'<a  href="manage?fid=F012&pageNo=1&part=localfrm&pk='+data.list[i][dnl[0]]+'" target="_blank">查看</a>'+'</td>';
                             tr += '</tr>';
                             tr_total += tr;
                         }
@@ -1428,9 +1428,9 @@ class mselect_forlink_GW:
                                 tr += '<td>'+data.list[i][dnl[j]]+'</td>';      /*ID*/
                             }
                             if(data.list[i][4]!=6){
-                                tr += '<td >'+'<a  href="admin?fid=F008&pageNo=1&part=localfrm&pk='+data.list[i][0]+'" target="_blank">查看</a>'+'</td>';
+                                tr += '<td >'+'<a  href="manage?fid=F008&pageNo=1&part=localfrm&pk='+data.list[i][0]+'" target="_blank">查看</a>'+'</td>';
                             }else{
-                                tr += '<td >'+'<a  href="admin?fid=F104&pageNo=1&part=localfrm&pk='+data.list[i][0]+'" target="_blank">查看</a>'+'</td>';
+                                tr += '<td >'+'<a  href="manage?fid=F104&pageNo=1&part=localfrm&pk='+data.list[i][0]+'" target="_blank">查看</a>'+'</td>';
                             }
                             
                             tr += '</tr>';
@@ -1675,7 +1675,7 @@ class mselect_forSW(mselect_forHT):
                                 tr += '<td style=width:15%%>'+data.list[i][dnl[j]]+'</td>';      /*ID*/
                             }else{tr += '<td>'+data.list[i][dnl[j]]+'</td>';      /*ID*/}
                         }
-                        tr += '<td style=width:10%%>'+'<a  href="admin?fid=F104&pageNo=1&part=localfrm&pk='+data.list[i][dnl[0]]+'" target="_blank">查看</a>'+'</td>';
+                        tr += '<td style=width:10%%>'+'<a  href="manage?fid=F104&pageNo=1&part=localfrm&pk='+data.list[i][dnl[0]]+'" target="_blank">查看</a>'+'</td>';
                         tr += '</tr>';
                         tr_total += tr;
                     }
@@ -1918,7 +1918,7 @@ class mselect_forSH(mselect_forHT):
                                 tr += '<td style=width:15%%>'+data.list[i][dnl[j]]+'</td>';      /*ID*/
                             }else{tr += '<td>'+data.list[i][dnl[j]]+'</td>';      /*ID*/}
                         }
-                        tr += '<td style=width:10%%>'+'<a  href="admin?fid=SH204&pageNo=1&part=localfrm&pk='+data.list[i][dnl[0]]+'" target="_blank">查看</a>'+'</td>';
+                        tr += '<td style=width:10%%>'+'<a  href="manage?fid=SH204&pageNo=1&part=localfrm&pk='+data.list[i][dnl[0]]+'" target="_blank">查看</a>'+'</td>';
                         tr += '</tr>';
                         tr_total += tr;
                     }
@@ -4352,7 +4352,7 @@ class mselect_forMList:
                     if(tree_pk == undefined){
                         tree_pk = '-1'
                     }
-                    urls = "admin?viewid=%(viewid)s&part=ajax&action=getTree&tree_pk="+tree_pk;
+                    urls = "manage?viewid=%(viewid)s&part=ajax&action=getTree&tree_pk="+tree_pk;
                     $.ajax({
                         type: "get",
                         async:false,
@@ -4796,7 +4796,7 @@ class mselect_forMList_mul:
                     if(tree_pk == undefined){
                         tree_pk = '-1'
                     }
-                    urls = "admin?viewid=%(viewid)s&part=ajax&action=getTree&tree_pk="+tree_pk;
+                    urls = "manage?viewid=%(viewid)s&part=ajax&action=getTree&tree_pk="+tree_pk;
                     $.ajax({
                         type: "get",
                         async:false,
@@ -5243,7 +5243,7 @@ class mselect_forMList_spec:
                     if(tree_pk == undefined){
                         tree_pk = '0'
                     }
-                    urls = "admin?viewid=%(viewid)s&part=ajax&action=getSpec_c&tree_pk="+tree_pk;
+                    urls = "manage?viewid=%(viewid)s&part=ajax&action=getSpec_c&tree_pk="+tree_pk;
                     $.ajax({
                         type: "get",
                         async:false,

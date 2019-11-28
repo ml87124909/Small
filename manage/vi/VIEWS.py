@@ -4,7 +4,7 @@
 # Author：QQ173782910
 #QQ group:528289471
 ##############################################################################
-"""admin/vi/VIEWS.py"""
+"""manage/vi/VIEWS.py"""
 
 from flask import redirect, jsonify
 from jinja2 import Environment, PackageLoader

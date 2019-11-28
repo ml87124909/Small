@@ -4,14 +4,14 @@
 # Author：QQ173782910
 #QQ group:528289471
 ##############################################################################
-"""admin/vi/C005.py"""
+"""manage/vi/C005.py"""
 
 from imp import reload
 from basic.publicw import DEBUG
 if DEBUG == '1':
-    import admin.vi.BASE_TPL
-    reload(admin.vi.BASE_TPL)
-from admin.vi.BASE_TPL             import cBASE_TPL
+    import manage.vi.BASE_TPL
+    reload(manage.vi.BASE_TPL)
+from manage.vi.BASE_TPL             import cBASE_TPL
 
 
 
@@ -80,9 +80,9 @@ class cC005(cBASE_TPL):
         else:
             save_alert = 2
 
-        url = "admin?viewid=%s&part=localfrm&save_alert=%s" % (self.viewid,save_alert)
+        url = "manage?viewid=%s&part=localfrm&save_alert=%s" % (self.viewid,save_alert)
         if pk!='':
-            url = "admin?viewid=%s&part=localfrm&pk=%s&save_alert=%s" % (self.viewid, pk,save_alert)
+            url = "manage?viewid=%s&part=localfrm&pk=%s&save_alert=%s" % (self.viewid, pk,save_alert)
 
         return self.redirect(url)
 

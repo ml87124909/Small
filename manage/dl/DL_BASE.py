@@ -4,7 +4,7 @@
 # Author：QQ173782910
 #QQ group:528289471
 ##############################################################################
-"""admin/dl/DL_BASE.py"""
+"""manage/dl/DL_BASE.py"""
 
 import time
 import random
@@ -81,9 +81,9 @@ class cDL_BASE(cMANAGE_DL):
                 result = self.cookie.clearcookie("__session")
 
             if 1 in self.dActiveUser['roles'].keys():
-                self.bIsAdmin = 1
+                self.bIsmanage = 1
             else:
-                self.bIsAdmin = 0
+                self.bIsmanage = 0
 
             # lR 的 顺序是 增，删 ，改，查。用来控制框架的几个基本权限。
             # 增 lR[0] == '' 时有权限，能控制增加按钮的显示
@@ -107,7 +107,7 @@ class cDL_BASE(cMANAGE_DL):
                 self.system_menu = user_menu.get(self.usr_id, {})
 
             roleData = None
-            if self.bIsAdmin == 0:
+            if self.bIsmanage == 0:
                 if self.sub1id != -1:
                     roleData = self.dActiveUser.get('menu_role').get(self.sub1id)
                 elif self.mnuid != -1:

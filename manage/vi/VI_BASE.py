@@ -4,7 +4,7 @@
 # Author：QQ173782910
 #QQ group:528289471
 ##############################################################################
-"""admin/vi/VI_BASE.py"""
+"""manage/vi/VI_BASE.py"""
 
 
 import os
@@ -21,9 +21,9 @@ from qiniu import Auth, put_stream, put_data
 from imp import reload
 from basic.publicw import DEBUG
 if DEBUG == '1':
-    import admin.vi.VIEWS
-    reload(admin.vi.VIEWS)
-from admin.vi.VIEWS             import cVIEWS
+    import manage.vi.VIEWS
+    reload(manage.vi.VIEWS)
+from manage.vi.VIEWS             import cVIEWS
 
 
 class cVI_BASE(cVIEWS):
