@@ -14,9 +14,9 @@
 from imp import reload
 from config import DEBUG,CLIENT_NAME
 if DEBUG=='1':
-    import api.VI_BASE
-    reload(api.VI_BASE)
-from api.VI_BASE             import cVI_BASE
+    import manage.mapi.VI_BASE
+    reload(manage.mapi.VI_BASE)
+from manage.mapi.VI_BASE             import cVI_BASE
 from basic.wxbase import wx_minapp_login,WXBizDataCrypt,WxPay
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 import hashlib,time,json,datetime,requests

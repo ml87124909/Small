@@ -23,9 +23,9 @@ from imp import reload
 
 
 if DEBUG == '1':
-    import api.VIEWS
-    reload(api.VIEWS)
-from api.VIEWS import cVIEWS
+    import manage.mapi.VIEWS
+    reload(manage.mapi.VIEWS)
+from manage.mapi.VIEWS import cVIEWS
 # {
 #     -1: u'服务器内部错误',
 #     0: u'接口调用成功',

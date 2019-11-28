@@ -18,10 +18,10 @@ from .wxpay import WxPay, get_nonce_str, dict_to_xml, xml_to_dict
 from werkzeug import secure_filename
 
 if DEBUG == '1':
-    import api.BASE_TPL
-    reload(api.BASE_TPL)
+    import manage.mapi.BASE_TPL
+    reload(manage.mapi.BASE_TPL)
 
-from api.BASE_TPL import cBASE_TPL
+from manage.mapi.BASE_TPL import cBASE_TPL
 
 class cBASE_LOC(cBASE_TPL):
 
