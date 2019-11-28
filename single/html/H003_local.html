@@ -1,0 +1,115 @@
+{% extends "local.html" %}
+	
+{% block html_local %}
+<table class="tb single-table">
+
+	<tr>
+		<td width="100">
+			<label for="">用户ID:</label>
+		</td>
+		<td>
+			<input type="text" class="form-control"  name="usr_id" value="{{item.usr_id}}" readonly="readonly"/>
+		</td>
+
+	</tr>
+	<tr>
+		<td width="100">
+			<label for="">登录名:</label>
+		</td>
+		<td>
+			<input type="text" class="form-control"  name="login_id" value="{{item.login_id}}" />
+		</td>
+	</tr>
+
+	<tr>
+		
+		<td width="100">
+			<label for="">密&emsp;码:</label>
+		</td>
+		<td>
+			<span>Aa123456<font style="color:red;">(初始密码)</font></span>
+			<input type="checkbox" name="respw" value="1"/> &emsp;新增用户不用选择此项，非新增用户选择此项仅将密码恢复初始值
+		</td>
+		
+	</tr>
+
+	<tr>
+		<td>
+			<label for="">启用:</label>
+		</td>
+		<td>
+			<select name="status" class="form-control">
+				<option value="0"{{' selected="selected"' if item.status|string == '0'}}>否</option>
+				<option value="1"{{' selected="selected"' if item.status|string == '1'}}>是</option>
+			</select>
+		</td>
+	</tr>
+	{#
+	<tr>
+		<td>
+			<label for="">到期时间:</label>
+		</td>
+		<td>
+			<input type="text" class="form-control"  name="expire_time" value="{{item.expire_time}}" onclick="setdaytime(this)" readonly="readonly"/>
+		</td>
+	</tr>
+
+	<tr>
+		<td>
+			<label for="">系统版本:</label>
+		</td>
+		<td>
+			<select name="vip_flag" class="form-control">
+				<option value="0" {{
+				' selected="selected"' if item.vip_flag|string == '0'}}>试用</option>
+				{%for v in vip_list%}
+				<option value="{{v[0]}}" {{
+                ' selected="selected"' if item.vip_flag|string == v[0]|string}}>{{v[1]}}</option>
+				{%endfor%}
+				<option value="7" {{
+				' selected="selected"' if item.vip_flag|string == '7'}}>永久会员</option>
+			</select>
+		</td>
+	</tr>
+
+	<tr>
+		<td>
+			<label for="">OSS容量:</label>
+		</td>
+		<td>
+			<select name="oss_flag" class="form-control">
+				{%for v in oss_list%}
+				<option value="{{v[0]}}" {{
+                ' selected="selected"' if item.oss_flag|string == v[0]|string}}>{{v[1]}}M</option>
+				{%endfor%}
+				<option value="7" {{
+				' selected="selected"' if item.oss_flag|string == '7'}}>无限容量</option>
+			</select>
+		</td>
+	</tr>
+
+	<tr>
+		<td>
+			<label for="">OSS自定义用户:</label>
+		</td>
+		<td>
+			<select name="qiniu_flag" class="form-control">
+				<option value="0" {{
+                ' selected="selected"' if item.qiniu_flag|string == '0'}}>否</option>
+				<option value="1" {{
+                ' selected="selected"' if item.qiniu_flag|string == '1'}}>是</option>
+			</select>
+		</td>
+	</tr>
+	#}
+</table>
+{% endblock %}
+
+{% block page_script %}
+<script>
+function setdaytime(obj){return WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'});}
+</script>
+{% endblock %}
+        
+            
+	

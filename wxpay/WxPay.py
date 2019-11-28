@@ -80,7 +80,7 @@ class cWxPay:
                         , 'utime': self.getToday(9)
                         , 'renoncestr': data['nonce_str']
                         , 'time_end': data['time_end']
-                        , 'sign': data['sign']
+                        #, 'sign': data['sign']
 
                     }
 
@@ -132,7 +132,7 @@ class cWxPay:
                         , 'utime': self.getToday(9)
                         , 'renoncestr': data['nonce_str']
                         , 'time_end': data['time_end']
-                        , 'sign': data['sign']
+                        #, 'sign': data['sign']
 
                     }
 
@@ -201,7 +201,7 @@ class cWxPay:
                         , 'utime': self.getToday(9)
                         , 'renoncestr': data['nonce_str']
                         , 'time_end': data['time_end']
-                        , 'sign': data['sign']
+                        #, 'sign': data['sign']
 
                     }
 
@@ -275,7 +275,7 @@ class cWxPay:
                         , 'utime': self.getToday(9)
                         , 'renoncestr': data['nonce_str']
                         , 'time_end': data['time_end']
-                        , 'sign': data['sign']
+                        #, 'sign': data['sign']
 
                     }
 
@@ -503,29 +503,6 @@ class cWxPay:
         except Exception as e:
             self.print_log('平台vip支付回调错误','%s'%e)
 
-    # def dict_to_xml(self,dict_data):
-    #     '''
-    #     dict to xml
-    #     :param dict_data:
-    #     :return:
-    #     '''
-    #     xml = ["<xml>"]
-    #     for k, v in dict_data.items():
-    #         xml.append("<{0}>{1}</{0}>".format(k, v))
-    #     xml.append("</xml>")
-    #     return "".join(xml)
-    #
-    # def xml_to_dict(self,xml_data):
-    #     '''
-    #     xml to dict
-    #     :param xml_data:
-    #     :return:
-    #     '''
-    #     xml_dict = {}
-    #     root = ET.fromstring(xml_data)
-    #     for child in root:
-    #         xml_dict[child.tag] = child.text
-    #     return xml_dict
 
 
     def to_dict(self, content):
@@ -544,7 +521,7 @@ class cWxPay:
 
     def sign(self, raw):
         mall=self.oMALL.get(self.subid)
-        wechat_pay_secret = mall.get('mckey')
+        wechat_pay_secret = mall.get('mchkey')
         raw = [(k, str(raw[k]) if isinstance(raw[k], int) else raw[k])
                for k in sorted(raw.keys())]
         s = "&".join("=".join(kv) for kv in raw if kv[1])

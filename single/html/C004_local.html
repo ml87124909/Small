@@ -1,0 +1,1533 @@
+{% extends "local.html" %}
+
+{% block MUL_BTNS %}
+<input type="submit" class="btn btn-sm btn-info" name="add_save" value="发布商品"/>{{sUrlBack}}
+{% endblock %}
+
+{% block html_local %}
+<link href="static/assets/select2/css/select2.min.css" rel="stylesheet">
+<link href="static/assets/css/plugins/treeview/bootstrap-treeview.css" rel="stylesheet">
+<link href="static/assets/css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+<link href="static/web-uploader/css/uploader-image.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="static/assets/liger/ligerUI/skins/Aqua/css/ligerui-all.css">
+<link rel="stylesheet" type="text/css" href="static/assets/liger/ligerUI/skins/Aqua/css/ligerui-layout.css">
+<link rel="stylesheet" type="text/css" href="static/assets/liger/ligerUI/skins/Aqua/css/ligerui-grid.css">
+<link rel="stylesheet" type="text/css" href="static/assets/liger/ligerUI/skins/Aqua/css/ligerui-common.css">
+<link href="static/assets/css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="static/web-uploader/js/Q.js"></script>
+<script type="text/javascript" src="static/web-uploader/js/Q.Uploader.js"></script>
+<script type="text/javascript" src="static/web-uploader/js/Q.Uploader.UI.Image.js"></script>
+<script src="static/assets/js/jquery-ui-1.10.4.min.js"></script>
+<script src="static/assets/js/plugins/treeview/bootstrap-treeview.min.js"></script>
+<script src="static/assets/js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="static/assets/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+<script src="static/assets/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="static/assets/select2/js/select2.full.min.js"></script>
+<script type="text/javascript" src="static/assets/liger/ligerUI/js/core/base.js"></script>
+<script type="text/javascript" src="static/assets/liger/ligerUI/js/plugins/ligerTree.js"></script>
+<script type="text/javascript" src="static/assets/liger/ligerUI/js/plugins/ligerGrid.js"></script>
+<script type="text/javascript" src="static/assets/liger/ligerUI/js/plugins/ligerResizable.js"></script>
+<script type="text/javascript" src="static/assets/liger/ligerUI/js/plugins/ligerDialog.js"></script>
+<script type="text/javascript" src="static/assets/liger/ligerUI/js/plugins/ligerMenu.js"></script>
+<script type="text/javascript" src="static/assets/liger/ligerUI/js/plugins/ligerSpinner.js"></script>
+<script type="text/javascript" src="static/assets/liger/ligerUI/js/plugins/ligerDrag.js"></script>
+<script type="text/javascript" src="static/assets/liger/ligerUI/js/plugins/ligerFilter.js"></script>
+<script type="text/javascript" src="static/assets/liger/ligerUI/js/plugins/ligerToolBar.js"></script>
+<script src="static/assets/liger/ligerUI/js/plugins/ligerComboBox.js" type="text/javascript"></script>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><b style="color:#333333;">商品标题:</b></label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control"  name="cname" value="{{item.cname}}"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><b style="color:#333333;">商品简介:</b></label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control"  name="introduce" value="{{item.introduce}}"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><b style="color:#333333;">是否推荐:</b></label>
+                    <input type="hidden" name="recommstr" value="{{item.recommstr or '不推荐'}}"/>
+                    <div class="col-sm-9">
+                        <select name="recomm"  class="form-control" onchange="set_recomm_str(this);">
+                           <option value="0"{{' selected="selected"' if item.recomm|string == '0'}}>不推荐</option>
+                           <option value="1"{{' selected="selected"' if item.recomm|string == '1'}}>推荐</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><b style="color:#333333;">上架状态:</b></label>
+                    <input type="hidden" name="statusstr" value="{{item.statusstr or '上架'}}"/>
+                    <div class="col-sm-9">
+                        <select name="status"  class="form-control" onchange="set_status_str(this);">
+                           <option value="0"{{' selected="selected"' if item.status|string == '0'}}>上架</option>
+                           <option value="1"{{' selected="selected"' if item.status|string == '1'}}>下架</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><b style="color:#333333;">开启拼团:</b></label>
+                    <div class="col-sm-9">
+                        <select name="pt_status" class="form-control">
+                            <option value="0" {{
+                            ' selected="selected"' if item.pt_status|string == '0'}}>否</option>
+                            <option value="1" {{
+                            ' selected="selected"' if item.pt_status|string == '1'}}>是</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><b style="color:#333333;">排序:</b></label>
+                    <div class="col-sm-3">
+                        <input type="number" name="paixu" class="form-control" value="{{item.paixu}}" style="width:100%"/>
+                    </div>
+
+                    <label class="col-sm-2 control-label"><b style="color:#333333;">销量:</b></label>
+
+                    <div class="col-sm-4">
+                        <input type="number" name="orders" class="form-control" value="{{item.orders}}" style="width:100%"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><b style="color:#333333;">限购数量：</b></label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control"  name="limited"  value="{{item.limited or 0}}" style="width:100%"/>
+                    </div>
+
+
+                    <label class="col-sm-3 control-label"><b style="color:#333333;">会员折扣:</b></label>
+                    <div class="col-sm-3">
+                        <select name="discount"  class="form-control" style="width:100%">
+                            <option value="0"{{' selected="selected"' if item.discount|string == '0'}}>关闭</option>
+                            <option value="1"{{' selected="selected"' if item.discount|string == '1'}}>开启</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="col-sm-6">
+                <div class="row">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <b style="color:#333333;">商品分类</b>(<span style="color:red;">前边打勾表示选中</span>)
+                            <input type="hidden" name="category_ids" value="{{item.category_ids}}">
+                            <input type="hidden" name="category_ids_str" value="{{item.category_ids_str}}">
+                        </div>
+                        <div class="panel-body" style="padding:0px;height:300px;">
+                            <div class="client-detail">
+                                <div class="full-height-scroll">
+                                    <div class="ibox float-e-margins" style="height:270px;">
+                                        <div class="ibox-content">
+                                            <div class="col-sm-10">
+                                                <div id="treeview-checkable" class="test"></div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-12">
+        <div class="tabs-container">
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a data-toggle="tab" href="#tab-1" aria-expanded="false">图片/视频</a>
+                </li>
+                <li class="">
+                    <a data-toggle="tab" href="#tab-2" aria-expanded="false">商品详情</a>
+                </li>
+                <li class="">
+                    <a data-toggle="tab" href="#tab-3" aria-expanded="true">规格/价格/库存</a>
+                </li>
+
+                <li class="">
+                    <a data-toggle="tab" href="#tab-4" aria-expanded="false">分享设置</a>
+                </li>
+
+            </ul>
+            <div class="tab-content">
+                <div id="tab-1" class="tab-pane  active">
+                    <div class="panel-body">
+                        <div class="ibox-content">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">商品图片:</label>
+                                <div class="col-sm-3">
+
+                                    <div class="row">
+                                        <div id="container" style="position: relative;">
+                                            <a id="pickfiles"  style="position: relative; z-index: 1;">[选择本地文件]</a>
+                                            <span class="orange">第一张图片默认为商品封面图片，可拖动排序</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-sm-6" id="share">
+                                    {% for pl in pics_list %}
+                                        <div class="picsDiv col-sm-3">
+                                            <input type="hidden" name="pics" value="{{pl}}"/>
+                                            <img class="col-sm-12" src="{{pl}}"/>
+                                            <a href="javascript:" onclick="deletePic(this,'{{pl}}')">[删除]</a>
+                                        </div>
+                                    {%endfor%}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">商品视频:</label>
+                                <div class="col-sm-3">
+                                    <input type="text" class="form-control"  name="video" value="{{item.video}}"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tab-2" class="tab-pane">
+                    <div class="panel-body">
+                        <div class="ibox-content">
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label">商品详情:</label>
+                                <div class="col-sm-10">
+                                    <textarea name="text_contents" class="summernote" id="contents" title="Contents">{{item.contents}}</textarea>
+                                </div>
+                                <style>
+                                    .modal-body {
+                                            padding: 20px 30px 30px 30px;
+
+                                        }
+                                        .modal {
+                                            position: fixed;
+                                            top: 10px;
+                                            /*right: 0;*/
+                                            /*bottom: 0;*/
+                                            /*left: 0;*/
+
+                                            display: none;
+                                            overflow: hidden;
+                                            -webkit-overflow-scrolling: touch;
+                                            outline: 0;
+                                            background-color: white;
+                                        }
+                                </style>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tab-3" class="tab-pane">
+                    <div class="panel-body">
+                        <div id="specsize" style="">
+                            <span class="col-sm-12" style="color:red;font-size:16px;">
+                                注意：如果上边会员折扣开启，
+                                此处设置的会员价将无效，将会以店铺设置里的会员设置下的会员折扣百分比*现价为最终会员价。
+                            </span><br>
+                            <span class="col-sm-12" style="color:red;font-size:16px;">
+                                注意：这是无规格商品的价格和库存。
+                            </span>
+
+                            <div class="form-group">
+
+                                <label class="col-sm-1 control-label" style="width:150px;">商品库存(件):</label>
+                                <div class="col-sm-1">
+                                    <input type="text" class="form-control" style="width:80px;" name="stores"
+                                           value="{{item.stores or '0'}}" />
+                                </div>
+                                <label class="col-sm-1 control-label">商品编码:</label>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control" style="width:150px;" name="barcodes"
+                                           value="{{item.barcodes}}"/>
+                                </div>
+                                <label class="col-sm-1 control-label" style="width:150px;">商品重量(KG):</label>
+                                <div class="col-sm-1">
+                                    <input type="text" class="form-control" style="width:80px;" name="weight"
+                                           value="{{item.weight}}"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label" style="width:150px;">商品原价(元):</label>
+                                <div class="col-sm-1">
+                                    <input type="text" class="form-control" style="width:90px;" name="originalprice"
+                                           value="{{item.originalprice}}"/>
+                                </div>
+
+                                <label class="col-sm-1 control-label">商品现价(元):</label>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control" style="width:90%;" name="minprice"
+                                           value="{{item.minprice}}"/>
+                                </div>
+                                <label class="col-sm-1 control-label">拼团价(元):</label>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control" style="width:90%;" name="pt_price"
+                                           value="{{item.pt_price}}"/>
+                                </div>
+                                <label class="col-sm-1 control-label">会员价(元):</label>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control" style="width:90%;" name="hy_price"
+                                           value="{{item.hy_price}}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <label class="col-sm-1 control-label">大客户价(元):</label>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control" style="width:90%;" name="big_price"
+                                           value="{{item.big_price}}"/>
+                                </div>
+                                <label class="col-sm-1 control-label">批发价(元):</label>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control" style="width:90%;" name="pf_price"
+                                           value="{{item.pf_price}}"/>
+                                </div>
+                                <label class="col-sm-1 control-label">连锁价(元):</label>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control" style="width:90%;" name="ls_price"
+                                           value="{{item.ls_price}}"/>
+                                </div>
+                                <label class="col-sm-1 control-label">代理价(元):</label>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control" style="width:90%;" name="dl_price"
+                                           value="{{item.dl_price}}"/>
+                                </div>
+                            </div>
+                            <!--div class="form-group">
+                                <div class="col-sm-12">
+                                    <button type="button" class="btn btn-primary btn-sm" onclick="spec_size()"><i
+                                            class="fa fa-plus"></i>添加商品规格
+                                    </button>
+                                </div>
+                            </div-->
+                        </div>
+
+                        <div class="ibox-content" id="spec_class_main">
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <button type="button" class="btn btn-primary btn-sm" onclick="spec_class()"><i
+                                            class="fa fa-plus"></i>添加规格分类
+                                    </button>
+                                </div>
+                            </div>
+                            <input type="hidden" name="spec_amount" value="{{spec_amount or '0'}}">
+                            <input type="hidden" name="spec_all" value="{{spec_all}}">
+                            <input type="hidden" name="spec_type" value="">
+                            <div class="ibox-content" id="specclass">
+                                <div class="row">
+                                    {% if L_p%}
+                                    {% for spe in L_p %}
+                                    <div class="panel panel-default" id="ppd{{loop.index}}">
+                                        <div class="panel-heading" id="ph{{loop.index}}">
+                                            <div class="form-group">
+                                                <div class="col-sm-10">
+                                                    <input name="spec_p{{loop.index}}" type="hidden" value="{{spe}}">
+                                                    <input name="spec_str{{loop.index}}" type="hidden" value="">
+                                                    <input name="spec_child{{loop.index}}" type="hidden"
+                                                           value="{{spec_childx[spe|string]}}">
+                                                    <select class="js-example-basic-single"
+                                                            style="width:150px;"
+                                                            onchange="onshow_ch(this,'{{loop.index}}')" name="spec_p">
+                                                        <option value="">选择规格分类</option>
+                                                        {% for sp in spec_list%}
+                                                        <option value="{{sp[0]}}" {{
+                                                        'selected="selected"' if sp[0] == spe}}>{{sp[1]}}</option>
+                                                        {%endfor%}
+                                                        <option value="0">自定义</option>
+                                                    </select>
+                                                    <button type="button" class="btn btn-primary btn-sm"
+                                                            onclick="show_spec_child('{{loop.index}}')">
+                                                        添加规格型号(规格子属性)
+                                                    </button>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <button type="button" class="btn btn-sm btn-warning"
+                                                            onclick="del_spec(this,'{{loop.index}}')">
+                                                        删除分类
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel-body" id="pb{{loop.index}}">
+                                            {% set rowloop = loop %}
+                                            {%for specc in L_c%}
+                                            {%if spe==specc[0]%}
+                                            <div class="specDiv col-sm-2" style="line-height:4rem;">
+                                                <input name="sp{{rowloop.index}}" type="hidden" value="{{specc[1]}}">
+                                                <button type="button" class="badge badge-danger"
+                                                        onclick="sp_del(this,'{{rowloop.index}}')">
+                                                    <i class="ace-icon fa fa-times red2"></i>
+                                                </button>
+                                                <span>{{specc[2]}}</span>
+                                                <img src="{{specc[3]}}" style="width:50px;">
+                                            </div>
+                                            {%endif%}
+                                            {%endfor%}
+                                        </div>
+                                    </div>
+                                    {%endfor%}
+
+                                    {%endif%}
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="example-wrap">
+                                    <div class="example">
+                                        <table class="table table-bordered" >
+                                            <thead>
+                                                <tr>
+                                                    <th style="width:80px;">规格图标</th>
+                                                    <th style="width:80px;">规格名称</th>
+                                                    <th   style="width:80px;">原价(元)</th>
+                                                    <th style="width:80px;">现价(元)</th>
+                                                    <th style="width:80px;">拼团价(元)</th>
+                                                    <th style="width:80px;">会员价(元)</th>
+                                                    <th style="width:80px;">大客户价(元)</th>
+                                                    <th style="width:80px;">批发价(元)</th>
+                                                    <th style="width:80px;">连锁价(元)</th>
+                                                    <th style="width:80px;">代理价(元)</th>
+                                                    <th style="width:80px;">库存(件)</th>
+                                                    <th style="width:80px;">商品编码</th>
+                                                    <th style="width:50px;">管理</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody  id="spec_table">
+                                                {% for  scp  in spec_child_price%}
+                                                <tr>
+                                                    <td>
+                                                        <input type='hidden' name='lid' value='{{scp[0]}}' />
+                                                        <input type='hidden' name='sc_icon' value='{{scp[13]}}'/>
+                                                        {%if ',' in scp[13]%}
+                                                        {%else%}
+                                                        <img src="{{scp[13]}}" style="width:50px;">
+                                                        {%endif%}
+                                                    </td>
+                                                    <td>
+                                                        <input type='hidden' name='sc_id' value='{{scp[1]}}' />
+                                                        <input type='hidden' name='sc_name' value='{{scp[2]}}'/>{{scp[2]}}
+                                                    </td>
+                                                    <td>
+                                                        <input type='text' name='oldprice' value='{{scp[3]}}' style='width:100%;' />
+                                                    </td>
+                                                    <td>
+                                                        <input type='text' name='newprice' value='{{scp[4]}}' style='width:100%;'/>
+                                                    </td>
+                                                    <td>
+                                                        <input type='text' name='ptprice' value='{{scp[5]}}' style='width:100%;'/>
+                                                    </td>
+                                                    <td>
+                                                        <input type='text' name='hyprice' value='{{scp[6]}}' style='width:100%;'/>
+                                                    </td>
+                                                    <td>
+                                                        <input type='text' name='bigprice' value='{{scp[7]}}' style='width:100%;'/>
+                                                    </td>
+                                                    <td>
+                                                        <input type='text' name='pfprice' value='{{scp[8]}}' style='width:100%;'/>
+                                                    </td>
+                                                    <td>
+                                                        <input type='text' name='lsprice' value='{{scp[9]}}' style='width:100%;'/>
+                                                    </td>
+                                                    <td>
+                                                        <input type='text' name='dlprice' value='{{scp[10]}}' style='width:100%;'/>
+                                                    </td>
+
+                                                    <td>
+                                                        <input type='text' name='store_c' value='{{scp[11]}}' style='width:100%;'/>
+                                                    </td>
+                                                    <td>
+                                                        <input type='text' name='barcode' value='{{scp[12]}}' style='width:100%;'/>
+                                                    </td>
+                                                    <td>
+                                                        <a class='btn btn-xs btn-info' onclick='fill_update(this)' ><i class='fa fa-edit'>填充</i></a>
+                                                        &emsp;<a class='btn btn-xs btn-warning' onclick='tr_delete(this);' ><i class='fa fa-trash-o'></i>删除</a>
+                                                    </td>
+                                                </tr>
+                                                {%endfor%}
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tab-4" class="tab-pane ">
+                    <div class="panel-body">
+                        <div class="ibox-content">
+                                <input type="hidden" name="share_open" value="0">
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">分享返现方式:</label>
+                                    <input type="hidden" name="share_type_str" value="{{item.share_type_str or '不返现'}}">
+                                    <div class="col-sm-3">
+                                        <select name="share_type"  class="form-control" onchange="set_share_type(this);">
+                                            <option value="0"{{' selected="selected"' if item.share_type|string == '0'}}>不返现</option>
+                                            <option value="1"{{' selected="selected"' if item.share_type|string == '1'}}>分享返现</option>
+                                            <option value="2"{{' selected="selected"' if item.share_type|string == '2'}}>分享返积分</option>
+                                            <option value="3"{{' selected="selected"' if item.share_type|string == '3'}}>分享返优惠券</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-3" id="share_type_1" style="display:none">
+                                        <input type="text" class="form-control"  name="share_return"  value="{{item.share_return}}" />
+                                    </div>
+                                    <div class="col-sm-3" id="share_type_3" style="display:none">
+                                        <input type="hidden" class="form-control"  name="return_ticket"  value="{{item.return_ticket}}" />
+                                        <input type="text" class="form-control"  name="return_ticket_str"  value="{{item.return_ticket_str}}" readonly="readonly"/>{{show_ticket}}
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group" id="share_t">
+                                    <label class="col-sm-2 control-label">分享返现时效:</label>
+                                    <input type="hidden" name="share_time_str" value="{{item.share_time_str or '分享返(单次)'}}">
+                                    <div class="col-sm-3">
+                                        <select name="share_time"  class="form-control" onchange="set_share_time(this);">
+                                            <option value="1"{{' selected="selected"' if item.share_time|string == '1'}}>分享返(单次)</option>
+                                            <option value="2"{{' selected="selected"' if item.share_time|string == '2'}}>下单返(多次)</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">分享标题：</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control"  name="share_title"  value="{{item.share_title}}" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">分享海报：</label>
+                                    <div class="col-sm-3">
+                                        <a id="pickfilesa"  style="position: relative; z-index: 1;">[选择本地文件]</a>
+                                        <span class="orange">只能上传一张图片</span>
+                                    </div>
+                                    <div class="picsDiv col-sm-3" id="logo">
+                                    {% if item.share_imgs %}
+                                        <input type="hidden" name="share_imgs" value="{{item.share_imgs}}"/>
+                                        <img class="col-sm-12" src="{{item.share_imgs}}"/>
+                                        <a href="javascript:" onclick="deletePic(this,'{{item.share_imgs}}')">[删除]</a>
+                                    {%endif%}
+                                </div>
+                                </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+{{show_spec}}
+
+ <div class="col-sm-10">
+
+</div>
+{% endblock %}
+
+
+{% block page_script %}
+
+<script>
+
+
+    var Uploader = Q.Uploader,
+    formatSize = Q.formatSize,
+    boxView = document.getElementById("nox");
+    var uploader = new Uploader({
+    url: '/upload?viewid={{viewid}}&part=Img',
+    target:document.getElementById("upload-s"),
+    view: boxView,//如果去掉这个，会导致压缩效果不好
+    //将auto配置为false以手动上传
+    auto: false,
+    dataType: "json",
+    allows: ".jpg,.png,.bmp,.jpeg",
+    upName: "file",
+    //图片缩放
+    scale: {
+        //要缩放的图片格式
+        types: ".jpg,.png,.jpeg,.bmp",
+        //最大图片大小(width|height)
+        maxWidth: 100
+    },
+    on: {
+        //添加之前触发
+        add: function (task) {
+            if (task.disabled) return layer.alert("允许上传的文件格式为：" + this.ops.allows);
+        },
+        upload: function (task) {
+
+        },
+        complete: function(task){
+            var jsons=task.json;
+            if(jsons){
+                if (jsons.url!=''){
+                    $('input[name=url]').val(jsons.url)
+                }
+            }else{
+                layer.msg('上传图片故障！')
+
+            }
+        }
+        }
+    });
+
+
+
+</script>
+<script>
+    function del_spec(obj,ds){
+        $(obj).parents("#ppd"+ds+"").remove();
+        specamount = $('input[name=spec_amount]').val();
+        spam=parseInt(specamount)-1
+        $('input[name=spec_amount]').val(spam);
+
+        sepcpv=''
+        sepccv=''
+        for(i = 1;i < 5;i++){
+            spi=$('input[name=spec_p'+[i]+']').val();
+            sci=$('input[name=spec_child'+[i]+']').val();
+
+            if (spi!='' && spi!=undefined && sci!='' && sci!=undefined){
+               if (sepccv==''){
+                sepccv=sci
+               }else{
+                sepccv+=','+sci
+               }
+               if (sepcpv==''){
+                sepcpv=spi
+               }else{
+                sepcpv+=','+spi
+               }
+            }
+        }
+
+        if(sepcpv!=''){
+            $('input[name=spec_all]').val(sepcpv)
+            $.ajax({
+                url:sUrl+"&part=get_spec_class_re&spcvv="+sepccv,
+                async:false,
+                success: function(data){
+                    if (data.code=='0'){
+                        $('#specclass .row').html('');
+                        $('#specclass .row').append(data.data)
+                        //$('input[name=spec_amount]').val(spa);
+                        $('.js-example-basic-single').select2();
+                        show_spec()//重新处理规格
+
+                    }else{
+                        layer.msg(data.MSG);
+                    }
+                }
+            });
+
+        }else{
+
+            $("#spec_table").html('');
+
+        }
+
+
+    }
+    function sp_del(obj,sp){
+        $(obj).parents(".specDiv").remove();
+        sp_child=[]
+        $.each($('input[name=sp'+sp+']'),function(){
+                sp_child.push($(this).val())
+
+        });
+        spec_chi=''
+        for(i = 0;i < sp_child.length;i++){
+
+                if (i==0){
+                    spec_chi=sp_child[i]
+                }else{
+                    spec_chi+=','+sp_child[i]
+                }
+        }
+
+        $('input[name=spec_child'+sp+']').val(spec_chi)
+        show_spec()//重新处理规格
+
+    }
+    function spec_class(){
+
+        spec_amount = $('input[name=spec_amount]').val();
+        spa=parseInt(spec_amount)+1
+        if (spa>4){
+            layer.msg('当前暂时仅支持四个大规格分类!');
+            return false;
+        }
+        spec_c=[]
+        spcv=''
+        if (spec_amount!='1'){
+            for(i = 1;i < spa;i++){
+                sp=$('input[name=spec_p'+[i]+']').val();
+                if (sp==''){
+                    layer.msg('有未选择的规格分类，请选择后再添加!');
+                    return false;
+                }
+                for(v of spec_c) {
+                    if(v === sp) {
+                        layer.msg('您选择了两个相同的规格分类，请检查');
+                        $('input[name=spec_all]').val('');
+                        return false;
+                    }
+                }
+                spec_c.push(sp)
+                if (i==1){
+                    spcv=sp
+                }else{
+                    spcv+=','+sp
+                }
+            }
+        }else{
+            spcv=$('input[name=spec_p1]').val();
+            if (spcv==''){
+                layer.msg('有未选择的规格分类，请选择后再添加!');
+                return false;
+            }
+        }
+
+        $.ajax({
+            url:sUrl+"&part=get_spec_class&spa="+spa+"&spcv="+spcv,
+            async:false,
+            success: function(data){
+                if (data.code=='0'){
+
+                    $('#specclass .row').append(data.data)
+                    $('input[name=spec_amount]').val(spa);
+                    $('.js-example-basic-single').select2();
+                }else{
+                    layer.msg(data.MSG);
+                }
+            }
+        });
+    }
+
+
+    function show_spec_child(id){
+        spec_all=$('input[name=spec_all]').val();
+        if (spec_all==''){
+            layer.msg('请选择规格分类再添加规格型号(规格子属性)!');
+            return false;
+        }
+        spec_p=$('input[name=spec_p'+id+']').val();
+        spec_text=$('input[name=spec_str'+id+']').val();
+        spec_child_v=$('input[name=spec_child'+id+']').val();
+        if (spec_p==''){
+            layer.msg('请选择对应的规格分类');
+            return false;
+        }
+        $('input[name=spec_type]').val(id)
+        $('input[name=tree_pk]').val(spec_p);
+        $('input[name=tree_id]').val(spec_child_v);
+        streemenu();
+        spec_mul_loadUsersList('')
+
+
+    }
+
+    function add_spec_child(){
+
+        var id = $('input[name=tree_pk]').val();
+        content_html='<form id="tf"><input type="hidden" name="sid" value="'+id+'">';
+        content_html+='<div class="col-sm-12">';
+
+        content_html+='<br><br><br><br><div class="col-sm-12">';
+        content_html+=' <div class="col-sm-12">';
+        content_html+=' <input type="hidden" class="form-control"  name="spec_p" value="'+id+'"/>';
+        content_html+=' <input type="text" class="form-control"  name="new_name" value="" placeholder="输入型号"/>';
+        content_html+='</div>';
+
+        content_html+=' <div class="col-sm-12"><label class="col-sm-2 control-label"><b style="color:#333333;">上传图标:</b></label>';
+
+        content_html+=' <div class="col-sm-4">';
+        content_html+=' <input type="file" accept="image/*" class="form-control" name="cicon" id="cicon" onchange="addFiles();"/>';
+        content_html+='</div>';
+        content_html+='<div class="col-sm-5"><div class="col-sm-12" style="float:right;">';
+        content_html+='<img src="" id="icon" class="col-sm-12" />';
+        content_html+='<input type="hidden" name="url" value=""/>';
+        content_html+='</div></div>';
+        content_html+='</div></div>';
+        content_html+='<script>function addFiles(){var file = document.getElementById("cicon").files[0];';
+        content_html+='var reader = new FileReader();reader.readAsDataURL(file);';
+        content_html+='reader.onload=function(e){$("#icon").get(0).src = e.target.result;';
+        content_html+='uploader.add(file);uploader.start();}}<\/script>';
+        content_html+='</div></form>';
+
+        layer.open({
+            type: 1,
+            skin: 'layui-layer-rim', //加上边框
+            area: ['50rem;', '35rem;'], //宽高
+            content: content_html,
+            title: "添加规格型号----"+spec_text,
+            btn: ['提交']
+            ,yes: function(index, layero){
+
+                var new_name = $('input[name=new_name]').val();
+                if(new_name==''){
+                    layer.msg('请输入型号！')
+                    return false;
+                }
+                var forms = new FormData(document.getElementById("tf"));
+                $.ajax({
+                    url:"single?viewid=C004&part=add_spec_child",
+                    type:"post",
+                    data:forms,
+                    processData:false,
+                    contentType:false,
+                    success:function(data){
+
+                        if (data.code=="0"){
+                            layer.closeAll();
+                            show_spec_child($('input[name=spec_type]').val())
+                        }else{
+                            layer.msg(data.MSG);
+                        }
+                    }
+                });
+
+             }
+        });
+
+    }
+
+
+    function save_add_spec_child(forms){
+
+        $.ajax({
+            url:"single?viewid=C004&part=add_spec_child",
+            type:"post",
+            data:forms,
+            processData:false,
+            contentType:false,
+            success:function(data){
+                if (data.code=="0"){
+                    layer.closeAll();
+                    show_spec_child(data.id)
+                }else{
+                    layer.msg(data.MSG);
+                }
+            }
+        })
+    }
+    function onshow_ch(obj,id){
+        chval=obj.value
+        if (chval=='0'){
+            content_html='<form id="tf"><input type="hidden" name="sid" value="'+id+'">';
+
+            content_html+='<div class="col-sm-10">';
+            content_html+=' <div class="col-sm-9">';
+            content_html+=' <input type="text" class="form-control"  name="new_name" value="" placeholder="输入规格分类"/>';
+            content_html+='</div>';
+
+            content_html+='</div></form>';
+
+            layer.open({
+                type: 1,
+                skin: 'layui-layer-rim', //加上边框
+                area: ['30rem;', '15rem;'], //宽高
+                content: content_html,
+                title: "增加规格分类",
+                btn: ['提交']
+                ,yes: function(index, layero){
+
+                    var new_name = $('input[name=new_name]').val();
+                    if(new_name==''){
+                        layer.msg('请输入规格分类名！')
+                        return false;
+                    }
+                    var forms = new FormData(document.getElementById("tf"));
+                    $.ajax({
+                        url:"single?viewid=C004&part=save_add_spec",
+                        type:"post",
+                        data:forms,
+                        processData:false,
+                        contentType:false,
+                        success:function(data){
+                            if (data.code=='0'){
+                                layer.close(index);
+                                $('#ph'+id+' select').append(data.data)
+                                $('input[name=spec_p'+id+']').val(data.sid);
+                                $('input[name=spec_str'+id+']').val(data.cname);
+
+                            }else{
+                                layer.msg(data.MSG);
+                                return false;
+                            }
+                        }
+                    });
+
+                 }
+            });
+        }
+
+        spec_list= new Array()
+
+        a=parseInt(id)+1
+        $('input[name=spec_p'+id+']').val(chval)
+        $('input[name=spec_str'+id+']').val($(obj).find("option:selected").text())
+        $('#pb'+id+'').html('')
+        $('input[name=spec_child'+id+']').val('')
+
+        spec_all=''
+        for (var i=1;i<5;i++)
+        {
+            chvall=$('input[name=spec_p'+i+']').val()
+
+            if (chvall!='' && chvall!=undefined){
+
+                for(v of spec_list) {
+                    if(v === chvall) {
+                        layer.msg('您选择了两个相同的规格分类，请检查');
+                        $('input[name=spec_all]').val('');
+                        return false;
+                    }
+                }
+
+                if (i==1){
+                    spec_all=chvall
+                }
+                else{
+                    spec_all+=','+chvall
+                }
+                spec_list.push(chvall)
+
+            }
+        }
+        $('input[name=spec_all]').val(spec_all);
+        if (chval!='0'){
+            show_spec_child(id)
+        }
+    }
+
+    $(document).ready(function () {
+        $('.js-example-basic-single').select2();
+
+        $('.summernote').summernote({
+            lang: 'zh-CN',
+            height: 300
+        });
+
+        $('.full-height-scroll').slimScroll({
+            height: '100%'
+        });
+
+
+    });
+    var edit = function () {
+        $("#eg").addClass("no-padding");
+        $('.click2edit').summernote({
+            lang: 'zh-CN',
+            focus: true
+        });
+    };
+    var save = function () {
+        $("#eg").removeClass("no-padding");
+        var aHTML = $('.click2edit').code(); //save HTML If you need(aHTML: array).
+        $('.click2edit').destroy();
+    };
+
+
+    $('.summernote').summernote({
+            callbacks: {
+                // onImageUpload callback
+                onImageUpload: function(files) {
+                    //实例化一个plupload上传对象
+                    var Uploader = Q.Uploader,
+                    formatSize = Q.formatSize,
+                    boxView = document.getElementById("nox");
+                    var uploader = new Uploader({
+                        url: '/upload?viewid={{viewid}}&part=Img',
+                        target:document.getElementById("upload-s"),
+                        view: boxView,//如果去掉这个，会导致压缩效果不好
+                        //将auto配置为false以手动上传
+                        auto: false,
+                        dataType: "json",
+                        allows: ".jpg,.png,.gif,.bmp,.jpeg",
+                        upName: "file",
+                        //图片缩放
+                        scale: {
+                            //要缩放的图片格式
+                            types: ".jpg,.png,.jpeg,.bmp",
+                            //最大图片大小(width|height)
+                            maxWidth: 500
+                        },
+                        on: {
+                            //添加之前触发
+                            add: function (task) {
+                                layer.load()
+                                if (task.disabled) return layer.alert("允许上传的文件格式为：" + this.ops.allows);
+                            },
+                            upload: function (task) {
+                                layer.load()
+                            },
+                            complete: function(task){
+                                var jsons=task.json;
+                                if(jsons){
+                                    $('.summernote').summernote('insertImage', jsons.url,'img');
+                                    layer.closeAll()
+                                }else{
+                                    layer.msg('上传图片故障！')
+                                    layer.closeAll()
+                                }
+                            }
+                            }
+                        });
+
+                    for (var i=0;i<files.length;i++)
+                    {
+                        uploader.add(files[i]);
+                        uploader.start();
+                    }
+
+
+                }
+            }
+        });
+
+
+
+</script>
+<script>
+
+    $(function(){
+        $( "#share" ).sortable({
+            handle: "img",
+            stop: function( event, ui ) {
+            }
+        });
+
+        if($('select[name=discount]').val()=='0'){
+            $('#hy_level').hide()
+        }else{
+            $('#hy_level').show()
+        }
+
+        if($('select[name=share_type]').val()=='0'){
+            $('#share_t').hide()
+             $('#share_type_3').hide()
+             $('#share_type_1').hide()
+        }else{
+            if($('select[name=share_type]').val()=='1' || $('select[name=share_type]').val()=='2'){
+
+                 $('#share_type_3').hide()
+                 $('#share_type_1').show()
+            }
+            if($('select[name=share_type]').val()=='3'){
+
+                 $('#share_type_1').hide()
+                 $('#share_type_3').show()
+            }
+            $('#share_t').show()
+        }
+
+        $.each($('input[name=spec_p]:checked'),function(){
+            $('#spec_'+$(this).val()+'').show()
+
+        });
+
+    });
+
+    function set_discount(obj){
+        var dis=obj.value;
+        if (dis=='1'){
+            $('#hy_level').show()
+        }else{
+            $('#hy_level').hide()
+        }
+    }
+
+    function set_pt_status_str(obj){
+        var pt=obj.value;
+        if (pt=='1'){
+            $('input[name=pt_statusstr]').val('是');
+        }else{
+            $('input[name=pt_statusstr]').val('否');
+        }
+    }
+
+    function set_status_str(obj){
+        var dis=obj.value;
+        if (dis=='1'){
+            $('input[name=statusstr]').val('下架');
+        }else{
+            $('input[name=statusstr]').val('上架');
+        }
+    }
+
+    function set_recomm_str(obj){
+        var dis=obj.value;
+        if (dis=='1'){
+            $('input[name=recommstr]').val('推荐')
+        }else{
+            $('input[name=recommstr]').val('不推荐');
+        }
+    }
+
+
+    function set_share_type(obj){
+        var sh=obj.value;
+        if (sh!='0'){
+            $('#share_t').show()
+            if (sh=='1'){
+                $('#share_type_1').show()
+                $('#share_type_3').hide()
+                $('input[name=share_type_str]').val('分享返现')
+                $('input[name=return_ticket_str]').val('')
+                $('input[name=return_ticket]').val('')
+            }else if(sh=='2'){
+                $('input[name=return_ticket_str]').val('')
+                 $('input[name=return_ticket]').val('')
+                $('#share_type_1').show()
+                $('#share_type_3').hide()
+                $('input[name=share_type_str]').val('分享返积分')
+            }else if(sh=='3'){
+                $('#share_type_3').show()
+                $('#share_type_1').hide()
+                $('input[name=share_type_str]').val('分享返优惠券')
+                $('input[name=return_ticket_str]').val('')
+                $('input[name=return_ticket]').val('')
+            }
+        }else{
+            $('#share_t').hide()
+            $('#share_type_1').hide()
+            $('#share_type_3').hide()
+            $('input[name=share_type_str]').val('不返现');
+            $('input[name=return_ticket_str]').val('')
+            $('input[name=return_ticket]').val('')
+        }
+
+    }
+
+    function set_share_time(obj){
+        var ti=obj.value;
+        if (ti=='1'){
+            $('input[name=share_time_str]').val('分享返(单次)')
+        }else if(ti=='2'){
+            $('input[name=share_time_str]').val('下单返(多次)')
+        }
+    }
+
+
+
+    function show_spec(){
+        //{'1': ['9', '20', '33'], '2': ['24', '25'], '158': ['2207', '2208']}
+        var pid =$('input[name=pk]').val();
+        var spec_all= {};
+
+        for(i = 1;i < 5;i++){
+           //var spec_childl=[]
+           spec_p=$('input[name=spec_p'+i+']').val();
+           spec_child=$('input[name=spec_child'+i+']').val();
+
+            if (spec_child!='' && spec_child!=undefined){
+                spec_childl= spec_child.split(",")
+                //spec_all[spec_p]='['+spec_child+']';
+                spec_all[spec_p]=spec_childl
+            }
+        }
+
+        var obj = $("#spec_table");
+        obj.html('');
+        var html="";
+        if (Object.keys(spec_all).length==0){
+
+            return false;
+        }
+        //console.log(spec_all,Object.keys(spec_all).length,spec_all.length )
+        $.ajax({
+                url:"single?viewid=C004&part=ajax&action=getSpec&pid="+pid+"&id="+JSON.stringify(spec_all),
+                async:false,
+                dataType:'json',
+                success:function(res){
+                    if (res.code=='0'){
+                        var data=res.data
+                        console.log(data)
+                        if (Object.keys(spec_all).length==1){
+                            for(i = 0;i < data.length;i++){
+
+                                html+="<tr>"
+                                html+="<td><input type='hidden' name='lid' value='"+data[i][0]+"' />";
+                                html+="<input type='hidden' name='sc_icon' value='"+data[i][8]+"' />";
+                                html+="<img src='"+data[i][8]+"' style='width:50px;'></td>";
+                                html+="<td><input type='hidden' name='sc_id' value='"+data[i][1]+"' />";
+                                html+="<input type='hidden' name='sc_name' value='"+data[i][2]+"' class='form-control'/>";
+                                html+=""+data[i][2]+"</td>";
+                                html+="<td ><input type='text' style='width:100%;' name='oldprice' value='"+data[i][3]+"' /></td>";
+                                html+="<td ><input type='text' style='width:100%;' name='newprice' value='"+data[i][4]+"' /></td>";
+                                html+="<td ><input type='text' style='width:100%;' name='ptprice' value='"+data[i][5]+"' /></td>";
+                                html+="<td><input type='text' style='width:100%;' name='hyprice' value='"+data[i][6]+"' /></td>";
+                                html+="<td><input type='text' style='width:100%;' name='bigprice' value='"+data[i][7]+"' /></td>";
+                                html+="<td><input type='text' style='width:100%;' name='pfprice' value='"+data[i][9]+"' /></td>";
+                                html+="<td><input type='text' style='width:100%;' name='lsprice' value='"+data[i][10]+"' /></td>";
+                                html+="<td><input type='text' style='width:100%;' name='dlprice' value='"+data[i][11]+"' /></td>";
+                                html+="<td><input type='text' style='width:100%;' name='store_c' value='"+data[i][12]+"' /></td>";
+                                html+="<td><input type='text' style='width:100%;' name='barcode' value='"+data[i][13]+"' /></td>";
+                                html+="<td><a class='btn btn-xs btn-info' onclick='fill_update(this)' ><i class='fa fa-edit'>填充</i></a>";
+                                html+="&emsp;<a class='btn btn-xs btn-warning' onclick='tr_delete(this);' ><i class='fa fa-trash-o'></i>删除</a></td>";
+                                html+="</tr>";
+                            }
+                            obj.append(html);
+                        }else if (Object.keys(spec_all).length>=2){
+                            for(i = 0;i < data.length;i++){
+                                html+="<tr>";
+                                html+="<td><input type='hidden' name='lid' value='"+data[i][0]+"' />";
+                                html+="<input type='hidden' name='sc_icon' value='"+data[i][8]+"' />";
+                                html+="<img src='"+data[i][8]+"' style='width:50px;'></td>";
+                                html+="<td><input type='hidden' name='sc_id' value='"+data[i][1]+"' />";
+                                html+="<input type='hidden' name='sc_name' value='"+data[i][2]+"' class='form-control'/>";
+                                html+=""+data[i][2]+"</td>";
+                                html+="<td width='50'><input type='text' style='width:100%;' name='oldprice' value='"+data[i][3]+"' /></td>";
+                                html+="<td width='50'><input type='text' style='width:100%;' name='newprice' value='"+data[i][4]+"' /></td>";
+                                html+="<td><input type='text' style='width:100%;' name='ptprice' value='"+data[i][5]+"' /></td>";
+                                html+="<td><input type='text' style='width:100%;' name='hyprice' value='"+data[i][6]+"' /></td>";
+                                html+="<td><input type='text' style='width:100%;' name='bigprice' value='"+data[i][7]+"' /></td>";
+                                html+="<td><input type='text' style='width:100%;' name='pfprice' value='"+data[i][9]+"' /></td>";
+                                html+="<td><input type='text' style='width:100%;' name='lsprice' value='"+data[i][10]+"' /></td>";
+                                html+="<td><input type='text' style='width:100%;' name='dlprice' value='"+data[i][11]+"' /></td>";
+                                html+="<td><input type='text' style='width:100%;' name='store_c' value='"+data[i][12]+"' /></td>";
+                                html+="<td><input type='text' style='width:100%;' name='barcode' value='"+data[i][13]+"' /></td>";
+                                html+="<td width='50'><a class='btn btn-xs btn-info' onclick='fill_update(this)' ><i class='fa fa-edit'>填充</i></a>";
+                                html+="&emsp;<a class='btn btn-xs btn-warning' onclick='tr_delete(this);' ><i class='fa fa-trash-o'></i>删除</a></td>";
+                                html+="</tr>";
+                            }
+                            obj.append(html);
+                        }
+                        return false;
+                    }else{
+                        layer.msg(res.MSG)
+                    }
+
+                },
+            });
+    }
+    function tr_delete(obj){
+		$(obj).parent().parent().remove();
+    }
+    function fill_update(obj){
+
+        var trList = $("#spec_table").children("tr");//当前所有的tr数
+        var index=trList.index($(obj).closest("tr"));//所点击的tr是第几行
+        var $td= $(obj).parents('tr').children('td');
+        var oldprice=$td.eq(2).find("input").val();
+        var newprice=$td.eq(3).find("input").val();
+        var ptprice=$td.eq(4).find("input").val();
+        var hyprice=$td.eq(5).find("input").val();
+        var bigprice=$td.eq(6).find("input").val();
+        var pfprice=$td.eq(7).find("input").val();
+        var lsprice=$td.eq(8).find("input").val();
+        var dlprice=$td.eq(9).find("input").val();
+        var store_c=$td.eq(10).find("input").val();
+        var barcode=$td.eq(11).find("input").val();
+        for (var i=index+1;i<trList.length;i++) {
+            var tdArr = trList.eq(i).find("td");
+            tdArr.eq(2).find('input').val(oldprice);
+            tdArr.eq(3).find('input').val(newprice);
+            tdArr.eq(4).find('input').val(ptprice);
+            tdArr.eq(5).find('input').val(hyprice);
+            tdArr.eq(6).find('input').val(bigprice);
+            tdArr.eq(7).find('input').val(pfprice);
+            tdArr.eq(8).find('input').val(lsprice);
+            tdArr.eq(9).find('input').val(dlprice);
+            tdArr.eq(10).find('input').val(store_c);
+            tdArr.eq(11).find('input').val(barcode);
+
+        }
+
+    }
+</script>
+
+<script>
+
+	var ids = new Array("pickfiles","pickfilesa","specfiles");
+	var divs = new Array("share","logo");
+    var hinames = new Array("pics","share_imgs");
+
+    $.each(ids,function(i,n){
+        var self = this.toString();
+        //实例化一个plupload上传对象
+        var Uploader = Q.Uploader,
+        formatSize = Q.formatSize,
+        boxView = document.getElementById(""+divs[i]+"")
+        var uploader = new Uploader({
+            url: '/upload?viewid={{viewid}}&part=Img',
+            target: document.getElementById(""+self+""),
+            view: boxView,//如果去掉这个，会导致压缩效果不好
+            //将auto配置为false以手动上传
+            auto: true,
+            dataType: "json",
+            allows: ".jpg,.png,.gif,.bmp,.jpeg",
+            upName: "file",
+            //图片缩放
+            scale: {
+                //要缩放的图片格式
+                types: ".jpg,.png,.jpeg,.bmp",
+                //最大图片大小(width|height)
+                maxWidth: 500
+            },
+            on: {
+                //添加之前触发
+                add: function (task) {
+                	layer.load()
+                    if (task.disabled) return layer.alert("允许上传的文件格式为：" + this.ops.allows);
+                },
+                upload: function (task) {
+                	layer.load()
+                },
+                complete: function(task){
+                    var jsons=task.json;
+                    if(jsons){
+                        if (hinames[i]=='share_imgs'){
+                            $("#"+divs[i]+"").html('');
+                            var innerDivHtml = '<div class="picsDiv col-sm-12">';
+                            innerDivHtml+= '<img src="'+ task.json.url  +'" class="col-sm-12">';
+                            innerDivHtml+= '<input name="'+hinames[i]+'" value="'+ task.json.url+'" type="hidden">';
+                            innerDivHtml += '<a href="javascript:" onclick="deletePic(this,\''+ task.json.url+'\')">[删除]</a>';
+                            innerDivHtml += '</div>';
+                            $("#"+divs[i]+"").append(innerDivHtml);
+                            layer.closeAll()
+
+                        }else{
+                            //$("#"+divs[i]+"").html('');
+                            var innerDivHtml = '<div class="picsDiv col-sm-3">';
+                            innerDivHtml+= '<img src="'+ task.json.url  +'" class="col-sm-12">';
+                            innerDivHtml+= '<input name="'+hinames[i]+'" value="'+ task.json.url+'" type="hidden">';
+                            innerDivHtml += '<a href="javascript:" onclick="deletePic(this,\''+ task.json.url+'\')">[删除]</a>';
+                            innerDivHtml += '</div>';
+                            $("#"+divs[i]+"").append(innerDivHtml);
+                            layer.closeAll()
+                        }
+
+                    }else{
+                        //layer.alert('上传图片故障！')
+                        layer.closeAll()
+                    }
+                }
+            }
+        });
+        uploader.start();
+    });
+    function deletePic (aObj,picname) {
+		//var picv = $(aObj).parents(".picsDiv").find("input[name="+picname+"]").val()
+		$(aObj).parents(".picsDiv").remove();
+		/*$.ajax({
+			url:"single?viewid=D003&part=del_qiniu_pic&path_url="+picname,
+			async:false,
+			success: function(data){
+			   layer.alert(data.MSG)
+			   if(data.code=='0'){
+			        $(aObj).parents(".picsDiv").remove();
+			   }
+            }
+        });*/
+	}
+</script>
+<script>
+var defaultData={{category_list}}
+
+var silentByChild = true;
+var $this = $('#treeview-checkable').treeview({
+          data: defaultData,
+          showIcon: true,//false,
+          showCheckbox: true,
+          multiSelect: true,
+          onNodeChecked: function(event, node) {
+
+            // 省级节点被选中，那么市级节点都要选中
+            if (node.nodes!= null) {
+                $.each(node.nodes, function(index, value) {
+                    $this.treeview('checkNode', value.nodeId, {
+                        silent : true
+                    });
+                });
+                var parentNode = $this.treeview('getParent', node);
+                var isAllchecked = true; // 是否全部选中
+                // 当前市级节点的所有兄弟节点，也就是获取省下面的所有市
+                var siblings = $this.treeview('getSiblings', node.nodeId);
+
+                for ( var i in siblings) {
+                    // 有一个没选中，则不是全选
+                    if (!siblings[i].state.checked) {
+                        isAllchecked = false;
+                        break;
+                    }
+                }
+
+                // 全选，则打钩
+                if (isAllchecked) {
+                    if (node.parentId!=undefined){
+                        $this.treeview('checkNode', parentNode.nodeId, {
+                            silent : true
+                        });
+                    }
+                }
+            } else {
+                // 市级节点选中的时候，要根据情况判断父节点是否要全部选中
+                // 父节点
+                var parentNode = $this.treeview('getParent', node);
+                var isAllchecked = true; // 是否全部选中
+                // 当前市级节点的所有兄弟节点，也就是获取省下面的所有市
+                var siblings = $this.treeview('getSiblings', node.nodeId);
+
+                for ( var i in siblings) {
+                    // 有一个没选中，则不是全选
+                    if (!siblings[i].state.checked) {
+                        isAllchecked = false;
+                        break;
+                    }
+                }
+
+                // 全选，则打钩
+                if (isAllchecked) {
+                    if (node.parentId!=undefined){
+                        $this.treeview('checkNode', parentNode.nodeId, {
+                            silent : true
+                        });
+                    }
+                } else {// 非全选，则变红
+                    if(node.nodes){//如果有子节点
+                        $this.treeview('selectNode', parentNode.nodeId, {
+                            silent : true
+                        });
+                    }
+                    //当前节点
+                    $this.treeview('selectNode', node, {
+                            silent : true
+                    });
+
+                    if (node.parentId!=undefined){//父节点
+                        $this.treeview('selectNode', parentNode, {
+                                silent : true
+                        });
+                    }
+                }
+            }
+
+          },
+          onNodeUnchecked: function (event, node) {
+                // 选中的是省级节点
+
+                if (node.nodes != null) {
+                    // 这里需要控制，判断是否是因为子节点引起的父节点被取消选中
+                    // 如果是，则只管取消父节点就行了
+                    // 如果不是，则子节点需要被取消选中
+                    if (silentByChild) {
+                        $.each(node.nodes, function(index, value) {
+                            $this.treeview('uncheckNode', value.nodeId, {
+                                silent : true
+                            });
+                        });
+                    }
+                } else {
+                    // 市级节点被取消选中
+
+                    var parentNode = $this.treeview('getParent', node.nodeId);
+
+                    var isAllUnchecked = true; // 是否全部取消选中
+
+                    // 市级节点有一个选中，那么就不是全部取消选中
+                    var siblings = $this.treeview('getSiblings', node.nodeId);
+                    for ( var i in siblings) {
+                        if (siblings[i].state.checked) {
+                            isAllUnchecked = false;
+                            break;
+                        }
+                    }
+
+                    // 全部取消选中，那么省级节点恢复到默认状态
+                    if (isAllUnchecked) {
+
+                        if(parentNode.nodeId!=undefined){
+                             $this.treeview('uncheckNode', parentNode.nodeId, {
+                                silent : true,
+                            });
+                            $this.treeview('unselectNode', parentNode.nodeId, {
+                                silent : true,
+                            });
+
+                        }
+
+                        $this.treeview('unselectNode', node, {
+                                silent : true,
+                        });
+                    } else {
+                        silentByChild = false;
+                        if(parentNode.nodeId!=undefined){
+                            $this.treeview('selectNode', parentNode.nodeId, {
+                                silent : true,
+                            });
+                            $this.treeview('uncheckNode', parentNode.nodeId, {
+                                silent : true,
+                            });
+                        }else{
+                            $this.treeview('selectNode', node, {
+                                silent : true,
+                            });
+                            $this.treeview('uncheckNode', node, {
+                                silent : true,
+                            });
+                        }
+                    }
+                }
+                silentByChild = true;
+          }
+        }).treeview('collapseAll', {// 节点展开
+    silent : true
+});
+
+
+function setdaytime(obj){return WdatePicker({dateFmt:'yyyy-MM-dd HH:MM:ss'});}
+function formcheck_2(form){
+    var category_ids=$this.treeview('getChecked')
+
+    var ids=''
+    var strs=''
+    if (category_ids.length >0){
+        for (var i=0;i<category_ids.length;i++)
+        {
+            ids+=category_ids[i].id+','
+            strs+=category_ids[i].text+','
+        }
+        //console.log(strs)
+        $('input[name=category_ids]').val(ids);
+        $('input[name=category_ids_str]').val(strs);
+        //return false;
+    }
+	var title = $('input[name=title]').val(); 
+
+	if(title == ''){
+		layer.alert("请输入首页名称");
+		return false;
+	}
+	return true
+}
+
+
+</script>
+{% endblock %}
+
+{% block javascript %}
+{% endblock %}       
+            
+	

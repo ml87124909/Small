@@ -1,0 +1,105 @@
+{% extends "local.html" %}
+	
+{% block html_local %}
+<table class="table">
+	<tr>
+		<td colspan="6">
+			<div id="form2"></div>
+		</td>
+	</tr>
+	<tr>
+	</tr>
+	<tr>
+		<td width="100">
+			<label for="">类型:</label>
+			<input type="hidden" name="type_str" value="{{item.type_str}}"/>
+		</td>
+		<td width="250">
+			<select name="type"  class="form-control" onchange="set_type_str(this);">
+
+                <option value="0" {{'selected="selected"' if item.type|string=="0"}}>文本参数</option>
+				<option value="1" {{'selected="selected"' if item.type|string=="1"}}>开关</option>
+				<option value="2" {{'selected="selected"' if item.type|string=="2"}}>上传文件</option>
+			</select>
+		</td>
+
+
+	</tr>
+	<tr>
+		<td width="100">
+			<label for="">编码:</label>
+		</td>
+		<td >
+			<input type="text" class="form-control"  name="key" value="{{item.key}}"  />
+		</td>
+
+	</tr>
+
+	<tr>
+		<td width="100">
+			<label for="">参数值:</label>
+		</td>
+		<td width="250">
+			<input type="text" class="form-control"  name="content" value="{{item.content}}"  />
+		</td>
+
+
+	</tr>
+
+
+
+	<tr>
+		<td width="100">
+			<label for="">备注:</label>
+		</td>
+		<td width="250">
+			<input type="text" class="form-control"  name="remark" value="{{item.remark}}"  />
+		</td>
+
+
+	</tr>
+
+
+
+
+
+	
+
+<!--
+	<tr>
+		<td>
+			<label for="">选择部门</label>
+		</td>
+		<td>
+			<select name="dept_id" class="form-control">
+				{% for d in deptlist %}
+				<option value="{{d[0]}}"{{d[2]}}>{{d[1]}}</option>
+				{% endfor %}
+			</select>
+		</td>
+	</tr>
+-->
+	
+</table>
+
+
+{% endblock %}
+
+{% block page_script %}
+
+<script>
+function set_type_str(obj){
+    $('input[name=type_str]').val($('select[name=type]').find("option:selected").text())
+}
+
+function formcheck_2(form){
+
+
+
+	return true;
+	
+}
+</script>
+
+{% endblock %}
+	

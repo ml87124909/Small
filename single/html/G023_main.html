@@ -1,0 +1,58 @@
+{% extends "base_main.html" %}
+{% block topSearch %}
+<table style="width:100%;">
+	<tbody>
+		<tr style="width:100%;">
+			
+			<td style="width:300px">
+				<div class="input-group">
+					
+					<input type="text" class="form-control" name="qqid" value="{{qqid}}"  placeholder="请输入关键字"/>
+					<span class="input-group-btn">
+					<button class="btn btn-default " style="background-color:#36648B;" type="button" onclick="main_search()"><font color="#FFFFFF"><i class="fa fa-search"></i> 搜索</font></button>
+					</span> 
+				</div>
+			</td>
+			
+		</tr>
+	
+	</tbody>
+</table>
+{% endblock %}
+
+{% block mGrid %}
+
+						<table class="table table-bordered" id="mGridTable">
+							<thead>
+								<tr style="background-color:#e5e5e5" bgcolor="#ffffff">
+									
+									{%for n in NL[1:]%}
+									<th style="text-align:{{n[3]}};width:{{n[2]}};">{{n[0]}}</th>
+									{%endfor%}
+								</tr>
+							</thead>
+
+							<tbody>
+								{% for row in dataList %}
+								<tr bgcolor="#ffffff">
+									<!--
+									<td style="text-align:center;"><input type="checkbox" name="item_id" value="{{row[0]}}"></td>
+									-->
+									{% for e in row[1:] %}
+									<td style="text-align:{{NL[loop.index][3]}};">
+                                    
+                                        {{e}}
+                                    </td>
+									{% endfor %}
+									
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					
+<script type="text/javascript" src="asset/js/jquery.min.js"></script>
+
+{% endblock %}
+
+
+

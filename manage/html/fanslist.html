@@ -1,0 +1,92 @@
+{% extends "base_list.html" %}
+
+
+{% block topSearch %}
+<table class="table table-bordered tb searchtbl">
+	<tbody>
+        <tr>
+			<td style="" colspan="2">
+				<div class="input-group">
+					<input type="text" class="form-control" name="qqid" value="{{qqid}}" placeholder="请输入关键字"/>
+					<span class="input-group-btn">
+					<button class="btn btn-default" type="button" onclick="main_search()"><i class="fa fa-search"></i> 搜索</button>
+					</span> 
+				</div>
+			</td>
+		</tr>
+	</tbody>
+</table>
+{% endblock %}
+ 
+
+{% block mGrid %}
+						<table class="table table-bordered">
+							<thead>
+								<tr style="background-color:#e5e5e5" bgcolor="#fff">
+									<th width="" style="text-align:center;">选择</th>
+									{%for n in NL[1:]%}
+									<th style="text-align:{{n[3]}};width:{{n[2]}};">{{n[0]}}</th>
+									{%endfor%}
+									<!--th style="text-align:center">操作</th-->
+								</tr>
+							</thead>
+
+							<tbody>
+								{% for row in dataList %}
+								<tr bgcolor="#fff">
+									<td style="text-align:center;"><input type="checkbox" name="item_id" value="{{row[0]}}"></td>
+									<td style="text-align:left;">
+										{{row[1]}}
+									</td>
+									<td style="text-align:left;">
+										{{row[3]}}
+									</td>
+									<td style="text-align:left;">
+										<img src="{{row[5]}}" width="30" height="30" />
+									</td>
+									<td style="text-align:left;">
+										{{"男" if row[6] == 1 else "女"}}
+									</td>
+									<td style="text-align:left;">
+										{{row[8]}}{{row[9]}}{{row[10]}}
+									</td>
+									<td style="text-align:left;">
+										{{row[11]}}
+									</td>
+									<!--td style="text-align:center;">
+										{% if lR[1] == '' %}
+										<a class="btn btn-warning btn-xs" onclick="main_update({{row[0]}})" title="编辑"><i class="glyphicon glyphicon-pencil"></i></a>
+										{% endif %}
+										{% if lR[2] == '' %}
+										<a class="btn btn-danger btn-xs" onclick="main_delete({{row[0]}});" title="删除"><i class="glyphicon glyphicon-remove"></i></a>
+										{% endif %}
+									</td-->
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+						{% endblock %}
+        
+	
+{% block page_script %}
+<script>
+$(function(){
+	$("input[name=pk]").val('');
+	$("input[name=part]").val('main');
+});
+</script>
+
+<script>
+function main_post(action){
+	$("input[name=action]").val(action);
+	$("input[name=part]").val('post');                
+	$("form[name=frmMain]")[0].submit();      
+}
+$(function(){
+	
+});
+</script>
+{% endblock %}
+        
+            
+	

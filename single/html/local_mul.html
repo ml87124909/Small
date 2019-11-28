@@ -1,0 +1,113 @@
+{% extends "index_new.html" %}
+{% block breadcrumb %}
+	{{breadcrumb}}
+{% endblock %}
+{% block form_block %}
+<form onsubmit="return formcheck(this)" id="frmMain" enctype="multipart/form-data" method="post" action="single" class="vbox form-horizontal form" name="frmMain">
+{% endblock %}
+{% block contentpanel %}
+		{% if need_editor == 1 %}
+            <link href="static/assets/css/plugins/summernote/summernote.css" rel="stylesheet">
+            <script src="static/assets/js/plugins/summernote/summernote.js"></script>
+            <script src="static/assets/js/plugins/summernote/summernote-zh-CN.js"></script>
+		{% endif %}
+			<div class="main" style="width:100%;">
+					{{html_hidden}}
+
+                         <div class="ibox float-e-margins">
+
+                            {% block multabs %}
+                             <div class="ibox-title" style="height: 55px; background-color: #fff;padding-top: 0;">
+                                 <input type="hidden" name="multab" value="{{tab}}" />
+                                <div class="row">
+                                    <ul class="nav nav-tabs">
+                                        {% for t in tab_data %}
+                                        <li role="presentation"{{' class="active"' if tab == loop.index|string}}><a href="{{currentUrl}}&tab={{loop.index}}"><b>{{t}}</b></a></li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                             </div>
+                             {% endblock %}
+
+                             <div class="ibox-content" style="border:none;">
+                                {% if tab == '1' %}
+                                    {% block mMul_Page_1 %}
+                                        1111111111
+                                    {% endblock %}
+                                {% elif tab == '2' %}
+                                    {% block mMul_Page_2 %}
+                                      222222222222
+                                    {% endblock %}
+                                {% elif tab == '3' %}
+                                    {% block mMul_Page_3 %}
+                                       333333333333
+                                    {% endblock %}
+                                {% elif tab == '4' %}
+                                    {% block mMul_Page_4 %}
+                                       4444444444
+                                    {% endblock %}
+                                 {% elif tab == '5' %}
+                                    {% block mMul_Page_5 %}
+                                       5555555555
+                                    {% endblock %}
+                                 {% elif tab == '6' %}
+                                    {% block mMul_Page_6 %}
+                                       66666666666
+                                    {% endblock %}
+                                 {% elif tab == '7' %}
+                                    {% block mMul_Page_7 %}
+                                       77777777777
+                                    {% endblock %}
+                                 {% elif tab == '8' %}
+                                    {% block mMul_Page_8 %}
+                                      88888888888888888
+                                    {% endblock %}
+                                 {% elif tab == '9' %}
+                                    {% block mMul_Page_9 %}
+                                      999999999999999
+                                    {% endblock %}
+                                 {% elif tab == '10' %}
+                                    {% block mMul_Page_10 %}
+                                      101010
+                                    {% endblock %}
+                                 {% elif tab == '11' %}
+                                    {% block mMul_Page_11 %}
+                                      11  11  11
+                                    {% endblock %}
+                                 {% elif tab == '12' %}
+                                    {% block mMul_Page_12 %}
+                                      12  12
+                                    {% endblock %}
+                                 {% endif %}
+
+                             </div>
+
+                            {% block otherInfo %}{% endblock %}
+
+                            {% block page_script %}
+                            <script>
+                                function formcheck_2(form){
+                                    return true;
+                                }
+
+                            </script>
+                            {% endblock %}
+                        </div>
+			</div>
+			<style>
+
+                .padder {
+                    padding-left:3%;
+                    padding-right:3%;
+                }
+                .main{
+					margin-top: 15px;
+					position: relative;
+					background-color: #ffffff;
+					border-radius: 4px;
+                }
+				.nav-tabs>li>a {
+					border-radius: 0;
+				}
+            </style>	
+{% endblock %}

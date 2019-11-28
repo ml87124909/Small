@@ -1,0 +1,187 @@
+{% extends "local.html" %}
+{% block html_local %}
+<div class="panel-body">
+    <div class="row">
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label"><b style="color:#333333;">是否允许充值:</b></label>
+            <div class="col-sm-2">
+                <input type="hidden"  name="topup_str" class="form-control" value="{{item.topup_str or '否'}}"/>
+				<select name="topup" class="form-control" onchange='set_topup(this)'>
+                    <option value="0" {{' selected="selected"' if item.topup|string == '0'}}>否</option>
+                    <option value="1" {{' selected="selected"' if item.topup|string == '1'}}>是</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label"><b style="color:#333333;">是否允许提现:</b></label>
+            <div class="col-sm-2">
+                <input type="hidden"  name="drawal_str" class="form-control" value="{{item.drawal_str or '否'}}"/>
+                 <select name="drawal" class="form-control" onchange="set_drawal(this)" id="drawal_id">
+                    <option value="0" {{' selected="selected"' if item.drawal|string == '0'}}>否</option>
+                    <option value="1" {{' selected="selected"' if item.drawal|string == '1'}}>是</option>
+                </select>
+            </div>
+        </div>
+        <div id="up_type_1">
+            <div class="form-group">
+                <label class="col-sm-2 control-label"><b style="color:#333333;">最小提现金额(元):</b></label>
+                <div class="col-sm-2">
+                    <input type="text"  name="mini_cash" class="form-control" value="{{item.mini_cash}}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label"><b style="color:#333333;">提现到账时间说明:</b></label>
+                <div class="col-sm-2">
+                     <input type="text" class="form-control"  name="arrive" value="{{item.arrive}}"/>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <div class="row" id="up_type_2" style="display:;">
+
+        <div class="col-sm-6">
+            <div class="title_comm"><span class="block_blue"></span><b style="color:#333;">充值赠送金额设置(充值金额空白的行不会保存)</b>
+                <span style="float:right">
+                    <button class="btn btn-xs btn-info" type="button" onclick="add_r('detail')" title="增加">
+                        <i class="fa fa-plus"></i>
+                    </button>
+                    <button class="btn btn-xs btn-warning" type="button" onclick="del_r('detail')" title="删除">
+                        <i class="fa fa-trash-o"></i>
+                    </button>
+                </span>
+            </div>
+            <table class="table table-bordered addRowtb" name="detail">
+                <thead>
+                    <tr bgcolor="#ffffff">
+                        <th style="text-align:center;width:60px;">序号</th>
+                        <th style="text-align:center;width:260px;">充值金额(元)</th>
+                        <th style="text-align:center;width:250px;">赠送金额(元)</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {% for e in detail %}
+                        <tr>
+                        <td onclick='clickR(this);'>{{loop.index}}</td>
+                        <td onclick='clickR(this);'>
+                            <input type='hidden' name='lid' value='{{e.id}}' />
+                            <input type='text' name='add_money' value='{{e.add_money}}'  class='form-control' style='width:100%;' />
+                        </td>
+                        <td onclick='clickR(this);'><input type='text' name='giving' value='{{e.giving}}' class='form-control number' style='width:100%;ime-mode:Disabled;' /></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+
+</div>
+<script>
+$(function(){
+    if($('select[name=topup]').val()=='0'){
+        $('#up_type_2').hide()
+
+    }else{
+        $('#up_type_2').show()
+
+    }
+
+    if($('select[name=drawal]').val()=='1'){
+        $('#up_type_1').show()
+    }else{
+        $('#up_type_1').hide()
+
+    }
+ });
+function set_topup(obj){
+    var hids=obj.value;
+    if (hids=='1'){
+        $('input[name=topup_str]').val('是');
+        $('#up_type_2').show()
+    }else{
+        $('input[name=topup_str]').val('否');
+        $('#up_type_2').hide()
+    }
+}
+
+function set_drawal(obj){
+    var hid=obj.value;
+    if (hid=='1'){
+        $('input[name=drawal_str]').val('是');
+        $('#up_type_1').show()
+    }else{
+        $('input[name=drawal_str]').val('否');
+        $('#up_type_1').hide()
+    }
+}
+
+function add_r(tablename){
+
+	var a= "show_option(this,'serlib','cgpm2')";
+	var obj = $("[name="+tablename+"]");
+	var tr = obj.find('tbody').find('tr');
+	var rowNo = tr.length+1;
+	html="<tr>"
+
+	html+="<td onclick='clickR(this);'>"+rowNo+"</td>";
+	html+="<td onclick='clickR(this);'><input type='hidden' name='lid' value='' /><input type='text' name='add_money' value='' class='form-control' style='width:100%;'/></td>";
+	html+="<td onclick='clickR(this);'><input type='text' name='giving' value=''  class='form-control' style='width:100%;' /></td>";
+
+	html+="</tr>";
+	obj.append(html);
+}
+
+function del_r(tablename){
+	var seltr=$("[name="+tablename+"]").find('tbody').find('tr.seltr');
+	seltr.remove();
+	if (tablename=='detail'){
+		setSerialNo(tablename);
+	}
+}
+
+
+function clickR(obj){
+	var tr=$(obj).parent();
+	tr.addClass('seltr');
+	var trindex=$($(obj).parent()).index();
+	var otr=$($($(obj).parent()).parent()).find('tr:not(:eq('+trindex+'))');
+	for (i=0;i<otr.length;i++){
+		$(otr[i]).removeClass('seltr');
+	}
+}
+
+function setSerialNo(tablename){
+	var seltr=$("[name="+tablename+"]").find('tbody').find('tr');
+	for (i=0;i<seltr.length;i++){
+		$(seltr[i]).find('td:first-child').html(i+1);
+	}
+}
+
+</script>
+{% endblock %}
+
+{%block MUL_BTNS%}
+<table style="width:80%" class="tb single-table clearfix" >
+            
+        <tr >
+            
+        <td style="text-align:left;" >
+        <input type="submit" value="保存" class="btn btn-success span2" name="add_save"  />
+        </td>
+        
+        </tr>
+        
+        </table>
+{% endblock %}
+        
+{% block page_script %}
+
+{% endblock %}
+        
+            
+	

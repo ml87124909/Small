@@ -1,0 +1,58 @@
+{% extends "list.html" %}
+
+{% block topSearch %}
+<table style="width:100%;">
+	<tbody>
+		<tr style="width:100%;">
+			<td style="width:300px">
+				<button type="button" class="btn btn-success btn-sm" style="background-color:#36648B;" onclick="main_add()"><font color="#FFFFFF"><i class="fa fa-plus"></i> 增加</font></button>
+				<!--div class="input-group">
+					<input type="text" class="form-control" name="qqid" value="{{qqid}}"  placeholder="请输入关键字"/>
+					<span class="input-group-btn">
+					<button class="btn btn-default " style="background-color:#36648B;" type="button" onclick="main_search()"><font color="#FFFFFF"><i class="fa fa-search"></i> 搜索</font></button>
+					</span>
+				</div-->
+			</td>
+			<td style="text-align:left;">
+
+			</td>
+
+		</tr>
+
+	</tbody>
+</table>
+{% endblock %}
+
+
+{% block mGrid %}
+<table class="table table-bordered">
+	<thead>
+		<tr style="background-color:#e5e5e5" bgcolor="#ffffff">
+
+			{%for n in NL%}
+			<th style="text-align:center;">{{n}}</th>
+			{%endfor%}
+			<th style="text-align:center">操作</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		{% for row in dataList %}
+		<tr bgcolor="#ffffff">
+
+			<td style="text-align:;">{{row[1]}}</td>
+			<td style="text-align:;">{{row[2]}}</td>
+			<td style="text-align:;">{{row[3]}}</td>
+			<td style="text-align:;">{{row[4]}}</td>
+
+			<td style="text-align:center;">
+				<a class="btn btn-xs btn-info" onclick="main_update({{row[0]}})" title="编辑"><i class="fa fa-edit"></i></a>
+				<a class="btn btn-xs btn-warning" onclick="main_delete({{row[0]}});" title="删除"><i class="fa fa-trash-o"></i></a>
+			</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% endblock %}
+
+

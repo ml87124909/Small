@@ -1,0 +1,192 @@
+{% extends "list.html" %}
+
+
+
+{% block topSearch %}
+<!--table class="table table-bordered tb searchtbl">
+    <tbody>
+        <tr>
+            <th style="font-size:14px;">用户编号</th>
+            <td width="200">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="qqid" value="{{qqid}}" />
+
+                </div>
+            </td>
+
+            <th style="font-size:14px;">来源</th>
+            <td width="200">
+                <div class="input-group">
+                    <select class="form-control" name="source">
+                        <option value="">全部</option>
+                        <option value="0">小程序</option>
+                        <option value="1">手机注册</option>
+                        <option value="2">公众号</option>
+                        <option value="3">支付宝小程序</option>
+                    </select>
+
+                </div>
+            </td>
+
+            <th style="font-size:14px;">手机号码</th>
+            <td width="200">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="qqid" value="{{qqid}}" />
+
+                </div>
+            </td>
+
+
+
+            <th style="font-size:14px;">昵称</th>
+            <td width="200">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="qqid" value="{{qqid}}" />
+
+                </div>
+            </td>
+
+
+
+        </tr>
+
+		<tr>
+            <th style="font-size:14px;">省份:</th>
+            <td width="200">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="qqid" value="{{qqid}}" />
+
+                </div>
+            </td>
+
+            <th style="font-size:14px;">城市</th>
+            <td width="200">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="qqid" value="{{qqid}}" />
+
+                </div>
+            </td>
+
+            <th style="font-size:14px;">注册时间起</th>
+            <td width="200">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="qqid" value="{{qqid}}" />
+
+                </div>
+            </td>
+
+            <th style="font-size:14px;">注册时间止</th>
+            <td width="200">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="qqid" value="{{qqid}}" />
+
+                </div>
+            </td>
+
+
+
+
+        <tr>
+
+            <th style="font-size:14px;">注册IP::</th>
+            <td width="200">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="qqid" value="{{qqid}}" />
+
+                </div>
+            </td>
+
+
+
+
+            <th style="font-size:14px;">登录时间起:</th>
+            <td width="200">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="qqid" value="{{qqid}}" />
+
+                </div>
+            </td>
+
+            <th style="font-size:14px;">登录时间止:</th>
+            <td width="200">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="qqid" value="{{qqid}}" />
+
+                </div>
+            </td>
+
+            <th style="font-size:14px;">登录IP::</th>
+            <td width="200">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="qqid" value="{{qqid}}" />
+
+                </div>
+            </td>
+        </tr>
+
+        </tr>
+        <!tr class="search-submit">
+            <th style="font-size:14px;">状态</th>
+            <td colspan="2" width="200">
+                <div class="input-group">
+                    <select name="orderbydir" id="orderbydir" class="form-control" onchange="this.form.pageNo.value=1;this.form.submit();">
+                        <option value="ASC"{{' selected="selected"' if 'ASC' == orderbydir}}>全部</option>
+                        <option value="DESC"{{' selected="selected"' if 'DESC' == orderbydir}}>默认</option>
+
+                    </select>
+
+                </div>
+            </td>
+
+            <td colspan="5">
+                {% if lR[0] != '1' %}
+                <button class="btn btn-info btn-sm" type="button" onclick="main_search()"><i class="fa fa-search"></i> 搜索</button>
+
+
+                {% endif %}
+            </td>
+
+
+         </tr>
+    </tbody>
+</table-->
+{% endblock %}
+
+{% block mGrid %}
+<table class="table table-bordered">
+    <thead>
+        <tr style="background-color:#e5e5e5" bgcolor="#ffffff">
+
+            {%for n in NL[1:]%}
+            <th style="text-align:{{n[3]}};width:{{n[2]}};">{{n}}</th>
+            {%endfor%}
+
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for row in dataList %}
+        <tr bgcolor="#ffffff">
+
+            {% for e in row[1:] %}
+
+                 <td>{{e}}</td>
+
+            {% endfor %}
+            {#
+            <td style="text-align:center;">
+                {% if lR[1] == '' %}
+                <a class="btn btn-xs btn-info" onclick="main_update({{row[0]}})" title="编辑"><i class="fa fa-edit"></i></a>
+                {% endif %}
+                {% if lR[2] == '' %}
+                <a  class="btn btn-xs btn-warning" onclick="main_delete({{row[0]}});" title="删除"><i class="fa fa-trash-o"></i></a>
+                {% endif %}
+            </td>
+            #}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+
+

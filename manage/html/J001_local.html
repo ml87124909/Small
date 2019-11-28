@@ -1,0 +1,92 @@
+{% extends "local.html" %}
+	
+{% block html_local %}
+<table class="tb single-table">
+	<tr>
+		<td width="100">
+			<label for="">登录名<span class="badge mybadge">必填</span></label>
+		</td>
+		<td>
+			<input type="text" class="form-control" id="login_id" name="login_id" value="{{item.login_id}}"  readonly="readonly"/>
+			<span>新增时，登录名将是主帐号登录名+_+下边的用户名，过后不允许修改</span>
+		</td>
+	</tr>
+	<tr>
+		<td width="100">
+			<label for="">用户名<span class="badge mybadge">必填</span></label>
+		</td>
+		<td>
+			<input type="text" class="form-control" id="usr_name" name="usr_name" value="{{item.usr_name}}" />
+		</td>
+		
+	</tr>
+	<tr>
+		
+		<td width="100">
+			<label for="">密&emsp;码</label>
+		</td>
+		<td>
+			<span>Aa123456<font style="color:red;">(初始密码)</font></span>
+			<input type="checkbox" name="respw" value="1"/> &emsp;新增用户不用选择此项，非新增用户选择此项仅将密码恢复初始值
+		</td>
+		
+	</tr>
+	<tr>
+		
+		<td width="100">
+			<label for="">手&emsp;机<span class="badge mybadge">必填</span></label>
+		</td>
+		<td>
+			<input type="text" class="form-control" id="mobile" name="mobile" value="{{item.mobile}}"/>
+		</td>
+		
+	</tr>
+
+	<tr>
+		<td>
+			<label for="">启用</label>
+		</td>
+		<td>
+			<select name="status" class="form-control">
+				<option value="0"{{' selected="selected"' if item.status|string == '0'}}>否</option>
+				<option value="1"{{' selected="selected"' if item.status|string == '1'}}>是</option>
+			</select>
+		</td>
+	</tr>
+
+	
+</table>
+{% endblock %}
+
+{% block page_script %}
+<script>
+
+function formcheck_2(form){
+            
+
+	var usr_name = $('input[name=usr_name]').val();
+	var mobile = $("input[name=mobile]").val();
+
+	if(usr_name == ''){
+		layer.alert("请输入用户名");
+		return false;
+	}
+
+	if(mobile == ''){
+		layer.alert("请输入手机");
+		return false;
+	}
+	/*t = /^-?[0-9]*$/
+	if(!t.test(sort)){
+		layer.alert("排序必须为数字");
+		return false;
+	}*/
+	return true;
+	
+}
+</script>
+
+{% endblock %}
+        
+            
+	

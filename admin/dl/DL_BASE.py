@@ -73,7 +73,7 @@ class cDL_BASE(cDL):
                 f = self.checkuser(self.usr_id)
             self.dActiveUser = dActiveUser.get(self.usr_id, {})
             self.usr_name = self.dActiveUser.get('usr_name', '')
-            self.usr_id_p = 1#self.dActiveUser.get('usr_id_p', '')
+            self.usr_id_p = self.dActiveUser.get('usr_id_p', '')
             self.dept_id = self.dActiveUser.get('dept_id', '')
 
 

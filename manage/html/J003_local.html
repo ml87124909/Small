@@ -1,0 +1,47 @@
+{% extends "local.html" %}
+	
+{% block html_local %}
+<table class="tb single-table">
+	<tr>
+		<td width="100">
+			<label for="">用户名</label>
+		</td>
+		<td>
+			{{item.usr_name}}
+		</td>
+	</tr>
+	
+	<tr>
+		<td colspan=2>
+			<table id="table_roleMenu" class="table table-hover">
+            
+			<thead>
+				
+			<tr>	
+				<th>
+					角色ID
+				</th>
+				<th>
+					角色名字
+				</th>
+				<th>
+					授权
+				</th>
+			</tr>
+			</thead>
+			
+			<tbody class="table table-hover">
+				{% for role in item.rolelist %}
+				<tr>
+					<td>{{role.role_id}}</td>
+					<td>{{role.role_name}}</td>
+					<td><input name="role_id" value="{{role.role_id}}" type="checkbox" {{'checked="checked"' if role.role_id in item.userrole}}  /></td>
+				</tr>
+				{% endfor %}
+			</tbody>
+			
+			</table>
+		</td>
+	</tr>
+</table>
+{% endblock %}

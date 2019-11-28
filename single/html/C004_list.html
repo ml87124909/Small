@@ -1,0 +1,100 @@
+{% extends "list.html" %}
+
+
+
+{% block topSearch %}
+<table class="table table-bordered tb searchtbl">
+    <tbody>
+
+		<tr>
+			<th style="font-size:14px;" width="100">商品名称:</th>
+            <td width="200">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="qqid" value="{{qqid}}" />
+                </div>
+            </td>
+            <td width="200">
+                {% if lR[0] != '1' %}
+                 <button class="btn btn-info btn-sm" type="button" onclick="main_search()"><i class="fa fa-search"></i> 搜索</button>
+                {% endif %}
+            </td>
+			<td width="auto">
+
+            </td>
+			<td width="200">
+				<select name="sorting" class="form-control" onchange="this.form.submit();">
+					<option value="" {{
+					' selected="selected"' if '' == sorting}}>顺序</option>
+					<option value="2" {{
+					' selected="selected"' if '2' == sorting}}>倒序</option>
+				</select>
+			</td>
+
+        </tr>
+
+        <tr>
+            <td colspan="6">
+                {% if lR[0] != '1' %}
+                <button type="button" class="btn btn-success btn-sm" onclick="main_add()"><i class="fa fa-plus"></i> 增加</button>
+                {% endif %}
+            </td>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}
+
+
+{% block mGrid %}
+
+	<table class="table table-bordered"><!--这里要加基类-->
+
+		<thead>
+
+			<tr style="background-color:#e5e5e5" bgcolor="#ffffff">
+
+				{%for n in NL%}
+				<th style="text-align:center;">{{n}}</th>
+				{%endfor%}
+				<th style="text-align:center">操作</th>
+			</tr>
+		</thead>
+		<tbody>
+
+			{% for row in dataList %}
+				<tr bgcolor="#ffffff">
+					{% for e in row %}
+					{% if loop.index == 4%}
+					<td style="text-align:{{NL[loop.index][3]}};">
+						{% if e %}
+						<img src="{{e}}" style="width:50px;height:50px;"/>
+						{% else %}
+						-
+						{% endif %}
+					</td>
+					{% else%}
+					<td style="text-align:center;">{{e}}</td>
+					{%endif%}
+
+
+					{% endfor %}
+					<td style="text-align:center;">
+						{% if lR[1] == '' %}
+						<a class="btn btn-xs btn-info" onclick="main_update({{row[0]}})" title="编辑"><i class="fa fa-edit"></i></a>
+						{% endif %}
+						{% if lR[2] == '' %}
+						<a class="btn btn-xs btn-warning" onclick="main_delete({{row[0]}});" title="删除"><i class="fa fa-trash-o"></i></a>
+						{% endif %}
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table><!---->
+{% endblock %}
+        
+	
+{% block page_script %}
+
+{% endblock %}
+        
+            
+	

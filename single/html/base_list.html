@@ -1,0 +1,100 @@
+{% extends "index_new.html" %}
+{% block breadcrumb %}
+	{{breadcrumb}}
+{% endblock %}
+                
+{% block contentpanel %}
+
+			<div class="main" style="width:100%;">
+					<div class="search" >
+						{{html_hidden}}
+						{% block topSearch %}
+						<table class="table table-bordered tb searchtbl">
+							<tbody>
+								<tr>
+									<th style="font-size:14px;">关键字</th>
+									<td width="230">
+										<div class="input-group">
+											<input type="text" class="form-control" name="qqid" value="{{qqid}}" />
+											<span class="input-group-btn">
+											<button class="btn btn-default" type="button" onclick="main_search()"><i class="fa fa-search"></i> 搜索</button>
+											</span> 
+										</div>
+									</td>
+									
+									<td style="text-align:right" width="">
+										<select name="orderbydir" id="orderbydir" class="form-control" onchange="this.form.pageNo.value=1;this.form.submit();">
+											<option value="ASC"{{' selected="selected"' if 'ASC' == orderbydir}}>顺序</option>
+											<option value="DESC"{{' selected="selected"' if 'DESC' == orderbydir}}>逆序</option>
+										</select>
+										<select style="margin-right:15px;" onchange="this.form.pageNo.value=1;this.form.submit();" class="form-control" name="orderby">
+											{%for od in orderbylist%}
+												<option value="{{od[0]}}"{{' selected="selected"' if '%s'%od[0] == orderby}}>{{od[1]}}</option>
+											{%endfor%}
+										</select>
+									</td>
+								</tr>
+								<tr class="search-submit">
+									<td colspan="3">
+										{% if lR[0] != '1' %}
+										<button type="button" class="btn btn-success btn-sm" onclick="main_add()"><i class="fa fa-plus"></i> 增加</button>
+										{% endif %}
+									</td>
+								 </tr>
+							</tbody>
+						</table>
+						{% endblock %}
+					</div>
+					<div style="padding:15px 0 15px 0;">
+						{% block mGrid %}
+						<table class="table table-bordered">
+							<thead>
+								<tr style="background-color:#e5e5e5" bgcolor="#ffffff">
+									<th width="" style="text-align:center;">选择</th>
+									{%for n in NL[1:]%}
+									<th style="text-align:{{n[3]}};width:{{n[2]}};">{{n[0]}}</th>
+									{%endfor%}
+									<th style="text-align:center">操作</th>
+								</tr>
+							</thead>
+
+							<tbody>
+								{% for row in dataList %}
+								<tr bgcolor="#ffffff">
+									<td style="text-align:center;"><input type="checkbox" name="item_id" value="{{row[0]}}"></td>
+									{% set i = 1 %}
+									{% for e in row[1:] %}
+									<td style="text-align:{{NL[i][3]}};">{{e}}</td>
+									{% set i=i+1 %}
+									{% endfor %}
+									<td style="text-align:center;">
+										{% if lR[1] == '' %}
+										<a  onclick="main_update({{row[0]}})" title="编辑"><img src="asset/images/edit.png" ><img></a>
+										{% endif %}
+										{% if lR[2] == '' %}
+										<a  onclick="main_delete({{row[0]}});" title="删除"><img src="asset/images/del2.png" ><img></a>
+										{% endif %}
+									</td>
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+						{% endblock %}
+						{{html_pager}}
+					</div>
+					{% block page_script %}{% endblock %}
+					
+					
+				<div id="global_show_div"></div>
+			</div>
+			<script>
+				
+			    $(function(){
+			        $(".main").height($(window).height()-150);
+			    })
+			    
+			    $(window).resize(function(){
+			        $(".main").height($(window).height()-150);
+			    });
+			</script>
+{% endblock %}

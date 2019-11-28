@@ -1,0 +1,163 @@
+{% extends "local.html" %}
+
+
+{% block MUL_BTNS %}
+<table class="tb single-table clearfix top-line">
+    <tr>
+        <td style="text-align:left;">
+            <input type="submit" class="btn btn-sm btn-info" name="add_save" value="提交"/>
+            <input type="reset" class="btn btn-sm btn-info" name="add_save" value="重置"/>
+            {{sUrlBack}}
+        </td>
+    </tr>
+</table>
+{% endblock %}
+
+{% block html_local %}
+<link href="static/web-uploader/css/uploader-image.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="static/web-uploader/js/Q.js"></script>
+<script type="text/javascript" src="static/web-uploader/js/Q.Uploader.js"></script>
+<script type="text/javascript" src="static/web-uploader/js/Q.Uploader.UI.Image.js"></script>
+
+<div class="row">
+    <div class="form-group">
+        <label class="col-sm-2 control-label"><b style="color:#333333;">分类名称:</b></label>
+        <div class="col-sm-3">
+            <input type="text" class="form-control"  name="cname" value="{{item.cname}}"  />
+        </div>
+    </div>
+	<div class="form-group">
+        <label class="col-sm-2 control-label"><b style="color:#333333;">分类类型:</b></label>
+        <div class="col-sm-3">
+            <input type="text" class="form-control"  name="ctype" value="{{item.ctype}}"  />
+        </div>
+    </div>
+	<div class="form-group">
+        <label class="col-sm-2 control-label"><b style="color:#333333;">父级分类:</b></label>
+        <div class="col-sm-3">
+            {{fllist}}
+        </div>
+    </div>
+	<div class="form-group">
+        <label class="col-sm-2 control-label"><b style="color:#333333;">分类图标:</b></label>
+        <div class="col-sm-3">
+			<input type="hidden" name="pic_icon" value="{{item.pic_icon}}"/>
+			<div class="row">
+				<div id="container" style="position: relative;">
+					<a id="pickfiles"  style="position: relative; z-index: 1;">[选择本地文件]</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-2">
+			<div id="logo">
+				{% if item.pic_icon %}
+					<img class="col-sm-12" src="{{item.pic_icon}}"/>
+				{%endif%}
+			</div>
+		</div>
+    </div>
+	<div class="form-group">
+        <label class="col-sm-2 control-label"><b style="color:#333333;">分类海报:</b></label>
+        <div class="col-sm-3">
+			<input type="hidden" name="pic_imgs" value="{{item.pic_imgs}}"/>
+			<div class="row">
+				<div id="containera" style="position: relative;">
+					<a id="pickfilesa"  style="position: relative; z-index: 1;">[选择本地文件]</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-2">
+			<div id="share">
+				{% if item.pic_imgs %}
+					<img class="col-sm-12" src="{{item.pic_imgs}}"/>
+				{%endif%}
+			</div>
+		</div>
+    </div>
+	<div class="form-group">
+        <label class="col-sm-2 control-label"><b style="color:#333333;">排序:</b></label>
+        <div class="col-sm-3">
+            <input type="text" class="form-control"  name="paixu" value="{{item.paixu or 0}}" />
+        </div>
+    </div>
+    <div class="form-group">
+		<label class="col-sm-3 control-label"><b style="color:#333333;">状态:</b></label>
+
+		<div class="col-sm-7">
+			<select name="status" class="form-control">
+				<option value="0" {{' selected="selected"' if item.status|string == '0'}}>显示</option>
+				<option value="1" {{' selected="selected"' if item.status|string == '1'}}>隐藏</option>
+			</select>
+		</div>
+	</div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label"><b style="color:#333333;">备注:</b></label>
+        <div class="col-sm-3">
+            <input type="text" class="form-control"  name="remark" value="{{item.remark}}" />
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block page_script %}
+
+<script>
+
+	var ids = new Array("pickfiles","pickfilesa");
+	var divs = new Array("logo","share");
+    var hinames = new Array("pic_icon","pic_imgs");
+
+    $.each(ids,function(i,n){
+        var self = this.toString();
+        //实例化一个plupload上传对象
+        var Uploader = Q.Uploader,
+        formatSize = Q.formatSize,
+        boxView = document.getElementById(""+divs[i]+"")
+        var uploader = new Uploader({
+            url: '/upload?viewid={{viewid}}&part=Img',
+            target: document.getElementById(""+self+""),
+            view: boxView,//如果去掉这个，会导致压缩效果不好
+            //将auto配置为false以手动上传
+            auto: true,
+            dataType: "json",
+            allows: ".jpg,.png,.gif,.bmp,.jpeg",
+            upName: "file",
+            //图片缩放
+            scale: {
+                //要缩放的图片格式
+                types: ".jpg,.png,.jpeg,.bmp",
+                //最大图片大小(width|height)
+                maxWidth: 500
+            },
+            on: {
+                //添加之前触发
+                add: function (task) {
+                	layer.load()
+                    if (task.disabled) return layer.alert("允许上传的文件格式为：" + this.ops.allows);
+                },
+                upload: function (task) {
+                	layer.load()
+                },
+                complete: function(task){
+                    var jsons=task.json;
+                    if(jsons){
+                        $("#"+divs[i]+"").html('');
+                        var innerDivHtml = '<img src="'+ task.json.url  +'" class="col-sm-12">';
+                        $("#"+divs[i]+"").append(innerDivHtml);
+                        $('input[name='+hinames[i]+']').val(task.json.url);
+                        layer.closeAll()
+                    }else{
+                        //layer.alert('上传图片故障！')
+                        layer.closeAll()
+                    }
+                }
+            }
+        });
+        uploader.start();
+    });
+
+</script>
+{% endblock %}
+	

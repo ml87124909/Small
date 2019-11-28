@@ -1,0 +1,168 @@
+{% extends "local.html" %}
+
+
+{% block html_local %}
+<div class="row">
+    <div class="form-group">
+        <label class="col-sm-2 control-label"><b style="color:#333333;">手机号码:</b></label>
+        <div class="col-sm-3">
+            <input type="text" class="form-control"  name="phone" value="{{item.phone}}"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label"><b style="color:#333333;">昵称:</b></label>
+        <div class="col-sm-3">
+           <input type="text" class="form-control"  name="cname" value="{{item.cname}}" readonly="readonly"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label"><b style="color:#333333;">省份:</b></label>
+        <div class="col-sm-3">
+            <input type="text" class="form-control"  name="province" value="{{item.province}}" readonly="readonly"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label"><b style="color:#333333;">城市:</b></label>
+        <div class="col-sm-3">
+           <input type="text" class="form-control"  name="city" value="{{item.city}}" readonly="readonly"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label"><b style="color:#333333;">头像:</b></label>
+        <div class="col-sm-3">
+           <img src="{{item.avatar_url}}" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label"><b style="color:#333333;">注册时间:</b></label>
+        <div class="col-sm-3">
+            <input type="text" class="form-control"  name="ctime" value="{{item.ctime}}" readonly="readonly"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label"><b style="color:#333333;">注册IP:</b></label>
+        <div class="col-sm-3">
+            <input type="text" class="form-control"  name="register_ip" value="{{item.register_ip}}" readonly="readonly"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label"><b style="color:#333333;">最后登录时间:</b></label>
+        <div class="col-sm-3">
+            <input type="text" class="form-control"  name="utime" value="{{item.utime}}" readonly="readonly"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label"><b style="color:#333333;">最后登录IP:</b></label>
+        <div class="col-sm-3">
+            <input type="text" class="form-control"  name="last_login_ip" value="{{item.last_login_ip}}" readonly="readonly"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label"><b style="color:#333333;">购物状态:</b></label>
+         <input type="hidden" class="form-control"  name="status_str" value="{{item.status_str or '正常'}}"/>
+        <div class="col-sm-3">
+            <select name="status"  class="form-control" onchange="set_status_str(this)">
+            <option value="0"{{' selected="selected"' if item.status|string == '0'}}>正常</option>
+            <option value="1"{{' selected="selected"' if item.status|string == '1'}}>禁用</option>
+        </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label"><b style="color:#333333;">会员级别:</b></label>
+        <input type="hidden" class="form-control"  name="usr_level_str" value="{{item.usr_level_str or ''}}"/>
+        <div class="col-sm-3">
+            <select name="usr_level" id="usr_level" class="form-control" onchange="set_usr_level_str(this)">
+            <option value="">无</option>
+                {% for s in hy_up_level%}
+                <option value="{{s.id}}"{{' selected="selected"' if item.usr_level|string == s.id|string}}>{{s.cname}}</option>
+                {%endfor%}
+        </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label"><b style="color:#333333;">会员开始时间:</b></label>
+        <div class="col-sm-3">
+             <input type="text" class="form-control"  name="hy_ctime" value="{{item.hy_ctime}}" onclick="setdaytime(this)" readonly="readonly"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label"><b style="color:#333333;">会员到期时间:</b></label>
+        <div class="col-sm-3">
+            <input type="text" class="form-control"  name="hy_etime" value="{{item.hy_etime}}" onclick="setdaytime(this)" readonly="readonly"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label"><b style="color:#333333;">会员标签:</b></label>
+        <input type="hidden" class="form-control"  name="usr_flag_str" value="{{item.usr_flag_str or ''}}"/>
+        <div class="col-sm-3">
+            <select name="usr_flag" id="usr_flag" class="form-control" onchange="set_usr_flag_str(this);">
+                <option value="">无</option>
+                {%for u in usr_tags%}
+                <option value="{{u[0]}}"{{' selected="selected"' if item.usr_flag|string == u[0]|string}}>{{u[1]}}</option>
+                {%endfor%}
+        </select>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block page_script %}
+
+
+<script>
+    function set_status_str(obj){
+        var s=obj.value;
+        if (s=='1'){
+             $('input[name=status_str]').val('禁用');
+        }else{
+            $('input[name=status_str]').val('正常');
+        }
+    }
+
+    function set_usr_level_str(obj){
+        $('input[name=usr_level_str]').val($('#usr_level option:selected').text());
+
+    }
+
+    function set_usr_flag_str(obj){
+
+        $('input[name=usr_flag_str]').val($('#usr_flag option:selected').text());
+
+    }
+
+function setdaytime(obj){return WdatePicker({dateFmt:'yyyy-MM-dd'});}
+function formcheck_2(form){
+    /*
+	var sp_bh = $('input[name=sp_bh]').val();
+	var num = $('input[name=num]').val();
+	var money = $("input[name=money]").val();
+	var in_date = $("input[name=in_date]").val();
+
+	if(sp_bh == ''){
+		layer.alert("请选择商品");
+		return false;
+	}
+	if(num == ''){
+		layer.alert("请输入数量");
+		return false;
+	}
+	if(money == ''){
+		layer.alert("请输入进货价格");
+		return false;
+	}
+	if(in_date == ''){
+		layer.alert("请输入进货日期");
+		return false;
+	}
+    */
+	return true;
+	
+}
+</script>
+
+{% endblock %}
+	

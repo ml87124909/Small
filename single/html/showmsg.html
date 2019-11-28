@@ -1,0 +1,19 @@
+{% include 'header.html' %}
+<div class="main page-content" style="clear:both;width:60%;margin:10% auto 0;">
+    <div class="message alert alert-{{type}}">
+		<div class="icon pull-left" style="font-size: 30px;"><i class="fa fa-{{icon}}"></i></div>
+		<div class="content" style="padding:10px 40px;">
+			<h4>{{msg}}</h4>
+			<p>{{link}}</p>
+		</div>
+	</div>
+</div>
+ <script>
+	$(function(){
+		var footdiv=$(".foot");
+		footdiv.css("position","absolute");
+		footdiv.css("bottom","0");
+	});
+</script>
+</body>
+</html>

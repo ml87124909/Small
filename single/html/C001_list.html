@@ -1,0 +1,84 @@
+{% extends "list.html" %}
+
+
+
+{% block topSearch %}
+<table class="table table-bordered tb searchtbl">
+    <tbody>
+        <tr>
+            <th width="100" style="font-size:14px;">分类名称</th>
+            <td width="200">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="qqid" value="{{qqid}}" />
+                </div>
+            </td>
+            <td>
+                <button class="btn btn-info btn-sm" type="button" onclick="main_search()"><i class="fa fa-search"></i> 搜索</button>
+            </td>
+             <td>
+
+            </td>
+             <td>
+
+            </td>
+
+
+        </tr>
+        <tr>
+            <td colspan="5">
+                {% if lR[0] != '1' %}
+                <button type="button" class="btn btn-success btn-sm" onclick="main_add()"><i class="fa fa-plus"></i> 增加</button>
+                {% endif %}
+            </td>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}
+
+{% block mGrid %}
+<table class="table table-bordered">
+    <thead>
+        <tr style="background-color:#e5e5e5" bgcolor="#ffffff">
+
+            {%for n in NL[1:]%}
+            <th style="text-align:{{n[3]}};width:{{n[2]}};">{{n}}</th>
+            {%endfor%}
+            <th style="text-align:center">操作</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for row in dataList%}
+        <tr bgcolor="#ffffff">
+
+            {% for e in row[1:-2] %}
+            {% if loop.index==4 or loop.index==5%}
+            <td >
+                {% if e %}
+                <img src="{{e}}" style="width:50px;height:50px;"/>
+                {% else %}
+                -
+                {% endif %}
+
+            </td>
+            {% else%}
+            <td >{{e}}</td>
+            {%endif%}
+            {% endfor %}
+            <td style="text-align:center;">
+                {% if lR[1] == '' %}
+                <a class="btn btn-xs btn-info" onclick="main_update({{row[0]}})" title="编辑"><i class="fa fa-edit"></i></a>
+                {% endif %}
+                {% if lR[2] == '' %}
+                <a  class="btn btn-xs btn-warning" onclick="main_delete({{row[0]}});" title="删除"><i class="fa fa-trash-o"></i></a>
+                {% endif %}
+            </td>
+        </tr>
+
+
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+
+

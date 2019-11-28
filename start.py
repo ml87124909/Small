@@ -22,10 +22,10 @@ from  basic import publicw
 reload(publicw)
 
 ROOT = publicw.ROOT
-showupload, showapi,showadmin,showWxPay = publicw.showupload,publicw.showapi,publicw.showadmin,publicw.showWxPay
+showadmin,showapi,showWxPay = publicw.showadmin,publicw.showapi,publicw.showWxPay#接口平台
+showupload = publicw.showupload
 
 sys.path.append(ROOT)
-
 
 app=Flask(__name__)
 app.config.from_object(__name__)
@@ -33,12 +33,10 @@ app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RTYj'
 CORS(app)
 
 
-
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/admin' , methods=['GET', 'POST'])
 def admin():
     return showadmin(request)
-
 
 @app.route('/api/<int:subid>', methods=['GET','POST'])
 def api(subid):
@@ -53,6 +51,8 @@ def pay(subid):
 @app.route('/upload' , methods=['GET', 'POST'])
 def upload():
     return showupload(request)
+
+
 
 
 if __name__ == '__main__':
