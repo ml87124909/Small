@@ -1696,7 +1696,7 @@ class wechat_mall_refund(Base):
     return_msg = Column(Text, nullable=True)
     result_code = Column(Text, nullable=True)
     status = Column(SMALLINT, nullable=True)
-    status_str = Column(SMALLINT, nullable=True)
+    status_str = Column(Text, nullable=True)
     ctime = Column(DateTime, nullable=True)
     utime = Column(DateTime, nullable=True)
 
