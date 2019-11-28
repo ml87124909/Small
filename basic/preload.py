@@ -7,11 +7,12 @@
 """basic/preload.py"""
 
 ###预加载数据处理
+def preload_log(db,cname,errors):
+    sql = "insert into preload_log(cname,errors,ctime)values(%s,%s,now())"
+    db.query(sql, [cname, errors])
+    return
 
 class cSHOP:
-    """功能：将店铺信息接口用到的内容装进内存中，当该表修改时调用oSHOP.update()
-       用法：get(self,sType,sID='')
-    """
 
     def __init__(self,db,md5code):
         self.db=db
@@ -20,6 +21,7 @@ class cSHOP:
         self.loaddata()
 
     def loaddata(self):
+
         dT = {}
         sql = "SELECT DISTINCT usr_id from users where COALESCE(status,0)=1 and coalesce(expire_flag,0)=0"
         lT, iN = self.db.select(sql)
@@ -375,9 +377,6 @@ class cSHOP:
 
 
 class cSHOP_T:
-    """功能：将小程序用户openid信息装进内存中，当该表修改时调用oOPENID.update()
-       用法：get(self,sType,sID='')
-    """
 
     def __init__(self,db,md5code):
         self.db=db
@@ -418,9 +417,6 @@ class cSHOP_T:
 
 
 class cUSER:
-    """功能：将小程序用户信息装进内存中，当该表修改时调用oUSER.update()
-       用法：get(self,sType,sID='')
-    """
 
     def __init__(self,db,md5code):
         self.db=db
@@ -534,9 +530,6 @@ class cUSER:
 
 
 class cUSERS:
-    """功能：将小程序用户信息装进内存中，当该表修改时调用oUSERS.update()
-       用法：get(self,sType,sID='')
-    """
 
     def __init__(self,db,md5code):
         self.db=db
@@ -565,9 +558,6 @@ class cUSERS:
 
 
 class cOPENID:
-    """功能：将小程序用户openid信息装进内存中，当该表修改时调用oOPENID.update()
-       用法：get(self,sType,sID='')
-    """
 
     def __init__(self,db,md5code):
         self.db = db
@@ -604,9 +594,7 @@ class cOPENID:
 
 
 class cMALL:
-    """功能：将MALL表装进内存中，当该表修改时调用oMALL.update()
-       用法：get(self,sType)
-    """
+
     def __init__(self,db,md5code):
         self.db = db
         self.md5code=md5code
@@ -654,11 +642,8 @@ class cMALL:
         return self.__d.get(str(sType), {})
 
 
-
 class cQINIU:
-    """功能：将QINIU表装进内存中，当该表修改时调用oQINIU.update()
-       用法：get(self,sType)
-    """
+
     def __init__(self,db,md5code):
         self.db = db
         self.md5code=md5code
@@ -704,11 +689,8 @@ class cQINIU:
         return self.__d.get(str(sType), {})
 
 
-
 class cGOODS:
-    """功能：将goods_info表装进内存中，当该表修改时调用oGOODS.update()
-       用法：get(self,sType)
-    """
+
     def __init__(self,db,md5code):
         self.db = db
         self.md5code=md5code
@@ -805,9 +787,7 @@ class cGOODS:
 
 
 class cGOODS_SELL:
-    """功能：将goods_info表装进内存中，当该表修改时调用oGOODS_SELL.update()
-       用法：get(self,sType)
-    """
+
     def __init__(self,db,md5code):
         self.db = db
         self.md5code=md5code
@@ -872,11 +852,7 @@ class cGOODS_SELL:
         return self.__d.get(str(sType),[])
 
 
-
 class cGOODS_D:
-    """功能：将店铺信息接口用到的内容装进内存中，当该表修改时调用oSHOP.update()
-       用法：get(self,sType,sID='')
-    """
 
     def __init__(self,db,md5code):
         self.db = db
@@ -1339,9 +1315,6 @@ class cGOODS_D:
 
 
 class cGOODS_PT:
-    """功能：将店铺信息接口用到的内容装进内存中，当该表修改时调用oSHOP.update()
-       用法：get(self,sType,sID='')
-    """
 
     def __init__(self, db,md5code):
         self.db = db
@@ -1430,9 +1403,6 @@ class cGOODS_PT:
 
 
 class cGOODS_DPT:
-    """功能：将店铺信息接口用到的内容装进内存中，当该表修改时调用oSHOP.update()
-       用法：get(self,sType,sID='')
-    """
 
     def __init__(self, db,md5code):
         self.db = db
@@ -1534,9 +1504,6 @@ class cGOODS_DPT:
 
 
 class cPT_GOODS:
-    """功能：将店铺信息接口用到的内容装进内存中，当该表修改时调用oSHOP.update()
-       用法：get(self,sType,sID='')
-    """
 
     def __init__(self, db,md5code):
         self.db = db
@@ -1643,9 +1610,7 @@ class cPT_GOODS:
 
 
 class cORDER_SET:
-    """功能：将ORDER_SET表装进内存中，当该表修改时调用oORDER_SET.update()
-       用法：get(self,sType)
-    """
+
     def __init__(self,db,md5code):
         self.db = db
         self.md5code=md5code
@@ -1686,11 +1651,8 @@ class cORDER_SET:
         return self.__d.get(str(sType), {})
 
 
-
 class cGOODS_N:
-    """功能：将goods_info表装进内存中，提供上新接口调用。当该表修改时调用oGOODS_N.update()
-       用法：get(self,sType)
-    """
+
     def __init__(self,db,md5code):
         self.db = db
         self.md5code=md5code
@@ -1771,11 +1733,8 @@ class cGOODS_N:
         return self.__d.get(str(sType),{})
 
 
-
 class cGOODS_G:
-    """功能：将goods_info表装进内存中，提供上新接口调用。当该表修改时调用oGOODS_G.update()
-       用法：get(self,sType)
-    """
+
     def __init__(self,db,md5code):
         self.db = db
         self.md5code=md5code
@@ -1817,11 +1776,8 @@ class cGOODS_G:
         return self.__d.get(str(sType),[])
 
 
-
 class cGOODS_H:
-    """功能：将goods_info表装进内存中，当该表修改时调用oGOODS.update()
-       用法：get(self,sType)
-    """
+
     def __init__(self,db):
         self.db = db
         self.__d = {}
@@ -1890,11 +1846,8 @@ class cGOODS_H:
             return self.__d
 
 
-
 class cCATEGORY:
-    """功能：将goods_info表装进内存中，提供上新接口调用。当该表修改时调用oGOODS_G.update()
-       用法：get(self,sType)
-    """
+
     def __init__(self,db,md5code):
         self.db = db
         self.md5code=md5code
@@ -1947,12 +1900,7 @@ class cCATEGORY:
         return self.__d.get(str(sType),[])
 
 
-
-
 class cUSERS_OSS:
-    """功能：将goods_info表装进内存中，提供上新接口调用。当该表修改时调用oGOODS_G.update()
-       用法：get(self,sType)
-    """
 
     def __init__(self, db,md5code):
         self.db = db
