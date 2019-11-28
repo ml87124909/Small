@@ -18,9 +18,9 @@ from .helper import md5_constructor as md5
 from .wxpay import WxPay, get_nonce_str, dict_to_xml, xml_to_dict
 from werkzeug import secure_filename
 if DEBUG == '1':
-    import api.BASE_LOC
-    reload(api.BASE_LOC)
-from api.BASE_LOC import cBASE_LOC
+    import single.sapi.BASE_LOC
+    reload(single.sapi.BASE_LOC)
+from single.sapi.BASE_LOC import cBASE_LOC
 
 
 
