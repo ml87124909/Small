@@ -9,12 +9,12 @@
 from imp import reload
 from basic.publicw import DEBUG
 if DEBUG=='1':
-    import admin.vi.BASE_TPL
-    reload(admin.vi.BASE_TPL)
+    import single.vi.BASE_TPL
+    reload(single.vi.BASE_TPL)
 
     import basic.WxApi
     reload(basic.WxApi)
-from admin.vi.BASE_TPL             import cBASE_TPL
+from single.vi.BASE_TPL             import cBASE_TPL
 from basic.WxApi import cWxApi
 import time
 
@@ -39,7 +39,7 @@ class cbasic(cBASE_TPL):
         status = self.dl.GP('status','1')
         pagesize = 5
         condition = " modules = 'basic'"
-        sUrl = 'admin?viewid=basic'
+        sUrl = 'single?viewid=basic'
         param = {}
         childsql = "SELECT  id FROM ims_rule where %s " % (condition)
         if keyword : 
@@ -74,7 +74,7 @@ class cbasic(cBASE_TPL):
         if id:
             rule['rule'] = self.dl.db.fetch("SELECT * FROM ims_rule WHERE id = %s"%id)
             if not rule['rule'] :
-                return self.mScriptMsg('抱歉，您操作的规则不在存或是已经被删除！',[['admin?viewid=basic','返回列表']])
+                return self.mScriptMsg('抱歉，您操作的规则不在存或是已经被删除！',[['single?viewid=basic','返回列表']])
             rule['keyword'],total = self.dl.db.fetchall("SELECT * FROM ims_rule_keyword WHERE rid = %s"%id)
             keyword_array = []
             for kw in rule['keyword']:
@@ -141,7 +141,7 @@ class cbasic(cBASE_TPL):
         else:
             rule = self.dl.db.fetch("select id from ims_rule where weid = %s and id = %s" ,[self.weid , pk])
             if not rule:
-                url  ='admin?viewid=basic'
+                url  ='single?viewid=basic'
                 return self.mScriptMsg('该规则不存在或已被删除了',[[url,'返回列表']],'error')
             self.dl.db.update("ims_rule",data," id=%s" % pk)
             
@@ -178,7 +178,7 @@ class cbasic(cBASE_TPL):
                 rows.append(rowtpl)
             for rule_keyword in rows:
                 self.dl.db.insert("ims_rule_keyword",rule_keyword)
-            return self.mScriptMsg('规则操作成功！',[['admin?viewid=basic&part=localform&id=%s' % pk,'返回']],'success')
+            return self.mScriptMsg('规则操作成功！',[['single?viewid=basic&part=localform&id=%s' % pk,'返回']],'success')
         else:
             return self.mScriptMsg('规则操作失败, 请联系网站管理员！')
 

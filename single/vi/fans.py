@@ -8,12 +8,12 @@ from imp import reload
 
 from basic.publicw import DEBUG
 if DEBUG=='1':
-    import admin.vi.BASE_TPL
-    reload(admin.vi.BASE_TPL)
+    import single.vi.BASE_TPL
+    reload(single.vi.BASE_TPL)
 
     import basic.WxApi
     reload(basic.WxApi)
-from admin.vi.BASE_TPL             import cBASE_TPL
+from single.vi.BASE_TPL             import cBASE_TPL
 from basic.WxApi import cWxApi
 
 class cfans(cBASE_TPL):

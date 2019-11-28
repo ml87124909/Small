@@ -4,14 +4,14 @@
 # Author：QQ173782910
 #QQ group:528289471
 ##############################################################################
-""" admin/dl/J001_dl.py"""
+""" single/dl/J001_dl.py"""
 
 from imp import reload
 from basic.publicw import DEBUG
 if DEBUG == '1':
-    import admin.dl.BASE_DL
-    reload(admin.dl.BASE_DL)
-from admin.dl.BASE_DL  import cBASE_DL
+    import single.dl.BASE_DL
+    reload(single.dl.BASE_DL)
+from single.dl.BASE_DL  import cBASE_DL
 
 class cJ001_dl(cBASE_DL):
     def init_data(self):
@@ -121,7 +121,7 @@ class cJ001_dl(cBASE_DL):
         else:  #insert 
             
             #如果是插入 就去掉 uid，utime 的处理
-            sql="""insert into users(login_id, password, usr_name, status, usr_type, dept_id, del_flag, isadmin, is_dept_admin, sort,cid,ctime,mobile,usr_id_p)
+            sql="""insert into users(login_id, password, usr_name, status, usr_type, dept_id, del_flag, issingle, is_dept_single, sort,cid,ctime,mobile,usr_id_p)
             values('%s', crypt('Aa123456', gen_salt('md5')), '%s', %s, 1, 2, 0, 0, 0, 0,%s,now(),'%s',%s);
             """%(login_id,usr_name,status,self.usr_id,mobile,self.usr_id)
             self.db.query(sql)

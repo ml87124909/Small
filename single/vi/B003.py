@@ -4,14 +4,14 @@
 # Author：QQ173782910
 #QQ group:528289471
 ##############################################################################
-"""admin/vi/B003.py"""
+"""single/vi/B003.py"""
 
 from imp import reload
 from basic.publicw import DEBUG
 if DEBUG == '1':
-    import admin.vi.BASE_TPL
-    reload(admin.vi.BASE_TPL)
-from admin.vi.BASE_TPL             import cBASE_TPL
+    import single.vi.BASE_TPL
+    reload(single.vi.BASE_TPL)
+from single.vi.BASE_TPL             import cBASE_TPL
 
 
 class cB003(cBASE_TPL):
@@ -30,7 +30,7 @@ class cB003(cBASE_TPL):
         return s
 
     def initPagiUrl_Local(self):
-        url = 'admin?viewid=B003&part=localfrm'
+        url = 'single?viewid=B003&part=localfrm'
         return url
 
     def getPagination(self, PL):

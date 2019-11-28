@@ -4,14 +4,14 @@
 # Author：QQ173782910
 #QQ group:528289471
 ##############################################################################
-"""admin/vi/A004.py"""
+"""single/vi/A004.py"""
 
 from imp import reload
 from basic.publicw import DEBUG
 if DEBUG == '1':
-    import admin.vi.BASE_TPL
-    reload(admin.vi.BASE_TPL)
-from admin.vi.BASE_TPL             import cBASE_TPL
+    import single.vi.BASE_TPL
+    reload(single.vi.BASE_TPL)
+from single.vi.BASE_TPL             import cBASE_TPL
 
 
 
@@ -52,7 +52,7 @@ class cA004(cBASE_TPL):
     
     def goPartLocalfrm(self):
 
-        self.backurl = 'admin?viewid=A004'
+        self.backurl = 'single?viewid=A004'
         self.need_editor = 1
         self.getBreadcrumb() #获取面包屑
         self.initHiddenLocal()#初始隐藏域

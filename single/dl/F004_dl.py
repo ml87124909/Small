@@ -4,14 +4,14 @@
 # Author：QQ173782910
 #QQ group:528289471
 ##############################################################################
-""" admin/dl/F004_dl.py"""
+""" single/dl/F004_dl.py"""
 
 from imp import reload
 from basic.publicw import DEBUG
 if DEBUG == '1':
-    import admin.dl.BASE_DL
-    reload(admin.dl.BASE_DL)
-from admin.dl.BASE_DL  import cBASE_DL
+    import single.dl.BASE_DL
+    reload(single.dl.BASE_DL)
+from single.dl.BASE_DL  import cBASE_DL
 
 
 class cF004_dl(cBASE_DL):

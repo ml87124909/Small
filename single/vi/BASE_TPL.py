@@ -4,15 +4,15 @@
 # Author：QQ173782910
 #QQ group:528289471
 ##############################################################################
-"""admin/vi/BASE_TPL.py"""
+"""single/vi/BASE_TPL.py"""
 
 from imp import reload
 from basic.publicw import DEBUG
 if DEBUG == '1':
-    import admin.vi.VI_BASE
-    reload(admin.vi.VI_BASE)
-from admin.vi.VI_BASE             import cVI_BASE
-from admin.vi.mselect import mselect_forGoods_Info, mselect_forGoods_Infos, mselect_forMList, mselect_forMList_mul, \
+    import single.vi.VI_BASE
+    reload(single.vi.VI_BASE)
+from single.vi.VI_BASE             import cVI_BASE
+from single.vi.mselect import mselect_forGoods_Info, mselect_forGoods_Infos, mselect_forMList, mselect_forMList_mul, \
     mselect_forMList_spec
 
 class cBASE_TPL(cVI_BASE):
@@ -40,7 +40,7 @@ class cBASE_TPL(cVI_BASE):
     def Goods_mselect(self):
         mSelect = mselect_forGoods_Info('Goods', ['ID', '商品名称'], '商品列表',
                                 wh=[500, 300], dnl=[0, 1, 2, 3], search_holder='请输入商品名称')
-        mSelect.sUrl = 'admin?viewid=home&part=ajax&action=goods'
+        mSelect.sUrl = 'single?viewid=home&part=ajax&action=goods'
         mSelect.confirmjs = '''
                 datas = sData.split("###");
                 $('input[name="goods_id"]').val(datas[0]);
@@ -57,7 +57,7 @@ class cBASE_TPL(cVI_BASE):
         nL = ['货号', '条码', '名称', '规格', '单位', '进价', '零售价', '会员价', '批发价', '库存']
         dnl = [0, 1, 2, 3, 4, 5, 6, 15, 14, 13]
         TmSelect=mselect_forMList('TmSelect',viewid=self.viewid,nl=nL,wh=[900, 400],title='选择商品',dnl=dnl,canjp='')
-        TmSelect.sUrl = 'admin?viewid=home&part=ajax&action=getGoods'
+        TmSelect.sUrl = 'single?viewid=home&part=ajax&action=getGoods'
         TmSelect.confirmjs = '''
         if(sData != ''){
             $('input[name="goods_id"]').val(sData);
@@ -78,7 +78,7 @@ class cBASE_TPL(cVI_BASE):
         nL = ['货号', '条码', '名称', '规格', '单位', '进价', '零售价', '会员价', '批发价', '库存']
         dnl = [0, 1, 2, 3, 4, 5, 6, 15, 14, 13]
         TmSelect=mselect_forMList_mul('TmSelect_mul',viewid=self.viewid,nl=nL,wh=[900, 400],title='选择商品',dnl=dnl,canjp='')
-        TmSelect.sUrl = 'admin?viewid=home&part=ajax&action=getGoods'
+        TmSelect.sUrl = 'single?viewid=home&part=ajax&action=getGoods'
         TmSelect.confirmjs = '''
         if(sData != ''){
             $('input[name="goods_ids"]').val(sData);
@@ -99,7 +99,7 @@ class cBASE_TPL(cVI_BASE):
         dnl = [0, 1, 2, 3, 4, 5, 6, 15, 14, 13]
         TmSelect = mselect_forMList_mul('TmSelect_mul_s', viewid=self.viewid, nl=nL, wh=[900, 400], title='选择商品', dnl=dnl,
                                         canjp='')
-        TmSelect.sUrl = 'admin?viewid=home&part=ajax&action=getGoods'
+        TmSelect.sUrl = 'single?viewid=home&part=ajax&action=getGoods'
         TmSelect.confirmjs = '''
         if(sData != ''){
             $('input[name="order_goods_id"]').val(sData);
@@ -117,7 +117,7 @@ class cBASE_TPL(cVI_BASE):
     def show_ticket(self):
         mSelect = mselect_forGoods_Info('Ticket', ['ID', '优惠券名称','类型','适用形式','备注'], '优惠券选择',
                                 wh=[500, 300], dnl=[0, 1, 2, 3,4], search_holder='请输入优惠券名称')
-        mSelect.sUrl = 'admin?viewid=home&part=ajax&action=ticket'
+        mSelect.sUrl = 'single?viewid=home&part=ajax&action=ticket'
 
         mSelect.btnb_role = '''&nbsp;<button class="btn btn-sm btn-info" type="button" onclick="%s_loadUsersList('')">选择优惠券</button>''' %'Ticket'
         mSelect.confirmjs = '''
@@ -134,7 +134,7 @@ class cBASE_TPL(cVI_BASE):
     def Goods_mselects(self):
         mSelect = mselect_forGoods_Infos('Goods', ['ID', '商品名称'], '拼团商品列表',
                                          wh=[500, 300], dnl=[0, 1, 2, 3], search_holder='请输入商品名称')
-        mSelect.sUrl = 'admin?viewid=home&part=ajax&action=pt_goods'
+        mSelect.sUrl = 'single?viewid=home&part=ajax&action=pt_goods'
         mSelect.confirmjs = '''
                 datas = sData.split("###");
                 $('input[name="goods_id"]').val(datas[0]);
@@ -152,7 +152,7 @@ class cBASE_TPL(cVI_BASE):
         dnl = [0, 1, 2, 3, 4, 5, 6, 15, 14, 13]
         TmSelect = mselect_forMList_spec('spec_mul', viewid=self.viewid, nl=nL, wh=[900, 400], title='选择规格型号', dnl=dnl,
                                          canjp='')
-        TmSelect.sUrl = 'admin?viewid=C004&part=ajax&action=getSpecChild'
+        TmSelect.sUrl = 'single?viewid=C004&part=ajax&action=getSpecChild'
         TmSelect.confirmjs = '''
         if(sData != ''){
             
@@ -160,7 +160,7 @@ class cBASE_TPL(cVI_BASE):
             spec_child_vs=$('input[name="spec_child'+spec_types+'"]').val()
             //$('input[name="spec_child'+spec_type+'"]').val(sData);
             $.ajax({
-                url:"admin?viewid=C004&part=set_spec_child&sid="+spec_types+"&spec_cids="+sData,
+                url:"single?viewid=C004&part=set_spec_child&sid="+spec_types+"&spec_cids="+sData,
                 type:"post",
                 async:false,
                 success:function(data){
@@ -196,7 +196,7 @@ class cBASE_TPL(cVI_BASE):
     def Hot_mselects(self):
         mSelect = mselect_forGoods_Infos('Goods', ['ID', '商品名称'], '商品列表',
                                          wh=[500, 300], dnl=[0, 1, 2, 3], search_holder='请输入商品名称')
-        mSelect.sUrl = 'admin?viewid=C006&part=ajax&action=hot_goods'
+        mSelect.sUrl = 'single?viewid=C006&part=ajax&action=hot_goods'
         mSelect.confirmjs = '''
                 datas = sData.split("###");
                 $('input[name="goods_id"]').val(datas[0]);

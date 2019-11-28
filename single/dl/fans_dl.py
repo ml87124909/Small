@@ -9,9 +9,9 @@ from imp import reload
 from basic.publicw import DEBUG
 
 if DEBUG == '1':
-    import admin.dl.BASE_DL
-    reload(admin.dl.BASE_DL)
-from admin.dl.BASE_DL  import cBASE_DL
+    import single.dl.BASE_DL
+    reload(single.dl.BASE_DL)
+from single.dl.BASE_DL  import cBASE_DL
 
 
 class cfans_dl(cBASE_DL):

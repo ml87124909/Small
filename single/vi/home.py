@@ -4,15 +4,15 @@
 # Author：QQ173782910
 #QQ group:528289471
 ##############################################################################
-"""admin/vi/home.py"""
+"""single/vi/home.py"""
 
 from imp import reload
 from basic.publicw import DEBUG
 if DEBUG == '1':
-    import admin.vi.VI_BASE
-    reload(admin.vi.VI_BASE)
+    import single.vi.VI_BASE
+    reload(single.vi.VI_BASE)
 
-from admin.vi.VI_BASE import cVI_BASE
+from single.vi.VI_BASE import cVI_BASE
 
 
 class chome(cVI_BASE):

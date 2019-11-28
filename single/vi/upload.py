@@ -4,7 +4,7 @@
 # Author：QQ173782910
 #QQ group:528289471
 ##############################################################################
-"""admin/vi/upload.py"""
+"""single/vi/upload.py"""
 
 import os
 import time
@@ -49,11 +49,11 @@ class cupload(cUP):
             if not 'roles' in self.dActiveUser:
                 result = self.cookie.clearcookie("__session")
             if 1 in self.dActiveUser['roles'].keys():
-                self.bIsAdmin = 1
+                self.bIssingle = 1
             else:
-                self.bIsAdmin = 0
+                self.bIssingle = 0
             roleData = None
-            if self.bIsAdmin == 0:
+            if self.bIssingle == 0:
                 if self.sub1id != -1:
                     roleData = self.dActiveUser.get('menu_role').get(self.sub1id)
                 elif self.mnuid != -1:

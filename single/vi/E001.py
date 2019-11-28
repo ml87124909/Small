@@ -4,14 +4,14 @@
 # Author：QQ173782910
 #QQ group:528289471
 ##############################################################################
-"""admin/vi/E001.py"""
+"""single/vi/E001.py"""
 
 from imp import reload
 from basic.publicw import DEBUG
 if DEBUG == '1':
-    import admin.vi.BASE_TPL
-    reload(admin.vi.BASE_TPL)
-from admin.vi.BASE_TPL             import cBASE_TPL
+    import single.vi.BASE_TPL
+    reload(single.vi.BASE_TPL)
+from single.vi.BASE_TPL             import cBASE_TPL
 import time, os,xlsxwriter
 from flask import make_response
 from io import BytesIO

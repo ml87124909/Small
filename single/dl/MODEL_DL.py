@@ -4,14 +4,14 @@
 # Author：QQ173782910
 #QQ group:528289471
 ##############################################################################
-"""admin/dl/MODEL_DL.py"""
+"""single/dl/MODEL_DL.py"""
 
 from imp import reload
 from basic.publicw import DEBUG
 if DEBUG == '1':
-    import admin.dl.DL_BASE
-    reload(admin.dl.DL_BASE)
-from admin.dl.DL_BASE  import cDL_BASE
+    import single.dl.DL_BASE
+    reload(single.dl.DL_BASE)
+from single.dl.DL_BASE  import cDL_BASE
 
 import os
 

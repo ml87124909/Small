@@ -4,14 +4,14 @@
 # Author：QQ173782910
 #QQ group:528289471
 ##############################################################################
-"""admin/vi/login.py"""
+"""single/vi/login.py"""
 
 from imp import reload
 from basic.publicw import DEBUG,user_menu
 if DEBUG == '1':
-    import admin.vi.VI_BASE
-    reload(admin.vi.VI_BASE)
-from admin.vi.VI_BASE             import cVI_BASE
+    import single.vi.VI_BASE
+    reload(single.vi.VI_BASE)
+from single.vi.VI_BASE             import cVI_BASE
 import time, random, datetime
 from flask import make_response,redirect
 
@@ -98,7 +98,7 @@ class clogin(cVI_BASE):
 
     def goPartLogout(self):
         self.dl.cookie.clearcookie('__session')
-        response = make_response(redirect("admin?viewid=login"))
+        response = make_response(redirect("single?viewid=login"))
         self.dl.cookie.responeCookie(response)
         return response
 
@@ -256,6 +256,6 @@ class clogin(cVI_BASE):
         return self.jsons(dR)
 
     def goPartAccount(self):
-        return self.runApp('login_admin.html')
+        return self.runApp('login_single.html')
 
 

@@ -8,12 +8,12 @@
 from imp import reload
 from basic.publicw import DEBUG
 if DEBUG=='1':
-    import admin.vi.BASE_TPL
-    reload(admin.vi.BASE_TPL)
+    import single.vi.BASE_TPL
+    reload(single.vi.BASE_TPL)
 
     import basic.WxApi
     reload(basic.WxApi)
-from admin.vi.BASE_TPL             import cBASE_TPL
+from single.vi.BASE_TPL             import cBASE_TPL
 from basic.WxApi import cWxApi
 import flask,re
 
@@ -47,13 +47,13 @@ class cmenu(cBASE_TPL):
 
     def goPartRefresh(self):
         self.dl.cookie.isetcookie('menu_%s' % self.weid , '' , -3600)
-        return self.mScriptMsg("菜单数据已刷新",[['admin?viewid=menu','返回菜单设计']],'success')
+        return self.mScriptMsg("菜单数据已刷新",[['single?viewid=menu','返回菜单设计']],'success')
 
     def goPartDelete(self):
         #WeEngine = engine.cEngine(self.account)
         self.WxApi.menuDelete()
         self.dl.cookie.isetcookie('menu_%s' % self.weid , '' , -3600)
-        return self.mScriptMsg("菜单数据已删除",[['admin?viewid=menu','返回菜单设计']],'success')
+        return self.mScriptMsg("菜单数据已删除",[['single?viewid=menu','返回菜单设计']],'success')
 
     def goPartSaveMenu(self):
 
@@ -64,10 +64,10 @@ class cmenu(cBASE_TPL):
             self.dl.cookie.isetcookie('menu_%s' % self.weid , '' , -3600)
             dR = {'code': '0', 'MSG': '保存成功!'}
             return self.jsons(dR)
-            #return self.mScriptMsg("菜单数据已保存",[['admin?viewid=menu','返回菜单设计']],'success')
+            #return self.mScriptMsg("菜单数据已保存",[['single?viewid=menu','返回菜单设计']],'success')
         else:
             dR = {'code': '1', 'MSG': '保存失败!'}
-            #return self.mScriptMsg("菜单数据保存失败，错误代码：%s[%s]" % (res,self.WxApi.weixin_code(res)) ,[['admin?viewid=menu','返回菜单设计']],'error')
+            #return self.mScriptMsg("菜单数据保存失败，错误代码：%s[%s]" % (res,self.WxApi.weixin_code(res)) ,[['single?viewid=menu','返回菜单设计']],'error')
             return self.jsons(dR)
 
 
