@@ -76,56 +76,106 @@ def setup():
     elif step == 3:
         login_id = RES.get('login_id', '')
         passwd = RES.get('passwd', '')
+        ctype = RES.get('ctype', '')
+
         try:
 
+            if ctype!='2':
+                sql_menu="""
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (8,'系统管理',1,1,10,NULL,NULL,1,'fa-cogs');
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (801,'个人帐号',0,2,1,8,'H001',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (802,'角色授权',0,2,2,8,'H002',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (803,'人员管理',0,2,3,8,'H003',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (804,'人员授权',0,2,4,8,'H004',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (805,'登录日志',0,2,5,8,'H005',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (806,'帐号解锁',0,2,6,8,'H006',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (1,'小程序管理',1,1,1,NULL,NULL,1,'fa-link');
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (101,'店铺设置',0,2,1,1,'A001',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (102,'图片广告',0,2,2,1,'A002',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (103,'文字广告',0,2,3,1,'A003',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (104,'文章分类',0,2,4,1,'A004',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (105,'文章列表',0,2,5,1,'A005',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (106,'用户列表',0,2,6,1,'A006',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (107,'用户反馈',0,2,7,1,'A007',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (108,'收货地址',0,2,8,1,'A008',1,NULL);
+                insert into menu_func(menu_id,menu_name,vtype,menu,sort,status,img)values(2,'公众号管理',1,1,2,1,'fa-wechat');
+                insert into menu_func(menu_id,menu_name,vtype,menu,sort,status,parent_id,func_id)values(201,'基本设置',0,2,1,1,2,'seetting');
+                insert into menu_func(menu_id,menu_name,vtype,menu,sort,status,parent_id,func_id)values(202,'菜单管理',0,2,2,1,2,'menu');
+                insert into menu_func(menu_id,menu_name,vtype,menu,sort,status,parent_id,func_id)values(203,'文字回复',0,2,3,1,2,'basic');
+                insert into menu_func(menu_id,menu_name,vtype,menu,sort,status,parent_id,func_id)values(204,'特殊回复',0,2,4,1,2,'sp_reply');
+                insert into menu_func(menu_id,menu_name,vtype,menu,sort,status,parent_id,func_id)values(205,'粉丝列表',0,2,5,1,2,'fans');
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (3,'商品管理',1,1,4,NULL,NULL,1,'fa-shopping-bag');
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (301,'商品分类',0,2,1,3,'C001',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (302,'商品规格',0,2,2,3,'C002',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (303,'商品品牌',0,2,3,3,'C003',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (304,'商品档案',0,2,4,3,'C004',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (305,'商品评价',0,2,5,3,'C005',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (306,'商品热销榜',0,2,6,3,'C006',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (307,'商品反馈',0,2,7,3,'C007',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (4,'营销中心',1,1,5,NULL,NULL,1,'fa-gift');
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (401,'优惠券',0,2,1,4,'D001',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (403,'拼团活动',0,2,3,4,'D003',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (5,'订单管理',1,1,6,NULL,NULL,1,'fa-file-text-o');
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (501,'销售订单',0,2,1,5,'E001',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (503,'退款订单',0,2,3,5,'E003',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (504,'售后订单',0,2,4,5,'E004',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (6,'综合查询',1,1,7,NULL,NULL,1,'fa-search');
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (601,'优惠券查询',0,2,1,6,'F001',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (602,'充值查询',0,2,2,6,'F002',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (603,'返现查询',0,2,3,6,'F003',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (604,'消费查询',0,2,4,6,'F004',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (605,'会员升级查询',0,2,5,6,'F005',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (609,'图片查询',0,2,9,6,'F009',1,NULL);
+                
+                """
+            else:
+                sql_menu = """
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (8,'系统管理',1,1,10,NULL,NULL,1,'fa-cogs');
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (801,'个人帐号',0,2,1,8,'H001',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (802,'角色授权',0,2,2,8,'H002',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (803,'人员管理',0,2,3,8,'H003',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (804,'人员授权',0,2,4,8,'H004',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (805,'登录日志',0,2,5,8,'H005',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (806,'帐号解锁',0,2,6,8,'H006',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (1,'小程序管理',1,1,1,NULL,NULL,1,'fa-link');
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (101,'店铺设置',0,2,1,1,'A001',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (102,'图片广告',0,2,2,1,'A002',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (103,'文字广告',0,2,3,1,'A003',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (104,'文章分类',0,2,4,1,'A004',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (105,'文章列表',0,2,5,1,'A005',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (106,'用户列表',0,2,6,1,'A006',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (107,'用户反馈',0,2,7,1,'A007',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (108,'收货地址',0,2,8,1,'A008',1,NULL);
+                insert into menu_func(menu_id,menu_name,vtype,menu,sort,status,img)values(2,'公众号管理',1,1,2,1,'fa-wechat');
+                insert into menu_func(menu_id,menu_name,vtype,menu,sort,status,parent_id,func_id)values(201,'基本设置',0,2,1,1,2,'seetting');
+                insert into menu_func(menu_id,menu_name,vtype,menu,sort,status,parent_id,func_id)values(202,'菜单管理',0,2,2,1,2,'menu');
+                insert into menu_func(menu_id,menu_name,vtype,menu,sort,status,parent_id,func_id)values(203,'文字回复',0,2,3,1,2,'basic');
+                insert into menu_func(menu_id,menu_name,vtype,menu,sort,status,parent_id,func_id)values(204,'特殊回复',0,2,4,1,2,'sp_reply');
+                insert into menu_func(menu_id,menu_name,vtype,menu,sort,status,parent_id,func_id)values(205,'粉丝列表',0,2,5,1,2,'fans');
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (3,'商品管理',1,1,4,NULL,NULL,1,'fa-shopping-bag');
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (301,'商品分类',0,2,1,3,'C001',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (302,'商品规格',0,2,2,3,'C002',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (303,'商品品牌',0,2,3,3,'C003',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (304,'商品档案',0,2,4,3,'C004',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (305,'商品评价',0,2,5,3,'C005',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (306,'商品热销榜',0,2,6,3,'C006',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (307,'商品反馈',0,2,7,3,'C007',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (4,'营销中心',1,1,5,NULL,NULL,1,'fa-gift');
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (401,'优惠券',0,2,1,4,'D001',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (403,'拼团活动',0,2,3,4,'D003',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (5,'订单管理',1,1,6,NULL,NULL,1,'fa-file-text-o');
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (501,'销售订单',0,2,1,5,'E001',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (503,'退款订单',0,2,3,5,'E003',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (504,'售后订单',0,2,4,5,'E004',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (6,'综合查询',1,1,7,NULL,NULL,1,'fa-search');
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (601,'优惠券查询',0,2,1,6,'F001',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (602,'充值查询',0,2,2,6,'F002',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (603,'返现查询',0,2,3,6,'F003',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (604,'消费查询',0,2,4,6,'F004',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (605,'会员升级查询',0,2,5,6,'F005',1,NULL);
+                INSERT INTO public.menu_func (menu_id,menu_name,vtype,menu,sort,parent_id,func_id,status,img) VALUES (609,'图片查询',0,2,9,6,'F009',1,NULL);
 
-            sql_menu="""
-            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (8,'系统管理',1,1,10,NULL,NULL,1,'fa-cogs');
-            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (801,'个人帐号',0,2,1,8,'H001',1,NULL);
-            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (802,'角色授权',0,2,2,8,'H002',1,NULL);
-            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (803,'人员管理',0,2,3,8,'H003',1,NULL);
-            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (804,'人员授权',0,2,4,8,'H004',1,NULL);
-            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (805,'登录日志',0,2,5,8,'H005',1,NULL);
-            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (806,'帐号解锁',0,2,6,8,'H006',1,NULL);
-            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (1,'小程序管理',1,1,1,NULL,NULL,1,'fa-link');
-            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (101,'店铺设置',0,2,1,1,'A001',1,NULL);
-            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (102,'图片广告',0,2,2,1,'A002',1,NULL);
-            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (103,'文字广告',0,2,3,1,'A003',1,NULL);
-            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (104,'文章分类',0,2,4,1,'A004',1,NULL);
-            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (105,'文章列表',0,2,5,1,'A005',1,NULL);
-            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (106,'用户列表',0,2,6,1,'A006',1,NULL);
-            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (107,'用户反馈',0,2,7,1,'A007',1,NULL);
-            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (108,'收货地址',0,2,8,1,'A008',1,NULL);
-            insert into menu_func(menu_id,menu_name,"type",menu,sort,status,img)values(2,'公众号管理',1,1,2,1,'fa-wechat');
-            insert into menu_func(menu_id,menu_name,"type",menu,sort,status,parent_id,func_id)values(201,'基本设置',0,2,1,1,2,'seetting');
-            insert into menu_func(menu_id,menu_name,"type",menu,sort,status,parent_id,func_id)values(202,'自定义菜单',0,2,2,1,2,'menu');
-            insert into menu_func(menu_id,menu_name,"type",menu,sort,status,parent_id,func_id)values(203,'文字回复',0,2,3,1,2,'basic');
-            insert into menu_func(menu_id,menu_name,"type",menu,sort,status,parent_id,func_id)values(204,'特殊回复',0,2,4,1,2,'sp_reply');
-            insert into menu_func(menu_id,menu_name,"type",menu,sort,status,parent_id,func_id)values(205,'粉丝列表',0,2,5,1,2,'fans');
-            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (3,'商品管理',1,1,4,NULL,NULL,1,'fa-shopping-bag');
-            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (301,'商品分类',0,2,1,3,'C001',1,NULL);
-            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (302,'商品规格',0,2,2,3,'C002',1,NULL);
-            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (303,'商品品牌',0,2,3,3,'C003',1,NULL);
-            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (304,'商品档案',0,2,4,3,'C004',1,NULL);
-            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (305,'商品评价',0,2,5,3,'C005',1,NULL);
-            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (306,'商品热销榜',0,2,6,3,'C006',1,NULL);
-            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (307,'商品反馈',0,2,7,3,'C007',1,NULL);
-            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (4,'营销中心',1,1,5,NULL,NULL,1,'fa-gift');
-            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (401,'优惠券',0,2,1,4,'D001',1,NULL);
-            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (403,'拼团活动',0,2,3,4,'D003',1,NULL);
-            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (5,'订单管理',1,1,6,NULL,NULL,1,'fa-file-text-o');
-            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (501,'销售订单',0,2,1,5,'E001',1,NULL);
-            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (503,'退款订单',0,2,3,5,'E003',1,NULL);
-            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (504,'售后订单',0,2,4,5,'E004',1,NULL);
-            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (6,'综合查询',1,1,7,NULL,NULL,1,'fa-search');
-            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (601,'优惠券查询',0,2,1,6,'F001',1,NULL);
-            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (602,'充值查询',0,2,2,6,'F002',1,NULL);
-            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (603,'返现查询',0,2,3,6,'F003',1,NULL);
-            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (604,'消费查询',0,2,4,6,'F004',1,NULL);
-            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (605,'会员升级查询',0,2,5,6,'F005',1,NULL);
-            INSERT INTO public.menu_func (menu_id,menu_name,"type",menu,sort,parent_id,func_id,status,img) VALUES (609,'图片查询',0,2,9,6,'F009',1,NULL);
-            
-            """
+                """
             db.query(sql_menu)
 
             sql_mtc_t="""
@@ -426,7 +476,7 @@ def setup():
                 
                           
                             insert into tb     
-                                 select m.menu_id,m.menu_name,m.menu,m.type,COALESCE(m.sort,null)sort,COALESCE(m.parent_id,null)parent_id,COALESCE(r.can_see,null)can_see,COALESCE(r.can_add,null)can_add,COALESCE(r.can_upd,null)can_upd,COALESCE(r.can_del,null)can_del,m.status
+                                 select m.menu_id,m.menu_name,m.menu,m.vtype,COALESCE(m.sort,null)sort,COALESCE(m.parent_id,null)parent_id,COALESCE(r.can_see,null)can_see,COALESCE(r.can_add,null)can_add,COALESCE(r.can_upd,null)can_upd,COALESCE(r.can_del,null)can_del,m.status
                                 from menu_func m left join role_menu r on m.menu_id = r.menu_id and r.role_id=$1 where m.menu = 1 and m.menu_id = tmp_lev1Id and m.menu_id not in (select c.menu_id from menu_func c where c.menu in (2,3) and COALESCE(c.parent_id,0)=0 ); 
                             
                             --一级菜单正常-----
@@ -451,7 +501,7 @@ def setup():
                                         ---------
                                        
                                         insert into tb
-                                            select m.menu_id,m.menu_name,m.menu,m.type,COALESCE(m.sort,null) sort,COALESCE(m.parent_id,null) parent_id,COALESCE(r.can_see,null) can_see,COALESCE(r.can_add,null) can_add,COALESCE(r.can_upd,null) can_upd,COALESCE(r.can_del,null) can_del,m.status 
+                                            select m.menu_id,m.menu_name,m.menu,m.vtype,COALESCE(m.sort,null) sort,COALESCE(m.parent_id,null) parent_id,COALESCE(r.can_see,null) can_see,COALESCE(r.can_add,null) can_add,COALESCE(r.can_upd,null) can_upd,COALESCE(r.can_del,null) can_del,m.status 
                                             from menu_func m left join role_menu r on m.menu_id = r.menu_id and r.role_id=$1 where m.menu =2 and m.menu_id = tmp_lev2Id and m.menu_id not in (select c.menu_id from menu_func c where c.menu in (2,3) and COALESCE(c.parent_id,0)=0 ); 
                                         ---二级菜单正常
                                         begin
@@ -475,7 +525,7 @@ def setup():
                 
                                                     
                                                     insert into tb    
-                                                        select m.menu_id,m.menu_name,m.menu,m.type,COALESCE(m.sort,null) sort,COALESCE(m.parent_id,null) parent_id,COALESCE(r.can_see,null) can_see,COALESCE(r.can_add,null) can_add,COALESCE(r.can_upd,null) can_upd,COALESCE(r.can_del,null) can_del,m.status  
+                                                        select m.menu_id,m.menu_name,m.menu,m.vtype,COALESCE(m.sort,null) sort,COALESCE(m.parent_id,null) parent_id,COALESCE(r.can_see,null) can_see,COALESCE(r.can_add,null) can_add,COALESCE(r.can_upd,null) can_upd,COALESCE(r.can_del,null) can_del,m.status  
                                                         from menu_func m left join role_menu r on m.menu_id = r.menu_id and r.role_id=$1   
                                                         where m.menu =3 and m.menu_id = tmp_lev3Id and m.menu_id not in (select c.menu_id from menu_func c     
                                                         where c.menu in (2,3) and COALESCE(c.parent_id,0)=0 );
@@ -598,7 +648,143 @@ def setup():
                 ;
             """
             db.query(fu2)
+            fu3 = """
+                CREATE OR REPLACE FUNCTION public.p_getmenurightlist_s(id integer)
+                 RETURNS TABLE(t_menu_id integer, t_menu_name character varying, t_menu integer, t_type integer, t_sort integer, t_parent_id integer, t_can_see integer, t_can_add integer, t_can_upd integer, t_can_del integer, status integer)
+                 LANGUAGE plpgsql
+                AS $function$
 
+                DECLARE
+                    tmp_lev1Id int;     
+                        lev1Count int;    
+
+                        tmp_lev2Id int;     
+                        lev2Count int;    
+
+                        tmp_lev3Id int;     
+                        lev3Count int; 
+
+                    lev1sql text;
+
+
+
+                BEGIN
+                    CREATE TEMP TABLE if not exists tb(t_menu_id int,t_menu_name varchar(100),t_menu int,t_type int,t_sort int,t_parent_id int,t_can_see int,t_can_add int,t_can_upd int,t_can_del int,status int) on commit drop;
+
+                    TRUNCATE table tb;
+
+                    tmp_lev1Id := 0;
+                    lev1Count := 0;
+
+                    select COUNT(1) INTO lev1Count from menu_func m left join role_menu r on m.menu_id = r.menu_id and r.role_id=$1 where m.menu=1 and m.status=1 and m.menu_id not in (select c.menu_id from menu_func c where c.menu in (2,3) and  COALESCE(c.parent_id,0)=0 );
+
+                    WHILE lev1Count > 0 LOOP
+                        begin		
+
+
+                            select m.menu_id INTO tmp_lev1Id from menu_func m left join role_menu r on m.menu_id = r.menu_id and r.role_id=$1 where m.menu = 1 and m.status=1 and m.menu_id not in (select c.menu_id from menu_func c where c.menu in (2,3) and COALESCE(c.parent_id,0)=0 ) and m.menu_id not in (select t.t_menu_id from tb t) order by COALESCE(m.sort,null),COALESCE(m.menu_id,null) LIMIT 1;
+
+
+                            insert into tb     
+                                 select m.menu_id,m.menu_name,m.menu,m.vtype,COALESCE(m.sort,null)sort,COALESCE(m.parent_id,null)parent_id,COALESCE(r.can_see,null)can_see,COALESCE(r.can_add,null)can_add,COALESCE(r.can_upd,null)can_upd,COALESCE(r.can_del,null)can_del,m.status
+                                from menu_func m left join role_menu r on m.menu_id = r.menu_id and r.role_id=$1 where m.menu = 1 and m.status=1 and m.menu_id = tmp_lev1Id and m.menu_id not in (select c.menu_id from menu_func c where c.menu in (2,3) and COALESCE(c.parent_id,0)=0 ); 
+
+                            --一级菜单正常-----
+
+                            begin
+                                tmp_lev2Id := 0;    
+                                lev2Count := 0;
+
+
+                                select COUNT(1) INTO lev2Count from menu_func m left join role_menu r on m.menu_id = r.menu_id and r.role_id=$1 
+                                    where m.menu=2 and m.status=1 and m.parent_id = tmp_lev1Id and m.menu_id not in (select c.menu_id from menu_func c     
+                                    where c.menu in (2,3) and COALESCE(c.parent_id,0)=0 );
+
+                                while lev2Count > 0 loop
+
+                                    begin
+
+                                        select (select m.menu_id INTO tmp_lev2Id from menu_func m left join role_menu r on m.menu_id = r.menu_id and r.role_id=$1    
+                                            where m.menu = 2 and m.status=1 and m.parent_id = tmp_lev1Id and m.menu_id not in (select c.menu_id from menu_func c     
+                                            where c.menu in (2,3) and COALESCE(c.parent_id,0)=0 ) and m.menu_id not in (select t.t_menu_id from tb t)     
+                                            order by COALESCE(m.sort,null),COALESCE(m.menu_id,null) LIMIT 1);
+
+                                        insert into tb
+                                            select m.menu_id,m.menu_name,m.menu,m.vtype,COALESCE(m.sort,null) sort,COALESCE(m.parent_id,null) parent_id,COALESCE(r.can_see,null) can_see,COALESCE(r.can_add,null) can_add,COALESCE(r.can_upd,null) can_upd,COALESCE(r.can_del,null) can_del,m.status 
+                                            from menu_func m left join role_menu r on m.menu_id = r.menu_id and r.role_id=$1 where m.menu =2 and m.status=1 and m.menu_id = tmp_lev2Id and m.menu_id not in (select c.menu_id from menu_func c where c.menu in (2,3) and COALESCE(c.parent_id,0)=0 ); 
+                                        ---二级菜单正常
+                                        begin
+                                            tmp_lev3Id := 0;    
+                                            lev3Count := 0;    
+
+                                            select COUNT(1) INTO lev3Count from menu_func m left join role_menu r on m.menu_id = r.menu_id and r.role_id=$1    
+                                                where m.menu=3 and m.status=1 and m.parent_id = tmp_lev2Id and m.menu_id not in (select c.menu_id from menu_func c     
+                                                where c.menu in (2,3) and COALESCE(c.parent_id,0)=0 );
+
+                                            while lev3Count > 0 loop
+                                                begin
+
+                                                    /**/
+                                                    select m.menu_id INTO tmp_lev3Id from menu_func m left join role_menu r on m.menu_id = r.menu_id and r.role_id=$1    
+                                                        where m.menu = 3 and m.status=1 and m.parent_id = tmp_lev2Id and m.menu_id not in (select c.menu_id from menu_func c     
+                                                        where c.menu in (2,3) and COALESCE(c.parent_id,0)=0 ) and m.menu_id not in (select t.t_menu_id from tb t)    
+                                                        order by COALESCE(m.sort,null),COALESCE(m.menu_id,null) LIMIT 1 ;
+
+                                                    insert into tb    
+                                                        select m.menu_id,m.menu_name,m.menu,m.vtype,COALESCE(m.sort,null) sort,COALESCE(m.parent_id,null) parent_id,COALESCE(r.can_see,null) can_see,COALESCE(r.can_add,null) can_add,COALESCE(r.can_upd,null) can_upd,COALESCE(r.can_del,null) can_del,m.status  
+                                                        from menu_func m left join role_menu r on m.menu_id = r.menu_id and r.role_id=$1   
+                                                        where m.menu =3 and m.status=1 and m.menu_id = tmp_lev3Id and m.menu_id not in (select c.menu_id from menu_func c     
+                                                        where c.menu in (2,3) and COALESCE(c.parent_id,0)=0 );
+
+                                                    lev3Count := lev3Count-1;
+                                                end;
+
+                                            end loop;
+
+                                        end;
+
+                                        --二级菜单
+                                        lev2Count := lev2Count-1;
+                                    end;
+
+
+                                end loop;
+
+
+                            end;
+
+                            ----一级菜单正常--
+                        end;
+                        lev1Count := lev1Count-1;
+
+                    END LOOP;
+                    return query 
+                    select * from tb;
+
+                END
+                $function$
+                ;
+            """
+            db.query(fu3)
+            fu4 = """
+
+                CREATE OR REPLACE FUNCTION public.func_rolename(a integer)
+                 RETURNS character varying
+                 LANGUAGE plpgsql
+                AS $function$
+                declare r text;
+                BEGIN 
+                    r := null;
+                    select r.role_name
+                    from usr_role ur
+                    left join roles r on r.role_id = ur.role_id
+                    where ur.usr_id = a INTO r;
+                    return r;
+                END 
+                $function$
+                ;
+                """
+            db.query(fu4)
             l,t = db.select("SELECT usr_id FROM users WHERE usr_id=1;")
             if t>0:
                 sql="""update users set login_id=encrypt(%s,%s,'aes'),status=1,

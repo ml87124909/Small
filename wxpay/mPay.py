@@ -13,12 +13,12 @@ import random
 from lxml import etree
 from basic.publicw import db,oUSER,oGOODS_D,oGOODS_N,oPT_GOODS,oMALL
 #db,subid,xml_data,
-class cWxPay:
+class cmPay:
 
-    def __init__(self, request,subid):
+    def __init__(self, request):
 
         self.objHandle = request
-        self.subid=subid
+        self.subid=1
         self.db = db
         self.oUSER=oUSER
         self.oGOODS_D=oGOODS_D

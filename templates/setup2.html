@@ -85,13 +85,23 @@ body{background-color: #fff;
 				  <div style="margin-left:0px;text-align: center;margin-top:-20px;">
 						<div class="log-title" style="margin: 15px auto;border: 1px solid rgb(0,129,0);border-radius: 5px;width: 98%;">
 							<div class="start-content">
-								<h1 class="title">数据库连接成功</h1>
-								<p>已经成功连接数据库，开始安装...</p>
+								<h1 class="title">数据库表model处理成功</h1>
+								<p>准备将必须的数据写入数据库</p>
 							</div>
 							<div class="start-content" style="font-size:14px;">
 
-								<p>请写入一个用户，将作为系统超级管理员!</p>
+								<p>请选择您要安装的版本及设定系统超级管理员!</p>
 								<form onsubmit="return formcheck(this)"  method="post"  action="{{url_for('setup', step=3)}}" >
+									<div class="form-group">
+										<div class="col-sm-12">
+											选择要安装的系统版本:
+											<select name="ctype" class="form-control">
+												<option value="0" >个人版本</option>
+												<option value="1" >SAAS版本</option>
+												<option value="2" >B2B2C版本</option>
+											</select>
+										</div>
+									</div>
 									<div class="form-group">
 										<div class="col-sm-12">
 											超级管理员用户名:<input name="login_id" placeholder="请输入用户名" class="cinput" type="text" value="" >

@@ -607,9 +607,6 @@ class ims_fans(Base):
     utime = Column(DateTime, nullable=True)
 
 
-
-
-
 class integral_log(Base):
     """ 消费记录"""
     __tablename__ = "integral_log"
@@ -688,13 +685,13 @@ class menu_func(Base):
 
     id = Column(Integer, primary_key=True, nullable=False, autoincrement=True, index=True)
     menu_id = Column(Integer, nullable=True, index=True)
-    type = Column(SMALLINT, nullable=True)
+    vtype = Column(SMALLINT, nullable=True, index=True)
     menu_name = Column(Text, nullable=True)
-    menu = Column(Integer, nullable=True)
-    sort = Column(Integer, nullable=True)
+    menu = Column(Integer, nullable=True, index=True)
+    sort = Column(Integer, nullable=True, index=True)
     parent_id = Column(Integer, nullable=True)
-    func_id = Column(Text, nullable=True)
-    status = Column(SMALLINT, nullable=True)
+    func_id = Column(Text, nullable=True, index=True)
+    status = Column(SMALLINT, nullable=True, index=True)
     img = Column(Text, nullable=True)
 
 class mtc_t(Base):
@@ -1103,26 +1100,26 @@ class score_set(Base):
     usr_id = Column(Integer, nullable=True, index=True)
     score = Column(Integer, nullable=True, index=True)
     days = Column(Integer, nullable=True)
-    status = Column(SMALLINT, nullable=True)
-    del_flag = Column(SMALLINT, nullable=True)
+    status = Column(SMALLINT, nullable=True, index=True)
+    del_flag = Column(SMALLINT, nullable=True, index=True)
     cid = Column(Integer, nullable=True)
     ctime = Column(DateTime, nullable=True)
     uid = Column(Integer, nullable=True)
     utime = Column(DateTime, nullable=True)
 
 class search_key(Base):
-    """ 图片广告分类"""
+    """ 搜索关键字"""
     __tablename__ = "search_key"
 
     id = Column(Integer, primary_key=True, nullable=False, autoincrement=True, index=True)
     usr_id = Column(Integer, nullable=True, index=True)
-    cname = Column(Text, nullable=True)
+    cname = Column(Text, nullable=True, index=True)
     num = Column(Integer, nullable=True)
     ctime = Column(DateTime, nullable=True)
     utime = Column(DateTime, nullable=True)
 
 class self_paykey(Base):
-    """ 图片广告分类"""
+    """ 线下扫码支付key"""
     __tablename__ = "self_paykey"
 
     id = Column(Integer, primary_key=True, nullable=False, autoincrement=True, index=True)
@@ -1240,9 +1237,9 @@ class spec(Base):
     cname = Column(Text, nullable=True)
     ctype = Column(Text, nullable=True)
     cicon = Column(Text, nullable=True)
-    sort = Column(Integer, nullable=True)
+    sort = Column(Integer, nullable=True, index=True)
     cp_id = Column(Integer, nullable=True)
-    del_flag = Column(SMALLINT, nullable=True)
+    del_flag = Column(SMALLINT, nullable=True, index=True)
     cid = Column(Integer, nullable=True)
     ctime = Column(DateTime, nullable=True)
     uid = Column(Integer, nullable=True)
@@ -1258,9 +1255,9 @@ class spec_child(Base):
     cname_c = Column(Text, nullable=True)
     ctype_c = Column(Text, nullable=True)
     cicon_c = Column(Text, nullable=True)
-    sort_c = Column(Integer, nullable=True)
+    sort_c = Column(Integer, nullable=True, index=True)
     cp_id = Column(Integer, nullable=True)
-    del_flag = Column(SMALLINT, nullable=True)
+    del_flag = Column(SMALLINT, nullable=True, index=True)
     cid = Column(Integer, nullable=True)
     ctime = Column(DateTime, nullable=True)
     uid = Column(Integer, nullable=True)

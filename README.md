@@ -2,50 +2,36 @@
 
 # 更新说明  2019-11-28
 包含个人版本，SAAS版本，B2B2C版本，专为满足不同需要
-
-
+> SAAS版已经可用，个人版本正在处理，B2B2C版预计也不会太久
+> 不知道有没有要求三个版本同时部署的，目前三个版本只能选择其中之一部署
 ![](https://github.com/mn3711698/Small/blob/master/923.png)
-
 
 ![](https://github.com/mn3711698/Small/blob/master/1574772580.jpg)
 
 #### 注意：用docker镜像mn3711698/small:004的一定要git pull，这个镜像我不会再更新代码，需要自己git pull,不然代码会很旧，没法用!
 
-
 ## 请务必使用python3.6  请务必使用python3.6  请务必使用python3.6
-
+我开发用的是windows 10(linux子系统:ubuntu 18.04) + python3.6.8 测试环境用的是centos 7.6+python3.6.9
 # 说明  2019-08-07
-docker镜像基于ubuntu 18.04 的python3.6.8+postgresql-10,数据库要开下pgcrypto。命令是：create extension pgcrypto;
-<br>mn3711698/small:004,我测试过OK。
+docker镜像:mn3711698/small:004,我测试过OK。基于ubuntu 18.04 的python3.6.8+postgresql-10。
 <br>您完全可以直接在里边的/var/games/Small下，安装(python3 install.py)及运行(python3 start.py)。
 <br>以后docker里的代码我就不更新了，有需要的直接git pull就好了。
 <br>我是将整个环境都弄好打包成一个，直接在docker里边运行，我也不懂别的方法，这样有个问题就是，那个安装生成的dbconfig.py文件没有，每次都要重新搞。
-<br>python3 start.py启动项目通常是用来调试的，如果要生产运行，您可以用nginx+apache或者别的方法，我是用nginx+apache。
+<br>python3 start.py启动项目通常是用来调试的，如果要生产运行，您可以用nginx+apache或者别的方法，我是用nginx+apache或nginx+gunicorn+supervisor都可以。
 
 本系统采用python3,基于flask搭建的脚手架开发。数据库是postgresql.
 <br>请注意config.py这个配置文件，默认开启调试日志。
 
 配合SmallStore开源小程序使用：https://github.com/mn3711698/SmallStore
 
-
-models里的模型已处理好。
-docker已处理好。
-
-
 目标是满足进销存ERP，供销等各种功能及接口（小程序，微信公众号，H5，APP）。
-
-
-> 
-> 
-
-目前功能是比较少，将会不断增加，同时也期待您贡献代码或者功能。
-
+> 目前功能是比较少，将会不断增加，同时也期待您贡献代码或者功能。
 
 # 功能特性
 > - [x] 表示已开发
 > - [ ] 表示准备开发
 
-##SAAS版本
+## SAAS版本
 - [x] 小程序管理
     * 店铺设置
         * OSS存储设置
@@ -99,7 +85,6 @@ docker已处理好。
     * 登录日志
     * 帐号解锁
 
-
 - [ ] 公众号管理
     * 基本设置
     * 菜单设置
@@ -117,18 +102,15 @@ docker已处理好。
     * 商家公告
     
 
-
-##B2B2C版本
+## B2B2C版本
 - [ ] 小程序管理
     * 店铺设置
         * 店铺设置
         * 商铺设置
-        
     * 图片广告
     * 文字广告
     * 文章分类
     * 文章列表
-    
     
 - [ ] 商品管理
     * 商品分类
@@ -163,7 +145,6 @@ docker已处理好。
     * 登录日志
     * 帐号解锁
 
-
 - [ ] 公众号
     * 基本设置
     * 菜单设置
@@ -171,7 +152,6 @@ docker已处理好。
     * 特殊回复
     * 粉丝列表
 
-    
 - [ ] 平台设置
     * 商家公告
     * 订单设置
@@ -187,8 +167,7 @@ docker已处理好。
     * 用户反馈
     
 
-
-##个人版本
+## 个人版本
 - [ ] 小程序管理
     * 店铺设置
         * OSS存储设置
@@ -242,7 +221,6 @@ docker已处理好。
     * 登录日志
     * 帐号解锁
 
-
 - [ ] 公众号管理
     * 基本设置
     * 菜单设置
@@ -251,22 +229,19 @@ docker已处理好。
     * 粉丝列表
 
 
-  
-                                                                                        
+                                                                        
+## 目录模块
 
-## 目录模块功能
-
-```shell
-├── admin  //后台目录（比较多，还未整理）
-│   ├── dl  //路由映射的数据处理
+```
+├── admin  #SAAS后台目录（比较多，还未整理）
+│   ├── dl  #路由映射的数据处理
 │   │
-│   ├── html  //html文件
+│   ├── html  #html文件
 │   │
-│   └── vi  //对应路由文件
+│   └── vi  #对应路由文件
 │
 │
-│
-├── api  // 小程序目录
+├── api  # SAAS小程序接口目录
 │   ├── BASE_LOC.py
 │   ├── BASE_TPL.py
 │   ├── helper.py
@@ -276,43 +251,84 @@ docker已处理好。
 │   ├── VIEWS.py
 │   └── wxpay.py
 │
-├── basic  //共用文件目录
-│   ├── base.py
-│   ├── pay.py
-│   ├── preload.py
-│   ├── publicw.so
-│   ├── RE_TOOL.py
+├── basic  #共用文件目录
+│   ├── base.py #后台cookie处理
+│   ├── indb.so #安装时调用的数据库类
+│   ├── pay.py  #微信支付
+│   ├── preload.py  #缓存处理
+│   ├── publicw.so  #基础类
 │   ├── wxbase.py
 │   └── wxpublic.py
 │ 
-├── celery_app  // 定时任务目录
+├── celery_app  #定时任务目录
 │   ├── celeryconfig.py
 │   ├── db_backup.py
 │   └── pfc.py
 │
-├── models  // 数据库表
+│   
+├── manage  #B2B2C目录
+│   ├── dl  #路由映射的数据处理（比较多，未完全整理）
+│   │
+│   ├── html  #html文件（比较多，未完全整理）
+│   │
+│     ├── mapi  # 小程序接口目录（比较多，未完全整理）
+│     │   ├── BASE_LOC.py
+│     │   ├── BASE_TPL.py
+│     │   ├── helper.py
+│     │   ├── home.py
+│     │   ├── pay.py
+│     │   ├── VI_BASE.py
+│     │   ├── VIEWS.py
+│     │   └── wxpay.py
+│   │
+│   └── vi  #对应路由文件（比较多，未完全整理）
+│   
+│
+├── models  #数据库表
 │   └── model.py
 │   
-├── static  //css,js,img等静态文件
+│
+├── single  #个人版本目录
+│   ├── dl  #路由映射的数据处理（比较多，未完全整理）
+│   │
+│   ├── html  #html文件（比较多，未完全整理）
+│   │
+│     ├── sapi  # 小程序接口目录
+│     │   ├── BASE_LOC.py
+│     │   ├── BASE_TPL.py
+│     │   ├── helper.py
+│     │   ├── home.py
+│     │   ├── pay.py
+│     │   ├── VI_BASE.py
+│     │   ├── VIEWS.py
+│     │   └── wxpay.py
+│   │
+│   └── vi  #对应路由文件（比较多，未完全整理）
+│   
+│
+├── static  #css,js,img等静态文件
 │     
 │   
-├── templates  //安装过程的html
+├── templates  #安装过程的html
 │   
 │   
-└── wxpay  // 微信支付回调
-│     └── WxPay.py   
+└── wxpay  # 微信支付回调
+│     ├── mPay.py #b2b2c版支付回调处理
+│     ├── sPay.py #个人版支付回调处理
+│     └── WxPay.py #SAAS版支付回调处理 
 │   
-├── config.py //基本配置
-├── install.py //安装启动
-├── start.py //项目运行启动
-└── zone.py //七牛上传修改
+├── config.py #基本配置
+├── install.py #项目安装启动
+├── runall.py #启动所有版本(专为开发调试)
+├── start.py #启动SAAS版
+├── startm.py #启动B2B2C版
+├── starts.py #启动个人版
+└── zone.py #七牛上传修改
 ```
 
 ## 目前系统还在完善中，如果有bug请加下边的QQ群反馈，感谢！
+ QQ群：528289471
 
-
-# QQ群
-528289471
 
 # License
 为了增加运行效率及防止出现有人将代码随意进行销售，特将部分代码采用cython处理。不会收集任何个人敏感信息，并且项目将客户存在数据库的敏感信息有加密处理，具体可以看代码。
