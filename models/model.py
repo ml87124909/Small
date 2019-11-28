@@ -933,6 +933,16 @@ class province(Base):
     uid = Column(Integer, nullable=True)
     utime = Column(DateTime, nullable=True)
 
+class preload_log(Base):
+    """ 缓存记录"""
+    __tablename__ = "preload_log"
+
+    id = Column(Integer, primary_key=True, nullable=False, autoincrement=True, index=True)
+    errors = Column(Text, nullable=True)
+    cname = Column(Text, nullable=True, index=True)
+    ctime = Column(DateTime, nullable=True)
+
+
 class pt_conf(Base):
     """ 拼团设置"""
     __tablename__ = "pt_conf"
