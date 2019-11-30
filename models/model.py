@@ -1785,6 +1785,44 @@ class withdraw_cash(Base):
     uid = Column(Integer, nullable=True)
     utime = Column(DateTime, nullable=True)
 
+class platform_conf(Base):
+    """ 平台管理"""
+    __tablename__ = "platform_conf"
+
+    id = Column(Integer, primary_key = True, nullable=False,autoincrement=True,index=True)
+    base_url = Column(Text,  nullable=True,comment='平台微信支付回调地址')
+    try_days = Column(Integer, nullable=True, comment='注册体验时间')
+    vip_days = Column(Integer, nullable=True, comment='被邀请人付费后赠送时间')
+    combo_one_name = Column(Text, nullable=True, comment='付费套餐一名称')
+    combo_one_price = Column(Float, nullable=True, comment='付费套餐一价格')
+    combo_one_day = Column(Integer, nullable=True, comment='付费套餐一使用时间')
+    combo_one_status = Column(SMALLINT, nullable=True, comment='付费套餐一是否启用')
+    combo_one_txt= Column(Text, nullable=True, comment='付费套餐一说明')
+    combo_two_name = Column(Text, nullable=True, comment='付费套餐二名称')
+    combo_two_price = Column(Float, nullable=True, comment='付费套餐二价格')
+    combo_two_day = Column(Integer, nullable=True, comment='付费套餐二使用时间')
+    combo_two_status = Column(SMALLINT, nullable=True, comment='付费套餐二是否启用')
+    combo_two_txt = Column(Text, nullable=True, comment='付费套餐二说明')
+    combo_thr_name = Column(Text, nullable=True, comment='付费套餐三名称')
+    combo_thr_price = Column(Float, nullable=True, comment='付费套餐三价格')
+    combo_thr_day = Column(Integer, nullable=True, comment='付费套餐三使用时间')
+    combo_thr_status = Column(SMALLINT, nullable=True, comment='付费套餐三是否启用')
+    combo_thr_txt = Column(Text, nullable=True, comment='付费套餐三说明')
+    dbname = Column(Text, nullable=True, comment='要备份数据库名')
+    notices = Column(Text, nullable=True, comment='顶部消息')
+    memo = Column(Text, nullable=True, comment='滚动消息')
+    appid = Column(Text, nullable=True, comment='后台登录用的微信appid')
+    secret = Column(Text, nullable=True, comment='后台登录用的微信secret')
+    wx_status = Column(SMALLINT, nullable=True, comment='后台是否开启微信登录')
+    wxtoken = Column(Text, nullable=True, comment='后台登录用的微信token')
+    wxaeskey = Column(Text, nullable=True, comment='后台登录用的微信验证密钥')
+    mchid = Column(Text, nullable=True, comment='微信支付商户id')
+    mchkey = Column(Text, nullable=True, comment='微信支付商户密钥')
+    cid = Column(Integer, nullable=True)
+    ctime = Column(DateTime, nullable=True)
+    uid = Column(Integer, nullable=True)
+    utime = Column(DateTime, nullable=True)
+
 
 def createall(engine_):
     try:
