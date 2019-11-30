@@ -11,7 +11,7 @@ import random
 from basic.base import set_cookie
 from basic.publicw import PEM_ROOTR,db,CLIENT_NAME,md5code,localurl,dActiveUser,user_menu,access_allow,\
     oSHOP,oUSER,oMALL,oQINIU,oGOODS,oGOODS_D,oORDER_SET,oGOODS_N,oGOODS_G,oOPENID,oSHOP_T,oCATEGORY,\
-    oGOODS_SELL,oGOODS_PT,oGOODS_DPT,oPT_GOODS,oUSERS_OSS,oGOODS_H,cDL
+    oGOODS_SELL,oGOODS_PT,oGOODS_DPT,oPT_GOODS,oUSERS_OSS,oGOODS_H,cDL,_http
 #from qcloudsms_py import QcloudSms
 
 class cDL_BASE(cDL):
@@ -26,6 +26,7 @@ class cDL_BASE(cDL):
         self.PEM_ROOTR = PEM_ROOTR
         self.objHandle = objHandle
         self.db = db
+        self._http=_http
         self.cookie = set_cookie(self.objHandle, CLIENT_NAME)
         self.dActiveUser = {}
         self.account = {}
@@ -224,88 +225,6 @@ class cDL_BASE(cDL):
                 self.mnuid = int(data.get("menu_id", -1))
                 self.menu_name = data.get("menu_name", '')
 
-    # def getSysMenu(self, usr_id):
-    #     sql = """
-    #         select mf.menu
-    #               ,mf.menu_id
-    #               ,mf.func_id
-    #               ,mf.menu_name
-    #               ,mf.type
-    #               ,mf.sort
-    #               ,mf.parent_id
-    #               ,mf.img
-    #           from menu_func mf
-    #          where mf.status=1
-    #          order by mf.sort asc
-    #     """
-    #
-    #     L, iN = self.db.fetchall(sql)
-    #
-    #     menu1 = []
-    #     menu2 = {}
-    #     menu3 = {}
-    #     # print sql
-    #     for row in L:
-    #         if row.get('menu') == 1:
-    #             menu1.append([row['menu_id'], row['menu_name'], row['func_id'], row['img']])
-    #         elif row.get('menu') == 2:
-    #             if not row.get('parent_id') in menu2:
-    #                 menu2[row.get('parent_id')] = []
-    #             menu2[row.get('parent_id')].append([row['menu_id'], row['menu_name'], row['func_id'], row['parent_id'], row['img']])
-    #         elif row.get('menu') == 3:
-    #             if not row.get('parent_id') in menu3:
-    #                 menu3[row.get('parent_id')] = []
-    #             menu3[row.get('parent_id')].append([row['menu_id'], row['menu_name'], row['func_id'], row['parent_id'], row['img']])
-    #
-    #     return menu1, menu2, menu3
-    #  checkuser,get_usr_menu_role注释掉，采用新的权限处理
-    # def checkuser(self, usr_id):
-    #
-    #     sql = """
-    #     SELECT U.usr_id                   -- 0
-    #           , convert_from(decrypt(U.login_id::bytea,%s, 'aes'),'SQL_ASCII')                -- 1
-    #           ,U.dept_id                  -- 2
-    #           ,case when COALESCE(u.usr_id_p,0)=0 then U.usr_id else u.usr_id_p end     -- 3
-    #        FROM users U
-    #        WHERE U.usr_id=%s AND  U.status=1
-    #     """
-    #
-    #     lT, iN = self.db.select(sql,[self.md5code,usr_id])
-    #     if not iN:
-    #         return 0
-    #
-    #     usr_name = lT[0][1]
-    #
-    #     # 求得用户的权限
-    #     dActiveUser[usr_id] = {}
-    #     dActiveUser[usr_id]['roles'] = {}  # 用户角色
-    #
-    #     dActiveUser[usr_id]['login_time'] = time.time()  # 登入时间
-    #     dActiveUser[usr_id]['usr_name'] = usr_name
-    #     dActiveUser[usr_id]['usr_id'] = usr_id  # 用户名
-    #     dActiveUser[usr_id]['login_id'] = usr_name  # 登陆ID
-    #     dActiveUser[usr_id]['usr_id_p'] = lT[0][3]  # 登陆ID
-    #     dActiveUser[usr_id]['dept_id'] = lT[0][3]  #部门ID
-    #
-    #     dActiveUser[usr_id]['menu_role'] = self.get_usr_menu_role()
-    #     return dActiveUser
-    #
-    # def get_usr_menu_role(self):
-    #
-    #     menu_role = {}
-    #
-    #     sql = ''' select menu_id,1 as can_add,1 as can_del,1 as can_upd ,1 as can_see from menu_func m where m.status =1 order by menu_id '''
-    #     L, t = self.db.fetchall(sql)
-    #     for row in L:
-    #         if row['menu_id'] in menu_role:
-    #             menu_role[row['menu_id']][0] = 1
-    #             menu_role[row['menu_id']][1] = 1
-    #             menu_role[row['menu_id']][2] = 1
-    #             menu_role[row['menu_id']][3] = 1
-    #         else:
-    #             menu_role[row['menu_id']] = [1, 1, 1, 1]
-    #
-    #     return menu_role
 
     def specialinit(self):
         pass
