@@ -165,12 +165,6 @@ class cMODEL_DL(cDL_BASE):
         return
 
     def get_wecthpy(self):
-
-        # sql = "select appid,secret from mall where usr_id=%s"
-        # l, t = self.db.select(sql, self.subusr_id)
-        # appid, secret = l[0]
-        # if t == 0:
-        #     return 0
         mall=self.oMALL.get(self.usr_id_p)
 
         if mall=={}:
@@ -187,6 +181,23 @@ class cMODEL_DL(cDL_BASE):
         sql="insert into use_log(usr_id,viewid,memo,ctime)values(%s,%s,%s,now())"
         self.db.query(sql,[self.usr_id,self.viewid,memo])
         return
+
+    def get_QR_code_url(self,vtype):
+        if self.qr_ticket!='':
+            return self.qr_ticket
+
+        pdata = {'viewid': 'wxcode', 'part': 'Get_ticket',
+                 'vtype': vtype
+                 }
+
+        r = self._http.post('https://wxcode.yjyzj.cn/wxcode', data=pdata)
+        res = r.json()
+        if res.get('code', '') == '0':
+            url = res.get('url', '')
+            self.qr_ticket = url
+            return url
+
+        return ''
 
 
 
