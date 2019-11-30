@@ -25,7 +25,8 @@ class clogin(cVI_BASE):
         aaa = self.dl.get_QR_code_url('login_code')
         if aaa != '':
             a = '<img src="%s" style="width:150px;height:150px;">' % aaa
-        self.assign('aaa', a)
+            self.assign('aaa', a)
+            return self.runApp('qrimg.html')
         return self.runApp('login.html')
     
     def goPartDologin(self):
