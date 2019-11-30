@@ -21,7 +21,11 @@ class clogin(cVI_BASE):
         self.dl_name = ''
 
     def goPartList(self):
-
+        a = "无法登录，请联系管理员!"
+        aaa = self.dl.get_QR_code_url('login_code')
+        if aaa != '':
+            a = '<img src="%s" style="width:150px;height:150px;">' % aaa
+        self.assign('aaa', a)
         return self.runApp('login.html')
     
     def goPartDologin(self):
@@ -65,11 +69,13 @@ class clogin(cVI_BASE):
             self.login_log(login_status='成功', usr_id=usr_id, login_id=login_id, login_type='PC',login_ip=login_ip)
             dR['MSG'] = '登录成功！'
             dR['code']='0'
-        else:
+            return self.jsons(dR)
 
-            self.login_log(login_status= '失败', usr_id='0', login_id=login_id, login_type='PC',login_ip=login_ip)
-            dR['MSG'] = '用户名或密码错误！'
+
+        self.login_log(login_status= '失败', usr_id='0', login_id=login_id, login_type='PC',login_ip=login_ip)
+        dR['MSG'] = '用户名或密码错误！'
         return self.jsons(dR)
+
 
 
     # 登录时插入数据库表login_log的函数
