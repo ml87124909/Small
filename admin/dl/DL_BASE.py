@@ -11,7 +11,7 @@ import random
 from basic.base import set_cookie
 from basic.publicw import PEM_ROOTR,db,CLIENT_NAME,md5code,localurl,dActiveUser,user_menu,access_allow,\
     oSHOP,oUSER,oMALL,oQINIU,oGOODS,oGOODS_D,oORDER_SET,oGOODS_N,oGOODS_G,oOPENID,oSHOP_T,oCATEGORY,\
-    oGOODS_SELL,oGOODS_PT,oGOODS_DPT,oPT_GOODS,oUSERS_OSS,oGOODS_H,cDL,_http
+    oGOODS_SELL,oGOODS_PT,oGOODS_DPT,oPT_GOODS,oUSERS_OSS,oGOODS_H,cDL,_http,oTOLL
 #from qcloudsms_py import QcloudSms
 
 class cDL_BASE(cDL):
@@ -153,6 +153,7 @@ class cDL_BASE(cDL):
         self.oPT_GOODS = oPT_GOODS
         self.oUSERS_OSS = oUSERS_OSS
         self.oGOODS_H=oGOODS_H
+        self.oTOLL=oTOLL
         # #####################################################################
 
         ########OSS用户自有调用
@@ -175,6 +176,11 @@ class cDL_BASE(cDL):
         self.qiniu_flag = self.oUSERS_OSS.get(self.usr_id_p).get('qiniu_flag', 0)
         self.oss_flag = self.oUSERS_OSS.get(self.usr_id_p).get('oss_flag', 0)
         #########
+        self.base_url = self.oTOLL.get().get('base_url')#平台支付回调域名
+        #self.wx_appid = self.oTOLL.get().get('appid')
+        #self.wx_secret = self.oTOLL.get().get('secret')
+        self.wxstatus = self.oTOLL.get().get('wx_status')
+        #######
 
     def GP(self, key, default=None, ctype=1):
         value = self.REQUEST.get(key, default)

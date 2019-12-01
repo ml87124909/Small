@@ -8,11 +8,11 @@
 
 
 import time,hashlib,os,oss2
-from imp import reload
-from basic.publicw import DEBUG
-if DEBUG == '1':
-    import admin.dl.MODEL_DL
-    reload(admin.dl.MODEL_DL)
+#from imp import reload
+from basic.publicw import DEBUG,CLIENT_NAME,ATTACH_ROOT
+# if DEBUG == '1':
+#     import admin.dl.MODEL_DL
+#     reload(admin.dl.MODEL_DL)
 from admin.dl.MODEL_DL             import cMODEL_DL
 from werkzeug import secure_filename
 from qiniu import Auth, put_data,BucketManager
@@ -63,19 +63,19 @@ class cBASE_DL(cMODEL_DL):
             md5name = hashlib.md5()
             md5name.update(str(timeStamp).encode('utf-8'))
             filename = md5name.hexdigest() + '.' + file_ext
-            paths = os.path.join(public.PEM_ROOTR, '%s' % self.usr_id_p)
+            paths = os.path.join(self.PEM_ROOTR, '%s' % self.usr_id_p)
             self.make_sub_path(paths)
             file.save(os.path.join(paths, filename))
-            url = '/var/data_h/%s/%s/' % (public.CLIENT_NAME,self.usr_id_p) + filename
+            url = '/var/data_h/%s/%s/' % (CLIENT_NAME,self.usr_id_p) + filename
 
         return url
 
     def qiniu_upload_file(self,source_file, filename):
 
         # 构建鉴权对象
-        q = Auth(self.qiniu_access_key_all, self.qiniu_secret_key_all)
-        token = q.upload_token(self.qiniu_bucket_name_all, filename)
-        domain_prefix=self.qiniu_domain_all
+        q = Auth(self.oss_access_key_all, self.oss_secret_key_all)
+        token = q.upload_token(self.oss_bucket_name_all, filename)
+        domain_prefix=self.oss_domain_all
 
         ret, info = put_data(token, filename, source_file)
         if info.status_code == 200:
@@ -84,10 +84,10 @@ class cBASE_DL(cMODEL_DL):
 
     def ali_upload_file(self,source_file, filename):
 
-        domain_prefix = self.qiniu_domain_all
+        domain_prefix = self.oss_domain_all
         #endpoint = 'http://oss-cn-shenzhen.aliyuncs.com'  # 你的Bucket处于的区域
-        auth = oss2.Auth(self.qiniu_access_key_all, self.qiniu_secret_key_all)
-        bucket = oss2.Bucket(auth, self.endpoint, self.qiniu_bucket_name_all)
+        auth = oss2.Auth(self.oss_access_key_all, self.oss_secret_key_all)
+        bucket = oss2.Bucket(auth, self.oss_endpoint, self.oss_bucket_name_all)
         # result = bucket.put_object(filename, source_file)  # 上传
         # if result.status == 200:
         #     return domain_prefix + filename
@@ -118,7 +118,7 @@ class cBASE_DL(cMODEL_DL):
             filename = md5name.hexdigest() + '.' + file_ext
             file_content = file.read()
             file_size = float(len(file_content)) / 1024
-            paths = os.path.join(public.ATTACH_ROOT,'%s'%self.usr_id_p)
+            paths = os.path.join(ATTACH_ROOT,'%s'%self.usr_id_p)
             self.make_sub_path(paths)
             PATH = os.path.join(paths, filename)
             f = open(PATH, 'wb')
@@ -273,7 +273,7 @@ class cBASE_DL(cMODEL_DL):
             dR['MSG'] = '删除图片失败！'
             return dR
         filename=l[0][0]
-        paths = os.path.join(public.ATTACH_ROOT, '%s' % self.usr_id_p)
+        paths = os.path.join(ATTACH_ROOT, '%s' % self.usr_id_p)
 
         img_path = os.path.join(paths, filename)
 
@@ -297,7 +297,7 @@ class cBASE_DL(cMODEL_DL):
             dR['MSG'] = '删除图片失败！'
             return dR
         filename=l[0][0]
-        paths = os.path.join(public.ATTACH_ROOT, '%s' % self.usr_id_p)
+        paths = os.path.join(ATTACH_ROOT, '%s' % self.usr_id_p)
 
         img_path = os.path.join(paths, filename)
 
@@ -332,14 +332,14 @@ class cBASE_DL(cMODEL_DL):
             return dR
         aid,cname=l[0]
 
-        q = Auth(self.qiniu_access_key, self.qiniu_secret_key)
-        bucket_name = self.qiniu_bucket_name
+        q = Auth(self.oss_access_key, self.oss_secret_key)
+        bucket_name = self.oss_bucket_name
 
         bucket = BucketManager(q)
         ret, info = bucket.stat(bucket_name, cname)
         if ret == None:
-            q = Auth(self.qiniu_access_key_all, self.qiniu_secret_key_all)
-            bucket_name = self.qiniu_bucket_name_all
+            q = Auth(self.oss_access_key_all, self.oss_secret_key_all)
+            bucket_name = self.oss_bucket_name_all
             bucket = BucketManager(q)
             ret, info = bucket.stat(bucket_name, cname)
             if ret == None:
@@ -547,7 +547,7 @@ class cBASE_DL(cMODEL_DL):
         secret = mall.get('secret', '')
         wx_mch_id = mall.get('mchid', '')
         wx_mch_key = mall.get('mchkey', '')
-        base_url = mall.get('base_url', '')  # 'https://malishop.janedao.cn'
+        base_url = self.base_url  # 'https://malishop.janedao.cn'
         api_cert_path = mall.get('cert', '')
         api_key_path = mall.get('key', '')
 

@@ -21,6 +21,8 @@ class clogin(cVI_BASE):
         self.dl_name = ''
 
     def goPartList(self):
+
+
         a = "无法登录，请联系管理员!"
         aaa = self.dl.get_QR_code_url('login_code')
         if aaa != '':
@@ -76,7 +78,6 @@ class clogin(cVI_BASE):
         self.login_log(login_status= '失败', usr_id='0', login_id=login_id, login_type='PC',login_ip=login_ip)
         dR['MSG'] = '用户名或密码错误！'
         return self.jsons(dR)
-
 
 
     # 登录时插入数据库表login_log的函数
