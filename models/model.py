@@ -1791,7 +1791,9 @@ class platform_conf(Base):
 
     id = Column(Integer, primary_key = True, nullable=False,autoincrement=True,index=True)
     base_url = Column(Text,  nullable=True,comment='平台微信支付回调地址')
+    back_url = Column(Text, nullable=True, comment='VIP微信支付回调地址')
     try_days = Column(Integer, nullable=True, comment='注册体验时间')
+    invite_days = Column(Integer, nullable=True, comment='邀请注册赠送时间')
     vip_days = Column(Integer, nullable=True, comment='被邀请人付费后赠送时间')
     combo_one_name = Column(Text, nullable=True, comment='付费套餐一名称')
     combo_one_price = Column(Float, nullable=True, comment='付费套餐一价格')
