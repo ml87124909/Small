@@ -756,7 +756,7 @@ class cBASE_TPL(cVI_BASE):
             return self.jsons({'code': 901, 'msg': dR['MSG']})
         wechat_user_id = dR['wechat_user_id']
         sql = """
-            select id,cname as name,apply_ext_num as money,type_str as type,remark,icons,pics,
+            select id,cname as name,COALESCE(apply_ext_num,0) as money,type_str as type,remark,icons,pics,
             case when to_char(now(),'YYYY-MM-DD')<case when use_time=1 then 
                     to_char(to_char(ctime,'YYYY-MM-DD') ::timestamp + (validday || ' day')::interval,'YYYY-MM-DD')
             	else to_char(date_end,'YYYY-MM-DD')end and COALESCE(state,0)=0 then 0 
@@ -794,10 +794,11 @@ class cBASE_TPL(cVI_BASE):
                 return self.jsons({'code': 700, 'msg': '订单中存在已下架的商品，请重新下单。'})
             if str(l[0][0]) == '1':
                 return self.jsons({'code': 700, 'msg': '订单中存在已下架的商品，请重新下单。'})
-
-            good_dict = self.db.fetch(
-                "select cname,pic,minprice,COALESCE(stores,0)stores,COALESCE(weight,0)weight,pt_price from goods_info where id=%s",
-                good_id)
+            sql="""
+                select cname,pic,COALESCE(minprice,0)minprice,COALESCE(stores,0)stores,
+                COALESCE(weight,0)weight,COALESCE(pt_price,0)pt_price from goods_info where id=%s
+            """
+            good_dict = self.db.fetch(sql,[good_id])
             amount = int(each_goods['buy_number'])  # 购买数量
             limited=int(l[0][1])
             if limited>0:
@@ -814,7 +815,8 @@ class cBASE_TPL(cVI_BASE):
         L, D = [], []
         for i in lT:
             max_money=i.get('max_money')
-            if goods_price >= float(max_money):
+            min_money = i.get('money')
+            if goods_price >= float(max_money) and goods_price >= float(min_money):
                 L.append(i)
 
         for j in L:
