@@ -39,7 +39,7 @@ input:focus{
     outline:none;/*去除蓝色边框*/
 }
 .yjyzj{
-width:420px;height:80px;margin-left: -225px;text-align: center;
+width:420px;height:80px;margin-left: -225px;text-align:center;
 }
 .yjr{
 width:99%;height:20px;position:absolute;text-align:center;font-size:13px;color:#333333;
@@ -50,8 +50,8 @@ width:99%;height:20px;position:absolute;text-align:center;font-size:13px;color:#
 	<div class="login-body" style="overflow:hidden;">
 		<div class="login-main-div box-shadow-3" style="position:relative;">
 		  <div class="aside-xxl" style="position:absolute;left:50%;">
-	        <div class="yjyzj">
-				<h3>阳江云之家</h3>
+	        <div class="yjyzj" >
+				<h3>Small商城SAAS版</h3>
 	        </div>
 				<!--login-->
 				  <form action="admin" method="POST" onsubmit="return go_re()" target="_top" name="frmMain" style="margin-left: -200px;text-align: center;margin-top: -50px;">
@@ -65,17 +65,19 @@ width:99%;height:20px;position:absolute;text-align:center;font-size:13px;color:#
 							<input type="text"  name="qrcode" autocomplete="off"  class="cinput inputPassword" style="width:75%;margin-left:-8%;border-left:1px solid rgb(0,129,0);background: rgba(0,0,0,0);" placeholder="输入微信验证码">
 						</div>
 						<div style="width:90%;color:red;">
-							<a href="/admin?viewid=login&part=Ladmin" class="z">管理员登录</a>
+							<a href="/admin?viewid=login&part=Account" class="z">管理员登录</a>
 						</div>
 						<button type="button"  name="submit"  id='sbt_save' class="cinput2" onclick="go_re()" style="background:rgb(0,129,0);width:90%;margin-top:9px;">登&emsp;录</button>
-						<input type="hidden" name="token" value="2399c5e8" />
+
 				  </form>
 				<!--login end-->
 			</div>							
 		</div>
+		{#
 		<div class="yjr">
 			粤ICP备15060984号-1<br>粤ICP备18084409号-1
 		</div>
+		#}
 	</div>	
 </body>
 
@@ -109,6 +111,7 @@ width:99%;height:20px;position:absolute;text-align:center;font-size:13px;color:#
                     },3000);
                 }else{
                     layer.msg(res.MSG);
+                    return false;
                 }
             }
         });
