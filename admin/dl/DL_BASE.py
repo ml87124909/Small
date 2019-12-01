@@ -26,6 +26,7 @@ class cDL_BASE(cDL):
         self.PEM_ROOTR = PEM_ROOTR
         self.objHandle = objHandle
         self.db = db
+        self.qr_ticket = ''
         self._http=_http
         self.cookie = set_cookie(self.objHandle, CLIENT_NAME)
         self.dActiveUser = {}
