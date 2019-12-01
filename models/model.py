@@ -885,6 +885,7 @@ class order_exchange_detail(Base):
     good_name = Column(Text, nullable=True)
     pic = Column(Text, nullable=True)
     spec = Column(Text, nullable=True)
+    price = Column(Float, nullable=True)
     random_no = Column(Text, nullable=True, index=True)
     del_flag = Column(SMALLINT, nullable=True)
     cid = Column(Integer, nullable=True)
