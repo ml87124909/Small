@@ -660,8 +660,9 @@ class chome(cBASE_LOC):
             if str(l[0][0])=='1':
                 dR = 2
                 return 0,0,0, 0, 0, 0, dR
-            sqlg = """select cname,pic, COALESCE(minprice,0), COALESCE(originalprice,0)
-                ,COALESCE(stores,0)stores,COALESCE(weight,0)weight,COALESCE(pt_price,0) from goods_info where id=%s"""
+            sqlg = """select cname,pic, COALESCE(minprice,0)minprice, COALESCE(originalprice,0)originalprice
+                ,COALESCE(stores,0)stores,COALESCE(weight,0)weight,COALESCE(pt_price,0)pt_price 
+                from goods_info where id=%s"""
             good_dict=self.db.fetch(sqlg,good_id)
             amount = int(each_goods['buy_number'])  # 购买数量
             limited=int(l[0][1])
