@@ -14,15 +14,7 @@
 						<input type="text" class="form-control" value="{{info.login_id}}" name="login_id" />
 						</td>
 					</tr>
-					<tr>
-						<th>
-						<label>原始密码</label>
-						</th>
-						<td>
-						<input type="password" class="form-control" value="" name="oldpassword"  />
-						<span style="display:none;" id="oldpassword_msg"  ></span>
-						</td>
-					</tr>
+
 					<tr>
 						<th>
 						<label>修改密码</label>
@@ -83,23 +75,6 @@ label {
 
 {% block page_script %}
 <script>
-	function pay_search(uid){
-		$.ajax({
-			url:"admin?viewid=H001&part=search&uid=" + uid
-			,dataType:'json'
-			,async:false
-			,success:function(res){
-				if (res.code=='0'){
-                  	layer.msg(res.MSG);
-                    setTimeout(function(){
-                      location.reload();
-                    },3000);
-                }else{
-                    layer.msg(res.MSG);
-                }
-			}
-		});
-	}
 
 	function testPassStrong(passText){
 		var textStr=passText.value;

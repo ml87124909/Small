@@ -27,7 +27,6 @@ class cH001_dl(cBASE_DL):
     def local_add_save(self):
         dR={'code':'','MSG':'保存成功'}
         login_id = self.GP('login_id','')
-        oldpassword = self.GP('oldpassword','')
         password = self.GP('password','')
         password2 = self.GP('password2','')
 
@@ -51,8 +50,8 @@ class cH001_dl(cBASE_DL):
                 dR['code'] = '1'
                 dR['MSG'] = '确认密码必须和新密码相同'
                 return dR
-            sql = "select usr_id from users where usr_id = %s and coalesce(passwd,'') = %s;"
-            l, t = self.db.select(sql, [self.usr_id, oldpassword])
+            sql = "select usr_id from users where usr_id = %s;"
+            l, t = self.db.select(sql, [self.usr_id])
             if t> 0:
                 sql = "update users set login_id=encrypt(%s,%s,'aes'),password= crypt(%s, gen_salt('md5')) where usr_id=%s"
                 parm = [login_id, self.md5code, password, self.usr_id]
@@ -60,18 +59,6 @@ class cH001_dl(cBASE_DL):
                 self.use_log('修改个人帐号%s' % self.usr_id)
                 return dR
 
-            sql="select usr_id from users where usr_id = %s and passwd = crypt(%s, password);"
-            l,t=self.db.select(sql,[self.usr_id,oldpassword])
-            if t==0:
-                dR['code'] = '1'
-                dR['MSG'] = '您的旧密码输入错误'
-                return dR
-
-            sql = "update users set login_id=encrypt(%s,%s,'aes'),password= crypt(%s, gen_salt('md5')) where usr_id=%s"
-            parm=[login_id,self.md5code,password, self.usr_id]
-            self.db.query(sql,parm)
-            self.use_log('修改个人帐号%s' % self.usr_id)
-            return dR
 
         sql = "update users set login_id=encrypt(%s,%s,'aes')  where usr_id=%s"
         parm = [login_id, self.md5code, self.usr_id]
