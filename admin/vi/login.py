@@ -250,9 +250,9 @@ class clogin(cVI_BASE):
             usr_id = ll[0][0]
             sqlu = """
                 update users set dept_id=%s where usr_id=%s;
-                insert into usr_role (usr_id ,role_id,usr_name ,dept_id,cid ,ctime) 
-                values (%s,2 ,%s,%s,0 ,now())"""
-            parmu = [usr_id, usr_id, usr_id, wx_openid, usr_id]
+                insert into usr_role (usr_id ,role_id,usr_name,cid ,ctime) 
+                values (%s,2 ,%s,0 ,now());"""
+            parmu = [usr_id, usr_id, usr_id, wx_openid]
             self.dl.db.query(sqlu, parmu)
             self.dl.oQINIU.update(usr_id)
             sql = """select usr_id,wx_openid 
