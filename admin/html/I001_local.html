@@ -1,4 +1,5 @@
 {% extends "local_mul.html" %}
+
 {% block MUL_BTNS %}
 {{BTNS}}
 {% endblock %}
@@ -8,196 +9,181 @@
       class="vbox form-horizontal form" name="frmMain" id="frmMain">
 {% endblock %}
 {% block mMul_Page_1 %}
-    <style>
-        #bgc {
-        background-color: cyan;
-        }
-    </style>
 <link href="static/web-uploader/css/uploader-image.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="static/web-uploader/js/Q.js"></script>
 <script type="text/javascript" src="static/web-uploader/js/Q.Uploader.js"></script>
 <script type="text/javascript" src="static/web-uploader/js/Q.Uploader.UI.Image.js"></script>
 <div class="panel-body">
-
     <div class="row">
-        <div class="col-sm-12" id="bgc">
-            <label ><b style="color:#333333;">平台微信登陆与收费设置</b></label>
+
+        <div class="col-sm-12">
+            <div class="form-group">
+                <label class="col-sm-2 control-label"><b style="color:#333333;">微信收费设置(也用于微信登录)：</b></label>
+                <label class="col-sm-3  control-label">平台微信登录:</label>
+                <div class="col-sm-1">
+                    <input type="checkbox" style="width:20px;height:20px;vertical-align:sub;"
+                           name="wx_status" value="1" {{'checked="checked"' if item.wx_status|string
+                    == '1'}}/>
+                    启用
+                </div>
+            </div>
         </div>
         <div class="col-sm-12">
             <div class="form-group">
                 <label class="col-sm-1 control-label">appid:</label>
                 <div class="col-sm-3">
-                    <input type="text" class="form-control" name="wx_appid" value="{{item.wx_appid}}"/>
+                    <input type="text" class="form-control" name="appid" value="{{item.appid}}" style="width:100%;"/>
                 </div>
                 <label class="col-sm-1 control-label">secret:</label>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" name="wx_secret" value="{{item.wx_secret}}" style="width:80%;"/>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" name="secret" value="{{item.secret}}" style="width:100%;"/>
                 </div>
             </div>
         </div>
-
-         <div class="col-sm-12">
+        <div class="col-sm-12">
             <div class="form-group">
                 <label class="col-sm-1 control-label">token:</label>
                 <div class="col-sm-3">
-                    <input type="text" class="form-control" name="wx_token" value="{{item.wx_token}}"/>
+                    <input type="text" class="form-control" name="wxtoken" value="{{item.wxtoken}}" style="width:100%;"/>
                 </div>
-                <label class="col-sm-1 control-label">aes_key:</label>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" name="wx_aeskey" value="{{item.wx_aeskey}}" style="width:80%;"/>
+                <label class="col-sm-1 control-label">AESKey:</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" name="wxaeskey" value="{{item.wxaeskey}}" style="width:100%;"/>
                 </div>
+
             </div>
         </div>
-
         <div class="col-sm-12">
             <div class="form-group">
                 <label class="col-sm-1 control-label">mchid:</label>
                 <div class="col-sm-3">
                     <input type="text" class="form-control" name="mchid" value="{{item.mchid}}"/>
                 </div>
-                <label class="col-sm-1 control-label">mchkey:</label>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" name="mchkey" value="{{item.mchkey}}" style="width:80%;"/>
+                 <label class="col-sm-1 control-label">mchkey:</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" name="mchkey" value="{{item.mchkey}}" style="width:100%;"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-1 control-label">VIP支付回调域名:</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" name="back_url" value="{{item.back_url}}" style="width:100%;"/>
+                </div>
+                <label class="col-sm-2 control-label">平台支付回调域名:</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" name="base_url" value="{{item.base_url}}" style="width:100%;"/>
                 </div>
             </div>
         </div>
+    </div>
 
+
+
+    <div class="row">
         <div class="col-sm-12">
             <div class="form-group">
-                <label class="col-sm-2 control-label">微信支付回调域名:</label>
-                <div class="col-sm-4">
-                    <input type="text" class="form-control" name="callback_url" value="{{item.callback_url}}"
-                           placeholder="https://setting.janedao.cn" style="width:300px;"/>
-                </div>
-                <label class="col-sm-2 control-label">小程序接口域名:</label>
-                <div class="col-sm-4">
-                    <input type="text" class="form-control" name="applet_url" value="{{item.applet_url}}"
-                           placeholder="https://api.janedao.cn" style="width:300px;"/>
-                </div>
+                <label ><b style="color:#333333;">套餐设置</b></label>
             </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-12" id="bgc">
-            <label><b style="color:#333333;">注册短信设置(腾讯短信接口)</b></label>
         </div>
         <div class="col-sm-12">
-            <div class="col-sm-2">
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">Appid:</label>
-                    <div class="col-sm-3">
-                        <input type="text" class="form-control" name="sms_appid" value="{{item.sms_appid}}" style="width:130px;"/>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-5">
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">AppKey:</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" name="sms_appkey" value="{{item.sms_appkey}}" style="width:100%;"/>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-3">
-                <div class="form-group">
-                    <label class="col-sm-5 control-label">短信模板id:</label>
-                    <div class="col-sm-3">
-                        <input type="text" class="form-control" name="sms_appcode" value="{{item.sms_appcode}}" />
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="col-sm-12" id="bgc">
-                <label ><b style="color:#333333;">VIP套餐设置</b></label>
-            </div>
             <div class="form-group">
                 <label class="col-sm-1 control-label">试用期(天):</label>
                 <div class="col-sm-2">
-                    <input type="number" class="form-control" name="try_out" value="{{item.try_out}}" />
+                    <input type="number" class="form-control" name="try_days" value="{{item.try_days or 0}}" />
+                </div>
+                <label class="col-sm-1 control-label">注册邀请赠送(天):</label>
+                <div class="col-sm-2">
+                    <input type="number" class="form-control" name="invite_days" value="{{item.invite_days or 0}}"/>
+                </div>
+                <label class="col-sm-1 control-label">VIP付费赠送(天):</label>
+                <div class="col-sm-2">
+                    <input type="number" class="form-control" name="vip_days" value="{{item.vip_days or 0}}"/>
                 </div>
             </div>
+        </div>
+        <div class="col-sm-12">
             <div class="form-group">
                 <div class="col-sm-12">
                     <label ><b style="color:#333333;">套餐一:</b></label>
                 </div>
-                <div class="col-sm-12">
-                    <label class="col-sm-1 control-label">名称:</label>
-                    <div class="col-sm-1">
-                        <input type="text" class="form-control" name="combo_one_name" value="{{item.combo_one_name}}" style="width:100px;"/>
-                    </div>
-                    <label class="col-sm-1 control-label">价格(元):</label>
-                    <div class="col-sm-1">
-                        <input type="text" class="form-control" name="combo_one_price" value="{{item.combo_one_price}}" style="width:70px;"/>
-                    </div>
-                    <label class="col-sm-1 control-label">时长(天):</label>
-                    <div class="col-sm-1">
-                        <input type="number" class="form-control" name="combo_one_day" value="{{item.combo_one_day}}" style="width:70px;"/>
-                    </div>
-                    <label class="col-sm-1 control-label">介绍:</label>
-                    <div class="col-sm-5">
-                        <input type="text" class="form-control" name="combo_one_txt" value="{{item.combo_one_txt}}" style="width:95%;"/>
-                    </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-1 control-label">名称:</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" name="combo_one_name" value="{{item.combo_one_name}}" />
+                </div>
+                <label class="col-sm-1 control-label">价格(元):</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" name="combo_one_price" value="{{item.combo_one_price}}"/>
+                </div>
+                <label class="col-sm-1 control-label">时长(天):</label>
+                <div class="col-sm-2">
+                    <input type="number" class="form-control" name="combo_one_day" value="{{item.combo_one_day}}" />
                 </div>
             </div>
-
+             <div class="form-group">
+                 <label class="col-sm-1 control-label">介绍:</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" name="combo_one_txt" value="{{item.combo_one_txt}}" style="width:100%;"/>
+                </div>
+             </div>
+        </div>
+        <div class="col-sm-12">
             <div class="form-group">
                 <div class="col-sm-12">
                     <label ><b style="color:#333333;">套餐二:</b></label>
                 </div>
-                <div class="col-sm-12">
-                    <label class="col-sm-1 control-label">名称:</label>
-                    <div class="col-sm-1">
-                        <input type="text" class="form-control" name="combo_two_name" value="{{item.combo_two_name}}" style="width:100px;"/>
-                    </div>
-                    <label class="col-sm-1 control-label">价格(元):</label>
-                    <div class="col-sm-1">
-                        <input type="text" class="form-control" name="combo_two_price" value="{{item.combo_two_price}}" style="width:70px;"/>
-                    </div>
-                    <label class="col-sm-1 control-label">时长(天):</label>
-                    <div class="col-sm-1">
-                        <input type="number" class="form-control" name="combo_two_day" value="{{item.combo_two_day}}" style="width:70px;"/>
-                    </div>
-                    <label class="col-sm-1 control-label">介绍:</label>
-                    <div class="col-sm-3">
-                        <input type="text" class="form-control" name="combo_two_txt" value="{{item.combo_two_txt}}" style="width:95%;"/>
-                    </div>
-                    <label class="col-sm-1">
-                        <input type="checkbox" style="width:20px;height:20px;vertical-align:sub;"
-                               name="combo_two_status" value="1" {{'checked="checked"' if item.combo_two_status|string
-                        == '1'}}/>
-                        启用
-                    </label>
+            </div>
+            <div class="form-group">
 
+                <label class="col-sm-1 control-label">名称:</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" name="combo_two_name" value="{{item.combo_two_name}}" />
+                </div>
+                <label class="col-sm-1 control-label">价格(元):</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" name="combo_two_price" value="{{item.combo_two_price}}" />
+                </div>
+                <label class="col-sm-1 control-label">时长(天):</label>
+                <div class="col-sm-2">
+                    <input type="number" class="form-control" name="combo_two_day" value="{{item.combo_two_day}}" />
+                </div>
+                <label class="col-sm-1">
+                    <input type="checkbox" style="width:20px;height:20px;vertical-align:sub;"
+                           name="combo_two_status" value="1" {{'checked="checked"' if item.combo_two_status|string
+                    == '1'}}/>
+                    启用
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-1 control-label">介绍:</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" name="combo_two_txt" value="{{item.combo_two_txt}}" style="width:100%;"/>
                 </div>
             </div>
-
+        </div>
+        <div class="col-sm-12">
             <div class="form-group">
                 <div class="col-sm-12">
                     <label ><b style="color:#333333;">套餐三:</b></label>
                 </div>
+            </div>
+            <div class="form-group">
                 <div class="col-sm-12">
                     <label class="col-sm-1 control-label">名称:</label>
-                    <div class="col-sm-1">
-                        <input type="text" class="form-control" name="combo_thr_name" value="{{item.combo_thr_name}}" style="width:100px;"/>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" name="combo_thr_name" value="{{item.combo_thr_name}}" />
                     </div>
                     <label class="col-sm-1 control-label">价格(元):</label>
-                    <div class="col-sm-1">
-                        <input type="text" class="form-control" name="combo_thr_price" value="{{item.combo_thr_price}}" style="width:70px;"/>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" name="combo_thr_price" value="{{item.combo_thr_price}}" />
                     </div>
                     <label class="col-sm-1 control-label">时长(天):</label>
-                    <div class="col-sm-1">
-                        <input type="number" class="form-control" name="combo_thr_day" value="{{item.combo_thr_day}}" style="width:70px;"/>
+                    <div class="col-sm-2">
+                        <input type="number" class="form-control" name="combo_thr_day" value="{{item.combo_thr_day}}" />
                     </div>
-                    <label class="col-sm-1 control-label">介绍:</label>
-                    <div class="col-sm-3">
-                        <input type="text" class="form-control" name="combo_thr_txt" value="{{item.combo_thr_txt}}" style="width:95%;"/>
-                    </div>
+
                     <label class="col-sm-1">
                         <input type="checkbox" style="width:20px;height:20px;vertical-align:sub;"
                                name="combo_thr_status" value="1" {{'checked="checked"' if item.combo_thr_status|string
@@ -206,12 +192,22 @@
                     </label>
                 </div>
             </div>
-        </div>
-    </div>
+            <div class="form-group">
+                <label class="col-sm-1 control-label">介绍:</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" name="combo_thr_txt" value="{{item.combo_thr_txt}}" style="width:100%;"/>
+                </div>
+            </div>
 
+        </div>
+
+        </div>
+
+    </div>
+    {#
     <div class="row">
         <div class="col-sm-12">
-            <div class="col-sm-12" id="bgc">
+            <div class="col-sm-12">
                 <label><b style="color:#333333;">存储包设置</b></label>
             </div>
 
@@ -225,8 +221,8 @@
                         <input type="number" class="form-control" name="oss_one_size" value="{{item.oss_one_size}}"/>
                     </div>
                     <label class="col-sm-1 control-label">价格(元):</label>
-                    <div class="col-sm-2">
-                        <input type="text" class="form-control" name="oss_one_price" value="{{item.oss_one_price}}" />
+                    <div class="col-sm-1">
+                        <input type="text" class="form-control" name="oss_one_price" value="{{item.oss_one_price}}"/>
                     </div>
                     <label class="col-sm-1 control-label">时长(天):</label>
                     <div class="col-sm-1">
@@ -246,7 +242,7 @@
                         <input type="number" class="form-control" name="oss_two_size" value="{{item.oss_two_size}}"/>
                     </div>
                     <label class="col-sm-1 control-label">价格(元):</label>
-                    <div class="col-sm-2">
+                    <div class="col-sm-1">
                         <input type="text" class="form-control" name="oss_two_price" value="{{item.oss_two_price}}"/>
                     </div>
                     <label class="col-sm-1 control-label">时长(天):</label>
@@ -267,7 +263,7 @@
                         <input type="number" class="form-control" name="oss_thr_size" value="{{item.oss_thr_size}}"/>
                     </div>
                     <label class="col-sm-1 control-label">价格(元):</label>
-                    <div class="col-sm-2">
+                    <div class="col-sm-1">
                         <input type="text" class="form-control" name="oss_thr_price" value="{{item.oss_thr_price}}"/>
                     </div>
                     <label class="col-sm-1 control-label">时长(天):</label>
@@ -280,38 +276,12 @@
         </div>
 
     </div>
-
+    #}
     <div class="row">
-        <div class="col-sm-12">
-            <div class="col-sm-12" id="bgc">
-                <label><b style="color:#333333;">平台促销设置</b></label>
-            </div>
-
-            <div class="form-group">
-                <div class="col-sm-12">
-                    <label class="col-sm-2 control-label">填写正确邀请码增加天数:</label>
-                    <div class="col-sm-1">
-                        <input type="number" class="form-control" name="invite_days" value="{{item.invite_days}}" style="width:100px;"/>
-                    </div>
-                    <label class="col-sm-3 control-label">被邀请人首次付费增加天数:</label>
-                    <div class="col-sm-1">
-                        <input type="number" class="form-control" name="pay_days" value="{{item.pay_days}}" style="width:100px;"/>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-12" id="bgc">
-            <label><b style="color:#333333;">其他设置</b></label>
-        </div>
-        <div class="col-sm-12">
-            <div class="form-group">
-                <label class="col-sm-2 control-label">平台备份数据库名:</label>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" name="dbname" value="{{item.dbname}}"/>
-                </div>
+        <div class="form-group">
+            <label class="col-sm-1 control-label"><b style="color:#333333;">备份的数据库名:</b></label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" name="dbname" value="{{item.dbname}}"/>
             </div>
         </div>
     </div>
@@ -319,38 +289,21 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="form-group">
-                <label class="col-sm-2 control-label">顶部消息:</label>
+                <label class="col-sm-1 control-label"><b style="color:#333333;">顶部消息:</b></label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="notices" value="{{item.notices}}" style="width:90%;"/>
+                    <input type="text" class="form-control" name="notices" value="{{item.notices}}"/>
                 </div>
             </div>
         </div>
         <div class="col-sm-12">
             <div class="form-group">
-                <label class="col-sm-2 control-label">滚动消息:</label>
+                <label class="col-sm-1 control-label"><b style="color:#333333;">滚动消息:</b></label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="memo" value="{{item.memo}}" style="width:90%;"/>
+                    <input type="text" class="form-control" name="memo" value="{{item.memo}}"/>
                 </div>
             </div>
         </div>
-
-
-        <div class="col-sm-12">
-            <div class="form-group">
-                <label class="col-sm-2 control-label">商家助手:</label>
-                <label class="col-sm-1 control-label">appid:</label>
-                <div class="col-sm-3">
-                    <input type="text" class="form-control" name="help_appid" value="{{item.help_appid}}"/>
-                </div>
-                <label class="col-sm-1 control-label">secret:</label>
-                <div class="col-sm-4">
-                    <input type="text" class="form-control" name="help_secret" value="{{item.help_secret}}"/>
-                </div>
-            </div>
-        </div>
-
     </div>
-
 </div>
 <script>
 
@@ -365,7 +318,7 @@
         formatSize = Q.formatSize,
         boxView = document.getElementById(""+divs[i]+"")
         var uploader = new Uploader({
-            url: '/upload?viewid={{viewid}}&part=Pem',
+            url: '/admin?viewid=H009&part=Pem_upload',
             target: document.getElementById(""+self+""),
             //view: boxView,//如果去掉这个，会导致压缩效果不好
             //将auto配置为false以手动上传
@@ -412,31 +365,31 @@
             <table class="table table-bordered addRowtb" name="detail">
                 <thead>
                 <tr bgcolor="#ffffff">
-                    <th style="text-align:center;width:60px;">订单ID</th>
+                    <th style="text-align:center;width:80px;">订单ID</th>
+                    <th style="text-align:center;width:80px;">订单号</th>
                     <th style="text-align:center;width:60px;">用户ID</th>
-                    <th style="text-align:center;width:150px;">订单号</th>
-                    <th style="text-align:center;width:50px;">类型</th>
-                    <th style="text-align:center;width:60px;">支付金额</th>
-                    <th style="text-align:center;width:160px;">支付时间</th>
+                    <th style="text-align:center;width:80px;">用户名</th>
+                    <th style="text-align:center;width:80px;">支付金额</th>
+                    <th style="text-align:center;width:260px;">支付时间</th>
                     <th style="text-align:center;width:80px;">支付套餐</th>
-                    <th style="text-align:center;width:90px;">提交时间</th>
                     <th style="text-align:center;width:90px;">到期时间</th>
-                    <th style="text-align:center;width:90px;">查询</th>
+                    <th style="text-align:center;width:90px;">操作</th>
                 </tr>
                 </thead>
                 <tbody>
 
                 {% for row in dataList %}
                 <tr>
-                    {% for e in row%}
+                    {% for e in row[:-1]%}
 
                     <td style="text-align:center;">{{e}}</td>
 
                     {% endfor %}
                     <td style="text-align:center;">
                         {%if row[-1]==0%}
-                        <a class="btn btn-xs btn-info" onclick="pay_search({{row[0]}})" title="编辑"><i class="fa fa-search">查询</i></a>
-                    	{%endif%}
+                        <a class="btn btn-xs btn-info" onclick="pay_search({{row[0]}})" title="编辑"><i
+                                class="fa fa-search">查询</i></a>
+                        {%endif%}
                     </td>
 
                 </tr>
@@ -449,25 +402,26 @@
     </div>
 
 </div>
+    <script>
+    function pay_search(uid){
+        $.ajax({
+            url:"admin?viewid=H001&part=search&uid=" + uid
+            ,dataType:'json'
+            ,async:false
+            ,success:function(res){
+                if (res.code=='0'){
+                    layer.msg(res.MSG);
+                    setTimeout(function(){
+                      location.reload();
+                    },3000);
+                }else{
+                    layer.msg(res.MSG);
+                }
+            }
+        });
+    }
 
-<script>
-
-function pay_search(uid){
-
-	$.ajax({
-        url:"admin?viewid=I001&part=search&uid=" + uid
-        ,dataType:'json'
-        ,async:false
-        ,success:function(res){
-
-            layer.msg(res.MSG)
-
-        }
-
-    });
-
-}
-</script>
+    </script>
 {% endblock %}
 
     {% block mMul_Page_3 %}

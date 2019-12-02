@@ -86,6 +86,9 @@
             content_html+='</div></div><br><br>';
              content_html+='<div class="col-sm-10"><div class="col-sm-5" style="float:right;">';
             content_html+='<img src="'+itemdata.cicon+'" id="icon" class="col-sm-12" />';
+            if(itemdata.cicon!=''){
+                content_html+='<a href="javascript:" onclick="deletePic()">[删除]</a>';
+            }
             content_html+='<input type="hidden" name="url" value="'+itemdata.cicon+'"/>';
             content_html+='</div></div><br><br>';
             content_html+='<div class="col-sm-10">';
@@ -97,6 +100,7 @@
             content_html+='var reader = new FileReader();reader.readAsDataURL(file);';
             content_html+='reader.onload=function(e){$("#icon").get(0).src = e.target.result;';
             content_html+='uploader.add(file);uploader.start();}}';
+            content_html+='function deletePic(){$("#icon").get(0).src="";$("input[name=url]").val("");}';
             content_html+='<\/script>';
             content_html+='</form>';
 

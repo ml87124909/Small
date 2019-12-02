@@ -143,12 +143,9 @@ class cC002_dl(cBASE_DL):
                 dR['MSG'] = '规格名称有重复'
                 return dR
             try:
-                if url == '':
-                    sql = "update spec set ctype=%s,cname=%s,sort=%s,uid=%s,utime=now() where id=%s "
-                    self.db.query(sql, [ctype, cname, sort or None, self.usr_id, id])
-                else:
-                    sql = "update spec set ctype=%s,cicon=%s,cname=%s,sort=%s,uid=%s,utime=now() where id=%s "
-                    self.db.query(sql, [ctype, url, cname, sort or None, self.usr_id, id])
+
+                sql = "update spec set ctype=%s,cicon=%s,cname=%s,sort=%s,uid=%s,utime=now() where id=%s "
+                self.db.query(sql, [ctype, url, cname, sort or None, self.usr_id, id])
                 dR['MSG'] = '修改规格成功'
                 self.oGOODS_D.update(self.usr_id_p)
                 self.oGOODS.update(self.usr_id_p)
@@ -197,13 +194,10 @@ class cC002_dl(cBASE_DL):
         else:
             try:
                 dR['MSG'] = '修改规格子属性成功'
-                if url == '':
-                    sql = "update spec_child set ctype_c=%s,cname_c=%s,sort_c=%s,uid=%s,utime=now() where id=%s "
-                    self.db.query(sql, [ctype, cname, sort, self.usr_id,id])
-                else:
-                    sql = """update spec_child set ctype_c=%s,cicon_c=%s,
-                        cname_c=%s,sort_c=%s,uid=%s,utime=now() where id=%s """
-                    self.db.query(sql, [ctype, url, cname, sort or None, self.usr_id, id])
+
+                sql = """update spec_child set ctype_c=%s,cicon_c=%s,
+                    cname_c=%s,sort_c=%s,uid=%s,utime=now() where id=%s """
+                self.db.query(sql, [ctype, url, cname, sort or None, self.usr_id, id])
                 self.oGOODS_D.update(self.usr_id_p)
                 self.oGOODS.update(self.usr_id_p)
                 self.oGOODS_N.update(self.usr_id_p)

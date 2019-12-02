@@ -21,13 +21,13 @@ class clogin(cVI_BASE):
         self.dl_name = ''
 
     def goPartList(self):
-        #a = "无法登录，请联系管理员!"
-        #aaa = self.dl.get_QR_code_url('login_code')
-        #if aaa != '':
-        a = '<img src="http://cdn.janedao.cn/8d00854cae231e90310a61d45100b6eb.jpg" style="width:150px;height:150px;">'
-        self.assign('aaa', a)
-        return self.runApp('qrimg.html')
-        #return self.runApp('login.html')
+        a = "无法登录，请联系管理员!"
+        aaa = self.dl.get_QR_code_url('login_code')
+        if aaa != '':
+            a = '<img src="%s" style="width:150px;height:150px;">' % aaa
+            self.assign('aaa', a)
+            return self.runApp('qrimg.html')
+        return self.runApp('login.html')
     
     def goPartDologin(self):
         dR={'code':'1','MSG':''}

@@ -660,7 +660,9 @@ class chome(cBASE_LOC):
             if str(l[0][0])=='1':
                 dR = 2
                 return 0,0,0, 0, 0, 0, dR
-            sqlg = "select cname,pic,minprice,originalprice,COALESCE(stores,0)stores,COALESCE(weight,0)weight,pt_price from goods_info where id=%s"
+            sqlg = """select cname,pic, COALESCE(minprice,0)minprice, COALESCE(originalprice,0)originalprice
+                ,COALESCE(stores,0)stores,COALESCE(weight,0)weight,COALESCE(pt_price,0)pt_price 
+                from goods_info where id=%s"""
             good_dict=self.db.fetch(sqlg,good_id)
             amount = int(each_goods['buy_number'])  # 购买数量
             limited=int(l[0][1])
@@ -711,7 +713,8 @@ class chome(cBASE_LOC):
         coupon_name=''
 
         if couponid != '' and couponid!='null':
-            sqlc="""select cname,apply_ext_money,apply_ext_num,to_char(datestart,'YYYY-MM-DD'),to_char(date_end,'YYYY-MM-DD'),
+            sqlc="""select cname,COALESCE(apply_ext_money,0), COALESCE(apply_ext_num,0)
+                    ,to_char(datestart,'YYYY-MM-DD'),to_char(date_end,'YYYY-MM-DD'),
                     COALESCE(apply_id,0),goods_id , COALESCE(use_time,0),validday,
                     date_part('day', to_char(now(),'YYYY-MM-DD')::timestamp - to_char(ctime,'YYYY-MM-DD')::timestamp)
                 from my_coupons where id=%s and wechat_user_id=%s and usr_id=%s"""
@@ -720,7 +723,7 @@ class chome(cBASE_LOC):
             if t>0:
 
                 coupon_name,apply_ext_money, apply_ext_num, datestart,dateend,apply_id, apply_goods_id, use_time, validday,yday=l[0]
-                if goods_price>=float(apply_ext_money):
+                if float(goods_price)>=float(apply_ext_money):
 
                     if self.getToday(6)<= dateend:
 
@@ -767,10 +770,8 @@ class chome(cBASE_LOC):
         vip_total=0
         total = round(goods_price + logistics_price - coupon_price, 2)
         if vip_state==1:
-            #vip_p=goods_price*vip_sale - coupon_price
-            #vip_price='%.2f' %a#round(total*vip_sale,2)
+
             vip_price =round((goods_price- coupon_price)*vip_sale,2)
-            #vip_total = round((goods_price - coupon_price) * vip_sale + logistics_price, 2)
             vip_total = round(vip_price + logistics_price, 2)
 
         coupon=[coupon_name,coupon_price]
@@ -1128,7 +1129,7 @@ class chome(cBASE_LOC):
         secret = mall['secret']
         wechat_pay_id=mall['mchid']
         wechat_pay_secret=mall['mchkey']
-        base_url = mall['base_url']
+        base_url = self.base_url
         if base_url=='':
             return self.jsons({'code': 404, 'msg': '请到店铺设置填写小程序设置的支付回调域名'})
 

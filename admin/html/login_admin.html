@@ -1,0 +1,142 @@
+<html>
+<style>
+	
+ul,li{list-style-type: none;}
+.logo-login{
+  float:left;
+}
+body{background-color: #fff;
+	background-size: 100%;
+}
+.login-main-div {
+  width: 500px;
+  height: 400px;
+  margin: 0 auto;
+  padding-top:1%;
+  margin-top: 5%;
+  border-radius:15px;
+}
+.aside-xxl{float: left;
+  height:330px;margin: auto;
+}
+.log-title{color:#004d85; font-size: 24px; font-weight:bold;width: 360px;margin-bottom:15px;}
+
+.aside-xxl .cinput{font-size:16px;border-radius:0px;border:0px;background:#fff;width:100%;height:40px;padding-left:8px;width: 90%;}
+#sbt_save{background:url(static/assets/images/dl.png) no-repeat center;color:#fff;margin-top:20px;}
+#sbt_remake{background:rgb(0, 174, 240);margin-left:20px;color:#fff;}
+
+.log-title2{float: left; color:#004d85; font-size: 24px; font-weight:bold;border-bottom:1px solid #959595;width: 250px;height:42px;margin-bottom:0px;}
+.lbtn{float: left;background:#4ab332;color:#fff;font-size:16px;border:1px solid #dbd7d6;border-radius:5px;width:110px;height:41px;padding-right:6px;}
+.aside-xxl .cinput2{font-size:16px;border-radius:0px;border:0px;background:#fff;width:100px;height:35px;padding-left:8px;font-size: 16px;border-radius:10px;cursor: pointer; }
+.aside-xxl .cinputimg{font-size:16px;border-radius:0px;border:0px;background:#fff;width:100px;height:35px;padding-left:8px;font-size: 16px;border-radius:10px;cursor: pointer; }
+.box-shadow-3{
+	-webkit-box-shadow: 0 0 25px rgb(158,211,249);
+	-moz-box-shadow:0 0 25px rgb(158,211,249);
+	box-shadow: 0 0 25px rgb(158,211,249);
+}
+input:focus{
+    border:0;/*这里你可以自己调节边框样式*/
+    outline:none;/*去除蓝色边框*/
+}
+/* input[type=checkbox]:after  {  
+    content: "";   
+    display:block;  
+    width: 16px;  
+    height: 16px;  
+    text-align: center;  
+    line-height: 14px;  
+    font-size: 16px;  
+	color: #37AF6E;  
+    border: 2px solid #ddd;  
+    background-color: #37AF6E;  
+    box-sizing:border-box;  
+}  
+input[type=checkbox]:checked:after  {  
+    border: 2px solid #ddd;
+    color: #37AF6E;  
+    background-color: #37AF6E; 
+} */
+</style>
+
+<body>
+	<div class="login-body" style="overflow:hidden;">
+		<div class="login-main-div box-shadow-3" style="position:relative;">
+		  <div class="aside-xxl" style="position:absolute;left:50%;">
+	        <div style="width:420px;height:150px;margin-left: -225px;text-align:center;">
+				<h2>Small商城SAAS版</h2>
+				<div style="width:73px;height: 73px;float:left;">
+				   <img src="static/assets/images/admin_Logo.png" style="width:73px;height:73px;margin-left: 190px"/>
+				</div>
+
+	        </div>
+				<!--login-->
+				  <form onsubmit="return formcheck(this)" action="admin" method="POST" name="frmMain" style="margin-left: -200px;text-align: center;margin-top: -20px;">
+
+						<div class="log-title" style="margin: 15px auto;border: 1px solid rgb(0,129,0);border-radius: 5px;width: 90%;">
+                            <img src="static/assets/images/ykm.png" height="40px" style="float: left;position: relative;background-size: 100% 100%;width: 30px;height: 30px;padding: 5px;">
+							<input type="text" name="inputname" autocomplete="off" class="cinput login_id" style="width:75%;margin-left: -8%;border-left: 1px solid rgb(0,129,0);background: rgba(0,0,0,0);" placeholder="输入用户名">
+						</div>
+
+						<div class="log-title" style="margin: 15px auto;border: 1px solid rgb(0,129,0);border-radius: 5px;width: 90%;">
+                            <img src="static/assets/images/mima.png" height="40px" style="float: left;position: relative;background-size: 100% 100%;width: 30px;height: 30px;padding: 5px;">
+							<input type="password" name="inputPassword" autocomplete="off" class="cinput inputPassword" style="width:75%;margin-left: -8%;border-left: 1px solid rgb(0,129,0);background: rgba(0,0,0,0);" placeholder="输入登录密码">
+						</div>
+					  <div style="width:90%;color:red;">
+							<a href="/admin?viewid=login" class="z">扫码登录</a>
+						</div>
+						<button type="submit"  class="cinput2" style="background:rgb(0,129,0);width:90%;margin-top: 9px;" >登&nbsp;&nbsp;录</button>
+
+				  </form>
+				<!--login end-->
+			</div>							
+		</div>
+		{#
+		<div style="text-align:center;font-size:23px;color:#999999;">
+				简道 粤ICP备15060984号-2
+			</div>
+		#}
+	</div>	
+</body>
+
+
+<script type="text/javascript" src="static/assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="static/assets/js/layer/layer.js"></script>
+<script>
+	function formcheck(){
+        var inputname = $('input[name=inputname]').val();
+        var inputPassword = $('input[name=inputPassword]').val();
+        if (inputname==''){
+          	layer.msg('请输入用户名');
+            return false;
+        }
+        if (inputPassword==''){
+          	layer.msg('请输入登录密码');
+            return false;
+        }
+
+        var data={
+            'viewid':'login',
+            'part':'Dologin',
+            'inputname':inputname,
+             'inputPassword':inputPassword
+        }
+        $.ajax({
+            type: 'POST',
+            url:"/admin",
+            async:false,
+            data: data,
+            success: function(res){
+                if (res.code=='0'){
+                  	layer.msg(res.MSG);
+                    setTimeout(function(){
+                      window.location.href = "admin?viewid=home";
+                    },3000);
+                }else{
+                    layer.msg(res.MSG);
+                }
+            }
+        });
+         return false;
+    }
+</script>
+</html>

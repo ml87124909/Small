@@ -9,7 +9,7 @@ import os
 import time
 from flask import jsonify
 from basic.publicw import cAPI,ATTACH_ROOTR,md5code,db,oSHOP,oUSER,oMALL,oQINIU,oGOODS,oGOODS_D,oORDER_SET\
-    ,oGOODS_N,oGOODS_G,oOPENID,oSHOP_T,oCATEGORY,oGOODS_SELL,oGOODS_PT,oGOODS_DPT,oPT_GOODS
+    ,oGOODS_N,oGOODS_G,oOPENID,oSHOP_T,oCATEGORY,oGOODS_SELL,oGOODS_PT,oGOODS_DPT,oPT_GOODS,oTOLL
 
 
 class cVIEWS(cAPI):
@@ -71,6 +71,7 @@ class cVIEWS(cAPI):
         self.oGOODS_PT = oGOODS_PT
         self.oGOODS_DPT = oGOODS_DPT
         self.oPT_GOODS = oPT_GOODS
+        self.oTOLL = oTOLL
     # ###########################################
     #     ########七牛用户自有调用
         self.qiniu_ctype = self.oQINIU.get(self.subusr_id).get('ctype', '')
@@ -86,6 +87,8 @@ class cVIEWS(cAPI):
         self.qiniu_bucket_name_all = self.oQINIU.get(1).get('name', '')
         self.qiniu_domain_all = self.oQINIU.get(1).get('domain', '')
         self.endpoint_all = self.oQINIU.get(1).get('endpoint', '')
+        ##
+        self.base_url = self.oTOLL.get().get('base_url')  # 平台支付回调域名
 
     def RQ(self, key, default=None, ctype=1):
         value = self.REQUEST.get(key, default)

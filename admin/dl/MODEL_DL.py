@@ -5,12 +5,12 @@
 #QQ group:528289471
 ##############################################################################
 """admin/dl/MODEL_DL.py"""
-
-from imp import reload
-from basic.publicw import DEBUG
-if DEBUG == '1':
-    import admin.dl.DL_BASE
-    reload(admin.dl.DL_BASE)
+#
+# from imp import reload
+# from basic.publicw import DEBUG
+# if DEBUG == '1':
+#     import admin.dl.DL_BASE
+#     reload(admin.dl.DL_BASE)
 from admin.dl.DL_BASE  import cDL_BASE
 
 import os
@@ -19,20 +19,6 @@ from wechatpy import WeChatClient
 from wechatpy.client.api import WeChatWxa
 
 class cMODEL_DL(cDL_BASE):
-
-    def getTopMenu(self):
-        sql = '''
-        SELECT menu_id , menu_name , func_id , type FROM menu_func WHERE menu = 1 ORDER BY sort ASC 
-        '''
-        L, t = self.db.fetchall(sql)
-        return L
-
-    def getLeftMenu(self, parent_id):
-        sql = '''
-        SELECT menu_id , menu_name , func_id , type , parent_id FROM menu_func WHERE menu = 2 and parent_id = %s ORDER BY sort ASC 
-        '''
-        L, t = self.db.fetchall(sql,parent_id)
-        return L
 
     def myaddslashes(self, s):
 
@@ -48,51 +34,6 @@ class cMODEL_DL(cDL_BASE):
         if ctype == 1 and value and isinstance(value, str):
             self.myaddslashes(value.strip())
         return value
-
-
-
-    def getmtcdata(self, type, df='', title='请选择'):
-        if title != '':
-            L = [['', title, '']]
-        else:
-            L = []
-        if type != '':
-            sql = "select id,txt1 from mtc_t where type='%s' order by sort" % type
-            lT, iN = self.db.select(sql)
-            if iN > 0:
-                for e in list(lT):
-                    id, txt = e
-                    b = ''
-                    if str(df) == str(id):
-                        b = ' selected="selected"'
-                    L.append([id, txt, b])
-        return L
-
-    def getmtctxt(self, type, sDF):
-        s = ''
-        if type != '' and sDF != '':
-            sql = "select txt1 from mtc_t where type='%s' and id=%s" % (type, sDF)
-            lT, iN = self.db.select(sql)
-            if iN > 0:
-                s = lT[0][0]
-        return s
-
-    def save_upload_file(self, pk, src):
-
-        # file_pk = self.REQUEST.get('file_pk')
-        file_pk = self.REQUEST.getlist("file_pk")
-        if file_pk:
-            if isinstance(file_pk, list):
-                sql = ''
-                for v in file_pk:
-                    sql += '''update file_pic set SRC='%s' , m_id = %s where seq = %s;
-                    ''' % (src, pk, v)
-                if sql != '':
-                    self.db.query(sql)
-            else:
-                sql = "update file_pic set SRC='%s' , m_id = %s where seq = %s" % (src, pk, file_pk)
-                self.db.query(sql)
-
 
 
     def list_for_grid(self, List,iTotal_length, pageNo=1, select_size=10):
@@ -164,7 +105,7 @@ class cMODEL_DL(cDL_BASE):
         self.db.query(sql,[self.usr_id_p,uid,cname,memo])
         return
 
-    def get_wecthpy(self):
+    def get_wecthpy(self):#微信小程序调用
         mall=self.oMALL.get(self.usr_id_p)
 
         if mall=={}:

@@ -295,7 +295,7 @@ class cE004_dl(cBASE_DL):
         secret = mall.get('secret','')
         wx_mch_id = mall.get('mchid','')
         wx_mch_key = mall.get('mchkey','')
-        base_url = mall.get('base_url','')#'https://malishop.janedao.cn'
+        base_url = self.base_url#'https://malishop.janedao.cn'
         api_cert_path = mall.get('cert','')
         api_key_path =mall.get('key','')
 

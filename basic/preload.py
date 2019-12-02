@@ -1939,6 +1939,125 @@ class cUSERS_OSS:
             return self.__d
         return self.__d.get(str(sType), {})
 
+
+class cTOLL:
+    """功能：将goods_info表装进内存中，提供上新接口调用。当该表修改时调用oGOODS_G.update()
+       用法：get(self,sType)
+    """
+    def __init__(self,db,md5code):
+        self.db = db
+        self.md5code=md5code
+        self.__d = {}
+        self.loaddata()
+
+    def loaddata(self):
+
+        sql = """select 
+                appid,
+                secret,
+                wx_status,
+                wxtoken,
+                wxaeskey,
+                mchid,
+                mchkey,
+                back_url,
+                base_url,
+                try_days,
+                invite_days,
+                vip_days,
+                combo_one_name,
+                combo_one_price,
+                combo_one_day,
+                combo_one_txt,
+                combo_two_name,
+                combo_two_price,
+                combo_two_day,
+                combo_two_status,
+                combo_two_txt,
+                combo_thr_name,
+                combo_thr_price,
+                combo_thr_day,
+                combo_thr_status,
+                combo_thr_txt,
+                /*call_url,
+                re_url,
+                oss_one_day,
+                oss_one_size,
+                oss_one_price,
+                oss_two_day,
+                oss_two_size,
+                oss_two_price,
+                oss_thr_day,
+                oss_thr_size,
+                oss_thr_price,
+                domain_url,
+                ptype,
+                remark*/
+                dbname,
+                notices,
+                memo
+                
+            from platform_conf where id=1
+            """
+        self.__d = self.db.fetch(sql)
+
+    def update(self):
+        self.__d={}
+        sql = """select 
+                appid,
+                secret,
+                wx_status,
+                wxtoken,
+                wxaeskey,
+                 mchid,
+                mchkey,
+                back_url,
+                base_url,
+                try_days,
+                invite_days,
+                vip_days,
+                combo_one_name,
+                combo_one_price,
+                combo_one_day,
+                combo_one_txt,
+                combo_two_name,
+                combo_two_price,
+                combo_two_day,
+                combo_two_status,
+                combo_two_txt,
+                combo_thr_name,
+                combo_thr_price,
+                combo_thr_day,
+                combo_thr_status,
+                combo_thr_txt,
+                /*call_url,
+                re_url,
+                oss_one_day,
+                oss_one_size,
+                oss_one_price,
+                oss_two_day,
+                oss_two_size,
+                oss_two_price,
+                oss_thr_day,
+                oss_thr_size,
+                oss_thr_price,
+                domain_url,
+                ptype,
+                remark*/
+                dbname,
+                notices,
+                memo
+                
+            from platform_conf where id=1
+                    """
+        self.__d = self.db.fetch(sql)
+
+        return
+
+    def get(self, sType=''):
+        if sType == '':
+            return self.__d
+        return self.__d.get(str(sType), '')
 #########预加载数据结束
 
 
