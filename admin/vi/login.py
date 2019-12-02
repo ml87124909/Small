@@ -218,25 +218,46 @@ class clogin(cVI_BASE):
             login_ip = self.objHandle.headers["X-Real-IP"]
         except:
             login_ip = self.objHandle.remote_addr
-        sql = """
-            select id,openid from wx_msg
-            where coalesce(state,0)=0 and  passwd=%s
-            and to_char(end_time,'YYYY-MM-DD HH24:MI') >to_char(now(),'YYYY-MM-DD HH24:MI')
-            order by id desc limit 1;
-                                """
-        lT, iN = self.dl.db.select(sql, [qrcode])
-        if iN == 0:
-            dR = {'code': '1', 'MSG': '微信验证码有误或超时'}
-            return self.jsons(dR)
-        sid, openid = lT[0]
-        self.dl.db.query("update wx_msg set state=1,utime=now() where id=%s", sid)
-        sql = """select usr_id,convert_from(decrypt(login_id::bytea,%s, 'aes'),'SQL_ASCII') 
-            from users where wx_openid=%s"""
-        l, t = self.dl.db.select(sql, [self.dl.md5code,openid])
-        if t==0:#不存在需要注册
-            dR = {'code': '1', 'MSG': '您还没有注册，请注册后再登录'}
-            return self.jsons(dR)
+        pdata = {'viewid': 'wxcode', 'part': 'CheckCode',
+                 'ctype': 1, 'qrcode': qrcode
+                 }
 
+        r = self.dl._http.post('https://wxcode.yjyzj.cn/wxcode', data=pdata)
+        res = r.json()
+        if res.get('code', '') == '1':
+            dR['MSG'] = '验证码错误请重新输入'
+            return self.jsons(dR)
+        elif res.get('code', '') == '2':
+            dR['MSG'] = '验证码有误或超时'
+            return self.jsons(dR)
+        wx_openid = res['openid']
+
+        sql = """select usr_id,wx_openid 
+            from users where wx_openid=%s and coalesce(status,0)=1"""
+        l, t = self.dl.db.select(sql, [wx_openid])
+        if t==0:#不存在需要注册
+
+            random_no = "%s%s" % (time.time(), random.random())
+            sql = """insert into users(login_id,status,ctime,random_no,wx_openid)
+                            values(encrypt(%s,%s,'aes'),1,now(),%s,%s)"""
+            parm = ['', self.dl.md5code,random_no, wx_openid]
+            self.dl.db.query(sql, parm)
+
+            ll, tt = self.dl.db.select('select usr_id from users where random_no=%s', random_no)
+            if tt == 0:
+                dR['MSG'] = '注册失败了，请重新注册!'
+                return self.jsons(dR)
+            usr_id = ll[0][0]
+            sqlu = """
+                update users set dept_id=%s where usr_id=%s;
+                insert into usr_role (usr_id ,role_id,usr_name ,dept_id,cid ,ctime) 
+                values (%s,2 ,%s,%s,0 ,now())"""
+            parmu = [usr_id, usr_id, usr_id, wx_openid, usr_id]
+            self.dl.db.query(sqlu, parmu)
+            self.dl.oQINIU.update(usr_id)
+            sql = """select usr_id,wx_openid 
+                        from users where wx_openid=%s and coalesce(status,0)=1"""
+            l, t = self.dl.db.select(sql, [wx_openid])
 
         #已注册直接跳转
         usr_id,login_id = l[0]
