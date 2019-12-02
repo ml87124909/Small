@@ -53,7 +53,7 @@ class cH001_dl(cBASE_DL):
             sql = "select usr_id from users where usr_id = %s;"
             l, t = self.db.select(sql, [self.usr_id])
             if t> 0:
-                sql = "update users set login_id=encrypt(%s,%s,'aes'),password= crypt(%s, gen_salt('md5')) where usr_id=%s"
+                sql = "update users set login_id=encrypt(%s,%s,'aes'),passwd= crypt(%s, gen_salt('md5')) where usr_id=%s"
                 parm = [login_id, self.md5code, password, self.usr_id]
                 self.db.query(sql, parm)
                 self.use_log('修改个人帐号%s' % self.usr_id)
