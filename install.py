@@ -7,7 +7,6 @@
 """install.py"""
 
 from config import md5code
-from basic.indb import db
 import os, sys
 from imp import reload
 reload(sys)
@@ -77,7 +76,7 @@ def setup():
         login_id = RES.get('login_id', '')
         passwd = RES.get('passwd', '')
         ctype = RES.get('ctype', '')#0:个人版本,1:SAAS版本,2:B2B2C版本
-
+        from basic.indb import db
         try:
 
             if ctype=='0':#个人版本
