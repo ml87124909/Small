@@ -18,7 +18,7 @@ celery
 redis
 Crypto
 psycopg2-binary
-psycopg2
+#psycopg2
 wechatpy
 oss2
 qcloudsms_py
