@@ -299,7 +299,7 @@ class cWxPay:
                              [self.subid, 'wechat_mall_order',
                               "order_num:%s,status=2,status_str='待发货'" % order_num,
                               '支付回调更新wechat_mall_order表数据', self.subid])
-                    sqlt = """select id,wechat_user_id,ctype,kuaid,balance,ptkid,ptid,pt_type,phone 
+                    sqlt = """select id,wechat_user_id,ctype,kuaid,coalesce(balance,0),ptkid,ptid,pt_type,phone 
                         from wechat_mall_order where order_num=%s and usr_id=%s """
                     ll, tt = self.db.select(sqlt, [order_num, self.subid])
                     if tt > 0:
