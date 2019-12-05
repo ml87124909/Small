@@ -11,6 +11,7 @@
 #### 注意：用docker镜像mn3711698/small:004的一定要git pull，这个镜像我不会再更新代码，需要自己git pull,不然代码会很旧，没法用!
 
 ## 请务必使用python3.6  请务必使用python3.6  请务必使用python3.6
+## 请务必将项目放到/var/games路径下  请务必将项目放到/var/games路径下  请务必将项目放到/var/games路径下
 我开发用的是windows 10(linux子系统:ubuntu 18.04) + python3.6.8 测试环境用的是centos 7.6+python3.6.9
 # 说明  2019-08-07
 docker镜像:mn3711698/small:004,我测试过OK。基于ubuntu 18.04 的python3.6.8+postgresql-10。
