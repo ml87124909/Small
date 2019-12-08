@@ -9,13 +9,12 @@
 from imp import reload
 from basic.publicw import DEBUG
 if DEBUG == '1':
-    import admin.vi.VI_BASE
-    reload(admin.vi.VI_BASE)
+    import admin.vi.BASE_TPL
+    reload(admin.vi.BASE_TPL)
+from admin.vi.BASE_TPL             import cBASE_TPL
 
-from admin.vi.VI_BASE import cVI_BASE
 
-
-class chome(cVI_BASE):
+class chome(cBASE_TPL):
     def setClassName(self):
         self.dl_name = 'home_dl'
 
