@@ -9,13 +9,13 @@
 from imp import reload
 from basic.publicw import DEBUG,user_menu
 if DEBUG == '1':
-    import admin.vi.VI_BASE
-    reload(admin.vi.VI_BASE)
-from admin.vi.VI_BASE             import cVI_BASE
+    import admin.vi.BASE_TPL
+    reload(admin.vi.BASE_TPL)
+from admin.vi.BASE_TPL             import cBASE_TPL
 import time, random, datetime
 from flask import make_response,redirect
 
-class clogin(cVI_BASE):
+class clogin(cBASE_TPL):
 
     def setClassName(self):
         self.dl_name = ''
@@ -24,10 +24,11 @@ class clogin(cVI_BASE):
         # a = "无法登录，请联系管理员!"
         # aaa = self.dl.get_QR_code_url('login_code')
         # if aaa != '':
-        a = '<img src="http://cdn.janedao.cn/8d00854cae231e90310a61d45100b6eb.jpg" style="width:150px;height:150px;">'
-        self.assign('aaa', a)
-        return self.runApp('qrimg.html')
-        #return self.runApp('login.html')
+        if self.dl.wxstatus==1:
+            a = '<img src="http://cdn.janedao.cn/8d00854cae231e90310a61d45100b6eb.jpg" style="width:150px;height:150px;">'
+            self.assign('aaa', a)
+            return self.runApp('qrimg.html')
+        return self.runApp('login.html')
     
     def goPartDologin(self):
         dR={'code':'1','MSG':''}
@@ -110,49 +111,55 @@ class clogin(cVI_BASE):
         return response
 
     def goPartRegister(self):
-
-        aaa = self.dl.get_QR_code_url('register_code')
-        self.assign('aaa', aaa)
+        # if self.dl.wxstatus == 1:
+        #     return '已开启微信登录，扫码即可注册哦，更多问题请联系平台客服'
+        #aaa = self.dl.get_QR_code_url('register_code')
+        #self.assign('aaa', aaa)
         return self.runApp('register.html')
 
-    def goPartReg_Save(self):
-        dR={'code':'1','MSG':''}
-        qrcode = self.dl.GP('qrcode', '')
-        inviteid = self.dl.GP('inviteid', '')
-
-        if qrcode=='':
-            dR['MSG']='微信验证码有误!'
+    def goPartRegSave(self):
+        dR = {'code': '1', 'MSG': ''}
+        login_id = self.dl.GP('inputname', '')
+        password = self.dl.GP('inputPassword', '')
+        repassword = self.dl.GP('rePassword', '')
+        Invite_code = self.dl.GP('Invite_code', '')
+        if login_id == '' or password == '':
+            dR['MSG'] = '用户名或密码不能为空'
             return self.jsons(dR)
 
-        sql = """
-            select id,openid from wx_msg
-            where coalesce(state,0)=0 and  passwd=%s
-            and to_char(end_time,'YYYY-MM-DD HH24:MI') >to_char(now(),'YYYY-MM-DD HH24:MI')
-            order by id desc limit 1;
-                                        """
-        lT, iN = self.dl.db.select(sql, [qrcode])
-        if iN==0:
-            dR['MSG'] = '微信验证码有误!'
+        if repassword!=password:
+            dR['MSG']='两次输入的密码不一致!'
             return self.jsons(dR)
 
-        sid, openid = lT[0]
-        self.dl.db.query("update wx_msg set state=1,utime=now() where id=%s", sid)
-        sql = "select usr_id from users where wx_openid=%s"
-        l, t = self.dl.db.select(sql, [openid])
-        if t>0:
-            dR['MSG'] = '您已注册，请到登录页面扫码登录!'
+        sql = """SELECT U.usr_id
+                          FROM users U 
+                          WHERE convert_from(decrypt(login_id::bytea,%s, 'aes'),'SQL_ASCII')=%s 
+                          AND COALESCE(U.status,0)=1 AND COALESCE(U.del_flag,0)=0
+                       """
+
+        lT, iN = self.dl.db.select(sql,[self.dl.md5code, login_id])
+        if iN>0:
+            dR['MSG'] = '用户名已被注册，请更换!'
             return self.jsons(dR)
-        invite_id=1
-        e_time=''
-        try:
-            inviteid = int(inviteid)
-            invite_days = int(self.dl.oTOLL.get('invite_days', 0))
+
+        invite_id = ''
+        e_time = ''
+        if Invite_code!='':
+
+            sql = "select usr_id from users where random_no=%s"
+            l, t = self.dl.db.select(sql, [Invite_code])
+            if t>0:
+                invite_id=l[0][0]
+
+        invite_days=0
+        if invite_id!='':
+            invite_days = self.dl.invite_days
             sqli = """select to_char(expire_time,'YYYY-MM-DD HH24:MI'),
                     to_char(now(),'YYYY-MM-DD HH24:MI'),
                     case when to_char(expire_time,'YYYY-MM-DD HH24:MI')>to_char(now(),'YYYY-MM-DD HH24:MI') 
                     then 1 else 0 end 
                     from users where  usr_id=%s"""
-            lT1, iN1 = self.dl.db.select(sqli, [inviteid])
+            lT1, iN1 = self.dl.db.select(sqli, [invite_id])
             if iN1 > 0:
                 time_1, time_2, flag = lT1[0]
                 if flag == 1:
@@ -163,14 +170,9 @@ class clogin(cVI_BASE):
                 delta = datetime.timedelta(days=invite_days)
                 n_days = now + delta
                 e_time = n_days.strftime('%Y-%m-%d %H:%M:%S')
-                invite_id=inviteid
-
-        except:
-            invite_days=0
-            inviteid=None
 
         try:
-            try_out = int(self.dl.oTOLL.get('try_out'))
+            try_out = self.dl.try_days
         except:
             try_out = 30
         try_all=invite_days+try_out
@@ -179,9 +181,9 @@ class clogin(cVI_BASE):
         n_days = now + delta
         expire_time = n_days.strftime('%Y-%m-%d %H:%M:%S')
         random_no="%s%s" % (time.time(), random.random())
-        sql = """insert into users(login_id,status,ctime,expire_time,inviteid,random_no,wx_openid)
-                values(encrypt(%s,%s,'aes'),1,now(),%s,%s,%s,%s)"""
-        parm = ['',self.dl.md5code,expire_time,inviteid or None,random_no,openid]
+        sql = """insert into users(login_id,passwd,status,ctime,expire_time,inviteid,random_no)
+                values(encrypt(%s,%s,'aes'),crypt(%s, gen_salt('md5')),1,now(),%s,%s,%s)"""
+        parm = [login_id,self.dl.md5code,password,expire_time,invite_id or None,random_no]
         self.dl.db.query(sql,parm)
 
         ll,tt=self.dl.db.select('select usr_id from users where random_no=%s',random_no)
@@ -193,14 +195,14 @@ class clogin(cVI_BASE):
                 update users set dept_id=%s where usr_id=%s;
                 insert into usr_role (usr_id ,role_id,usr_name ,dept_id,cid ,ctime) 
                 values (%s,2 ,%s,%s,0 ,now())"""
-        parmu=[usr_id,usr_id,usr_id,openid,usr_id]
+        parmu=[usr_id,usr_id,usr_id,'',usr_id]
         self.dl.db.query(sqlu,parmu)
         if invite_id!=1 and e_time!='':
             sql = "update users set expire_time=%s,expire_flag=0 where usr_id=%s"
             self.dl.db.query(sql, [e_time, invite_id])
             isql="""insert into invite_log(ctype,return_id,usr_id,openid,return_days,return_time,ctime)
                         values(1,%s,%s,%s,%s,%s,now())"""
-            iparm=[invite_id,usr_id,openid,invite_days,e_time]
+            iparm=[invite_id,usr_id,'',invite_days,e_time]
             self.dl.db.query(isql,iparm)
         dR = {'code': '0', 'MSG': '注册成功,请返回登录页面进行登录'}
         return self.jsons(dR)

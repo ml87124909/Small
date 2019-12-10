@@ -9,13 +9,13 @@
 from imp import reload
 from basic.publicw import DEBUG
 if DEBUG == '1':
-    import admin.vi.VI_BASE
-    reload(admin.vi.VI_BASE)
-from admin.vi.VI_BASE             import cVI_BASE
+    import admin.vi.VIEWS
+    reload(admin.vi.VIEWS)
+from admin.vi.VIEWS             import cVIEWS
 from admin.vi.mselect import mselect_forGoods_Info, mselect_forGoods_Infos, mselect_forMList, mselect_forMList_mul, \
     mselect_forMList_spec
 
-class cBASE_TPL(cVI_BASE):
+class cBASE_TPL(cVIEWS):
 
     def goPartUpload(self):
         url = self.dl.Upload()

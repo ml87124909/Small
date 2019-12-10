@@ -179,6 +179,10 @@ class cDL_BASE(cDL):
         self.base_url = self.oTOLL.get().get('base_url')#平台支付回调域名
         #self.wx_appid = self.oTOLL.get().get('appid')
         #self.wx_secret = self.oTOLL.get().get('secret')
+        self.pay_status = self.oTOLL.get().get('pay_status')
+        self.try_days = self.oTOLL.get().get('try_days')
+        self.invite_days = self.oTOLL.get().get('invite_days')
+        self.vip_days = self.oTOLL.get().get('vip_days')
         self.wxstatus = self.oTOLL.get().get('wx_status')
         #######
 
