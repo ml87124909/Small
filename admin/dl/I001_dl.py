@@ -37,6 +37,7 @@ class cI001_dl(cBASE_DL):
                 try_days,
                 invite_days,
                 vip_days,
+                pay_status,
                 combo_one_name,
                 combo_one_price,
                 combo_one_day,
@@ -90,7 +91,7 @@ class cI001_dl(cBASE_DL):
         try_days = self.GP('try_days', '')  # 试用期(天)
         invite_days = self.GP('invite_days', '')  #邀请注册赠送时间
         vip_days = self.GP('vip_days', '')  #vip付费邀请人赠送时间
-
+        pay_status=self.GP('pay_status','')
         combo_one_name = self.GP('combo_one_name', '')  #套餐1名称
         combo_one_price = self.GP('combo_one_price', '')  #套餐1价格
         combo_one_status = self.GP('combo_one_status', '')  # 套餐1是否启用
@@ -132,7 +133,7 @@ class cI001_dl(cBASE_DL):
         #     wx_status=0
         #cur_random_no = "%s%s" % (time.time(), random.random())
         data = {
-
+            'pay_status':pay_status or None,
             'wx_status': wx_status or None,
             'appid': appid,
             'secret': secret,
