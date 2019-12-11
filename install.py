@@ -55,7 +55,8 @@ def setup():
         try:
             engine_ = create_engine(url)
             connection = engine_.connect()
-        except:
+        except Exception as e:
+            print(e)
             return render_template("setup-error.html", code=3)
 
         create_config(username, passwd, host, port,dbname)
