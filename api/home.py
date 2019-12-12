@@ -753,7 +753,7 @@ class chome(cBASE_LOC):
                         else:#折扣
 
                             if (str(use_time) == '0' and self.getToday(6) >= datestart) or (str(use_time) == '1' and int(validday) > int(yday)):
-                                if apply_goods_id=='':
+                                if apply_goods_id=='' or apply_goods_id=='0':
                                     coupon_price += round(goods_price*(1-apply_ext_num/100),2)
                                 else:
                                     apply_goods=[]
