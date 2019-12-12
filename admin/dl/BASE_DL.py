@@ -36,7 +36,10 @@ class cBASE_DL(cMODEL_DL):
             filename = md5name.hexdigest() + '.' + file_ext
             file_content = file.read()
             file_size = float(len(file_content)) / 1024
+
             if self.oss_ctype==2:#使用平台公共
+                if float(file_size / 1024) > 1:
+                    return '图片容量超1M'
                 if self.oss_ctype_all == 0:
                     url = self.qiniu_upload_file(file_content, filename)
                 else:
