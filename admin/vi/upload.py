@@ -251,7 +251,8 @@ class cupload(cUP):
             filename = md5name.hexdigest() + '.' + file_ext
             file_content = file.read()
             file_size = float(len(file_content)) / 1024
-            
+            if float(file_size / 1024) > 1:
+                return '图片容量超1M'
             
             # if self.oss_ctype==2 or self.qiniu_flag==0:#使用平台公共
             #     if self.oss_ctype_all == 0:
