@@ -1493,7 +1493,7 @@ class chome(cBASE_LOC):
                             share_time = shareInfo['share_time']
                             share_number = shareInfo['share_number']
 
-                            gname = basicInfo['name']
+                            gname = basicInfo['cname']
                             ticket_id = basicInfo['return_ticket']
                             if str(share_type) != '0' and str(share_time) == '2':  # 返现
                                 if str(share_type) == '1' and share_number != '':  # 返现金
