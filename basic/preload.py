@@ -881,12 +881,12 @@ class cGOODS_D:
                         ,pic	--商品第一张图片
                         ,video
                         ,status
-                        ,minprice as mini_price	--商品现价
-                        ,originalprice as original_price	--商品原价
+                        ,COALESCE(minprice,0) as mini_price	--商品现价
+                        ,COALESCE(originalprice,0) as original_price	--商品原价
                         ,round(CAST(case when (select up_type from  shop_set where usr_id=%s limit 1)=1 then (select discount from  shop_set where usr_id=%s limit 1)* minprice/100
                         else ( select level_discount from hy_up_level where usr_id=%s order by level_discount limit 1)* minprice/100 end as numeric),2) vip_price
-                        ,stores	--商品库存
-                        ,weight
+                        ,COALESCE(stores,0)stores	--商品库存
+                        ,COALESCE(weight,0)weight
                         ,COALESCE(favorite,0)as favorite	--商品收藏量
                         ,COALESCE(see,0) as views	--商品浏览量
                         ,COALESCE(orders,0) as orders	--商品销量
@@ -943,7 +943,7 @@ class cGOODS_D:
                         vipInfo = []
                         if str(i.get('vip_open', '')) == '1':  # 开启就用
                             sql = """
-                                select id,vip_price,discount,up_type 
+                                select id,COALESCE(vip_price,0),discount,up_type 
                                 from shop_set where usr_id=%s
                             """
                             L, t = self.db.select(sql,k)
@@ -955,7 +955,7 @@ class cGOODS_D:
                                 elif str(vtype) == '2':  # 购物升级
                                     sqlv = """
                                     select id as vip_id,up_price as vip_price,
-                                    cname as vip_name,level_discount as vip_sale 
+                                    cname as vip_name,COALESCE(level_discount,0) vip_sale 
                                     from hy_up_level where usr_id=%s order by up_price"""
                                     vipInfo, t = self.db.fetchall(sqlv, k)
                         if len(vipInfo) > 0:
@@ -1023,12 +1023,12 @@ class cGOODS_D:
                         ,pic	--商品第一张图片
                         ,video
                         ,status
-                        ,minprice as mini_price	--商品现价
-                        ,originalprice as original_price	--商品原价
+                        ,COALESCE(minprice,0) as mini_price	--商品现价
+                        ,COALESCE(originalprice,0) as original_price	--商品原价
                         ,round(CAST(case when (select up_type from  shop_set where usr_id=%s limit 1)=1 then (select discount from  shop_set where usr_id=%s limit 1)* minprice/100
                         else ( select level_discount from hy_up_level where usr_id=%s order by level_discount limit 1)* minprice/100 end as numeric),2) vip_price
-                        ,stores	--商品库存
-                        ,weight
+                        ,COALESCE(stores,0)stores	--商品库存
+                        ,COALESCE(weight,0)weight
                         ,COALESCE(favorite,0)as favorite	--商品收藏量
                         ,COALESCE(see,0) as views	--商品浏览量
                         ,COALESCE(orders,0) as orders	--商品销量
@@ -1087,7 +1087,7 @@ class cGOODS_D:
                         vipInfo = []
                         if str(i.get('vip_open', '')) == '1':  # 开启就用
                             sql = """
-                                select id,vip_price,discount,up_type 
+                                select id,COALESCE(vip_price,0),discount,up_type 
                                 from shop_set where usr_id=%s 
                             """
                             L, t = self.db.select(sql, sType)
@@ -1100,7 +1100,7 @@ class cGOODS_D:
                                 elif str(vtype) == '2':  # 购物升级
                                     sqlv = """
                                     select id as vip_id,up_price as vip_price,
-                                    cname as vip_name,level_discount as vip_sale 
+                                    cname as vip_name,COALESCE(level_discount,0)vip_sale 
                                     from hy_up_level where usr_id=%s order by up_price"""
                                     vipInfo, t = self.db.fetchall(sqlv, sType)
                         if len(vipInfo) > 0:
@@ -1159,12 +1159,12 @@ class cGOODS_D:
             ,pic	--商品第一张图片
             ,video
             ,status
-            ,minprice as mini_price	--商品现价
-            ,originalprice as original_price	--商品原价
+            ,COALESCE(minprice,0)mini_price	--商品现价
+            ,COALESCE(originalprice,0)original_price	--商品原价
             ,round(CAST(case when (select up_type from  shop_set where usr_id=%s limit 1)=1 then (select discount from  shop_set where usr_id=%s limit 1)* minprice/100
             else ( select level_discount from hy_up_level where usr_id=%s order by level_discount limit 1)* minprice/100 end as numeric),2) vip_price
-            ,stores	--商品库存
-            ,weight
+            ,COALESCE(stores,0)stores	--商品库存
+            ,COALESCE(weight,0)weight
             ,COALESCE(favorite,0)as favorite	--商品收藏量
             ,COALESCE(see,0) as views	--商品浏览量
             ,COALESCE(orders,0) as orders	--商品销量
@@ -1220,7 +1220,7 @@ class cGOODS_D:
         vipInfo = []
         if str(i.get('vip_open', '')) == '1':  # 开启就用
             sql = """
-                select id,vip_price,discount,up_type 
+                select id,COALESCE(vip_price,0),discount,up_type 
                 from shop_set where usr_id=%s
             """
             L, t = self.db.select(sql,sType)
@@ -1232,7 +1232,7 @@ class cGOODS_D:
                 elif str(vtype) == '2':  # 购物升级
                     sqlv = """
                         select id as vip_id,up_price as vip_price,
-                        cname as vip_name,level_discount as vip_sale 
+                        cname as vip_name,COALESCE(level_discount,0)vip_sale 
                         from hy_up_level where usr_id=%s order by up_price"""
                     vipInfo, t = self.db.fetchall(sqlv, sType)
         if len(vipInfo) > 0:
