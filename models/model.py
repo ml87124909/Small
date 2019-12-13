@@ -1094,7 +1094,7 @@ class roles(Base):
     role_id = Column(Integer, primary_key=True, nullable=False, autoincrement=True, index=True)
     role_name = Column(Text, nullable=True, index=True)
     sort = Column(Integer, nullable=True)
-    dept_id = Column(Integer, nullable=True)
+    dept_id = Column(Integer, nullable=True, index=True)
     del_flag = Column(SMALLINT, nullable=True, index=True)
     random_no = Column(Text, nullable=True, index=True)
     memo = Column(Text, nullable=True, index=True)
