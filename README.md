@@ -6,11 +6,13 @@
 > 不知道有没有要求三个版本同时部署的，目前三个版本只能选择其中之一部署
 > 商业授权请看最后的License
 
+体验请到  https://small.yjyzj.cn
+
 ![](https://github.com/mn3711698/Small/blob/master/923.png)
 
 ![](https://github.com/mn3711698/Small/blob/master/1574772580.jpg)
 
-#### 注意：用docker镜像mn3711698/small:004的一定要git pull，这个镜像我不会再更新代码，需要自己git pull,不然代码会很旧，没法用!
+#### 注意：用docker镜像mn3711698/small:004的一定要git pull，这个docker镜像我再更新，需要自己git pull更新项目代码,不然代码会很旧，没法用!
 
 ## 请务必使用python3.6  请务必使用python3.6  请务必使用python3.6
 ## 请务必将项目放到/var/games路径下  请务必将项目放到/var/games路径下  请务必将项目放到/var/games路径下
