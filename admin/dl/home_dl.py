@@ -13,6 +13,7 @@ if DEBUG == '1':
     reload(admin.dl.BASE_DL)
 from admin.dl.BASE_DL  import cBASE_DL
 import time
+import random
 from basic.pay import WeixinPay
 
 
@@ -62,11 +63,19 @@ class chome_dl(cBASE_DL):
     def get_base_me(self):#基本信息(小程序信息等)
         sql="""
             
-            select 
-                convert_from(decrypt(appid::bytea, %s, 'aes'),'SQL_ASCII')appid,
-                convert_from(decrypt(secret::bytea, %s, 'aes'),'SQL_ASCII')secret
-            from mall
-            where usr_id=%s
+             select to_char(u.ctime,'YYYY-MM-DD')ctime,
+                to_char(u.expire_time,'YYYY-MM-DD')expire_time,coalesce(u.with_flag,0)with_flag,
+                convert_from(decrypt(m.appid::bytea, %s, 'aes'),'SQL_ASCII')appid,
+                convert_from(decrypt(m.secret::bytea, %s, 'aes'),'SQL_ASCII')secret,
+                
+                 coalesce(u.vip_flag,0)vip_flag,
+                 coalesce(u.oss_all,100) as oss_all,
+                 coalesce(u.oss_flag,0)oss_flag,
+                coalesce(coalesce(u.oss_all,100)-coalesce(u.oss_now,0),0) as oss_now,coalesce(qiniu_flag,0)qiniu_flag
+            
+            from users u
+            left join mall m on m.usr_id=u.usr_id 
+            where u.usr_id=%s
         """
         t=self.db.fetch(sql,[self.md5code,self.md5code,self.usr_id_p])
 
@@ -195,10 +204,7 @@ class chome_dl(cBASE_DL):
         #写入小程序数据
         appid = self.GP('appid', '')  # 小程序appid
         secret = self.GP('secret', '')  # 小程序secret
-        data = {
-            'appid': appid,
-            'secret': secret,
-        }  # mall
+        data={}
         lT,iN=self.db.select("select id from mall where appid=%s",[appid])
         if iN>0:
             dR['MSG'] = '您填写的信息已存在，无法进行导入数据操作！'
@@ -214,23 +220,32 @@ class chome_dl(cBASE_DL):
             data['cid'] = self.usr_id
             data['ctime'] = self.getToday(9)
             self.db.insert('mall', data)
+            sqlu = """
+               update mall set appid=encrypt(%s,%s,'aes'),secret=encrypt(%s,%s,'aes'),
+               mchid=encrypt(%s,%s,'aes'),mchkey=encrypt(%s,%s,'aes')   where usr_id=%s
+               """
+            Lu = [appid, self.md5code, secret, self.md5code, '', self.md5code, '', self.md5code, self.usr_id_p]
+            self.db.query(sqlu, Lu)
         else:
-            data['uid'] = self.usr_id
-            data['utime'] = self.getToday(9)
-            self.db.update('mall', data,'usr_id=%s'%self.usr_id)
+            sqlu = """
+               update mall set appid=encrypt(%s,%s,'aes'),secret=encrypt(%s,%s,'aes'),
+               mchid=encrypt(%s,%s,'aes'),mchkey=encrypt(%s,%s,'aes')   where usr_id=%s
+               """
+            Lu = [appid, self.md5code, secret, self.md5code, '', self.md5code, '', self.md5code, self.usr_id_p]
+            self.db.query(sqlu, Lu)
 
-        syncid = 2
-        self.sync_data_1(syncid)
-        self.sync_data_2(syncid)
-        self.sync_data_3(syncid)
-        self.sync_data_4(syncid)
-        self.sync_data_5(syncid)
+        syncid = 1
+        #self.sync_data_1(syncid)
+        #self.sync_data_2(syncid)
+        #self.sync_data_3(syncid)
+        #self.sync_data_4(syncid)
+        #self.sync_data_5(syncid)
         self.sync_data_6(syncid)
-        self.sync_data_7(syncid)
-        self.sync_data_8(syncid)
+        #self.sync_data_7(syncid)
+        #self.sync_data_8(syncid)
         self.sync_data_9(syncid)
-        self.sync_data_10(syncid)
-        self.sync_data_11(syncid)
+        #self.sync_data_10(syncid)
+        #self.sync_data_11(syncid)
 
         #self.sync_data_12()
 
@@ -435,18 +450,21 @@ class chome_dl(cBASE_DL):
         return
 
     def sync_data_6(self,syncid):  # C001
-        sql="select type,field,cname,sort from advertis where usr_id=%s and COALESCE(del_flag,0)=0"
+        sql="select ctype,field,cname,COALESCE(sort,0) from advertis where usr_id=%s and COALESCE(del_flag,0)=0"
         l,t=self.db.select(sql,[syncid])
         if t>0:
             self.db.query("delete from advertis where usr_id=%s and usr_id!=1", self.usr_id)
             for i in l:
-                type, field, cname, sort=i
-                sql = "insert into advertis(usr_id,type,field,cname,sort,ctime)values(%s,%s,%s,%s,%s,now())"
-                self.db.query(sql, [self.usr_id, type, field, cname, sort])
+                ctype, field, cname, sort=i
+                cur_random_no = "%s%s" % (time.time(), random.random())
+                sql = "insert into advertis(usr_id,ctype,field,cname,sort,ctime,random_no)values(%s,%s,%s,%s,%s,now(),%s)"
+                self.db.query(sql, [self.usr_id, ctype, field, cname, sort,cur_random_no])
+                pk = self.db.fetchcolumn('select id from advertis where random_no=%s', cur_random_no)
+
 
             sqll = """
-               SELECT D.type,D.type_str,D.business_id,D.title,D.good_name,
-                    D.status,D.status_str,D.remark,D.link_url,D.pic_url,D.remark
+               SELECT D.business_id,D.title,D.good_name,
+                    D.status,D.remark,D.link_url,D.pic_url,D.remark
                 FROM banner D
                 where  D.usr_id=%s and COALESCE(D.del_flag,0)=0
                    """
@@ -454,15 +472,15 @@ class chome_dl(cBASE_DL):
             if tt>0:
                 self.db.query("delete from banner where usr_id=%s and usr_id!=1", self.usr_id)
                 for j in ll:
-                    type,type_str,business_id,title,good_name,status,status_str,remark,link_url,pic_url,remark=j
+                    business_id,title,good_name,status,remark,link_url,pic_url,remark=j
                     data = {'title': title,
                             'business_id': business_id or None,
                             'good_name': good_name,
                             'link_url': link_url,
-                            'type': type or None,
-                            'type_str': type_str,
+                            'ctype': pk or None,
+                           # 'type_str': type_str,
                             'status': status or None,
-                            'status_str': status_str,
+                            #'status_str': status_str,
                             'pic_url': pic_url,
                             'remark': remark,
                             }
@@ -548,8 +566,8 @@ class chome_dl(cBASE_DL):
 
     def sync_data_9(self,syncid):  # D003
         sql="""
-             SELECT  D.id,D.name,D.introduce,D.recommstr,D.recomm,D.statusstr,D.status,D.category_ids,
-                D.category_ids_str,D.video,D.content,D.originalprice,D.minprice,D.stores,D.barcodes,D.logisticsid,
+             SELECT  D.id,D.cname,D.introduce,D.recomm,D.status,D.category_ids,
+                D.category_ids_str,D.video,D.contents,D.originalprice,D.minprice,D.stores,D.barcodes,D.logisticsid,
                 D.limited,D.discount,D.share_type_str,D.share_type,D.share_time_str,D.share_time,
                 D.share_title,D.share_imgs,D.share_return,D.return_ticket,D.return_ticket_str,D.paixu,D.weight,D.pic
             FROM goods_info D
@@ -560,20 +578,20 @@ class chome_dl(cBASE_DL):
         if t>0:
             self.db.query("delete from goods_info where usr_id=%s and usr_id!=1", self.usr_id)
             for i in l:
-                cpid, name, introduce, recommstr, recomm,statusstr,status,category_ids,\
+                cpid, name, introduce, recomm,status,category_ids,\
                 category_ids_str, video, content, originalprice, minprice, stores, barcodes, logisticsid,\
                 limited, discount, share_type_str, share_type, share_time_str, share_time,\
                 share_title, share_imgs, share_return, return_ticket, return_ticket_str, paixu, weight,pic=i
                 data = {
-                    'name': name,
+                    'cname': name,
                     'introduce': introduce,
-                    'recommstr': recommstr,
+                    #'recommstr': recommstr,
                     'recomm': recomm or None,
-                    'statusstr': statusstr,
+                    #'statusstr': statusstr,
                     'status': status  or None,
 
                     'video': video,
-                    'content': content,
+                    'contents': content,
                     'originalprice': originalprice  or None,
                     'minprice': minprice  or None,
                     'stores': stores  or None,
@@ -627,19 +645,19 @@ class chome_dl(cBASE_DL):
                             sql = "insert into goods_pics(usr_id,goods_id,pic,ctime)values(%s,%s,%s,now())"
                             LL=[self.usr_id, did, pic]
                             self.db.query(sql,LL)
-                    sqli="""
-                        select  dis_id,dis_name,dis_level_discount  from alone_discount where usr_id=%s and goods_id=%s
-                    """
-                    lT1,iN1=self.db.select(sqli,[syncid,copy_id])
-                    if iN1>0:
-                        self.db.query("delete from alone_discount where usr_id=%s and usr_id!=1", self.usr_id)
-                        for m in lT1:
-                            dis_id, dis_name, dis_level_discount=m
-                            sql = """ insert into alone_discount(usr_id,goods_id,dis_id,dis_name,
-                                    dis_level_discount,ctime)values (%s,%s,%s,%s,%s,now())
-                                        """
-                            LLL=[self.usr_id, did, dis_id, dis_name, dis_level_discount]
-                            self.db.query(sql,LLL)
+                    # sqli="""
+                    #     select  dis_id,dis_name,dis_level_discount  from alone_discount where usr_id=%s and goods_id=%s
+                    # """
+                    # lT1,iN1=self.db.select(sqli,[syncid,copy_id])
+                    # if iN1>0:
+                    #     self.db.query("delete from alone_discount where usr_id=%s and usr_id!=1", self.usr_id)
+                    #     for m in lT1:
+                    #         dis_id, dis_name, dis_level_discount=m
+                    #         sql = """ insert into alone_discount(usr_id,goods_id,dis_id,dis_name,
+                    #                 dis_level_discount,ctime)values (%s,%s,%s,%s,%s,now())
+                    #                     """
+                    #         LLL=[self.usr_id, did, dis_id, dis_name, dis_level_discount]
+                    #         self.db.query(sql,LLL)
 
 
         return
@@ -831,9 +849,9 @@ class chome_dl(cBASE_DL):
         elif go == 'oQINIU':
             dR['data'] = self.oQINIU.get(id)
             return dR
-        elif go == 'oKUAIDI':
-            dR['data'] = self.oKUAIDI.get(id)
-            return dR
+        # elif go == 'oKUAIDI':
+        #     dR['data'] = self.oKUAIDI.get(id)
+        #     return dR
         elif go == 'oGOODS':
             dR['data'] = self.oGOODS.get(id)
             return dR
