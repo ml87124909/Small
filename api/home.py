@@ -402,6 +402,203 @@ class chome(cBASE_LOC):
             self.write_order_log(order_id, '写入订单商品数据','商品id:%s,' % ids_str,'订单号:%s' % order_num)
 
             datas['order_number']=order_num
+            if new_money==0:
+                sqlo = """
+                    update wechat_mall_order set pay_status=2,pay_status_str='余额支付',pay_ctime=now()
+                                 where usr_id=%s and id=%s and wechat_user_id=%s
+                        """
+                self.db.query(sqlo, [self.subusr_id, order_id, wechat_user_id])
+
+                if str(kuaid) == '0' and str(ctype) == '0':  # 自提单
+                    # 修改订单状态
+                    sqlo = """
+                        update wechat_mall_order set status=2,status_str='待发货' 
+                        where usr_id=%s and id=%s and wechat_user_id=%s
+                                    """
+                    self.db.query(sqlo, [self.subusr_id, order_id, wechat_user_id])
+                    # 修改订单商品明细表状态
+
+                    sqld = """
+                    update wechat_mall_order_detail set status=2,status_str='待发货' 
+                    where usr_id=%s and order_id=%s 
+                            """
+                    self.db.query(sqld, [self.subusr_id, order_id])
+                    self.write_order_log(order_id, '采用用户余额全支付', '更新订单状态为待发货,支付方式为余额支付,支付时间',
+                                         '订单号:%s' % order_num)
+
+                elif str(kuaid) == '1' and str(ctype) == '0':  # 自提单
+                    # 修改订单状态
+                    sqlo = """
+                        update wechat_mall_order set status=4,status_str='待自提' 
+                        where usr_id=%s and id=%s and wechat_user_id=%s
+                        """
+                    self.db.query(sqlo, [self.subusr_id, order_id, wechat_user_id])
+                    # 修改订单商品明细表状态
+                    sqld = """
+                        update wechat_mall_order_detail set status=4,status_str='待自提' 
+                        where usr_id=%s and order_id=%s 
+                                """
+                    self.db.query(sqld, [self.subusr_id, order_id])
+                    self.write_order_log(order_id, '采用用户余额全支付自提单', '更新订单状态为待自提',
+                                         '订单号:%s' % order_num)
+                elif str(kuaid) == '2' and str(ctype) == '0':  # 无须配送
+                    # 修改订单状态
+                    sqlo = """
+                        update wechat_mall_order set status=6,status_str='待评价' 
+                        where usr_id=%s and id=%s and wechat_user_id=%s
+                        """
+                    self.db.query(sqlo, [self.subusr_id, order_id, wechat_user_id])
+                    # 修改订单商品明细表状态
+                    sqld = """
+                    update wechat_mall_order_detail set status=6,status_str='待评价' 
+                    where usr_id=%s and order_id=%s 
+                            """
+                    self.db.query(sqld, [self.subusr_id, order_id])
+                    self.write_order_log(order_id, '采用用户余额全支付非快递配送', '更新订单状态为待评价',
+                                         '订单号:%s' % order_num)
+                # 更新商品库存
+                sql = """select good_id,amount,inviter_user,good_name,cid 
+                from wechat_mall_order_detail  where usr_id=%s and order_id=%s """
+                lll, t = self.db.select(sql, [self.subusr_id, order_id])
+                for ii in lll:
+                    good_id, amountm, user, good_name, cid = ii
+                    try:
+                        self.oGOODS_D.updates(self.subusr_id, good_id, amountm)
+                        self.oGOODS.updates(self.subusr_id, good_id, amountm)
+                        self.oGOODS_N.update(self.subusr_id, good_id)
+                    except Exception as e:
+                        self.print_log('创建订单更新商品数据报错2', '%s' % e)
+                    if str(user) != '0' and str(user) != str(cid):  # 下单返现
+                        good_D = self.oGOODS_D.get(self.subusr_id, int(good_id))
+                        if good_D != {}:
+                            shareInfo = good_D['shareInfo']
+                            basicInfo = good_D['basicInfo']
+                            share_type = shareInfo['share_type']
+                            share_time = shareInfo['share_time']
+                            share_number = shareInfo['share_number']
+
+                            gname = basicInfo['name']
+                            ticket_id = basicInfo['return_ticket']
+                            if str(share_type) != '0' and str(share_time) == '2':  # 返现
+                                if str(share_type) == '1' and share_number != '':  # 返现金
+                                    sql = """
+                                    update wechat_mall_user set balance=coalesce(balance,0)+%s 
+                                    where usr_id=%s and id=%s 
+                                    """
+                                    self.db.query(sql, [float(share_number), self.subusr_id, user])
+                                    sql = """
+                                    insert into cash_log(usr_id,wechat_user_id,ctype,ctype_str,change_money,
+                                    typeid,typeid_str,remark,goods_id,goods_name,cid,ctime)
+                                    values(%s,%s,2,'返现',%s,1,'分享返现','单次分享返现返',%s,%s,%s,now())
+                                    """
+                                    parm = [self.subusr_id, user, float(share_number), good_id, gname, cid]
+                                    self.db.query(sql, parm)
+                                    sql = """
+                                    insert into profit_record(usr_id,wechat_user_id,ctype,ctype_str,
+                                    share_type,
+                                    share_type_str,change_money,goods_id,goods_name,cid,ctime)
+                                    values(%s,%s,0,'现金收益',3,'好友下单返现',%s,%s,%s,%s,now())
+                                    """
+                                    parm = [self.subusr_id, user, float(share_number), good_id, gname, cid]
+                                    self.db.query(sql, parm)
+
+                                elif str(share_type) == '2' and share_number != '':  # 返积分
+
+                                    sql = """
+                                        update wechat_mall_user set score=coalesce(score,0)+%s 
+                                        where usr_id=%s and id=%s 
+                                                """
+                                    self.db.query(sql, [float(share_number), self.subusr_id, user])
+                                    sql = """
+                                        insert into integral_log(usr_id,wechat_user_id,type,typestr,in_out,
+                                        inoutstr,amount,cid,ctime)values(%s,%s,7,'分享返',0,'收入',%s,%s,now())
+                                        """
+                                    parm = [self.subusr_id, good_id, float(share_number), cid]
+                                    self.db.query(sql, parm)
+                                    sql = """insert into profit_record(usr_id,wechat_user_id,ctype,
+                                        ctype_str,share_type,
+                                            share_type_str,change_money,goods_id,goods_name,cid,ctime)
+                                            values(%s,%s,1,'积分收益',4,'好友下单返积分',%s,%s,%s,%s,now())
+                                                        """
+                                    parm = [self.subusr_id, user, float(share_number), good_id, gname, cid]
+                                    self.db.query(sql, parm)
+
+                                elif str(share_type) == '3' and ticket_id != '':  # 返优惠券
+
+                                    sql = """
+                                    select to_char(now(),'YYYY-MM-DD'),
+                                        amount,to_char(dateend,'YYYY-MM-DD'),COALESCE(total,0),
+                                        cname,remark,type_id,type_str,
+                                    case when type_id=1 then COALESCE(type_ext,'0') else '0' end type_ext,
+                                        apply_id,apply_str,apply_ext_num,apply_ext_money,apply_goods_id,
+                                        use_time,use_time_str,datestart,validday,icons,pics,remain_total
+                                    from coupons 
+                                    where usr_id=%s and COALESCE(del_flag,0)=0 and id=%s
+                                                    """
+                                    parm = [self.subusr_id, ticket_id]
+                                    l, n = self.db.select(sql, parm)
+                                    if n > 0:
+                                        now_, max_num, dateend, total, cname, remark, type_id, type_str, type_ext = \
+                                            l[0][0:9]
+                                        apply_id, apply_str, apply_ext_num, apply_ext_money, apply_goods_id, use_time, use_time_str = \
+                                            l[0][9:16]
+                                        datestart, validday, icons, pics, remain_total = l[0][16:]
+                                        if now_ < dateend and int(remain_total) != int(total):
+
+                                            if str(apply_id) == '1':
+                                                change_money = float(apply_ext_num) / 100
+                                            else:
+                                                change_money = apply_ext_num
+
+                                            data = {
+                                                'usr_id': self.subusr_id,
+                                                'wechat_user_id': user,
+                                                'm_id': ticket_id,
+                                                'cname': cname,
+                                                'type_id': type_id,
+                                                'type_str': type_str,
+                                                'type_ext': type_ext,
+                                                'remark': remark,
+                                                'icons': icons,
+                                                'pics': pics,
+                                                'goods_id': apply_goods_id,
+                                                'datestart': datestart or None,
+                                                'date_end': dateend or None,
+                                                'apply_id': apply_id or None,
+                                                'apply_str': apply_str,
+                                                'apply_ext_num': apply_ext_num or None,
+                                                'apply_ext_money': apply_ext_money or None,
+                                                'use_time': use_time or None,
+                                                'use_time_str': use_time_str,
+                                                'validday': validday or None,
+                                                'cid': self.subusr_id,
+                                                'ctime': self.getToday(9),
+                                                'good_id': good_id,
+                                                're_status': 1
+
+                                            }
+
+                                            self.db.insert('my_coupons', data)
+                                            sql = """update coupons set remain_total=COALESCE(remain_total,0)+1 
+                                                            where id=%s"""
+                                            self.db.query(sql, ticket_id)
+                                            sql = """insert into profit_record(usr_id,wechat_user_id,ctype,
+                                            ctype_str,share_type,
+                                            share_type_str,change_money,goods_id,goods_name,cid,ctime,ticket_id)
+                                            values(%s,%s,2,'优惠券收益',5,'好友下单返优惠券',%s,%s,%s,%s,now(),%s)
+                                                """
+                                            parm = [self.subusr_id, user, change_money, good_id, gname, cid, ticket_id]
+                                            self.db.query(sql, parm)
+
+                if str(ctype) == 2:  # 支付处理拼团数据
+
+                    if str(ptype) == '0':  # 开团
+                        self.Pingtuan_add(wechat_user_id, ptkid, order_id, phone)
+
+                    elif str(ptype) == '1':  # 参团
+                        self.Pingtuan_join(wechat_user_id, ptkid, order_id, phone)
+
+                self.oUSER.update(self.subusr_id, wechat_user_id)
 
             if float(balance)>0:#使用余额支付：
 
