@@ -450,44 +450,45 @@ class chome_dl(cBASE_DL):
         return
 
     def sync_data_6(self,syncid):  # C001
-        sql="select ctype,field,cname,COALESCE(sort,0) from advertis where usr_id=%s and COALESCE(del_flag,0)=0"
+        sql="select id,ctype,field,cname,COALESCE(sort,0) from advertis where usr_id=%s and COALESCE(del_flag,0)=0"
         l,t=self.db.select(sql,[syncid])
         if t>0:
             self.db.query("delete from advertis where usr_id=%s and usr_id!=1", self.usr_id)
+            self.db.query("delete from banner where usr_id=%s and usr_id!=1", self.usr_id)
             for i in l:
-                ctype, field, cname, sort=i
+                aid,ctype, field, cname, sort=i
                 cur_random_no = "%s%s" % (time.time(), random.random())
                 sql = "insert into advertis(usr_id,ctype,field,cname,sort,ctime,random_no)values(%s,%s,%s,%s,%s,now(),%s)"
                 self.db.query(sql, [self.usr_id, ctype, field, cname, sort,cur_random_no])
                 pk = self.db.fetchcolumn('select id from advertis where random_no=%s', cur_random_no)
 
 
-            sqll = """
-               SELECT D.business_id,D.title,D.good_name,
-                    D.status,D.remark,D.link_url,D.pic_url,D.remark
-                FROM banner D
-                where  D.usr_id=%s and COALESCE(D.del_flag,0)=0
-                   """
-            ll,tt=self.db.select(sqll,[syncid])
-            if tt>0:
-                self.db.query("delete from banner where usr_id=%s and usr_id!=1", self.usr_id)
-                for j in ll:
-                    business_id,title,good_name,status,remark,link_url,pic_url,remark=j
-                    data = {'title': title,
-                            'business_id': business_id or None,
-                            'good_name': good_name,
-                            'link_url': link_url,
-                            'ctype': pk or None,
-                           # 'type_str': type_str,
-                            'status': status or None,
-                            #'status_str': status_str,
-                            'pic_url': pic_url,
-                            'remark': remark,
-                            }
-                    data['usr_id'] = self.usr_id
-                    data['cid'] = 0
-                    data['ctime'] = self.getToday(9)
-                    self.db.insert('banner', data)
+                sqll = """
+                   SELECT D.business_id,D.title,D.good_name,
+                        D.status,D.remark,D.link_url,D.pic_url,D.remark
+                    FROM banner D
+                    where  D.usr_id=%s and COALESCE(D.del_flag,0)=0 and ctype=%s
+                       """
+                ll,tt=self.db.select(sqll,[syncid,aid])
+                if tt>0:
+
+                    for j in ll:
+                        business_id,title,good_name,status,remark,link_url,pic_url,remark=j
+                        data = {'title': title,
+                                'business_id': business_id or None,
+                                'good_name': good_name,
+                                'link_url': link_url,
+                                'ctype': pk or None,
+                               # 'type_str': type_str,
+                                'status': status or None,
+                                #'status_str': status_str,
+                                'pic_url': pic_url,
+                                'remark': remark,
+                                }
+                        data['usr_id'] = self.usr_id
+                        data['cid'] = 0
+                        data['ctime'] = self.getToday(9)
+                        self.db.insert('banner', data)
 
         return
 
