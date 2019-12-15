@@ -335,11 +335,13 @@ class cSHOP:
                 advertis_banner.append(bb)
         self.__d[str(sType)]['advertis_banner'] = advertis_banner
         # banner_list接口开始
-        sql = """select b.id,b.business_id,b.link_url,b.pic_url,
-                    b.remark,b.title,b.ctype,b.sort,b.topic_id
+        sql = """
+                select b.id,b.business_id,b.link_url,b.pic_url,b.remark,
+                    b.title,b.ctype,b.sort,b.topic_id,a.field
                     from banner b
-                    
-                    where COALESCE(b.del_flag,0)=0 and b.usr_id =%s and COALESCE(b.status,0)=0 order by b.sort"""
+                    left join advertis  a on a.id=b.ctype
+                    where COALESCE(b.del_flag,0)=0 and b.usr_id =%s and COALESCE(b.status,0)=0 order by b.sort 
+            """
         banner_list, t = self.db.fetchall(sql,sType)
         self.__d[str(sType)]['banner_list'] = banner_list
         # textarea_list

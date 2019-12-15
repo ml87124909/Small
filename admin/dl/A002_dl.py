@@ -94,28 +94,26 @@ class cA002_dl(cBASE_DL):
               'sort':sort or None
               }
         pk=''
-        try:
-            if self.pk != '':  # update
 
-                data['uid']=self.usr_id
-                data['utime'] = self.getToday(9)
-                self.db.update('banner' , data , " id = %s " % self.pk)
-                pk=self.pk
-                self.use_log('修改图片广告%s' % pk)
+        if self.pk != '':  # update
 
-            else:  # insert
-                data['usr_id'] = self.usr_id_p
-                data['cid'] = self.usr_id
-                data['ctime'] = self.getToday(9)
-                self.db.insert('banner' , data)
-                self.use_log('增加图片广告')
-            self.oSHOP.update(self.usr_id_p)
+            data['uid']=self.usr_id
+            data['utime'] = self.getToday(9)
+            self.db.update('banner' , data , " id = %s " % self.pk)
+            pk=self.pk
+            self.use_log('修改图片广告%s' % pk)
 
-            dR['code'] = '0'
-            dR['pk'] = pk
-        except:
-            dR['code'] = '1'
-            dR['MSG'] = '保存失败'
+        else:  # insert
+            data['usr_id'] = self.usr_id_p
+            data['cid'] = self.usr_id
+            data['ctime'] = self.getToday(9)
+            self.db.insert('banner' , data)
+            self.use_log('增加图片广告')
+        self.oSHOP.update(self.usr_id_p)
+
+        dR['code'] = '0'
+        dR['pk'] = pk
+
         return dR
         
     def delete_data(self):
