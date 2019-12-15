@@ -1396,8 +1396,11 @@ class chome(cBASE_LOC):
                                int(float(money) * 100), order_num])
                 return self.jsons({'code': 0, 'data': pay_info, 'msg': self.error_code['ok']})
             elif dR == 2:
-                sql = "select id from mall where appid=%s and mchid=%s and usr_id = %s"
-                l, t = self.db.select(sql, [pay_info['appid'], pay_info['mch_id'], self.subusr_id])
+                sql = """select id from mall 
+                                where convert_from(decrypt(appid::bytea, %s, 'aes'),'SQL_ASCII')=%s 
+                                and convert_from(decrypt(mchid::bytea, %s, 'aes'),'SQL_ASCII')=%s and usr_id = %s"""
+                l, t = self.db.select(sql, [self.md5code, pay_info['appid'], self.md5code, pay_info['mch_id'],
+                                            self.subusr_id])
                 sql = "select id from offline_pay where order_num=%s and usr_id=%s"
                 m, n = self.db.select(sql, [order_num, self.subusr_id])
 
@@ -1478,8 +1481,11 @@ class chome(cBASE_LOC):
                                int(float(money) * 100), order_num])
                 return self.jsons({'code': 0, 'data': pay_info, 'msg': self.error_code['ok']})
             elif dR == 2:
-                sql = "select id from mall where appid=%s and mchid=%s and usr_id = %s"
-                l, t = self.db.select(sql, [pay_info['appid'], pay_info['mch_id'], self.subusr_id])
+                sql = """select id from mall 
+                                where convert_from(decrypt(appid::bytea, %s, 'aes'),'SQL_ASCII')=%s 
+                                and convert_from(decrypt(mchid::bytea, %s, 'aes'),'SQL_ASCII')=%s and usr_id = %s"""
+                l, t = self.db.select(sql, [self.md5code, pay_info['appid'], self.md5code, pay_info['mch_id'],
+                                            self.subusr_id])
                 sql = "select id from top_up where order_no=%s and usr_id=%s"
                 m, n = self.db.select(sql, [order_num, self.subusr_id])
 
@@ -1559,8 +1565,11 @@ class chome(cBASE_LOC):
                                int(float(money) * 100), order_num])
                 return self.jsons({'code': 0, 'data': pay_info, 'msg': self.error_code['ok']})
             elif dR == 2:
-                sql = "select id from mall where appid=%s and mchid=%s and usr_id = %s"
-                l, t = self.db.select(sql, [pay_info['appid'], pay_info['mch_id'], self.subusr_id])
+                sql = """select id from mall 
+                                where convert_from(decrypt(appid::bytea, %s, 'aes'),'SQL_ASCII')=%s 
+                                and convert_from(decrypt(mchid::bytea, %s, 'aes'),'SQL_ASCII')=%s and usr_id = %s"""
+                l, t = self.db.select(sql, [self.md5code, pay_info['appid'], self.md5code, pay_info['mch_id'],
+                                            self.subusr_id])
                 sql = "select id from vip_member where order_no=%s and usr_id=%s"
                 m, n = self.db.select(sql, [order_num, self.subusr_id])
 
@@ -1884,8 +1893,11 @@ class chome(cBASE_LOC):
                                int(float(money) * 100), payment_number])
                 return self.jsons({'code': 0, 'data': pay_info, 'msg': self.error_code['ok']})
             elif dR == 2:
-                sql = "select id from mall where appid=%s and mchid=%s and usr_id = %s"
-                l, t = self.db.select(sql, [pay_info['appid'], pay_info['mch_id'], self.subusr_id])
+                sql = """select id from mall 
+                                where convert_from(decrypt(appid::bytea, %s, 'aes'),'SQL_ASCII')=%s 
+                                and convert_from(decrypt(mchid::bytea, %s, 'aes'),'SQL_ASCII')=%s and usr_id = %s"""
+                l, t = self.db.select(sql, [self.md5code, pay_info['appid'], self.md5code, pay_info['mch_id'],
+                                            self.subusr_id])
                 sql = "select id from wechat_mall_order where order_num=%s and usr_id=%s"
                 m, n = self.db.select(sql, [order_num, self.subusr_id])
 
