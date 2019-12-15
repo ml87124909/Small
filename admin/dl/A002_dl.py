@@ -129,9 +129,9 @@ class cA002_dl(cBASE_DL):
     def local_ajax_jftype(self):
         kw = self.GP('keyword', '')
         sql = u"""
-                select id,cname from goods_info where COALESCE(del_flag,0)=0
+                select id,cname from goods_info where COALESCE(del_flag,0)=0 and usr_id=%s
                     """
-        L=[]
+        L=[self.usr_id_p]
         if kw != '':
             sql += " and cname LIKE %s"
             L.append('%%%s%%'%kw)
@@ -142,8 +142,8 @@ class cA002_dl(cBASE_DL):
 
     def pic_type(self):
         L=[]
-        sql="select id,cname from advertis where coalesce(del_flag,0)=0 and ctype=1"
-        l,n=self.db.select(sql)
+        sql="select id,cname from advertis where coalesce(del_flag,0)=0 and ctype=1 and usr_id=%s"
+        l,n=self.db.select(sql,[self.usr_id_p])
         if n>0:
             L=l
         return L
@@ -155,6 +155,7 @@ class cA002_dl(cBASE_DL):
         if n>0:
             L=l
         return L
+
     def ajax_update(self):
         pk = self.pk
         dR = {'code': '', 'MSG': ''}
