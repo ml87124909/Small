@@ -8,9 +8,9 @@
 
 体验请到  https://small.yjyzj.cn
 
-![](https://github.com/mn3711698/Small/blob/master/923.png)
+![](https://github.com/ml87124909/Small/blob/master/923.png)
 
-![](https://github.com/mn3711698/Small/blob/master/1574772580.jpg)
+![](https://github.com/ml87124909/Small/blob/master/1574772580.jpg)
 
 #### 注意：用docker镜像mn3711698/small:004的一定要git pull，这个docker镜像我再更新，需要自己git pull更新项目代码,不然代码会很旧，没法用!
 
@@ -27,7 +27,7 @@ docker镜像:mn3711698/small:004,我测试过OK。基于ubuntu 18.04 的python3.
 本系统采用python3,基于flask搭建的脚手架开发。数据库是postgresql.
 <br>请注意config.py这个配置文件，默认开启调试日志。
 
-配合SmallStore开源小程序使用：https://github.com/mn3711698/SmallStore
+配合SmallStore开源小程序使用：https://github.com/ml87124909/SmallStore
 
 目标是满足进销存ERP，供销等各种功能及接口（小程序，微信公众号，H5，APP）。
 > 目前功能是比较少，将会不断增加，同时也期待您贡献代码或者功能(插件)。
