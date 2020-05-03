@@ -16,7 +16,7 @@
 我开发用的是windows 10(linux子系统:ubuntu 18.04) + python3.6.8 演示环境用的是centos 7.6+python3.6.9
 # 说明  2019-08-07
 docker镜像:mn3711698/small:004,我测试过OK。基于ubuntu 18.04 的python3.6.8+postgresql-10。
-<br>您完全可以直接在里边的/var/games/Small下，安装(python3 install.py)及运行(python3 start.py)。
+<br>您完全可以直接在里边的/var/games/Small下，先安装(python3 install.py)，安装好再运行(python3 start.py)。
 <br>以后docker里的代码我就不更新了，有需要的直接git pull就好了。
 <br>我是将整个环境都弄好打包成一个，直接在docker里边运行，我也不懂别的方法，这样有个问题就是，那个安装生成的dbconfig.py文件没有，每次都要重新搞。
 <br>python3 start.py启动项目通常是用来调试的，如果要生产运行，您可以用nginx+apache或者别的方法，我是用nginx+apache或nginx+gunicorn+supervisor都可以。
