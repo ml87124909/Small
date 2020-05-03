@@ -3,7 +3,7 @@
 # 更新说明  2020-05-03    
 只保留SAAS版本，B2B2C版本及个人版本另起项目处理。
 
-体验请到  https://small.yjyzj.cn
+体验请到  https://store.yjyzj.cn
 
 ![](https://github.com/mn3711698/Small/blob/master/923.png)
 
